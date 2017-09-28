@@ -3,9 +3,6 @@ package com.znz.zuowen.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.znz.compass.znzlibray.common.DataManager;
-import com.znz.xunjian.R;
-import com.znz.xunjian.adapter.DeviceAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.znz.compass.znzlibray.utils.ViewHolder.init;
+import com.znz.zuowen.R;
 
 
 /**
@@ -97,27 +88,4 @@ public class PopupWindowManager {
         popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
         return view;
     }
-
-    public void showDevice(View parent) {
-        hidePopupWindow();
-        View view = initPopupWindow(R.layout.popup_device);
-        init(view, R.id.tvCancel).setOnClickListener(v -> hidePopupWindow());
-        init(view, R.id.tvConfirm).setOnClickListener(v -> hidePopupWindow());
-        RecyclerView rvRefresh = init(view, R.id.rvRefresh);
-        List dataList = new ArrayList();
-        dataList.add("");
-        dataList.add("");
-        dataList.add("");
-        dataList.add("");
-        dataList.add("");
-        dataList.add("");
-        dataList.add("");
-        dataList.add("");
-        GridLayoutManager manager = new GridLayoutManager(mContext, 3);
-        DeviceAdapter adapter = new DeviceAdapter(dataList);
-        rvRefresh.setLayoutManager(manager);
-        rvRefresh.setAdapter(adapter);
-        popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
-    }
-
 }
