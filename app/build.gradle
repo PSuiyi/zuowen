@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.znz.zuowen"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 100
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                //这里修改apk文件名
+                def fileName = "树遇_v${defaultConfig.versionName}${releaseTime()}.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.javaVersion
+        targetCompatibility rootProject.ext.android.javaVersion
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+def releaseTime() {
+    return new Date().format("(yyyyMMdd)", TimeZone.getTimeZone("UTC"))
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile project(':lib_zuowen')
+}
