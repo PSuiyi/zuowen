@@ -8,7 +8,7 @@ import com.znz.compass.znzlibray.base.BaseZnzBean;
 import com.znz.compass.znzlibray.base_znz.IModel;
 import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.xunjian.R;
+import com.znz.zuowen.R;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
