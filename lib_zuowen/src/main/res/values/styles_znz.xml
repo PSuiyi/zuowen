@@ -1,0 +1,236 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert.Self</item>
+    </style>
+
+
+    <style name="Theme.AppCompat.Light.Dialog.Alert.Self" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <!--修改AlertDialog按钮的颜色-->
+        <item name="colorAccent">#3F51B5</item>
+    </style>
+
+    <!--文本框样式-->
+    <style name="TextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorHint">@color/hint_color</item>
+    </style>
+
+    <style name="TextGrayStyle" parent="TextStyle">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="TextWhiteStyle" parent="TextStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextRedStyle" parent="TextStyle">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="TextDrawableStyle" parent="TextStyle">
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="TitleTextStyle" parent="TextStyle">
+        <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="TextSamllStyle" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_small_size</item>
+    </style>
+
+    <style name="TextSamllGrayStyle" parent="TextSamllStyle">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="TitleGrayTextStyle" parent="TitleTextStyle">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="TitleWhiteTextStyle" parent="TitleTextStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TitleRedTextStyle" parent="TitleTextStyle">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="TimeTextStyle" parent="TextStyle">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:text">2016-09-11 12:30</item>
+    </style>
+
+    <!--输入框样式-->
+    <style name="EditStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorHint">@color/hint_color</item>
+        <item name="android:background">@null</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <style name="EditSingleStyle" parent="EditStyle">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="EditMultiStyle" parent="EditStyle">
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="EditPhoneStyle" parent="EditSingleStyle">
+        <item name="android:maxLength">11</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="EditPasswordStyle" parent="EditSingleStyle">
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+
+    <!-- Common Style -->
+    <style name="WeightView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/line_space</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
+    <style name="LineVer">
+        <item name="android:layout_width">@dimen/line_space</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
+    <style name="LineDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@drawable/bg_line_divider</item>
+    </style>
+
+    <style name="LineDividerNoTop">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@color/line_divider</item>
+    </style>
+
+    <!-- 自定义仿IOS的AlertDialog的样式 -->
+    <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <!-- 自定义仿IOS的ActionSheet底部Dialog的样式 ，有模糊效果 -->
+    <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
+
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Dialog进入及退出动画 -->
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
+    </style>
+
+    <!-- ActionSheet进出动画 -->
+    <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
+    </style>
+
+    <!-- RecyclerViewStyle -->
+    <style name="RecyclerViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <!--gallery about-->
+    <style name="GalleryBaseTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="galleryBtnBackground" parent="GalleryBaseTheme">
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="popupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/in_fade</item>
+        <item name="android:windowExitAnimation">@anim/out_fade</item>
+    </style>
+
+    <!--进度条样式-->
+    <style name="progressDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">#ffE91E63</item>
+    </style>
+
+
+    <style name="main_tab_bottom">
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:paddingTop">19dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:background">@color/trans</item>
+        <item name="android:textColor">@color/tab_text</item>
+        <item name="android:drawablePadding">1dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!--time picker about-->
+    <style name="time_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@drawable/shadow_left</item>
+        <item name="shadow_right">@drawable/shadow_right</item>
+        <item name="shadow_bottom">@drawable/shadow_bottom</item>
+    </style>
+</resources>

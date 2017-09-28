@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llNetworkStatus"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF9E4"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="@dimen/distance_view"
+    android:paddingRight="@dimen/distance_view"
+    android:paddingTop="10dp"
+    android:visibility="gone">
+
+    <TextView
+        style="@style/TextStyle"
+        android:text="当前网络不可用，请检查你的网络设置。" />
+
+    <View style="@style/WeightView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:src="@drawable/listarr"
+        android:visibility="visible" />
+
+</LinearLayout>

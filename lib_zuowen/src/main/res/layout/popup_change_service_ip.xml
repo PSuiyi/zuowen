@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:layout_marginBottom="@dimen/distance_view"
+            android:text="切换服务器IP地址" />
+
+        <EditText
+            android:id="@+id/etServiceIP"
+            style="@style/EditSingleStyle"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/distance_divider"
+            android:background="@drawable/bg_tag"
+            android:hint="请输入IP地址"
+            android:padding="@dimen/distance_divider"
+            android:textSize="@dimen/title_size" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvServiceIP"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tvSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/distance_view"
+            android:background="@color/red"
+            android:gravity="center"
+            android:paddingBottom="@dimen/distance_divider"
+            android:paddingLeft="@dimen/distance_view"
+            android:paddingRight="@dimen/distance_view"
+            android:paddingTop="@dimen/distance_divider"
+            android:text="切换"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>

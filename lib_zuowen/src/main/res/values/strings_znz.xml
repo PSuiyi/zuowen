@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">znzLirbary</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="app_tip">提示</string>
+    <string name="NoSignalException">亲~无网络啦,请检查你的网络配置哦</string>
+    <string name="json_exception">json解析错误</string>
+    <string name="connect_server_exception">服务器连接失败</string>
+    <string name="app_exit_again">再按一次退出程序</string>
+
+    <!-- 刷新 -->
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_failed">加载失败，请点我重试</string>
+    <string name="load_end">没有更多数据</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    <string name="getting_prepayid">正在获取预支付订单...</string>
+
+    <!-- 公共字段 -->
+    <string name="common_no_data">暂无数据</string>
+
+    <!--下拉刷新-->
+    <string name="cube_ptr_pull_down">下拉</string>
+    <string name="cube_ptr_pull_down_to_refresh">下拉刷新</string>
+    <string name="cube_ptr_release_to_refresh">释放刷新</string>
+    <string name="cube_ptr_refreshing">加载中...</string>
+    <string name="cube_ptr_refresh_complete">更新完成.</string>
+
+    <string name="cube_ptr_last_update">上次更新:&#160;</string>
+    <string name="cube_ptr_seconds_ago">&#160;秒之前</string>
+    <string name="cube_ptr_minutes_ago">&#160;分钟之前</string>
+    <string name="cube_ptr_hours_ago">&#160;小时之前</string>
+
+    <!--相机选择相关-->
+    <string name="gallery_all_folder">所有图片</string>
+    <string name="gallery_shoot">拍摄照片</string>
+    <string name="gallery_finish">(%1$d / %2$d) 完成</string>
+    <string name="gallery_gallery">相册</string>
+    <string name="gallery_send">发送</string>
+    <string name="gallery_msg_no_camera">没有系统相机</string>
+    <string name="gallery_folder_name">文件夹名</string>
+    <string name="gallery_photo_num">%d 张</string>
+
+</resources>

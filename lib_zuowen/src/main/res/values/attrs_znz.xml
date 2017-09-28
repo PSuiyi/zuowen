@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- tab的自定义属性 -->
+    <declare-styleable name="ZnzSwitchView">
+        <attr name="tabName_size" format="dimension" />
+        <attr name="tab_change_color" format="color" />
+        <attr name="tab_underline_color" format="color" />
+        <attr name="tab_show_num" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="stock_index"></declare-styleable>
+
+    <declare-styleable name="DragTopLayout">
+
+        <!--Set the collapse panel offset-->
+        <attr name="dtlCollapseOffset" format="dimension" />
+
+        <!--Set enable drag over.The default value is true.-->
+        <attr name="dtlOverDrag" format="boolean" />
+
+        <!--Open the top view after the drag layout is created. The default value is false.-->
+        <attr name="dtlOpen" format="boolean" />
+
+        <!-- The id of the top view (which will be dragged) -->
+        <attr name="dtlTopView" format="reference" />
+
+        <!-- The content view which will be dragged together with "dtlTopView" -->
+        <attr name="dtlDragContentView" format="reference" />
+
+        <!-- True the top view can be dragged -->
+        <attr name="dtlCaptureTop" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularProgress">
+        <attr name="borderWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchButton">
+        <attr name="switchWidth" format="dimension"></attr>
+        <attr name="switchHeight" format="dimension"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="PtrFrameLayout">
+        <!-- Optional. If you put header and content in xml, you can you these to specify them. -->
+        <attr name="ptr_header" format="reference" />
+        <attr name="ptr_content" format="reference" />
+
+        <!-- the resistance when you are moving the frame -->
+        <attr name="ptr_resistance" format="float" />
+
+        <!-- the ration of the height of the header to trigger refresh -->
+        <attr name="ptr_ratio_of_header_height_to_refresh" format="float" />
+
+        <attr name="ptr_duration_to_close" format="integer" />
+        <attr name="ptr_duration_to_close_header" format="integer" />
+
+        <!-- pull to refresh, otherwise release to refresh, default is release to refresh -->
+        <attr name="ptr_pull_to_fresh" format="boolean" />
+
+        <!-- keep header when refreshing-->
+        <attr name="ptr_keep_header_when_refresh" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PtrClassicHeader">
+        <attr name="ptr_rotate_ani_time" format="integer" />
+    </declare-styleable>
+
+    // 第三方的底部切换的view
+    <declare-styleable name="TabStripView">
+        <attr name="navigateTabTextColor" format="color|reference" />
+        <attr name="navigateTabSelectedTextColor" format="color|reference" />
+        <attr name="containerId" format="integer|reference" />
+        <attr name="navigateTabTextSize" format="dimension|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="Theme">
+        <attr name="colorPrimary" format="color" />
+    </declare-styleable>
+
+    <!--znz_star_view about-->
+    <declare-styleable name="ZnzStarView">
+        <attr name="star_clickable" format="boolean" />
+        <attr name="star_display_score" format="boolean" />
+        <attr name="star_width" format="dimension" />
+        <attr name="star_height" format="dimension" />
+        <attr name="star_space" format="dimension" />
+    </declare-styleable>
+
+    <!--edit_with_delete-->
+    <declare-styleable name="EditTextWithDel">
+        <attr name="edit_enable_delete" format="boolean" />
+        <attr name="edit_delete_icon" format="reference" />
+    </declare-styleable>
+
+    <!--edit_with_limit-->
+    <declare-styleable name="EditTextWithLimit">
+        <attr name="limit_size" format="integer" />
+        <attr name="limit_hint" format="string" />
+        <attr name="limit_min_line" format="integer" />
+    </declare-styleable>
+
+    <!--edit_with_delete-->
+    <declare-styleable name="UploadImageLayout">
+        <attr name="upload_max_size" format="integer" />
+    </declare-styleable>
+
+    <!--nine about-->
+    <declare-styleable name="NineGridView">
+        <attr name="nine_enable_preview" format="boolean" />
+        <attr name="nine_enable_one_min_width" format="boolean" />
+    </declare-styleable>
+
+    <!--swipe back about-->
+    <declare-styleable name="SwipeBackLayout">
+        <attr name="edge_size" format="dimension" />
+        <attr name="edge_flag">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="all" value="3" />
+        </attr>
+        <attr name="shadow_left" format="reference" />
+        <attr name="shadow_right" format="reference" />
+        <attr name="shadow_bottom" format="reference" />
+    </declare-styleable>
+
+    <attr name="SwipeBackLayoutStyle" format="reference" />
+</resources>

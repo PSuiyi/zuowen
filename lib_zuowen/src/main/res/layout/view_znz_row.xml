@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:switch="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llRowView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:layout_marginRight="@dimen/distance_view"
+            android:text="标题"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/title_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="@dimen/distance_view"
+                android:paddingRight="@dimen/distance_view"
+                android:singleLine="true"
+                android:textColor="@color/text_gray"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/title_size"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/etValue"
+                style="@style/EditSingleStyle"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="@dimen/distance_view"
+                android:paddingRight="@dimen/distance_view"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/title_size"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvDot"
+                style="@style/TextStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="@dimen/distance_view"
+                android:background="@drawable/bg_dot_red"
+                android:gravity="center"
+                android:paddingBottom="1dp"
+                android:text="2"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+            android:id="@+id/ivRowHeader"
+            android:layout_width="@dimen/row_header_size"
+            android:layout_height="@dimen/row_header_size"
+            android:src="@mipmap/dfthead2" />
+
+        <com.znz.compass.znzlibray.views.ios.UISwitchButton
+            android:id="@+id/iosSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="@dimen/distance_view"
+            android:visibility="gone"
+            switch:switchHeight="50dp"
+            switch:switchWidth="50dp" />
+
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="@dimen/distance_view"
+            android:src="@drawable/listarr"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMulti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tvValueMulti"
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/distance_view"
+            android:paddingLeft="@dimen/distance_view"
+            android:paddingRight="@dimen/distance_view"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/title_size" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        style="@style/Line"></View>
+
+    <View
+        android:id="@+id/lineLong"
+        style="@style/LineDivider"
+        android:visibility="gone"></View>
+
+</LinearLayout>

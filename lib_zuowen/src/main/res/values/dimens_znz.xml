@@ -1,0 +1,62 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">15dp</dimen>
+    <dimen name="activity_vertical_margin">15dp</dimen>
+    <dimen name="activity_horizontal_padding">15dp</dimen>
+    <dimen name="activity_vertical_padding">15dp</dimen>
+
+    <dimen name="default_status_bar_height">25dp</dimen>
+
+    <!--视图的边距，包括padding，margin-->
+    <dimen name="distance_view">15dp</dimen>
+    <dimen name="distance_divider">8dp</dimen>
+    <dimen name="distance_text">3dp</dimen>
+    <dimen name="distance_top">0dp</dimen>
+
+    <!--textsize navsize etc.-->
+    <dimen name="text_small_size">12sp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="text_larger_size">17sp</dimen>
+    <dimen name="title_size">16sp</dimen>
+    <dimen name="title_larger_size">18sp</dimen>
+    <dimen name="nav_size">18sp</dimen>
+    <dimen name="nav_larger_size">20sp</dimen>
+
+
+    <!-- common -->
+    <dimen name="head_wight">40dp</dimen>
+    <dimen name="head_height">40dp</dimen>
+
+    <dimen name="nav_height">48dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="item_height">48dp</dimen>
+    <dimen name="row_height">48dp</dimen>
+    <dimen name="btn_height">40dp</dimen>
+
+    <dimen name="line_space">0.4dp</dimen>
+
+
+    <!--view_star about-->
+    <dimen name="view_star_height">28dp</dimen>
+    <dimen name="view_star_wigth">30dp</dimen>
+    <dimen name="view_star_mal">8dp</dimen>
+    <dimen name="view_star_mar">8dp</dimen>
+    <dimen name="star_space">8dp</dimen>
+
+
+    <dimen name="button_height">45dp</dimen>
+    <dimen name="bottom_tab_font_size">12.0dp</dimen>
+    <dimen name="bottom_tab_padding_drawable">2.0dp</dimen>
+    <dimen name="row_header_size">55dp</dimen>
+
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+
+
+    <dimen name="default_label_title_size">10sp</dimen>
+    <dimen name="default_label_content_size">12sp</dimen>
+    <dimen name="default_label_top_padding">15dp</dimen>
+    <dimen name="default_label_bottom_padding">10dp</dimen>
+
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--系统样式-->
+    <color name="colorPrimary">@color/status_color</color>
+    <color name="colorPrimaryDark">@color/status_color</color>
+    <color name="colorAccent">@color/status_color</color>
+    <color name="status_color">#038B87</color>
+
+    <!--基础色值-->
+    <color name="red">#EC1B36</color>
+    <color name="orange">#FF8F40</color>
+    <color name="blue">#4CAAFF</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="green">#7ED321</color>
+    <color name="gray">#aaaaaa</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="trans">#00000000</color>
+    <color name="dark">#8000</color>
+    <color name="pink">#FF6489</color>
+    <color name="darkview">#33C0C0C0</color>
+
+    <!--各种灰度-->
+    <color name="gray10">#20000000</color>
+    <color name="gray20">#33000000</color>
+    <color name="gray30">#4C000000</color>
+    <color name="gray40">#66000000</color>
+    <color name="gray50">#7F000000</color>
+    <color name="gray60">#99000000</color>
+    <color name="gray70">#B2000000</color>
+    <color name="gray80">#CC000000</color>
+    <color name="gray90">#E5000000</color>
+
+    <!--各种白色-->
+    <color name="white10">#20FFFFFF</color>
+    <color name="white20">#33FFFFFF</color>
+    <color name="white30">#4CFFFFFF</color>
+    <color name="white40">#66FFFFFF</color>
+    <color name="white50">#7FFFFFFF</color>
+    <color name="white60">#99FFFFFF</color>
+    <color name="white70">#B2FFFFFF</color>
+    <color name="white80">#CCFFFFFF</color>
+    <color name="white90">#E5FFFFFF</color>
+
+    <!--文字色值-->
+    <color name="title_color">#CC000000</color>
+    <color name="title_gray">@color/gray30</color>
+    <color name="text_color">#B2000000</color>
+    <color name="text_gray">#939394</color>
+    <color name="text_gray_light">#99000000</color>
+    <color name="hint_color">@color/gray30</color>
+
+    <!--部件色值-->
+    <color name="background">#F5F5F9</color>
+    <color name="background_gray">#f8f8f8</color>
+    <color name="nav_backgroud">@color/status_color</color>
+    <color name="line">@color/gray10</color>
+    <color name="line_divider">@color/background</color>
+
+    <!--item about-->
+    <color name="item_pressed_color">#fafafa</color>
+    <color name="div_gray">#ccc</color>
+    <color name="popup_left_bg">#FFFFFF</color>
+    <color name="popup_right_bg">#ddd</color>
+    <color name="popup_right_bg_selected">#ccc</color>
+    <color name="text_alert_color">#0076FF</color>
+</resources>

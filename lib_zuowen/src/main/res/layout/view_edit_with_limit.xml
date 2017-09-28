@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <EditText
+            android:id="@+id/etContent"
+            style="@style/EditMultiStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入..."
+            android:minLines="3"
+            android:paddingBottom="@dimen/distance_view"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/tvLimit"
+            style="@style/TextGrayStyle"
+            android:layout_gravity="right|bottom"
+            android:text="100字"
+            android:textColor="@color/gray20" />
+    </LinearLayout>
+</LinearLayout>

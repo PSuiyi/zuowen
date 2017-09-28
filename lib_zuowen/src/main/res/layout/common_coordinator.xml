@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.znz.compass.znzlibray.views.CoordinatorLayoutWithLoading xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/znzCoordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="1dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/nav_backgroud"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/default_image_rect" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/nav_height"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMeetingName"
+                        style="@style/TitleWhiteTextStyle"
+                        android:text="一周线上投资策略会"
+                        android:textSize="@dimen/title_larger_size" />
+
+                    <TextView
+                        android:id="@+id/tvTime"
+                        style="@style/TextWhiteStyle"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:text="03-22(今天) 19:00-20:00" />
+
+                    <TextView
+                        android:id="@+id/tvOrg"
+                        style="@style/TextWhiteStyle"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:text="中泰证券" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/nav_backgroud"
+                android:elevation="2dp"
+                android:visibility="visible"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/nav_height"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:id="@+id/llNavLeft"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="60dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/ivNavLeft"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingRight="@dimen/distance_divider"
+                                android:src="@drawable/topback_white" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/navTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/app_name"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_size" />
+
+                    </RelativeLayout>
+
+                    <include layout="@layout/include_common_network_status" />
+                </LinearLayout>
+
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+</com.znz.compass.znzlibray.views.CoordinatorLayoutWithLoading>
