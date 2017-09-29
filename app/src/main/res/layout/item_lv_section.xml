@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View style="@style/LineDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_view">
+
+        <View style="@style/LineVerGreen" />
+
+        <TextView
+            android:id="@+id/tvSection"
+            style="@style/TitleTextStyle"
+            android:layout_marginLeft="@dimen/distance_divider"
+            android:text="优秀作文" />
+
+        <View style="@style/WeightView" />
+
+        <LinearLayout
+            android:id="@+id/llMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextStyle"
+                android:text="更多" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:src="@drawable/listarr"
+                android:visibility="visible" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>

@@ -1,14 +1,11 @@
 package com.znz.zuowen.base;
 
-import android.os.Bundle;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.socks.library.KLog;
 import com.znz.compass.znzlibray.base.BaseListActivity;
 import com.znz.compass.znzlibray.base_znz.IModel;
 import com.znz.compass.znzlibray.common.ZnzConstants;
-import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 
@@ -34,15 +31,8 @@ public abstract class BaseAppListActivity<M extends IModel, T> extends BaseListA
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EventManager.register(this);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventManager.unregister(this);
         if (mModel != null) {
             mModel.MODestory();
         }

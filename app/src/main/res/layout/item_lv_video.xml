@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivImage"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_image_rect" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/distance_view"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="微课视频名称" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:text="老师名字" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。..." />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:text="2017/08/12" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>

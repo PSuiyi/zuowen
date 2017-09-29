@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.bgabanner.BGABanner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:banner_pageChangeDuration="1000"
+        app:banner_pointAutoPlayAble="false"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+        app:banner_pointTopBottomMargin="15dp"
+        app:banner_transitionEffect="alpha" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/distance_view"
+        android:paddingTop="@dimen/distance_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llMenu1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/home_menu_size"
+                    android:layout_height="@dimen/home_menu_size"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:text="古树签到" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMenu2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/home_menu_size"
+                    android:layout_height="@dimen/home_menu_size"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:text="古树审核" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMenu3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/home_menu_size"
+                    android:layout_height="@dimen/home_menu_size"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:text="官方活动" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMenu4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/home_menu_size"
+                    android:layout_height="@dimen/home_menu_size"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:text="积分商城" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

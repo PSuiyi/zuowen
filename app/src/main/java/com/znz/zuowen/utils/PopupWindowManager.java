@@ -13,10 +13,6 @@ import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.zuowen.R;
 
 
-/**
- * Created by wcm on 2017/9/7.
- */
-
 public class PopupWindowManager {
     private static PopupWindowManager instance;
     private Context mContext;

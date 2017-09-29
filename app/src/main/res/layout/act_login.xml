@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_common_navigation"
+        android:visibility="gone" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View style="@style/WeightView" />
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher" />
+
+        <View style="@style/WeightView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/distance_divider" />
+
+                <com.znz.compass.znzlibray.views.EditTextWithDel
+                    android:id="@+id/etUserName"
+                    style="@style/EditPhoneStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="手机号"
+                    android:paddingRight="@dimen/distance_view"
+                    android:textSize="@dimen/title_size" />
+            </LinearLayout>
+
+            <View style="@style/Line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/distance_divider" />
+
+                <EditText
+                    android:id="@+id/etPsd"
+                    style="@style/EditPasswordStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="密码"
+                    android:paddingRight="@dimen/distance_view"
+                    android:textSize="@dimen/title_size" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvForgetPsd"
+            style="@style/TextGrayStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:text="忘记密码" />
+
+        <View style="@style/WeightView" />
+
+        <TextView
+            android:id="@+id/tvLogin"
+            style="@style/BtnStyle"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:layout_marginRight="@dimen/distance_view"
+            android:text="登录"
+            android:textColor="@color/white" />
+
+        <View style="@style/WeightView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    style="@style/Line"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_margin="@dimen/distance_divider"
+                    android:layout_marginLeft="@dimen/distance_divider"
+                    android:text="第三方登录" />
+
+                <View
+                    style="@style/Line"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <View style="@style/WeightView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/llQQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:text="QQ好友"
+                        android:textSize="@dimen/text_small_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llWeChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:text="微信好友"
+                        android:textSize="@dimen/text_small_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llWeibo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:text="新浪微博"
+                        android:textSize="@dimen/text_small_size" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

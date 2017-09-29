@@ -63,18 +63,8 @@ public class Constants {
     }
 
     public interface MultiType {
-        int HomeMenu = 0;
-        int Section = 1;
-        int HomeRecommend = 2;
-        int HomeChongzhi = 3;
-        int HomeAdv = 4;
-        int HomeRecommendBanner = 5;
-        int PayParent = 6;
-        int PayChild = 7;
-        int HomeModelBanner = 8;
-        int FactoryParent = 9;
-        int FactoryChild = 10;
-
+        int Section = 0;
+        int Article = 1;
     }
 
     public interface SearchType {

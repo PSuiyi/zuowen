@@ -205,7 +205,7 @@
         <item name="android:ellipsize">marquee</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
-        <item name="android:paddingTop">19dp</item>
+        <item name="android:paddingTop">3dp</item>
         <item name="android:paddingBottom">4dp</item>
         <item name="android:button">@null</item>
         <item name="android:singleLine">true</item>
