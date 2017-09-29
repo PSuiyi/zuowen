@@ -26,6 +26,7 @@
         <activity android:name=".ui.home.article.ArticleListAct" />
         <activity android:name=".ui.home.week.WeekArticleAct" />
         <activity android:name=".ui.mine.MineArticleAct" />
+        <activity android:name=".ui.home.article.ArticleSubjectAct" />
     </application>
 
 </manifest>

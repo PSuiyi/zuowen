@@ -29,7 +29,7 @@ public class MineArticleAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("微课指导");
+        setTitleName("我的作文");
     }
 
     @Override
