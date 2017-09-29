@@ -10,16 +10,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
 import com.znz.compass.znzlibray.views.advs.bean.AdvInfoBean;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.MultiAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
+import com.znz.zuowen.ui.home.article.ArticleListAct;
+import com.znz.zuowen.ui.home.video.VideoListAct;
+import com.znz.zuowen.ui.home.week.WeekArticleAct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,12 @@ public class HomeFragment extends BaseAppListFragment {
     private BGABanner mBanner;
     private List<AdvInfoBean> advList = new ArrayList<>();
 
+    private LinearLayout llMenu1;
+    private LinearLayout llMenu2;
+    private LinearLayout llMenu3;
+    private LinearLayout llMenu4;
+    private LinearLayout llMenu5;
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.frag_home};
@@ -68,13 +75,13 @@ public class HomeFragment extends BaseAppListFragment {
         dataList.add(new MultiBean(Constants.MultiType.Article));
         dataList.add(new MultiBean(Constants.MultiType.Article));
 
-        AdvInfoBean bean = new AdvInfoBean();
-        bean.setName("ceshi");
-        bean.setImg("https://gju1.alicdn.com/tps/i3/175880295535497075/TB2RSwHXMUc61BjSZFvXXXKfVXa_!!0-juitemmedia.jpg_460x460Q90.jpg_.webp");
-        advList.add(bean);
-        advList.add(bean);
-        advList.add(bean);
-        advList.add(bean);
+//        AdvInfoBean bean = new AdvInfoBean();
+//        bean.setName("ceshi");
+//        bean.setImg("https://gju1.alicdn.com/tps/i3/175880295535497075/TB2RSwHXMUc61BjSZFvXXXKfVXa_!!0-juitemmedia.jpg_460x460Q90.jpg_.webp");
+//        advList.add(bean);
+//        advList.add(bean);
+//        advList.add(bean);
+//        advList.add(bean);
     }
 
     @Override
@@ -114,43 +121,56 @@ public class HomeFragment extends BaseAppListFragment {
         header = View.inflate(activity, R.layout.header_home, null);
         adapter.addHeaderView(header);
 
-        bindViewById(header, R.id.llMenu1).setOnClickListener(v -> {
-        });
-        bindViewById(header, R.id.llMenu2).setOnClickListener(v -> {
-        });
-        bindViewById(header, R.id.llMenu3).setOnClickListener(v -> {
-        });
-        bindViewById(header, R.id.llMenu4).setOnClickListener(v -> {
-        });
+        llMenu1 = bindViewById(header, R.id.llMenu1);
+        llMenu2 = bindViewById(header, R.id.llMenu2);
+        llMenu3 = bindViewById(header, R.id.llMenu3);
+        llMenu4 = bindViewById(header, R.id.llMenu4);
+        llMenu5 = bindViewById(header, R.id.llMenu5);
 
-        mBanner = (BGABanner) header.findViewById(R.id.banner);
-        mBanner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
-            @Override
-            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-                Glide.with(activity)
-                        .load(model)
-                        .placeholder(R.mipmap.default_image_rect)
-                        .error(R.mipmap.default_image_rect)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(itemView);
-            }
+        llMenu1.setOnClickListener(v -> {
+            gotoActivity(WeekArticleAct.class);
         });
+        llMenu2.setOnClickListener(v -> {
+            gotoActivity(ArticleListAct.class);
+        });
+        llMenu3.setOnClickListener(v -> {
 
+        });
+        llMenu4.setOnClickListener(v -> {
+            gotoActivity(VideoListAct.class);
+        });
+        llMenu5.setOnClickListener(v -> {
 
-        mBanner.setDelegate((banner, itemView, model, position) -> {
         });
 
-
-        List<String> advUrls = new ArrayList<>();
-        List<String> advTitles = new ArrayList<>();
-
-        for (AdvInfoBean advInfoBean : advList) {
-            advUrls.add(advInfoBean.getImg());
-            advTitles.add(advInfoBean.getName());
-        }
-
-        mBanner.setData(advUrls, advTitles);
+//        mBanner = (BGABanner) header.findViewById(R.id.banner);
+//        mBanner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
+//            @Override
+//            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
+//                Glide.with(activity)
+//                        .load(model)
+//                        .placeholder(R.mipmap.default_image_rect)
+//                        .error(R.mipmap.default_image_rect)
+//                        .centerCrop()
+//                        .dontAnimate()
+//                        .into(itemView);
+//            }
+//        });
+//
+//
+//        mBanner.setDelegate((banner, itemView, model, position) -> {
+//        });
+//
+//
+//        List<String> advUrls = new ArrayList<>();
+//        List<String> advTitles = new ArrayList<>();
+//
+//        for (AdvInfoBean advInfoBean : advList) {
+//            advUrls.add(advInfoBean.getImg());
+//            advTitles.add(advInfoBean.getName());
+//        }
+//
+//        mBanner.setData(advUrls, advTitles);
     }
 
     @Override

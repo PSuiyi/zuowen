@@ -20,7 +20,8 @@
 
             <TextView
                 style="@style/TitleTextStyle"
-                android:text="我的理想" />
+                android:text="我的理想"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,7 +40,7 @@
             </LinearLayout>
 
             <TextView
-                style="@style/TextGrayStyle"
+                style="@style/TextStyle"
                 android:layout_marginTop="@dimen/distance_text"
                 android:ellipsize="end"
                 android:maxLines="3"

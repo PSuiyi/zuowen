@@ -34,7 +34,8 @@
 
                 <TextView
                     style="@style/TitleTextStyle"
-                    android:text="微课视频名称" />
+                    android:text="微课视频名称"
+                    android:textStyle="bold" />
 
                 <TextView
                     style="@style/TextGrayStyle"

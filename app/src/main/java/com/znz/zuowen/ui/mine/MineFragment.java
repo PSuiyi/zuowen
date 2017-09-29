@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzlibray.views.row_view.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.row_view.ZnzRowGroupView;
 import com.znz.zuowen.R;
@@ -73,6 +74,13 @@ public class MineFragment extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withTitle("我的作文")
+                .withEnableArraw(true)
+                .withOnClickListener(v -> {
+                    gotoActivity(MineArticleAct.class);
+                })
+                .build());
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("更改登录密码")
                 .withEnableArraw(true)
                 .withEnableLongLine(true)
@@ -83,6 +91,14 @@ public class MineFragment extends BaseAppFragment {
                 .withTitle("退出登录账号")
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
+                    new UIAlertDialog(activity)
+                            .builder()
+                            .setMsg("是否确定退出登录账号")
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确定", v2 -> {
+
+                            })
+                            .show();
                 })
                 .build());
         commonRowGroup.notifyDataChanged(rowDescriptionList);

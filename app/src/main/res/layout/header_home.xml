@@ -10,6 +10,7 @@
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="160dp"
+        android:visibility="gone"
         app:banner_pageChangeDuration="1000"
         app:banner_pointAutoPlayAble="false"
         app:banner_pointContainerBackground="@android:color/transparent"
@@ -27,7 +28,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:layout_marginRight="@dimen/distance_view"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -36,8 +39,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#DEF6E0"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
 
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
@@ -46,17 +51,23 @@
 
                 <TextView
                     style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_text"
-                    android:text="古树签到" />
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="本周作文" />
             </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/distance_view"
+                android:layout_height="0dp" />
 
             <LinearLayout
                 android:id="@+id/llMenu2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#FEE4E0"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
 
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
@@ -65,17 +76,23 @@
 
                 <TextView
                     style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_text"
-                    android:text="古树审核" />
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="优秀作文" />
             </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/distance_view"
+                android:layout_height="0dp" />
 
             <LinearLayout
                 android:id="@+id/llMenu3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#CCE7FE"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
 
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
@@ -84,17 +101,31 @@
 
                 <TextView
                     style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_text"
-                    android:text="官方活动" />
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="我的作文" />
             </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:layout_marginRight="@dimen/distance_view"
+            android:layout_marginTop="@dimen/distance_view"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/llMenu4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#FEF2DC"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
 
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
@@ -103,9 +134,60 @@
 
                 <TextView
                     style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_text"
-                    android:text="积分商城" />
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="微课指导" />
             </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/distance_view"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:id="@+id/llMenu5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#E1E0FE"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
+
+                <ImageView
+                    android:layout_width="@dimen/home_menu_size"
+                    android:layout_height="@dimen/home_menu_size"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="作文投票" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/distance_view"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#DEF6E0"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="@dimen/home_menu_size"
+                    android:layout_height="@dimen/home_menu_size"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="本周作文" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </LinearLayout>

@@ -43,10 +43,10 @@
     <color name="white90">#E5FFFFFF</color>
 
     <!--文字色值-->
-    <color name="title_color">#CC000000</color>
+    <color name="title_color">@color/gray70</color>
     <color name="title_gray">@color/gray30</color>
-    <color name="text_color">#B2000000</color>
-    <color name="text_gray">#939394</color>
+    <color name="text_color">@color/gray70</color>
+    <color name="text_gray">@color/gray30</color>
     <color name="text_gray_light">#99000000</color>
     <color name="hint_color">@color/gray30</color>
 

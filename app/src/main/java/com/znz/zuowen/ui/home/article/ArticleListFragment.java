@@ -1,4 +1,4 @@
-package com.znz.zuowen.ui.home;
+package com.znz.zuowen.ui.home.article;
 
 import android.support.v7.widget.RecyclerView;
 

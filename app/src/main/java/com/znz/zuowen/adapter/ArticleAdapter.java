@@ -7,7 +7,7 @@ import com.znz.compass.znzlibray.base.BaseZnzBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
-import com.znz.zuowen.ui.home.ArticleDetailAct;
+import com.znz.zuowen.ui.home.article.ArticleSubjectAct;
 
 import java.util.List;
 
@@ -24,6 +24,6 @@ public class ArticleAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(ArticleDetailAct.class);
+        gotoActivity(ArticleSubjectAct.class);
     }
 }
