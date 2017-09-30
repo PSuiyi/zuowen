@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+        TextView
+        style="@style/TitleTextStyle"
+        android:text="作文题目：我的理想"
+        android:textStyle="bold" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_marginTop="@dimen/distance_divider"
+            android:text="命题老师：叶雨" />
+
+        <TextView
+            style="@style/TextGrayStyle"
+            android:layout_marginTop="@dimen/distance_divider"
+            android:text="2017/08/12" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_marginTop="@dimen/distance_view"
+            android:text="我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。在一个安静的环境下工作，不是挺好的。我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。在一个安静的环境下工作，不是挺好的。我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。"></TextView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

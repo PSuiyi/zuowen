@@ -9,6 +9,7 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
+import com.znz.zuowen.ui.home.article.ArticleDetailAct;
 
 import java.util.List;
 
@@ -40,6 +41,9 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         Bundle bundle = new Bundle();
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
+                break;
+            case Constants.MultiType.Article:
+                gotoActivity(ArticleDetailAct.class);
                 break;
 
         }
