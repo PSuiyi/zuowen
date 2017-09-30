@@ -22,27 +22,40 @@
         android:paddingRight="30dp"
         android:paddingTop="@dimen/distance_view">
 
-        <com.znz.compass.znzlibray.views.EditTextWithDel
-            style="@style/EditRoundStyle"
-            android:hint="输入用户名" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.znz.compass.znzlibray.views.EditTextWithDel
+                style="@style/EditRoundStyle"
+                android:layout_weight="1"
+                android:hint="手机号"
+                android:inputType="number"
+                android:maxLength="11" />
+
+            <LinearLayout
+                android:id="@+id/llSendCode"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:background="@drawable/bg_btn_boder"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:text="60s" />
+
+            </LinearLayout>
+        </LinearLayout>
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
             style="@style/EditRoundStyle"
             android:layout_marginTop="20dp"
-            android:hint="输入登录密码"
+            android:layout_weight="1"
+            android:hint="请输入新密码"
             android:inputType="textPassword" />
-
-        <com.znz.compass.znzlibray.views.EditTextWithDel
-            style="@style/EditRoundStyle"
-            android:layout_marginTop="20dp"
-            android:hint="确认登录密码"
-            android:inputType="textPassword" />
-
-        <com.znz.compass.znzlibray.views.EditTextWithDel
-            style="@style/EditRoundStyle"
-            android:layout_marginTop="20dp"
-            android:hint="推荐人" />
-
 
         <TextView
             android:id="@+id/tvSubmit"
@@ -50,10 +63,8 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="20dp"
-            android:text="确定"
+            android:text="确认"
             android:textColor="@color/white" />
-
-
     </LinearLayout>
 
 </LinearLayout>

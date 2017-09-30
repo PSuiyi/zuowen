@@ -30,6 +30,7 @@
         <activity android:name=".ui.mine.MineArticleAct" />
         <activity android:name=".ui.home.article.ArticleSubjectAct" />
         <activity android:name=".ui.login.CompleteInfoAct" />
+        <activity android:name=".ui.login.VerifyPhoneAct" />
     </application>
 
 </manifest>

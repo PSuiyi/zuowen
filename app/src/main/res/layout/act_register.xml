@@ -54,8 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="手机号/用户名"
-                    android:paddingRight="@dimen/distance_view"
-                    android:textSize="@dimen/title_size" />
+                    android:paddingRight="@dimen/distance_view" />
             </LinearLayout>
 
             <LinearLayout
@@ -78,15 +77,14 @@
                         android:padding="@dimen/distance_divider"
                         android:src="@mipmap/ic_launcher" />
 
-                    <EditText
+                    <com.znz.compass.znzlibray.views.EditTextWithDel
                         style="@style/EditSingleStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="验证码"
                         android:inputType="number"
-                        android:paddingRight="@dimen/distance_view"
-                        android:textSize="@dimen/title_size" />
+                        android:paddingRight="@dimen/distance_view" />
 
                 </LinearLayout>
 
@@ -100,7 +98,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/TitleTextStyle"
+                        style="@style/TextStyle"
                         android:text="验证"
                         android:textColor="@color/green" />
 
@@ -124,15 +122,14 @@
                     android:padding="@dimen/distance_divider"
                     android:src="@mipmap/ic_launcher" />
 
-                <EditText
+                <com.znz.compass.znzlibray.views.EditTextWithDel
                     android:id="@+id/etPsd"
                     style="@style/EditPasswordStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:hint="密码"
-                    android:paddingRight="@dimen/distance_view"
-                    android:textSize="@dimen/title_size" />
+                    android:paddingRight="@dimen/distance_view" />
 
             </LinearLayout>
         </LinearLayout>

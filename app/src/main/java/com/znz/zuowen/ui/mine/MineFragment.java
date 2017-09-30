@@ -1,9 +1,14 @@
 package com.znz.zuowen.ui.mine;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
+import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzlibray.views.row_view.ZnzRowDescription;
@@ -12,8 +17,11 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Date： 2017/9/26 2017
@@ -107,5 +115,51 @@ public class MineFragment extends BaseAppFragment {
     @Override
     protected void loadDataFromServer() {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.ivUserHeader)
+    public void onViewClicked() {
+        mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onSuccess(List<String> photoList) {
+                if (!photoList.isEmpty()) {
+                    ivUserHeader.loadHeaderImage(photoList.get(0));
+                }
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        }, true);
     }
 }

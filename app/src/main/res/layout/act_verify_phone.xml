@@ -24,25 +24,9 @@
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
             style="@style/EditRoundStyle"
-            android:hint="输入用户名" />
-
-        <com.znz.compass.znzlibray.views.EditTextWithDel
-            style="@style/EditRoundStyle"
-            android:layout_marginTop="20dp"
-            android:hint="输入登录密码"
-            android:inputType="textPassword" />
-
-        <com.znz.compass.znzlibray.views.EditTextWithDel
-            style="@style/EditRoundStyle"
-            android:layout_marginTop="20dp"
-            android:hint="确认登录密码"
-            android:inputType="textPassword" />
-
-        <com.znz.compass.znzlibray.views.EditTextWithDel
-            style="@style/EditRoundStyle"
-            android:layout_marginTop="20dp"
-            android:hint="推荐人" />
-
+            android:hint="手机号"
+            android:inputType="number"
+            android:maxLength="11" />
 
         <TextView
             android:id="@+id/tvSubmit"
@@ -50,10 +34,8 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="20dp"
-            android:text="确定"
+            android:text="下一步"
             android:textColor="@color/white" />
-
-
     </LinearLayout>
 
 </LinearLayout>
