@@ -1,11 +1,14 @@
 package com.znz.zuowen.ui.mine;
 
+import android.Manifest;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
@@ -133,33 +136,51 @@ public class MineFragment extends BaseAppFragment {
 
     @OnClick(R.id.ivUserHeader)
     public void onViewClicked() {
-        mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
-            @Override
-            public void onStart() {
 
-            }
+        new RxPermissions(activity)
+                .request(Manifest.permission.CAMERA,
+                        Manifest.permission.READ_PHONE_STATE)
+                .subscribe(granted -> {
+                    if (granted) {
+                        mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
+                            @Override
+                            public void onStart() {
 
-            @Override
-            public void onSuccess(List<String> photoList) {
-                if (!photoList.isEmpty()) {
-                    ivUserHeader.loadHeaderImage(photoList.get(0));
-                }
-            }
+                            }
 
-            @Override
-            public void onCancel() {
+                            @Override
+                            public void onSuccess(List<String> photoList) {
+                                if (!photoList.isEmpty()) {
+                                    ivUserHeader.loadHeaderImage(photoList.get(0));
+                                }
+                            }
 
-            }
+                            @Override
+                            public void onCancel() {
 
-            @Override
-            public void onFinish() {
+                            }
 
-            }
+                            @Override
+                            public void onFinish() {
 
-            @Override
-            public void onError() {
+                            }
 
-            }
-        }, true);
+                            @Override
+                            public void onError() {
+
+                            }
+                        }, true);
+                    } else {
+                        new AlertDialog.Builder(activity)
+                                .setTitle("权限申请")
+                                .setMessage("该操作需要相机权限，请在设置中打开该应用的相机权限")
+                                .setCancelable(false)
+                                .setNegativeButton("取消", null)
+                                .setPositiveButton("去设置", (dialog, which) -> {
+                                    mDataManager.openSettingPermissions(activity);
+                                })
+                                .show();
+                    }
+                });
     }
 }
