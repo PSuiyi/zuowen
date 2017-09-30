@@ -10,17 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.TabHomeAct">
+
+        </activity>
+        <activity android:name=".ui.home.video.VideoDetailAct" />
+        <activity android:name=".ui.home.video.VideoListAct" />
+        <activity android:name=".ui.home.article.ArticleDetailAct" />
+        <activity android:name=".ui.login.BindPhoneAct" />
+        <activity android:name=".ui.login.LoginAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.video.VideoDetailAct" />
-        <activity android:name=".ui.home.video.VideoListAct" />
-        <activity android:name=".ui.home.article.ArticleDetailAct" />
-        <activity android:name=".ui.login.BindPhoneAct" />
-        <activity android:name=".ui.login.LoginAct" />
         <activity android:name=".ui.login.RegisterAct" />
         <activity android:name=".ui.login.ResetPsdAct" />
         <activity android:name=".ui.home.article.ArticleListAct" />
