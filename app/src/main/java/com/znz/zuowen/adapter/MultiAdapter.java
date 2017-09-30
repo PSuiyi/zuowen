@@ -10,6 +10,7 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.home.article.ArticleDetailAct;
+import com.znz.zuowen.ui.home.article.ArticleListAct;
 
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         Bundle bundle = new Bundle();
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
+                gotoActivity(ArticleListAct.class);
                 break;
             case Constants.MultiType.Article:
                 gotoActivity(ArticleDetailAct.class);

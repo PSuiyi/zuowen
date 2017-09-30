@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.znz.compass.znzlibray.views.advs.bean.AdvInfoBean;
@@ -21,6 +22,7 @@ import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
+import com.znz.zuowen.ui.mine.MineArticleAct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +129,19 @@ public class HomeFragment extends BaseAppListFragment {
         llMenu4 = bindViewById(header, R.id.llMenu4);
         llMenu5 = bindViewById(header, R.id.llMenu5);
 
+        ViewTreeObserver vto = llMenu1.getViewTreeObserver();
+        vto.addOnPreDrawListener(() -> {
+            int width = llMenu1.getMeasuredWidth();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llMenu1.getLayoutParams();
+            layoutParams.height = width;
+            llMenu1.setLayoutParams(layoutParams);
+            llMenu2.setLayoutParams(layoutParams);
+            llMenu3.setLayoutParams(layoutParams);
+            llMenu4.setLayoutParams(layoutParams);
+            llMenu5.setLayoutParams(layoutParams);
+            return true;
+        });
+
         llMenu1.setOnClickListener(v -> {
             gotoActivity(WeekArticleAct.class);
         });
@@ -134,7 +149,7 @@ public class HomeFragment extends BaseAppListFragment {
             gotoActivity(ArticleListAct.class);
         });
         llMenu3.setOnClickListener(v -> {
-
+            gotoActivity(MineArticleAct.class);
         });
         llMenu4.setOnClickListener(v -> {
             gotoActivity(VideoListAct.class);

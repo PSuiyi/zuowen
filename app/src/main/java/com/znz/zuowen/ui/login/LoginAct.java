@@ -76,6 +76,7 @@ public class LoginAct extends BaseAppActivity {
         switch (view.getId()) {
             case R.id.tvLogin:
                 gotoActivity(TabHomeAct.class);
+                finish();
                 break;
             case R.id.tvRegister:
                 gotoActivity(RegisterAct.class);

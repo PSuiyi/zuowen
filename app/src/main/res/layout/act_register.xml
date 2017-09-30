@@ -91,6 +91,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llSendCode"
                     android:layout_width="100dp"
                     android:layout_height="@dimen/btn_height"
                     android:layout_marginLeft="@dimen/distance_divider"
