@@ -76,6 +76,7 @@ public class MineFragment extends BaseAppFragment {
                 .withTitle("手机号绑定")
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
+                    gotoActivity(UpdatePhoneAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
