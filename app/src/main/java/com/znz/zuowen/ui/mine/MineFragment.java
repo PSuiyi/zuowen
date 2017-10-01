@@ -83,6 +83,7 @@ public class MineFragment extends BaseAppFragment {
                 .withTitle("查询课时")
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
+                    gotoActivity(MineClassAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()

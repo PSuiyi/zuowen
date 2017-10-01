@@ -1,5 +1,6 @@
 package com.znz.zuowen.ui.mine;
 
+import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 
 /**
@@ -11,7 +12,7 @@ import com.znz.zuowen.base.BaseAppActivity;
 public class MineClassAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[0];
+        return new int[]{R.layout.act_mine_class, 1};
     }
 
     @Override
@@ -21,7 +22,7 @@ public class MineClassAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-
+        setTitleName("课时查询");
     }
 
     @Override

@@ -52,9 +52,9 @@
     </RadioGroup>
 
     <TextView
-        style="@style/BtnStyle"
+        style="@style/BtnRoundStyle"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
-        android:text="确认充值" />
+        android:text="支付" />
 </LinearLayout>
