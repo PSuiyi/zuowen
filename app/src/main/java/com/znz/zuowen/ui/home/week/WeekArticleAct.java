@@ -59,9 +59,9 @@ public class WeekArticleAct extends BaseAppActivity {
         tabNames.add("初中组");
         tabNames.add("高中组");
 
-        fragmentList.add(new ArticleListFragment());
-        fragmentList.add(new ArticleListFragment());
-        fragmentList.add(new ArticleListFragment());
+        fragmentList.add(new ArticleListFragment().newInstance("题目"));
+        fragmentList.add(new ArticleListFragment().newInstance("题目"));
+        fragmentList.add(new ArticleListFragment().newInstance("题目"));
 
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);

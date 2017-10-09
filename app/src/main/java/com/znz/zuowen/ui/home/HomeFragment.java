@@ -146,7 +146,9 @@ public class HomeFragment extends BaseAppListFragment {
             gotoActivity(WeekArticleAct.class);
         });
         llMenu2.setOnClickListener(v -> {
-            gotoActivity(ArticleListAct.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("page", "优秀作文");
+            gotoActivity(ArticleListAct.class, bundle);
         });
         llMenu3.setOnClickListener(v -> {
             gotoActivity(MineArticleAct.class);

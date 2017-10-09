@@ -48,7 +48,7 @@ public class MineFragment extends BaseAppFragment {
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.frag_mine, 1};
+        return new int[]{R.layout.frag_mine, 4};
     }
 
     @Override
@@ -58,7 +58,6 @@ public class MineFragment extends BaseAppFragment {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("我的");
         setNavLeftGone();
     }
 

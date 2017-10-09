@@ -42,7 +42,8 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         Bundle bundle = new Bundle();
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
-                gotoActivity(ArticleListAct.class);
+                bundle.putString("page", "优秀作文");
+                gotoActivity(ArticleListAct.class, bundle);
                 break;
             case Constants.MultiType.Article:
                 gotoActivity(ArticleDetailAct.class);

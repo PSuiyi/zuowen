@@ -1,7 +1,9 @@
 package com.znz.zuowen.ui.home.article;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ArticleAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
@@ -14,6 +16,17 @@ import com.znz.zuowen.base.BaseAppListFragment;
  */
 
 public class ArticleListFragment extends BaseAppListFragment {
+
+    private String page;
+
+    public static ArticleListFragment newInstance(String page) {
+        Bundle args = new Bundle();
+        args.putString("page", page);
+        ArticleListFragment fragment = new ArticleListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};
@@ -21,7 +34,9 @@ public class ArticleListFragment extends BaseAppListFragment {
 
     @Override
     protected void initializeVariate() {
-
+        if (getArguments() != null) {
+            page = getArguments().getString("page");
+        }
     }
 
     @Override
@@ -38,6 +53,9 @@ public class ArticleListFragment extends BaseAppListFragment {
     protected void initializeView() {
         adapter = new ArticleAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+        if (!StringUtil.isBlank(page)) {
+            ((ArticleAdapter) adapter).setPage(page);
+        }
     }
 
     @Override
