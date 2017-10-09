@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="@dimen/distance_view">
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:text="我的理想"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextStyle"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:text="评阅老师：叶雨" />
+
+            <TextView
+                style="@style/TimeTextStyle"
+                android:layout_marginTop="@dimen/distance_divider" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>

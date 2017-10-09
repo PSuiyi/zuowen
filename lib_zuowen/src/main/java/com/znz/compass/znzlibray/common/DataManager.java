@@ -1143,16 +1143,33 @@ public class DataManager implements ZnzConst {
      * @param needCrop
      */
     public void openPhotoSelectSingle(Activity activity, IPhotoSelectCallback iPhotoSelectCallback, boolean needCrop) {
-        GalleryConfig galleryConfig = new GalleryConfig.Builder()
-                .imageLoader(new GlideImageLoader())    // ImageLoader 加载框架（必填）
-                .iHandlerCallBack(iPhotoSelectCallback)     // 监听接口（必填）
-                .multiSelect(false)                      // 是否多选   默认：false
-                .crop(needCrop)                             // 快捷开启裁剪功能，仅当单选 或直接开启相机时有效
-                .crop(needCrop, 1, 1, 500, 500)             // 配置裁剪功能的参数，   默认裁剪比例 1:1
-                .isShowCamera(true)                     // 是否现实相机按钮  默认：false
-                .filePath(ZnzConstants.IMAGE_DIR)          // 图片存放路径
-                .build();
-        GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(activity);
+        new RxPermissions(activity)
+                .request(Manifest.permission.CAMERA,
+                        Manifest.permission.READ_PHONE_STATE)
+                .subscribe(granted -> {
+                    if (granted) {
+                        GalleryConfig galleryConfig = new GalleryConfig.Builder()
+                                .imageLoader(new GlideImageLoader())    // ImageLoader 加载框架（必填）
+                                .iHandlerCallBack(iPhotoSelectCallback)     // 监听接口（必填）
+                                .multiSelect(false)                      // 是否多选   默认：false
+                                .crop(needCrop)                             // 快捷开启裁剪功能，仅当单选 或直接开启相机时有效
+                                .crop(needCrop, 1, 1, 500, 500)             // 配置裁剪功能的参数，   默认裁剪比例 1:1
+                                .isShowCamera(true)                     // 是否现实相机按钮  默认：false
+                                .filePath(ZnzConstants.IMAGE_DIR)          // 图片存放路径
+                                .build();
+                        GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(activity);
+                    } else {
+                        new AlertDialog.Builder(activity)
+                                .setTitle("权限申请")
+                                .setMessage("该操作需要相机权限，请在设置中打开该应用的相机权限")
+                                .setCancelable(false)
+                                .setNegativeButton("取消", null)
+                                .setPositiveButton("去设置", (dialog, which) -> {
+                                    openSettingPermissions(activity);
+                                })
+                                .show();
+                    }
+                });
     }
 
     /**

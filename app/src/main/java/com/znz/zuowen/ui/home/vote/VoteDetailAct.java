@@ -1,7 +1,7 @@
-package com.znz.zuowen.ui.home.article;
+package com.znz.zuowen.ui.home.vote;
 
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,21 +20,19 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class ArticleSubjectAct extends BaseAppActivity {
+public class VoteDetailAct extends BaseAppActivity {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
     ZnzRemind znzRemind;
     @Bind(R.id.llNetworkStatus)
     LinearLayout llNetworkStatus;
-    @Bind(R.id.ivImage)
-    ImageView ivImage;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_article_subject, 1};
+        return new int[]{R.layout.act_article_detail, 1};
     }
 
     @Override
@@ -44,12 +42,13 @@ public class ArticleSubjectAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("作文要求");
+        setTitleName("作文投票");
+        znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
     }
 
     @Override
     protected void initializeView() {
-
+        tvSubmit.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -66,6 +65,5 @@ public class ArticleSubjectAct extends BaseAppActivity {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        gotoActivity(ArticleUploadAct.class);
     }
 }

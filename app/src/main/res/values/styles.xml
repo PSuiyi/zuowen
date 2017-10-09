@@ -13,7 +13,7 @@
     <style name="LineVerGreen">
         <item name="android:layout_width">4dp</item>
         <item name="android:layout_height">20dp</item>
-        <item name="android:background">@color/status_color</item>
+        <item name="android:background">@color/green</item>
     </style>
 
     <style name="BtnRoundStyle" parent="TextStyle">

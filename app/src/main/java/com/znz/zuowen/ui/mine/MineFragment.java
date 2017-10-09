@@ -1,15 +1,12 @@
 package com.znz.zuowen.ui.mine;
 
-import android.Manifest;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
@@ -20,6 +17,7 @@ import com.znz.compass.znzlibray.views.row_view.ZnzRowGroupView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
 import com.znz.zuowen.ui.common.AgreementAct;
+import com.znz.zuowen.ui.home.article.ArticleListAct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +91,9 @@ public class MineFragment extends BaseAppFragment {
                 .withTitle("我的作文")
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
-                    gotoActivity(MineArticleAct.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("page", "我的作文");
+                    gotoActivity(ArticleListAct.class, bundle);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -143,51 +143,34 @@ public class MineFragment extends BaseAppFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivUserHeader:
-                new RxPermissions(activity)
-                        .request(Manifest.permission.CAMERA,
-                                Manifest.permission.READ_PHONE_STATE)
-                        .subscribe(granted -> {
-                            if (granted) {
-                                mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
-                                    @Override
-                                    public void onStart() {
+                mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
+                    @Override
+                    public void onStart() {
 
-                                    }
+                    }
 
-                                    @Override
-                                    public void onSuccess(List<String> photoList) {
-                                        if (!photoList.isEmpty()) {
-                                            ivUserHeader.loadHeaderImage(photoList.get(0));
-                                        }
-                                    }
+                    @Override
+                    public void onSuccess(List<String> photoList) {
+                        if (!photoList.isEmpty()) {
+                            ivUserHeader.loadHeaderImage(photoList.get(0));
+                        }
+                    }
 
-                                    @Override
-                                    public void onCancel() {
+                    @Override
+                    public void onCancel() {
 
-                                    }
+                    }
 
-                                    @Override
-                                    public void onFinish() {
+                    @Override
+                    public void onFinish() {
 
-                                    }
+                    }
 
-                                    @Override
-                                    public void onError() {
+                    @Override
+                    public void onError() {
 
-                                    }
-                                }, true);
-                            } else {
-                                new AlertDialog.Builder(activity)
-                                        .setTitle("权限申请")
-                                        .setMessage("该操作需要相机权限，请在设置中打开该应用的相机权限")
-                                        .setCancelable(false)
-                                        .setNegativeButton("取消", null)
-                                        .setPositiveButton("去设置", (dialog, which) -> {
-                                            mDataManager.openSettingPermissions(activity);
-                                        })
-                                        .show();
-                            }
-                        });
+                    }
+                }, true);
                 break;
             case R.id.tvVip:
                 gotoActivity(AgreementAct.class);

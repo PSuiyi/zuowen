@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--系统样式-->
-    <color name="colorPrimary">@color/status_color</color>
-    <color name="colorPrimaryDark">@color/status_color</color>
+    <color name="colorPrimary">@color/green</color>
+    <color name="colorPrimaryDark">@color/black</color>
     <color name="colorAccent">@color/status_color</color>
-    <color name="status_color">#038B87</color>
+    <color name="status_color">@color/white</color>
 
     <!--基础色值-->
     <color name="red">#E77D7C</color>

@@ -1,18 +1,17 @@
-package com.znz.zuowen.ui.home.video;
+package com.znz.zuowen.ui.home.article;
 
-import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 
 /**
- * Date： 2017/9/29 2017
+ * Date： 2017/10/9 2017
  * User： PSuiyi
  * Description：
  */
 
-public class VideoDetailAct extends BaseAppActivity {
+public class ArticleDetailMineAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_video_detail, 1};
+        return new int[0];
     }
 
     @Override
@@ -22,8 +21,7 @@ public class VideoDetailAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("微课详情");
-        znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+
     }
 
     @Override

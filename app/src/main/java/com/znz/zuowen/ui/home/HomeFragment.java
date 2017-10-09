@@ -1,12 +1,7 @@
 package com.znz.zuowen.ui.home;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +18,10 @@ import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.home.vote.ArticleVoteAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
-import com.znz.zuowen.ui.mine.MineArticleAct;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bingoogolapple.bgabanner.BGABanner;
 
@@ -40,20 +33,6 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 
 public class HomeFragment extends BaseAppListFragment {
 
-    @Bind(R.id.llNavLeft)
-    LinearLayout llNavLeft;
-    @Bind(R.id.llNavRight)
-    LinearLayout llNavRight;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.collapsBarLayout)
-    CollapsingToolbarLayout collapsBarLayout;
-    @Bind(R.id.appBarLayout)
-    AppBarLayout appBarLayout;
-    @Bind(R.id.rvCommonRefresh)
-    RecyclerView rvCommonRefresh;
-    @Bind(R.id.mSwipeRefreshLayout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
     private View header;
     private BGABanner mBanner;
     private List<AdvInfoBean> advList = new ArrayList<>();
@@ -66,7 +45,7 @@ public class HomeFragment extends BaseAppListFragment {
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.frag_home};
+        return new int[]{R.layout.common_list_layout_withnav, 1};
     }
 
     @Override
@@ -89,26 +68,8 @@ public class HomeFragment extends BaseAppListFragment {
 
     @Override
     protected void initializeNavigation() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        collapsBarLayout.setTitle("");
-        collapsBarLayout.setCollapsedTitleTextColor(mDataManager.getColor(R.color.white));
-        collapsBarLayout.setExpandedTitleColor(mDataManager.getColor(R.color.white));
-        collapsBarLayout.setExpandedTitleColor(Color.TRANSPARENT);
-        appBarLayout.addOnOffsetChangedListener((appBarLayout1, verticalOffset) -> {
-//            if (Math.abs(verticalOffset) >= (Math.abs(appBarLayout1.getTotalScrollRange()))) {
-//                toolbar.setBackgroundColor(mDataManager.getColor(R.color.nav_backgroud));
-//            } else {
-//                toolbar.setBackgroundColor(mDataManager.getColor(R.color.trans));
-//            }
-        });
-
-        llNavRight.setOnClickListener(v -> {
-
-        });
-
-        llNavLeft.setOnClickListener(v -> {
-
-        });
+        setTitleName("好作文");
+        setNavLeftGone();
     }
 
     @Override
@@ -152,7 +113,9 @@ public class HomeFragment extends BaseAppListFragment {
             gotoActivity(ArticleListAct.class, bundle);
         });
         llMenu3.setOnClickListener(v -> {
-            gotoActivity(MineArticleAct.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("page", "我的作文");
+            gotoActivity(ArticleListAct.class, bundle);
         });
         llMenu4.setOnClickListener(v -> {
             gotoActivity(VideoListAct.class);

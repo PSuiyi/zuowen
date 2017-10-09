@@ -45,8 +45,9 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_divider"
                     android:padding="@dimen/distance_divider"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/icon_shouji" />
 
                 <com.znz.compass.znzlibray.views.EditTextWithDel
                     android:id="@+id/etUserName"
@@ -74,8 +75,10 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="2dp"
                         android:padding="@dimen/distance_divider"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/icon_yanzhengma" />
 
                     <com.znz.compass.znzlibray.views.EditTextWithDel
                         style="@style/EditSingleStyle"
@@ -119,8 +122,9 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_divider"
                     android:padding="@dimen/distance_divider"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/icon_suo" />
 
                 <com.znz.compass.znzlibray.views.EditTextWithDel
                     android:id="@+id/etPsd"

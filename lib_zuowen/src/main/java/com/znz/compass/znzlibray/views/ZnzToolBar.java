@@ -51,7 +51,7 @@ public class ZnzToolBar extends LinearLayout {
     private TextView tvCartNum;
 
 
-    protected boolean isModeWhite = false;
+    protected boolean isModeWhite = true;
     protected int BACK_MODE = 1;//1、箭头 2、返回文字 3、箭头加文字
     protected int TOOL_MODE = 1;//1、普通 2、搜索 3、返回搜索
     private View view;

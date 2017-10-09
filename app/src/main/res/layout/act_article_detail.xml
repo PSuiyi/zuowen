@@ -67,4 +67,14 @@
         android:paddingRight="@dimen/distance_view"
         android:text="能过合理的想象,反映出意味深长的哲理,…行文流畅,简洁,充分发挥了自己的想像力,是一篇不错的…文章清逸婉丽,流畅连贯,尤其人物语言幽默风趣,再加上一些精妙词语的使用,无形中为文章增添了不少情趣.。" />
 
+
+    <TextView
+        android:id="@+id/tvSubmit"
+        style="@style/BtnRoundStyle"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:text="投票（211）"
+        android:visibility="gone" />
 </LinearLayout>

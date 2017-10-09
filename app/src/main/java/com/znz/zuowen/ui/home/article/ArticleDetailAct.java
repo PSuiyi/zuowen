@@ -23,6 +23,8 @@ public class ArticleDetailAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("作文详情");
+        znzToolBar.setNavRightImg(R.mipmap.icon_dianzanhui);
+        znzToolBar.setNavRightImg2(R.mipmap.icon_shoucanghui);
     }
 
     @Override

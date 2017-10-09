@@ -12,4 +12,9 @@
         layout="@layout/view_znz_toolbar_search"
         android:visibility="gone" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/toolbar_shadow" />
+
 </LinearLayout>

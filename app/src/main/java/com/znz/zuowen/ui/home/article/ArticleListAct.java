@@ -32,7 +32,11 @@ public class ArticleListAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("优秀作文");
+        if (!StringUtil.isBlank(page)) {
+            setTitleName(page);
+        } else {
+            setTitleName("优秀作文");
+        }
     }
 
     @Override

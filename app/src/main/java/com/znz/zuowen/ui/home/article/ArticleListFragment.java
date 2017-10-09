@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ArticleAdapter;
+import com.znz.zuowen.adapter.ArticleMineAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 
 
@@ -51,11 +52,20 @@ public class ArticleListFragment extends BaseAppListFragment {
 
     @Override
     protected void initializeView() {
-        adapter = new ArticleAdapter(dataList);
-        rvRefresh.setAdapter(adapter);
         if (!StringUtil.isBlank(page)) {
-            ((ArticleAdapter) adapter).setPage(page);
+            switch (page) {
+                case "我的作文":
+                    adapter = new ArticleMineAdapter(dataList);
+                    break;
+                default:
+                    adapter = new ArticleAdapter(dataList);
+                    ((ArticleAdapter) adapter).setPage(page);
+                    break;
+            }
+        } else {
+            adapter = new ArticleAdapter(dataList);
         }
+        rvRefresh.setAdapter(adapter);
     }
 
     @Override

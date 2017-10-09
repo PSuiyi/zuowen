@@ -20,7 +20,7 @@
     <dimen name="text_larger_size">17sp</dimen>
     <dimen name="title_size">16sp</dimen>
     <dimen name="title_larger_size">18sp</dimen>
-    <dimen name="nav_size">18sp</dimen>
+    <dimen name="nav_size">17sp</dimen>
     <dimen name="nav_larger_size">20sp</dimen>
 
 

@@ -49,6 +49,7 @@
 
 
     <TextView
+        android:id="@+id/tvSubmit"
         style="@style/BtnRoundStyle"
         android:layout_marginTop="30dp"
         android:text="我要挑战" />
