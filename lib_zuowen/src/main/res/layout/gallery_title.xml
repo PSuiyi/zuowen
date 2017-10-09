@@ -35,10 +35,10 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:drawablePadding="5dp"
-            android:drawableRight="@mipmap/gallery_pick_dropdown_white"
+            android:drawableRight="@mipmap/gallery_pick_dropdown_black"
             android:gravity="center"
             android:text="@string/gallery_all_folder"
-            android:textColor="@color/white"
+            android:textColor="@color/text_color"
             android:textSize="@dimen/nav_size" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_marginRight="@dimen/distance_view"
             android:gravity="center"
             android:text="@string/gallery_finish"
-            android:textColor="@color/white"
+            android:textColor="@color/text_color"
             android:textSize="@dimen/title_size" />
     </RelativeLayout>
 </LinearLayout>

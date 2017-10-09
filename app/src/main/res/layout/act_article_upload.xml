@@ -40,6 +40,7 @@
 
                     <TextView
                         style="@style/TitleTextStyle"
+                        android:drawablePadding="3dp"
                         android:drawableRight="@mipmap/icon_xiala"
                         android:text="李老师" />
                 </LinearLayout>

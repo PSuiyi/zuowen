@@ -18,6 +18,8 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
 import com.znz.zuowen.ui.common.AgreementAct;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
+import com.znz.zuowen.ui.login.LoginAct;
+import com.znz.zuowen.ui.login.ResetPsdAct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +103,7 @@ public class MineFragment extends BaseAppFragment {
                 .withEnableArraw(true)
                 .withEnableLongLine(true)
                 .withOnClickListener(v -> {
+                    gotoActivity(ResetPsdAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -112,7 +115,7 @@ public class MineFragment extends BaseAppFragment {
                             .setMsg("是否确定退出登录账号")
                             .setNegativeButton("取消", null)
                             .setPositiveButton("确定", v2 -> {
-
+                                mDataManager.logout(activity, LoginAct.class);
                             })
                             .show();
                 })

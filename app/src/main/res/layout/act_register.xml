@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/distance_divider"
                     android:padding="@dimen/distance_divider"
-                    android:src="@mipmap/icon_shouji" />
+                    android:src="@mipmap/icon_yonghu" />
 
                 <com.znz.compass.znzlibray.views.EditTextWithDel
                     android:id="@+id/etUserName"

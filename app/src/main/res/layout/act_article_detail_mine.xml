@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="作文题目：我的理想"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="命题老师：叶雨" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:text="2017/08/12" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/distance_view"
+                    android:text="我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。在一个安静的环境下工作，不是挺好的。我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。在一个安静的环境下工作，不是挺好的。我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。"></TextView>
+            </LinearLayout>
+
+            <View style="@style/LineDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:layout_marginBottom="@dimen/distance_view"
+                    android:text="第一次上传"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/img2"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    style="@style/LineOrange"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/BtnTagStyle"
+                    android:text="老师点评" />
+
+                <View
+                    style="@style/LineOrange"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextRedStyle"
+                android:layout_marginBottom="30dp"
+                android:paddingLeft="@dimen/distance_view"
+                android:paddingRight="@dimen/distance_view"
+                android:text="能过合理的想象,反映出意味深长的哲理,…行文流畅,简洁,充分发挥了自己的想像力,是一篇不错的…文章清逸婉丽,流畅连贯,尤其人物语言幽默风趣,再加上一些精妙词语的使用,无形中为文章增添了不少情趣.。" />
+
+
+            <View style="@style/LineDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:layout_marginBottom="@dimen/distance_view"
+                    android:text="第二次上传"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="@dimen/distance_divider"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/img2"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    style="@style/LineOrange"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/BtnTagStyle"
+                    android:text="老师点评" />
+
+                <View
+                    style="@style/LineOrange"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextRedStyle"
+                android:layout_marginBottom="30dp"
+                android:paddingLeft="@dimen/distance_view"
+                android:paddingRight="@dimen/distance_view"
+                android:text="能过合理的想象,反映出意味深长的哲理,…行文流畅,简洁,充分发挥了自己的想像力,是一篇不错的…文章清逸婉丽,流畅连贯,尤其人物语言幽默风趣,再加上一些精妙词语的使用,无形中为文章增添了不少情趣.。" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>
