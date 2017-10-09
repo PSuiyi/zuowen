@@ -14,7 +14,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.TabHomeAct">
+        <activity
+            android:name=".ui.TabHomeAct"
+            android:launchMode="singleTask">
 
         </activity>
         <activity android:name=".ui.home.video.VideoDetailAct" />
@@ -39,6 +41,10 @@
         <activity android:name=".ui.mine.UpdatePhoneAct" />
         <activity android:name=".ui.mine.PayWayAct" />
         <activity android:name=".ui.mine.MineClassAct" />
+        <activity android:name=".ui.mine.PaySuccessAct" />
+        <activity android:name=".ui.common.AgreementAct" />
+        <activity android:name=".ui.home.article.ArticleUploadAct" />
+        <activity android:name=".ui.home.vote.ArticleVoteAct" />
     </application>
 
 </manifest>

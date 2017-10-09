@@ -9,9 +9,9 @@
     <!--基础色值-->
     <color name="red">#E77D7C</color>
     <color name="orange">#FF8F40</color>
-    <color name="blue">#4CAAFF</color>
+    <color name="blue">#367FFF</color>
     <color name="yellow">#FFF7D23E</color>
-    <color name="green">#7ED321</color>
+    <color name="green">#30BC9D</color>
     <color name="gray">#aaaaaa</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>

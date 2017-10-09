@@ -10,71 +10,148 @@
 
     <include layout="@layout/include_common_network_status" />
 
-    <LinearLayout
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/TitleTextStyle"
-            android:padding="@dimen/distance_view"
-            android:text="会员套餐" />
-
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <RadioButton
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
 
-            <View style="@style/Line" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="30dp"
+                    android:paddingLeft="@dimen/distance_view"
+                    android:paddingRight="@dimen/distance_view"
+                    android:paddingTop="30dp">
 
-            <RadioButton
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
-
-            <View style="@style/Line" />
-
-            <RadioButton
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
-
-            <View style="@style/Line" />
-
-            <RadioButton
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
-
-            <View style="@style/Line" />
-
-            <RadioButton
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
-
-            <View style="@style/Line" />
-
-            <RadioButton
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
-
-            <View style="@style/Line" />
-
-            <RadioButton
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
-
-            <View style="@style/Line" />
+                    <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                        android:id="@+id/ivUserHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/dfthead2" />
 
 
-        </RadioGroup>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/distance_view"
+                        android:orientation="vertical">
 
-        <TextView
-            style="@style/BtnRoundStyle"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
-            android:text="购买课时" />
-    </LinearLayout>
+                        <TextView
+                            style="@style/TitleTextStyle"
+                            android:text="张三" />
+
+                        <TextView
+                            android:id="@+id/tvVip"
+                            style="@style/TextWhiteStyle"
+                            android:layout_marginTop="@dimen/distance_divider"
+                            android:background="@mipmap/icon_jifen"
+                            android:gravity="center"
+                            android:paddingLeft="12dp"
+                            android:paddingTop="1dp"
+                            android:text="VIP1"
+                            android:textSize="@dimen/text_small_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/Line" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/distance_view"
+                    android:text="现有课时：2课时" />
+
+                <View style="@style/LineDivider" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="会员套餐" />
+
+                <View style="@style/Line" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        style="@style/RadioStyle"
+                        android:checked="true"
+                        android:text="2课时 10元" />
+
+                    <View style="@style/Line" />
+
+                    <RadioButton
+                        style="@style/RadioStyle"
+                        android:text="2课时 10元" />
+
+                    <View style="@style/Line" />
+
+                    <RadioButton
+                        style="@style/RadioStyle"
+                        android:text="2课时 10元" />
+
+                    <View style="@style/Line" />
+
+                    <RadioButton
+                        style="@style/RadioStyle"
+                        android:text="2课时 10元" />
+
+                    <View style="@style/Line" />
+
+                    <RadioButton
+                        style="@style/RadioStyle"
+                        android:text="2课时 10元" />
+
+                    <View style="@style/Line" />
+
+                    <RadioButton
+                        style="@style/RadioStyle"
+                        android:text="2课时 10元" />
+
+                    <View style="@style/Line" />
+
+                    <RadioButton
+                        style="@style/RadioStyle"
+                        android:text="2课时 10元" />
+
+                    <View style="@style/Line" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAgreement"
+                style="@style/TextStyle"
+                android:layout_marginLeft="@dimen/distance_view"
+                android:layout_marginTop="@dimen/distance_view"
+                android:text="《支付条款》"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/tvSubmit"
+                style="@style/BtnRoundStyle"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:text="购买课时" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

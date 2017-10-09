@@ -63,6 +63,7 @@
         <item name="android:drawableRight">@drawable/bg_cb_select</item>
         <item name="android:padding">@dimen/distance_view</item>
         <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/text_color</item>
     </style>
 
 </resources>

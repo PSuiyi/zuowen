@@ -48,7 +48,7 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/icon_benzhouzuowen" />
 
                 <TextView
                     style="@style/TextGrayStyle"
@@ -74,7 +74,7 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/icon_youxiuzuowen" />
 
                 <TextView
                     style="@style/TextGrayStyle"
@@ -98,9 +98,10 @@
                 android:padding="@dimen/distance_view">
 
                 <ImageView
+                    android:id="@+id/imageView"
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/icon_wodezuowen" />
 
                 <TextView
                     style="@style/TextGrayStyle"
@@ -134,7 +135,7 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/icon_weikezhidao" />
 
                 <TextView
                     style="@style/TextGrayStyle"
@@ -160,7 +161,7 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/icon_zuowentoupiao" />
 
                 <TextView
                     style="@style/TextGrayStyle"

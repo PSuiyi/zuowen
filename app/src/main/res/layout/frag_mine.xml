@@ -48,6 +48,7 @@
                         android:text="张三" />
 
                     <TextView
+                        android:id="@+id/tvVip"
                         style="@style/TextWhiteStyle"
                         android:layout_marginTop="@dimen/distance_divider"
                         android:background="@mipmap/icon_jifen"
@@ -56,11 +57,7 @@
                         android:paddingTop="1dp"
                         android:text="VIP1"
                         android:textSize="@dimen/text_small_size" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <View style="@style/LineDivider" />

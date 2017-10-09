@@ -21,6 +21,7 @@ import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
+import com.znz.zuowen.ui.home.vote.ArticleVoteAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
 import com.znz.zuowen.ui.mine.MineArticleAct;
 
@@ -157,7 +158,7 @@ public class HomeFragment extends BaseAppListFragment {
             gotoActivity(VideoListAct.class);
         });
         llMenu5.setOnClickListener(v -> {
-
+            gotoActivity(ArticleVoteAct.class);
         });
 
 //        mBanner = (BGABanner) header.findViewById(R.id.banner);

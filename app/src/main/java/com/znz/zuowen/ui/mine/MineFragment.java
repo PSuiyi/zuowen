@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.znz.compass.znzlibray.views.ZnzRemind;
@@ -18,6 +19,7 @@ import com.znz.compass.znzlibray.views.row_view.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.row_view.ZnzRowGroupView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
+import com.znz.zuowen.ui.common.AgreementAct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,8 @@ public class MineFragment extends BaseAppFragment {
     ZnzRowGroupView commonRowGroup;
     @Bind(R.id.ivUserHeader)
     HttpImageView ivUserHeader;
+    @Bind(R.id.tvVip)
+    TextView tvVip;
 
     private ArrayList<ZnzRowDescription> rowDescriptionList;
 
@@ -135,53 +139,59 @@ public class MineFragment extends BaseAppFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick(R.id.ivUserHeader)
-    public void onViewClicked() {
+    @OnClick({R.id.ivUserHeader, R.id.tvVip})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ivUserHeader:
+                new RxPermissions(activity)
+                        .request(Manifest.permission.CAMERA,
+                                Manifest.permission.READ_PHONE_STATE)
+                        .subscribe(granted -> {
+                            if (granted) {
+                                mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
+                                    @Override
+                                    public void onStart() {
 
-        new RxPermissions(activity)
-                .request(Manifest.permission.CAMERA,
-                        Manifest.permission.READ_PHONE_STATE)
-                .subscribe(granted -> {
-                    if (granted) {
-                        mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
-                            @Override
-                            public void onStart() {
+                                    }
 
+                                    @Override
+                                    public void onSuccess(List<String> photoList) {
+                                        if (!photoList.isEmpty()) {
+                                            ivUserHeader.loadHeaderImage(photoList.get(0));
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancel() {
+
+                                    }
+
+                                    @Override
+                                    public void onFinish() {
+
+                                    }
+
+                                    @Override
+                                    public void onError() {
+
+                                    }
+                                }, true);
+                            } else {
+                                new AlertDialog.Builder(activity)
+                                        .setTitle("权限申请")
+                                        .setMessage("该操作需要相机权限，请在设置中打开该应用的相机权限")
+                                        .setCancelable(false)
+                                        .setNegativeButton("取消", null)
+                                        .setPositiveButton("去设置", (dialog, which) -> {
+                                            mDataManager.openSettingPermissions(activity);
+                                        })
+                                        .show();
                             }
-
-                            @Override
-                            public void onSuccess(List<String> photoList) {
-                                if (!photoList.isEmpty()) {
-                                    ivUserHeader.loadHeaderImage(photoList.get(0));
-                                }
-                            }
-
-                            @Override
-                            public void onCancel() {
-
-                            }
-
-                            @Override
-                            public void onFinish() {
-
-                            }
-
-                            @Override
-                            public void onError() {
-
-                            }
-                        }, true);
-                    } else {
-                        new AlertDialog.Builder(activity)
-                                .setTitle("权限申请")
-                                .setMessage("该操作需要相机权限，请在设置中打开该应用的相机权限")
-                                .setCancelable(false)
-                                .setNegativeButton("取消", null)
-                                .setPositiveButton("去设置", (dialog, which) -> {
-                                    mDataManager.openSettingPermissions(activity);
-                                })
-                                .show();
-                    }
-                });
+                        });
+                break;
+            case R.id.tvVip:
+                gotoActivity(AgreementAct.class);
+                break;
+        }
     }
 }

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/include_common_navigation" />
@@ -14,8 +13,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="@dimen/distance_view">
+        android:padding="@dimen/distance_view"
+        android:visibility="gone">
 
         <TextView
             style="@style/TitleTextStyle"
@@ -28,12 +29,24 @@
             android:textColor="@color/red" />
     </LinearLayout>
 
+
+    <TextView
+        style="@style/TitleTextStyle"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:padding="@dimen/distance_view"
+        android:text="支付方式" />
+
+    <View style="@style/Line" />
+
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <RadioButton
             style="@style/RadioStyle"
+            android:checked="true"
             android:drawableLeft="@mipmap/rder_icon_alipay"
             android:text="支付宝支付" />
 
@@ -52,6 +65,7 @@
     </RadioGroup>
 
     <TextView
+        android:id="@+id/tvSubmit"
         style="@style/BtnRoundStyle"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"

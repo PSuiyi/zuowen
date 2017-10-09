@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/include_common_navigation" />
@@ -32,6 +31,15 @@
             style="@style/TextGrayStyle"
             android:layout_marginTop="@dimen/distance_divider"
             android:text="2017/08/12" />
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="@dimen/distance_view"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/img2"
+            android:visibility="visible" />
 
         <TextView
             style="@style/TextStyle"

@@ -1,35 +1,28 @@
-package com.znz.zuowen.ui.fav;
+package com.znz.zuowen.ui.home.vote;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ViewPageAdapter;
-import com.znz.zuowen.base.BaseAppFragment;
-import com.znz.zuowen.ui.home.article.ArticleListFragment;
-import com.znz.zuowen.ui.home.video.VideoListFragment;
+import com.znz.zuowen.base.BaseAppActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
- * Date： 2017/9/29 2017
+ * Date： 2017/9/28 2017
  * User： PSuiyi
  * Description：
  */
 
-public class FavFragment extends BaseAppFragment {
+public class ArticleVoteAct extends BaseAppActivity {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -56,19 +49,20 @@ public class FavFragment extends BaseAppFragment {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("我的收藏");
-        setNavLeftGone();
+        setTitleName("作文投票");
     }
 
     @Override
     protected void initializeView() {
-        tabNames.add("作文");
-        tabNames.add("微课");
+        tabNames.add("小学组");
+        tabNames.add("初中组");
+        tabNames.add("高中组");
 
-        fragmentList.add(new ArticleListFragment());
-        fragmentList.add(new VideoListFragment());
+        fragmentList.add(new VoteListFragment());
+        fragmentList.add(new VoteListFragment());
+        fragmentList.add(new VoteListFragment());
 
-        commonViewPager.setAdapter(new ViewPageAdapter(getChildFragmentManager(), tabNames, fragmentList));
+        commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);
         commonViewPager.setOffscreenPageLimit(fragmentList.size());
     }
@@ -76,19 +70,5 @@ public class FavFragment extends BaseAppFragment {
     @Override
     protected void loadDataFromServer() {
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 }
