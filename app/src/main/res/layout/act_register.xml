@@ -20,11 +20,18 @@
 
         <View style="@style/WeightView" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo_login" />
+
         <TextView
             style="@style/TitleTextStyle"
+            android:layout_marginTop="@dimen/distance_divider"
             android:text="好作文"
-            android:textSize="40sp" />
-
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"

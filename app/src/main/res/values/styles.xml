@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="AppSplash" parent="AppTheme">
+        <item name="android:windowBackground">@mipmap/spalsh</item>
+    </style>
+
     <style name="BtnStyle" parent="TextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/red</item>

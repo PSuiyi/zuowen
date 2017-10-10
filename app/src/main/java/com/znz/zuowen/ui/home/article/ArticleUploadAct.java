@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.utils.PopupWindowManager;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class ArticleUploadAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llAdd, R.id.tvSubmit})
+    @OnClick({R.id.llAdd, R.id.tvSubmit, R.id.llSelect})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llAdd:
@@ -93,6 +94,9 @@ public class ArticleUploadAct extends BaseAppActivity {
                 break;
             case R.id.tvSubmit:
                 finish();
+                break;
+            case R.id.llSelect:
+                PopupWindowManager.getInstance(activity).showSelectTeacher(view);
                 break;
         }
     }

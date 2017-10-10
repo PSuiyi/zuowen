@@ -1,18 +1,14 @@
-package com.znz.zuowen.ui.login;
+package com.znz.zuowen.ui.mine;
 
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
-import com.znz.zuowen.utils.PopupWindowManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,25 +20,19 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class RegisterAct extends BaseAppActivity {
+public class UpdatePsdAct extends BaseAppActivity {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
     ZnzRemind znzRemind;
     @Bind(R.id.llNetworkStatus)
     LinearLayout llNetworkStatus;
-    @Bind(R.id.etUserName)
-    EditTextWithDel etUserName;
-    @Bind(R.id.llSendCode)
-    LinearLayout llSendCode;
-    @Bind(R.id.etPsd)
-    EditText etPsd;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_register, 1};
+        return new int[]{R.layout.act_update_psd, 1};
     }
 
     @Override
@@ -52,7 +42,7 @@ public class RegisterAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("注册");
+        setTitleName("找回密码");
     }
 
     @Override
@@ -72,15 +62,8 @@ public class RegisterAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llSendCode, R.id.tvSubmit})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.llSendCode:
-                PopupWindowManager.getInstance(activity).showVerifyCode(view);
-                break;
-            case R.id.tvSubmit:
-                gotoActivity(CompleteInfoAct.class);
-                break;
-        }
+    @OnClick(R.id.tvSubmit)
+    public void onViewClicked() {
+        finish();
     }
 }

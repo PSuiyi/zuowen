@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dark"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <View style="@style/Line" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"></android.support.v7.widget.RecyclerView>
+
+    <View
+        android:id="@+id/darkView"
+        style="@style/WeightView"
+        android:layout_width="match_parent"></View>
+
+</LinearLayout>
