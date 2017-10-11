@@ -89,6 +89,8 @@ public class ZnzRetrofitUtil {
                 Request request = null;
                 HttpUrl modifiedUrl = originalRequest.url().newBuilder()
                         .addQueryParameter("token", mDataManager.getAccessToken())
+                        .addQueryParameter("code", "1")
+                        .addQueryParameter("type", "1")
                         .build();
 
                 request = originalRequest.newBuilder().url(modifiedUrl).build();

@@ -46,6 +46,8 @@ public class LoggingInterceptor implements Interceptor {
             }
             KLog.e(String.format(Locale.getDefault(), "\n%s:%s%s", request.method(), request.url(), sb.toString())
                     + "&token=" + DataManager.getInstance(ZnzApplication.getContext()).getAccessToken()
+                    + "&code=1"
+                    + "&type=1"
             );
         }
 
