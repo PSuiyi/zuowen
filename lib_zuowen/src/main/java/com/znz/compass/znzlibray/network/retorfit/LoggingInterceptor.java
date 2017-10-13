@@ -1,8 +1,6 @@
 package com.znz.compass.znzlibray.network.retorfit;
 
 import com.socks.library.KLog;
-import com.znz.compass.znzlibray.ZnzApplication;
-import com.znz.compass.znzlibray.common.DataManager;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -45,9 +43,6 @@ public class LoggingInterceptor implements Interceptor {
                 sb.append(buffer.readString(charset));
             }
             KLog.e(String.format(Locale.getDefault(), "\n%s:%s%s", request.method(), request.url(), sb.toString())
-                    + "&token=" + DataManager.getInstance(ZnzApplication.getContext()).getAccessToken()
-                    + "&code=1"
-                    + "&type=1"
             );
         }
 

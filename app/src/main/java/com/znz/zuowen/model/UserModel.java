@@ -37,18 +37,9 @@ public class UserModel extends BaseModel {
 
     //验证码
     public void requestCode(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("m", "rest");
-        params.put("c", "login");
-        params.put("a", "send_sms");
-        request(apiService.post(params), znzHttpListener, LODING_PD);
-    }
-
-    //获取验证码图案
-    public void reuqestCodeImg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("m", "rest");
-        params.put("c", "login");
-        params.put("a", "getimgcode");
-        request(apiService.get(params), znzHttpListener);
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.requestCode(params), znzHttpListener, LODING_PD);
     }
 
 

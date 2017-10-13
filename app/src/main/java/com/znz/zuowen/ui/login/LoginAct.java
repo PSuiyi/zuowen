@@ -6,12 +6,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.model.CommonModel;
 import com.znz.zuowen.ui.TabHomeAct;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,7 +29,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class LoginAct extends BaseAppActivity {
+public class LoginAct extends BaseAppActivity<CommonModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -46,7 +52,7 @@ public class LoginAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new CommonModel(activity, this);
     }
 
     @Override
@@ -61,7 +67,18 @@ public class LoginAct extends BaseAppActivity {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        mModel.requestVersion(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+            }
 
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     @Override

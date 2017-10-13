@@ -8,7 +8,6 @@ import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -26,8 +25,14 @@ public interface ApiService {
     @POST("index.php")
     Observable<ResponseBody> post(@FieldMap Map<String, String> params);
 
-    @GET(" ")
-    Observable<ResponseBody> get(@QueryMap Map<String, String> params);
+    @FormUrlEncoded
+    @POST("?m=rest&c=checkversion&a=check_version")
+    Observable<ResponseBody> getVersion(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=login&a=send_sms")
+    Observable<ResponseBody> requestCode(@FieldMap Map<String, String> params);
+
 
     @FormUrlEncoded
     @POST("touyanshe_api/pay/getPreReqParamsModel")

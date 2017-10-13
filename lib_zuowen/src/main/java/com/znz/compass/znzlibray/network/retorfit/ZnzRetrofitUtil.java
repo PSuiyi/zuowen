@@ -88,9 +88,7 @@ public class ZnzRetrofitUtil {
                 Request originalRequest = chain.request();
                 Request request = null;
                 HttpUrl modifiedUrl = originalRequest.url().newBuilder()
-                        .addQueryParameter("token", "")
-                        .addQueryParameter("code", "1")
-                        .addQueryParameter("type", "1")
+                        .addQueryParameter("token", mDataManager.getAccessToken())
                         .build();
 
                 request = originalRequest.newBuilder().url(modifiedUrl).build();
@@ -102,7 +100,7 @@ public class ZnzRetrofitUtil {
             Interceptor headerInterceptor = chain -> {
                 Request originalRequest = chain.request();
                 Request.Builder requestBuilder = originalRequest.newBuilder()
-                        .header("Content-Type", "application/json")
+                        .header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
                         .header("Accept", "application/json")
                         .method(originalRequest.method(), originalRequest.body());
                 Request request = requestBuilder.build();

@@ -83,9 +83,8 @@ public class CommonModel extends BaseModel {
 
     //获取版本号
     public void requestVersion(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("m", "rest");
-        params.put("c", "checkversion");
-        params.put("a", "getversion");
-        request(apiService.post(params), znzHttpListener);
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.getVersion(params), znzHttpListener);
     }
 }
