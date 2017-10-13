@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSONArray;
 import com.znz.compass.znzlibray.views.advs.bean.AdvInfoBean;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.MultiAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
+import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
+import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.home.vote.ArticleVoteAct;
@@ -24,6 +27,8 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import cn.bingoogolapple.bgabanner.BGABanner;
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 /**
  * Date： 2017/9/29 2017
@@ -31,7 +36,7 @@ import cn.bingoogolapple.bgabanner.BGABanner;
  * Description：
  */
 
-public class HomeFragment extends BaseAppListFragment {
+public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
 
     private View header;
     private BGABanner mBanner;
@@ -50,20 +55,7 @@ public class HomeFragment extends BaseAppListFragment {
 
     @Override
     protected void initializeVariate() {
-        dataList.add(new MultiBean(Constants.MultiType.Section, "国内面料"));
-        dataList.add(new MultiBean(Constants.MultiType.Article));
-        dataList.add(new MultiBean(Constants.MultiType.Article));
-        dataList.add(new MultiBean(Constants.MultiType.Article));
-        dataList.add(new MultiBean(Constants.MultiType.Article));
-        dataList.add(new MultiBean(Constants.MultiType.Article));
-
-//        AdvInfoBean bean = new AdvInfoBean();
-//        bean.setName("ceshi");
-//        bean.setImg("https://gju1.alicdn.com/tps/i3/175880295535497075/TB2RSwHXMUc61BjSZFvXXXKfVXa_!!0-juitemmedia.jpg_460x460Q90.jpg_.webp");
-//        advList.add(bean);
-//        advList.add(bean);
-//        advList.add(bean);
-//        advList.add(bean);
+        mModel = new ArticleModel(activity, this);
     }
 
     @Override
@@ -160,8 +152,17 @@ public class HomeFragment extends BaseAppListFragment {
     }
 
     @Override
-    protected void onRefreshSuccess(String response) {
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        return mModel.requestHomeList(params);
+    }
 
+    @Override
+    protected void onRefreshSuccess(String response) {
+        dataList.add(new MultiBean(Constants.MultiType.Section, "国内面料"));
+        for (ArticleBean articleBean : JSONArray.parseArray(response, ArticleBean.class)) {
+            dataList.add(new MultiBean(Constants.MultiType.Article, articleBean));
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override

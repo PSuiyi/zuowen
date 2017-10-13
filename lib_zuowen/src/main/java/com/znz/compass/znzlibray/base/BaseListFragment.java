@@ -28,7 +28,7 @@ import rx.Subscriber;
 public abstract class BaseListFragment<M extends IModel, T extends BaseZnzBean> extends BaseZnzFragment implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     protected ArrayList<T> dataList = new ArrayList<>();
     protected M mModel;
-    protected int currentPageIndex = 0; // 当前页码
+    protected int currentPageIndex = 1; // 当前页码
     protected RecyclerView rvRefresh;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected BaseQuickAdapter adapter;
@@ -201,7 +201,7 @@ public abstract class BaseListFragment<M extends IModel, T extends BaseZnzBean> 
      * 手动刷新
      */
     protected void resetRefresh() {
-        currentPageIndex = 0;
+        currentPageIndex = 1;
         customeRefreshRequest(ACTION_PULL_TO_REFRESH);
     }
 

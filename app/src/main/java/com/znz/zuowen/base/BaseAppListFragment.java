@@ -48,15 +48,15 @@ public abstract class BaseAppListFragment<M extends IModel, T extends BaseZnzBea
             setTempDataList();
         } else {
             if (action == ACTION_PULL_TO_REFRESH) {
-                currentPageIndex = 0;
+                currentPageIndex = 1;
             }
 
             if (isNormalList) {
-                params.put("limit", "100");
+                params.put("pagesize", "100");
             } else {
-                params.put("limit", "10");
+                params.put("pagesize", "10");
             }
-            params.put("offset", currentPageIndex + "");
+            params.put("p", currentPageIndex + "");
 
             subscriberList = new Subscriber<ResponseBody>() {
                 @Override
@@ -86,19 +86,14 @@ public abstract class BaseAppListFragment<M extends IModel, T extends BaseZnzBea
                         }
 
                         String responseStr = responseBody.string();
-                        if (responseStr.contains("statusCode=90000")) {
-                            mDataManager.tokenTimeOut(context);
-                            return;
-                        }
-
                         JSONObject jsonObject = JSON.parseObject(responseStr);
                         int totalCount = 0;
-                        if (jsonObject.getString("status").equals("1")) {
+                        if (jsonObject.getString("result").equals("0")) {
                             try {
                                 if (!isNormalList) {
-                                    totalCount = StringUtil.stringToInt(JSON.parseObject(jsonObject.getString("data")).getString("total"));
+                                    totalCount = StringUtil.stringToInt(JSON.parseObject(jsonObject.getString("page")).getString("total"));
                                 }
-                                responseJson = JSON.parseObject(jsonObject.getString("data"));
+//                                responseJson = JSON.parseObject(jsonObject.getString("data"));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } finally {
@@ -146,10 +141,10 @@ public abstract class BaseAppListFragment<M extends IModel, T extends BaseZnzBea
                                 //页码自增
                                 currentPageIndex++;
                             }
-                        } else if (jsonObject.getString("statusCode").equals("90000")) {
+                        } else if (jsonObject.getString("result").equals("90000")) {
                             mDataManager.tokenTimeOut(context);
                         } else {
-                            mDataManager.showToast(jsonObject.getString("msg"));
+                            mDataManager.showToast(jsonObject.getString("message"));
                             Observable.timer(ZnzConstants.LODING_TIME, TimeUnit.MILLISECONDS)
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .doOnCompleted(() -> mSwipeRefreshLayout.setRefreshing(false))

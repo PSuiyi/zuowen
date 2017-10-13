@@ -50,6 +50,10 @@ public interface ApiService {
     Observable<ResponseBody> requestLogin(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=index&a=index")
+    Observable<ResponseBody> requestHomeList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("touyanshe_api/pay/getPreReqParamsModel")
     Observable<ResponseBody> getPreReqParamsModel(@FieldMap Map<String, String> params);
 

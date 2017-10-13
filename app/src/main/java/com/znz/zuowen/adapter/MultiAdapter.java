@@ -34,6 +34,12 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
                 break;
+            case Constants.MultiType.Article:
+                helper.setText(R.id.tvTitle, bean.getArticleBean().getTitle());
+                helper.setText(R.id.tvContent, bean.getArticleBean().getContent());
+                helper.setText(R.id.tvTag1, bean.getArticleBean().getStyle_type());
+                helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts());
+                break;
         }
     }
 
