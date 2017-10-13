@@ -6,15 +6,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
-import com.znz.zuowen.model.CommonModel;
+import com.znz.zuowen.bean.UserBean;
+import com.znz.zuowen.model.UserModel;
 import com.znz.zuowen.ui.TabHomeAct;
+import com.znz.zuowen.utils.AppUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +34,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class LoginAct extends BaseAppActivity<CommonModel> {
+public class LoginAct extends BaseAppActivity<UserModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -52,7 +57,7 @@ public class LoginAct extends BaseAppActivity<CommonModel> {
 
     @Override
     protected void initializeVariate() {
-        mModel = new CommonModel(activity, this);
+        mModel = new UserModel(activity, this);
     }
 
     @Override
@@ -62,23 +67,13 @@ public class LoginAct extends BaseAppActivity<CommonModel> {
 
     @Override
     protected void initializeView() {
-
+        if (!StringUtil.isBlank(mDataManager.readTempData(ZnzConstants.ACCOUNT))) {
+            etUserName.setText(mDataManager.readTempData(ZnzConstants.ACCOUNT));
+        }
     }
 
     @Override
     protected void loadDataFromServer() {
-        Map<String, String> params = new HashMap<>();
-        mModel.requestVersion(params, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-            }
-
-            @Override
-            public void onFail(String error) {
-                super.onFail(error);
-            }
-        });
     }
 
     @Override
@@ -92,8 +87,37 @@ public class LoginAct extends BaseAppActivity<CommonModel> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvLogin:
-                gotoActivity(TabHomeAct.class);
-                finish();
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etUserName))) {
+                    mDataManager.showToast("请输入用户名");
+                    return;
+                }
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etPsd))) {
+                    mDataManager.showToast("请输入用户名");
+                    return;
+                }
+
+                Map<String, String> params = new HashMap<>();
+                params.put("phone", mDataManager.getValueFromView(etUserName));
+                params.put("pass", mDataManager.getValueFromView(etPsd));
+                mModel.requestLogin(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        UserBean userBean = JSON.parseObject(responseObject.getString("memberinfo"), UserBean.class);
+                        AppUtils.getInstance(activity).saveUserData(userBean);
+                        mDataManager.saveTempData(ZnzConstants.ACCESS_TOKEN, responseObject.getString("token"));
+                        mDataManager.saveBooleanTempData(ZnzConstants.IS_LOGIN, true);
+                        mDataManager.saveTempData(ZnzConstants.ACCOUNT, mDataManager.getValueFromView(etUserName));
+                        gotoActivity(TabHomeAct.class);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
+
                 break;
             case R.id.tvRegister:
                 gotoActivity(RegisterAct.class);

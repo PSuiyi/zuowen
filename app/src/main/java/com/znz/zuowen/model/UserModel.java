@@ -49,10 +49,18 @@ public class UserModel extends BaseModel {
         request(apiService.reuqestRegister(params), znzHttpListener, BaseModel.LODING_PD);
     }
 
+    //注册
+    public void reuqestCompleteInfo(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.reuqestCompleteInfo(params), znzHttpListener, BaseModel.LODING_PD);
+    }
+
     //账号密码登录
-    public void requestPassword(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("requestCode", "10001");
-        request(apiService.post(params), znzHttpListener, LODING_PD);
+    public void requestLogin(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.requestLogin(params), znzHttpListener, LODING_PD);
     }
 
     //第三方登录

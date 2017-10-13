@@ -23,26 +23,29 @@
         android:paddingTop="@dimen/distance_view">
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etUserName"
             style="@style/EditRoundStyle"
             android:hint="输入用户名" />
+
+        <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etRecommendUser"
+            style="@style/EditRoundStyle"
+            android:layout_marginTop="20dp"
+            android:hint="推荐人" />
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
             style="@style/EditRoundStyle"
             android:layout_marginTop="20dp"
             android:hint="输入登录密码"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:visibility="gone" />
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
             style="@style/EditRoundStyle"
             android:layout_marginTop="20dp"
             android:hint="确认登录密码"
-            android:inputType="textPassword" />
-
-        <com.znz.compass.znzlibray.views.EditTextWithDel
-            style="@style/EditRoundStyle"
-            android:layout_marginTop="20dp"
-            android:hint="推荐人" />
-
+            android:inputType="textPassword"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvSubmit"

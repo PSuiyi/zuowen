@@ -129,7 +129,10 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        gotoActivity(CompleteInfoAct.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", responseObject.getString("uid"));
+                        bundle.putString("code", responseObject.getString("promo_code"));
+                        gotoActivity(CompleteInfoAct.class, bundle);
                     }
 
                     @Override

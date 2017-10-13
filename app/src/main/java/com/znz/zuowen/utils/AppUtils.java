@@ -36,9 +36,8 @@ public class AppUtils {
      * @param bean
      */
     public void saveUserData(UserBean bean) {
-        mDataManager.saveTempData(Constants.User.ID, bean.getUserId());
-        mDataManager.saveTempData(Constants.User.MOBILE, bean.getMobile());
-        mDataManager.saveTempData(Constants.User.NAME, bean.getNickName());
-        mDataManager.saveTempData(Constants.User.HEADIMG, bean.getHeadImg());
+        mDataManager.saveTempData(Constants.User.ID, bean.getId());
+        mDataManager.saveTempData(Constants.User.MOBILE, bean.getPhone());
+        mDataManager.saveTempData(Constants.User.NAME, bean.getUsername());
     }
 }

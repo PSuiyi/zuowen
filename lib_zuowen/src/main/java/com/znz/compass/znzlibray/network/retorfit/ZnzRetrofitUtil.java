@@ -1,5 +1,9 @@
 package com.znz.compass.znzlibray.network.retorfit;
 
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.znz.compass.znzlibray.ZnzApplication;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.common.ZnzConstants;
@@ -115,7 +119,12 @@ public class ZnzRetrofitUtil {
             //错误重连
             builder.retryOnConnectionFailure(true);
 
-            OkHttpClient okHttpClient = builder.build();
+            ClearableCookieJar cookieJar =
+                    new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(ZnzApplication.getContext()));
+            OkHttpClient okHttpClient = builder
+                    .cookieJar(cookieJar)
+                    .build();
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(okHttpClient)

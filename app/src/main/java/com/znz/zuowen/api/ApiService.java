@@ -42,6 +42,14 @@ public interface ApiService {
     Observable<ResponseBody> reuqestRegister(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=login&a=perfect_information")
+    Observable<ResponseBody> reuqestCompleteInfo(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=login&a=login")
+    Observable<ResponseBody> requestLogin(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("touyanshe_api/pay/getPreReqParamsModel")
     Observable<ResponseBody> getPreReqParamsModel(@FieldMap Map<String, String> params);
 
