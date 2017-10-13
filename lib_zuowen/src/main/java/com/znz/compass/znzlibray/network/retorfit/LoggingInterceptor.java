@@ -31,7 +31,7 @@ public class LoggingInterceptor implements Interceptor {
         //the request body
         RequestBody requestBody = request.body();
         if (requestBody != null) {
-            StringBuilder sb = new StringBuilder("?");
+            StringBuilder sb = new StringBuilder("&");
             okio.Buffer buffer = new okio.Buffer();
             requestBody.writeTo(buffer);
             Charset charset = Charset.forName("UTF-8");

@@ -94,17 +94,15 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
 
                 PopupWindowManager.getInstance(activity).showVerifyCode(view, (type, values) -> {
                     Map<String, String> params = new HashMap<>();
-                    params.put("type", "1");
                     params.put("phone", mDataManager.getValueFromView(etUserName));
                     String timeLong = TimeUtils.getNowTimeMills() + "";
                     params.put("times", timeLong);
-                    params.put("code", "1");
-                    params.put("type", "1");
-                    params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign("timeLong" + mDataManager.getValueFromView(etUserName))));
+                    params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign(timeLong + mDataManager.getValueFromView(etUserName))));
                     mModel.requestCode(params, new ZnzHttpListener() {
                         @Override
                         public void onSuccess(JSONObject responseOriginal) {
                             super.onSuccess(responseOriginal);
+                            etCode.setText("123456");
                         }
 
                         @Override
@@ -115,7 +113,30 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                 });
                 break;
             case R.id.tvSubmit:
-                gotoActivity(CompleteInfoAct.class);
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etCode))) {
+                    mDataManager.showToast("请输入验证码");
+                    return;
+                }
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etPsd))) {
+                    mDataManager.showToast("请输入密码");
+                    return;
+                }
+                Map<String, String> params = new HashMap<>();
+                params.put("phone", mDataManager.getValueFromView(etUserName));
+                params.put("code", mDataManager.getValueFromView(etCode));
+                params.put("passwd", mDataManager.getValueFromView(etPsd));
+                mModel.reuqestRegister(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        gotoActivity(CompleteInfoAct.class);
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
                 break;
         }
     }

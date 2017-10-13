@@ -29,12 +29,6 @@ public class UserModel extends BaseModel {
         this.context = context;
     }
 
-    //注册
-    public void reuqestRegister(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("requestCode", "10000");
-        request(apiService.post(params), znzHttpListener, BaseModel.LODING_PD);
-    }
-
     //验证码
     public void requestCode(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
@@ -42,6 +36,18 @@ public class UserModel extends BaseModel {
         request(apiService.requestCode(params), znzHttpListener, LODING_PD);
     }
 
+    //验证码
+    public void requestCodeImg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.requestCodeImg(params), znzHttpListener);
+    }
+
+    //注册
+    public void reuqestRegister(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("type", "1");
+        request(apiService.reuqestRegister(params), znzHttpListener, BaseModel.LODING_PD);
+    }
 
     //账号密码登录
     public void requestPassword(Map<String, String> params, ZnzHttpListener znzHttpListener) {

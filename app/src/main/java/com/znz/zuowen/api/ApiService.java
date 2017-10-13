@@ -33,6 +33,13 @@ public interface ApiService {
     @POST("?m=rest&c=login&a=send_sms")
     Observable<ResponseBody> requestCode(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("?m=rest&c=login&a=getimgcode")
+    Observable<ResponseBody> requestCodeImg(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=login&a=resgister")
+    Observable<ResponseBody> reuqestRegister(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("touyanshe_api/pay/getPreReqParamsModel")

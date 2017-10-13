@@ -93,11 +93,6 @@ public class BaseModel<V extends IView> implements IModel {
             public void onNext(ResponseBody responseBody) {
                 try {
                     String responseStr = responseBody.string();
-                    if (responseStr.contains("statusCode=90000")) {
-                        mDataManager.tokenTimeOut(context);
-                        return;
-                    }
-
                     JSONObject responseJson;
                     try {
                         responseJson = JSON.parseObject(responseStr);
@@ -106,14 +101,14 @@ public class BaseModel<V extends IView> implements IModel {
                         return;
                     }
 
-                    if (responseJson.getString("status").equals("1")) {
+                    if (responseJson.getString("result").equals("0")) {
                         listener.onSuccess(responseJson);
                         handleLoding(false, lodingType);
-                    } else if (responseJson.getString("status").equals("90000")) {
+                    } else if (responseJson.getString("result").equals("90000")) {
                         mDataManager.tokenTimeOut(context);
                     } else {
-                        listener.onFail(responseJson.getString("msg"));
-                        mDataManager.showToast(responseJson.getString("msg"));
+                        listener.onFail(responseJson.getString("message"));
+                        mDataManager.showToast(responseJson.getString("message"));
                         handleLoding(false, lodingType);
                     }
                 } catch (Exception e) {
