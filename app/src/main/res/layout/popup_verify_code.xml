@@ -25,19 +25,21 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/etCode"
                 style="@style/EditSingleStyle"
                 android:layout_width="170dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="@dimen/distance_view"
                 android:background="@drawable/bg_code_edit"
                 android:gravity="center"
-                android:hint="验证码"
-                android:inputType="number" />
+                android:hint="验证码" />
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivImage"
+                android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/img4" />
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image_rect" />
         </LinearLayout>
 
         <LinearLayout

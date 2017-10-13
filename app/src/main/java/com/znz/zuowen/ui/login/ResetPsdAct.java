@@ -72,7 +72,9 @@ public class ResetPsdAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llSendCode:
-                PopupWindowManager.getInstance(activity).showVerifyCode(view);
+                PopupWindowManager.getInstance(activity).showVerifyCode(view, (type, values) -> {
+
+                });
                 break;
             case R.id.tvSubmit:
                 break;

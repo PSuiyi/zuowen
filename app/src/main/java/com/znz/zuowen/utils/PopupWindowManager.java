@@ -14,6 +14,7 @@ import android.widget.PopupWindow;
 
 import com.znz.compass.znzlibray.base.BaseZnzBean;
 import com.znz.compass.znzlibray.common.DataManager;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.PopTeactherAdapter;
 
@@ -124,10 +125,27 @@ public class PopupWindowManager {
      *
      * @param parent
      */
-    public void showVerifyCode(View parent) {
+    public void showVerifyCode(View parent, OnPopupWindowClickListener onPopupWindowClickListener) {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.popup_verify_code);
-        init(view, R.id.llParent).setOnClickListener(v -> hidePopupWindow());
+
+        HttpImageView ivImage = init(view, R.id.ivImage);
+        ivImage.loadRectImage("http://hao.ahxrq.com/index.php?m=rest&c=login&a=getimgcode&type=1");
+
+        init(view, R.id.tvCancel).setOnClickListener(v -> {
+            hidePopupWindow();
+        });
+        init(view, R.id.tvSubmit).setOnClickListener(v -> {
+            if (onPopupWindowClickListener != null) {
+                onPopupWindowClickListener.onPopupWindowClick("", null);
+            }
+            hidePopupWindow();
+        });
+
         popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+    }
+
+    public interface OnPopupWindowClickListener {
+        void onPopupWindowClick(String type, String[] values);
     }
 }

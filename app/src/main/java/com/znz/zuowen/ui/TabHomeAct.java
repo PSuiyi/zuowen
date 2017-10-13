@@ -8,10 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.alibaba.fastjson.JSONObject;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.znz.compass.znzlibray.common.DataManager;
-import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
@@ -19,9 +17,6 @@ import com.znz.zuowen.model.CommonModel;
 import com.znz.zuowen.ui.fav.FavFragment;
 import com.znz.zuowen.ui.home.HomeFragment;
 import com.znz.zuowen.ui.mine.MineFragment;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -92,18 +87,6 @@ public class TabHomeAct extends BaseAppActivity<CommonModel> {
 
     @Override
     protected void loadDataFromServer() {
-        Map<String, String> params = new HashMap<>();
-        mModel.requestVersion(params, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-            }
-
-            @Override
-            public void onFail(String error) {
-                super.onFail(error);
-            }
-        });
     }
 
     @OnClick({R.id.radioButton1, R.id.radioButton2, R.id.radioButton3})

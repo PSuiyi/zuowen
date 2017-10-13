@@ -7,12 +7,21 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.MD5Util;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.model.UserModel;
 import com.znz.zuowen.utils.PopupWindowManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,7 +33,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class RegisterAct extends BaseAppActivity {
+public class RegisterAct extends BaseAppActivity<UserModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -39,6 +48,8 @@ public class RegisterAct extends BaseAppActivity {
     EditText etPsd;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
+    @Bind(R.id.etCode)
+    EditTextWithDel etCode;
 
     @Override
     protected int[] getLayoutResource() {
@@ -47,7 +58,7 @@ public class RegisterAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new UserModel(activity, this);
     }
 
     @Override
@@ -57,7 +68,7 @@ public class RegisterAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        etUserName.setText("18020130334");
     }
 
     @Override
@@ -76,7 +87,30 @@ public class RegisterAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llSendCode:
-                PopupWindowManager.getInstance(activity).showVerifyCode(view);
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etUserName))) {
+                    mDataManager.showToast("请输入手机号");
+                    return;
+                }
+
+                PopupWindowManager.getInstance(activity).showVerifyCode(view, (type, values) -> {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("type", "1");
+                    params.put("phone", mDataManager.getValueFromView(etUserName));
+                    String timeLong = TimeUtils.getNowTimeMills() + "";
+                    params.put("times", timeLong);
+                    params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign("timeLong" + mDataManager.getValueFromView(etUserName))));
+                    mModel.requestCode(params, new ZnzHttpListener() {
+                        @Override
+                        public void onSuccess(JSONObject responseOriginal) {
+                            super.onSuccess(responseOriginal);
+                        }
+
+                        @Override
+                        public void onFail(String error) {
+                            super.onFail(error);
+                        }
+                    });
+                });
                 break;
             case R.id.tvSubmit:
                 gotoActivity(CompleteInfoAct.class);

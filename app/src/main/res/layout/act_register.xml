@@ -61,7 +61,7 @@
                     style="@style/EditPhoneStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="手机号/用户名"
+                    android:hint="手机号"
                     android:paddingRight="@dimen/distance_view" />
             </LinearLayout>
 
@@ -88,6 +88,7 @@
                         android:src="@mipmap/icon_yanzhengma" />
 
                     <com.znz.compass.znzlibray.views.EditTextWithDel
+                        android:id="@+id/etCode"
                         style="@style/EditSingleStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

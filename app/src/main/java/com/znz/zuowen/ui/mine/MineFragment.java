@@ -19,6 +19,7 @@ import com.znz.zuowen.base.BaseAppFragment;
 import com.znz.zuowen.ui.common.AgreementAct;
 import com.znz.zuowen.ui.common.EditValueAct;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
+import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.login.LoginAct;
 
 import java.util.ArrayList;
@@ -88,6 +89,13 @@ public class MineFragment extends BaseAppFragment {
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
                     gotoActivity(MineClassAct.class);
+                })
+                .build());
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withTitle("已购买的微课")
+                .withEnableArraw(true)
+                .withOnClickListener(v -> {
+                    gotoActivity(VideoListAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()

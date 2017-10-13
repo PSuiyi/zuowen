@@ -8,7 +8,6 @@ import com.znz.compass.znzlibray.network.retorfit.ZnzRetrofitUtil;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.zuowen.api.ApiService;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -40,17 +39,16 @@ public class UserModel extends BaseModel {
     public void requestCode(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("m", "rest");
         params.put("c", "login");
-        params.put("a", "getimgcode");
+        params.put("a", "send_sms");
         request(apiService.post(params), znzHttpListener, LODING_PD);
     }
 
     //获取验证码图案
-    public void reuqestCodeImg(ZnzHttpListener znzHttpListener) {
-        Map<String, String> params = new HashMap<>();
+    public void reuqestCodeImg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("m", "rest");
         params.put("c", "login");
         params.put("a", "getimgcode");
-        request(apiService.post(params), znzHttpListener, LODING_PD);
+        request(apiService.get(params), znzHttpListener);
     }
 
 
