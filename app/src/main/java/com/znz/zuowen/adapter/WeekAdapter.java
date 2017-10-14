@@ -1,5 +1,6 @@
 package com.znz.zuowen.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.ui.home.article.ArticleSubjectAct;
+import com.znz.zuowen.ui.home.vote.VoteDetailAct;
 
 import java.util.List;
 
@@ -60,6 +62,8 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(ArticleSubjectAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(ArticleSubjectAct.class, bundle);
     }
 }

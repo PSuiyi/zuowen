@@ -56,6 +56,13 @@ public class ArticleModel extends BaseModel {
         return apiService.requestWeekList(params);
     }
 
+    public void requestWeekDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestWeekDetail(params), znzHttpListener, LODING_LODING);
+    }
+
     public Observable<ResponseBody> requestVoteList(Map<String, String> params) {
         params.put("code", "1");
         params.put("type", "1");

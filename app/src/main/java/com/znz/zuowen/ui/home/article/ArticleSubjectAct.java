@@ -1,14 +1,24 @@
 package com.znz.zuowen.ui.home.article;
 
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
+import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.bean.ArticleBean;
+import com.znz.zuowen.model.ArticleModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,17 +30,27 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class ArticleSubjectAct extends BaseAppActivity {
+public class ArticleSubjectAct extends BaseAppActivity<ArticleModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
     ZnzRemind znzRemind;
     @Bind(R.id.llNetworkStatus)
     LinearLayout llNetworkStatus;
-    @Bind(R.id.ivImage)
-    ImageView ivImage;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
+    @Bind(R.id.tvName)
+    TextView tvName;
+    @Bind(R.id.tvTeacher)
+    TextView tvTeacher;
+    @Bind(R.id.tvTime)
+    TextView tvTime;
+    @Bind(R.id.tvContent)
+    TextView tvContent;
+    @Bind(R.id.rvArticle)
+    RecyclerView rvArticle;
+    private String id;
+    private ArticleBean bean;
 
     @Override
     protected int[] getLayoutResource() {
@@ -39,7 +59,10 @@ public class ArticleSubjectAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new ArticleModel(activity, this);
+        if (getIntent().hasExtra("id")) {
+            id = getIntent().getStringExtra("id");
+        }
     }
 
     @Override
@@ -54,7 +77,33 @@ public class ArticleSubjectAct extends BaseAppActivity {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id);
+        mModel.requestWeekDetail(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                bean = JSONObject.parseObject(responseOriginal.getString("data"), ArticleBean.class);
+                mDataManager.setValueToView(tvName, bean.getTitle());
+                mDataManager.setValueToView(tvTeacher, "命题老师：" + bean.getTeacher_name());
+                mDataManager.setValueToView(tvContent, bean.getContent());
+                if (!bean.getImgurl().isEmpty()) {
+                    rvArticle.setVisibility(View.VISIBLE);
+                    rvArticle.setLayoutManager(new LinearLayoutManager(activity));
+                    rvArticle.setHasFixedSize(true);
+                    rvArticle.setNestedScrollingEnabled(false);
+                    ImageAdapter imageAdapter = new ImageAdapter(bean.getImgurl());
+                    rvArticle.setAdapter(imageAdapter);
+                } else {
+                    rvArticle.setVisibility(View.GONE);
+                }
+            }
 
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     @Override

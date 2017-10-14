@@ -58,6 +58,10 @@ public interface ApiService {
     Observable<ResponseBody> requestWeekList(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=detail")
+    Observable<ResponseBody> requestWeekDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=votecomposition&a=index")
     Observable<ResponseBody> requestVoteList(@FieldMap Map<String, String> params);
 
