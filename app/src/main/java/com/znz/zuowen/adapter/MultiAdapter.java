@@ -3,6 +3,7 @@ package com.znz.zuowen.adapter;
 import android.os.Bundle;
 import android.view.View;
 
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -36,9 +37,20 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 break;
             case Constants.MultiType.Article:
                 helper.setText(R.id.tvTitle, bean.getArticleBean().getTitle());
-                helper.setText(R.id.tvContent, bean.getArticleBean().getContent());
+                if (!StringUtil.isBlank(bean.getArticleBean().getContent())) {
+                    helper.setVisible(R.id.tvContent, true);
+                    helper.setText(R.id.tvContent, bean.getArticleBean().getContent());
+                } else {
+                    helper.setVisible(R.id.tvContent, false);
+                }
                 helper.setText(R.id.tvTag1, bean.getArticleBean().getStyle_type());
-                helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts());
+                helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts() + "字");
+                if (!bean.getArticleBean().getImgurl().isEmpty()) {
+                    helper.setVisible(R.id.ivImage, true);
+                    helper.loadRectImage(R.id.ivImage, bean.getArticleBean().getImgurl().get(0).getUrl());
+                } else {
+                    helper.setVisible(R.id.ivImage, false);
+                }
                 break;
         }
     }

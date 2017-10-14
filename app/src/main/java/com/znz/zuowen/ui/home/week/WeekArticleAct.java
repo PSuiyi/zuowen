@@ -10,7 +10,6 @@ import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ViewPageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
-import com.znz.zuowen.ui.home.article.ArticleListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +58,9 @@ public class WeekArticleAct extends BaseAppActivity {
         tabNames.add("初中组");
         tabNames.add("高中组");
 
-        fragmentList.add(new ArticleListFragment().newInstance("题目"));
-        fragmentList.add(new ArticleListFragment().newInstance("题目"));
-        fragmentList.add(new ArticleListFragment().newInstance("题目"));
+        fragmentList.add(new WeekListFragment().newInstance("小学组"));
+        fragmentList.add(new WeekListFragment().newInstance("初中组"));
+        fragmentList.add(new WeekListFragment().newInstance("高中组"));
 
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);

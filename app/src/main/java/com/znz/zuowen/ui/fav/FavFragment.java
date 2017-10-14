@@ -65,8 +65,8 @@ public class FavFragment extends BaseAppFragment {
         tabNames.add("作文");
         tabNames.add("微课");
 
-        fragmentList.add(new ArticleListFragment());
-        fragmentList.add(new VideoListFragment());
+        fragmentList.add(new ArticleListFragment().newInstance("我的收藏"));
+        fragmentList.add(new VideoListFragment().newInstance("我的收藏"));
 
         commonViewPager.setAdapter(new ViewPageAdapter(getChildFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);

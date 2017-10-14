@@ -226,6 +226,16 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public BaseViewHolder loadRectImage(@IdRes int viewId, String url) {
+        HttpImageView view = getView(viewId);
+        if (!StringUtil.isBlank(url)) {
+            view.loadRectImage("http://hao.ahxrq.com/Public/" + url);
+        } else {
+            view.setImageResource(R.mipmap.default_image_rect);
+        }
+        return this;
+    }
+
     /**
      * Will set text color of a TextView.
      *

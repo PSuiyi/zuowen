@@ -1,4 +1,4 @@
-package com.znz.zuowen.ui.home.article;
+package com.znz.zuowen.ui.home.week;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -6,8 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.alibaba.fastjson.JSONArray;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
-import com.znz.zuowen.adapter.ArticleAdapter;
-import com.znz.zuowen.adapter.ArticleMineAdapter;
+import com.znz.zuowen.adapter.WeekAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
@@ -22,14 +21,14 @@ import rx.Observable;
  * Description：
  */
 
-public class ArticleListFragment extends BaseAppListFragment<ArticleModel, ArticleBean> {
+public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleBean> {
 
     private String page;
 
-    public static ArticleListFragment newInstance(String page) {
+    public static WeekListFragment newInstance(String page) {
         Bundle args = new Bundle();
         args.putString("page", page);
-        ArticleListFragment fragment = new ArticleListFragment();
+        WeekListFragment fragment = new WeekListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,19 +58,7 @@ public class ArticleListFragment extends BaseAppListFragment<ArticleModel, Artic
 
     @Override
     protected void initializeView() {
-        if (!StringUtil.isBlank(page)) {
-            switch (page) {
-                case "我的作文":
-                    adapter = new ArticleMineAdapter(dataList);
-                    break;
-                default:
-                    adapter = new ArticleAdapter(dataList);
-                    ((ArticleAdapter) adapter).setPage(page);
-                    break;
-            }
-        } else {
-            adapter = new ArticleAdapter(dataList);
-        }
+        adapter = new WeekAdapter(dataList);
         rvRefresh.setAdapter(adapter);
     }
 
@@ -84,9 +71,6 @@ public class ArticleListFragment extends BaseAppListFragment<ArticleModel, Artic
     protected Observable<ResponseBody> requestCustomeRefreshObservable() {
         if (!StringUtil.isBlank(page)) {
             switch (page) {
-                case "我的收藏":
-                    params.put("cate_type", "1");
-                    return mModel.requestFavList(params);
                 case "小学组":
                     params.put("cate_type", "1");
                     return mModel.requestWeekList(params);

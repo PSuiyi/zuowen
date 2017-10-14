@@ -50,8 +50,20 @@ public interface ApiService {
     Observable<ResponseBody> requestLogin(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=my&a=mycollect")
+    Observable<ResponseBody> requestFavList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=index")
+    Observable<ResponseBody> requestWeekList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=index&a=index")
     Observable<ResponseBody> requestHomeList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=classguidance&a=index")
+    Observable<ResponseBody> requestVideoList(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("touyanshe_api/pay/getPreReqParamsModel")

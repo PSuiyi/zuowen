@@ -44,6 +44,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvNickName"
                         style="@style/TitleTextStyle"
                         android:text="张三" />
 

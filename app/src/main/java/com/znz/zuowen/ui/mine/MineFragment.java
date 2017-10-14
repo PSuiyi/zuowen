@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
@@ -16,6 +17,7 @@ import com.znz.compass.znzlibray.views.row_view.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.row_view.ZnzRowGroupView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
+import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.common.AgreementAct;
 import com.znz.zuowen.ui.common.EditValueAct;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
@@ -48,6 +50,8 @@ public class MineFragment extends BaseAppFragment {
     HttpImageView ivUserHeader;
     @Bind(R.id.tvVip)
     TextView tvVip;
+    @Bind(R.id.tvNickName)
+    TextView tvNickName;
 
     private ArrayList<ZnzRowDescription> rowDescriptionList;
 
@@ -68,6 +72,10 @@ public class MineFragment extends BaseAppFragment {
 
     @Override
     protected void initializeView() {
+        if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.NAME))) {
+            mDataManager.setValueToView(tvNickName, mDataManager.readTempData(Constants.User.NAME));
+        }
+
         rowDescriptionList = new ArrayList<>();
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("用户名")

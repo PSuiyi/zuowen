@@ -26,11 +26,20 @@ public class ArticleBean extends BaseZnzBean {
     private String id;
     private String author;
     private String title;
+    private String teacher_name;
     private String type;
     private String style_type;
     private String counts;
     private String content;
     private List<UrlBean> imgurl;
+
+    public String getTeacher_name() {
+        return teacher_name;
+    }
+
+    public void setTeacher_name(String teacher_name) {
+        this.teacher_name = teacher_name;
+    }
 
     public String getId() {
         return id;

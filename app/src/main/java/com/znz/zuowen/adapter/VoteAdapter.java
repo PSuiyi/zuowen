@@ -31,13 +31,6 @@ public class VoteAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> i
     @Override
     protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
         setOnItemClickListener(this);
-        if (mDataManager.getRandomBoolean()) {
-            tvContent.setVisibility(View.VISIBLE);
-            ivImage.setVisibility(View.GONE);
-        } else {
-            tvContent.setVisibility(View.GONE);
-            ivImage.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
