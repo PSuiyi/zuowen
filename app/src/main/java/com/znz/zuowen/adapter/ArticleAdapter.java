@@ -3,6 +3,7 @@ package com.znz.zuowen.adapter;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -31,6 +32,12 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder
     TextView tvTag1;
     @Bind(R.id.tvTag2)
     TextView tvTag2;
+    @Bind(R.id.tvFavCount)
+    TextView tvFavCount;
+    @Bind(R.id.tvLikeCount)
+    TextView tvLikeCount;
+    @Bind(R.id.llCount)
+    LinearLayout llCount;
 
     private String page;
 
@@ -67,13 +74,19 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder
             switch (page) {
                 case "优秀作文":
                     ivGood.setVisibility(View.VISIBLE);
+                    llCount.setVisibility(View.VISIBLE);
+
+                    helper.setText(R.id.tvFavCount, bean.getCollect_count());
+                    helper.setText(R.id.tvLikeCount, bean.getLike_count());
                     break;
                 default:
                     ivGood.setVisibility(View.GONE);
+                    llCount.setVisibility(View.GONE);
                     break;
             }
         } else {
             ivGood.setVisibility(View.GONE);
+            llCount.setVisibility(View.GONE);
         }
     }
 

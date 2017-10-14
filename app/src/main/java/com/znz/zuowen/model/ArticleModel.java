@@ -57,6 +57,20 @@ public class ArticleModel extends BaseModel {
         return apiService.requestWeekList(params);
     }
 
+    public Observable<ResponseBody> requestVoteList(Map<String, String> params) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        return apiService.requestVoteList(params);
+    }
+
+    public Observable<ResponseBody> requestGoodList(Map<String, String> params) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        return apiService.requestGoodList(params);
+    }
+
     //获取微课列表
     public Observable<ResponseBody> requestVideoList(Map<String, String> params) {
         params.put("code", "1");

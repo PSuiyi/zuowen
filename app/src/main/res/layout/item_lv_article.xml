@@ -81,8 +81,31 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/default_image_rect"
                 android:visibility="visible" />
-        </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/distance_divider"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvFavCount"
+                    style="@style/TextDrawableStyle"
+                    android:drawableLeft="@mipmap/icon_shoucanghui"
+                    android:drawablePadding="6dp"
+                    android:text="235" />
+
+                <TextView
+                    android:id="@+id/tvLikeCount"
+                    style="@style/TextDrawableStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:drawableLeft="@mipmap/icon_dianzanhui"
+                    android:drawablePadding="6dp"
+                    android:text="235" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <View style="@style/LineDividerNoTop" />

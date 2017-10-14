@@ -87,6 +87,8 @@ public class ArticleListFragment extends BaseAppListFragment<ArticleModel, Artic
                 case "我的收藏":
                     params.put("cate_type", "1");
                     return mModel.requestFavList(params);
+                case "优秀作文":
+                    return mModel.requestGoodList(params);
                 case "小学组":
                     params.put("cate_type", "1");
                     return mModel.requestWeekList(params);
@@ -106,7 +108,18 @@ public class ArticleListFragment extends BaseAppListFragment<ArticleModel, Artic
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSONArray.parseArray(response, ArticleBean.class));
+        if (!StringUtil.isBlank(page)) {
+            switch (page) {
+                case "优秀作文":
+                    dataList.addAll(JSONArray.parseArray(responseJson.getString("list"), ArticleBean.class));
+                    break;
+                default:
+                    dataList.addAll(JSONArray.parseArray(response, ArticleBean.class));
+                    break;
+            }
+        } else {
+            dataList.addAll(JSONArray.parseArray(response, ArticleBean.class));
+        }
         adapter.notifyDataSetChanged();
     }
 

@@ -31,7 +31,43 @@ public class ArticleBean extends BaseZnzBean {
     private String style_type;
     private String counts;
     private String content;
+    private String vote_count;
+    private String is_vote;
+    private String collect_count;
+    private String like_count;
     private List<UrlBean> imgurl;
+
+    public String getCollect_count() {
+        return collect_count;
+    }
+
+    public void setCollect_count(String collect_count) {
+        this.collect_count = collect_count;
+    }
+
+    public String getLike_count() {
+        return like_count;
+    }
+
+    public void setLike_count(String like_count) {
+        this.like_count = like_count;
+    }
+
+    public String getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(String vote_count) {
+        this.vote_count = vote_count;
+    }
+
+    public String getIs_vote() {
+        return is_vote;
+    }
+
+    public void setIs_vote(String is_vote) {
+        this.is_vote = is_vote;
+    }
 
     public String getTeacher_name() {
         return teacher_name;

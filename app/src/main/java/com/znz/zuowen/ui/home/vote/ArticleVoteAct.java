@@ -58,9 +58,9 @@ public class ArticleVoteAct extends BaseAppActivity {
         tabNames.add("初中组");
         tabNames.add("高中组");
 
-        fragmentList.add(new VoteListFragment());
-        fragmentList.add(new VoteListFragment());
-        fragmentList.add(new VoteListFragment());
+        fragmentList.add(new VoteListFragment().newInstance("小学组"));
+        fragmentList.add(new VoteListFragment().newInstance("初中组"));
+        fragmentList.add(new VoteListFragment().newInstance("高中组"));
 
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);

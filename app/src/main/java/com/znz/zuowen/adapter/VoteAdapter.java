@@ -5,17 +5,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.znz.compass.znzlibray.base.BaseZnzBean;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
+import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.ui.home.vote.VoteDetailAct;
 
 import java.util.List;
 
 import butterknife.Bind;
 
-public class VoteAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     @Bind(R.id.ivGood)
     ImageView ivGood;
@@ -23,18 +24,52 @@ public class VoteAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> i
     TextView tvContent;
     @Bind(R.id.ivImage)
     ImageView ivImage;
+    @Bind(R.id.tvTitle)
+    TextView tvTitle;
+    @Bind(R.id.tvTag1)
+    TextView tvTag1;
+    @Bind(R.id.tvTag2)
+    TextView tvTag2;
+    @Bind(R.id.tvCount)
+    TextView tvCount;
+    @Bind(R.id.tvVote)
+    TextView tvVote;
 
     public VoteAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_vote, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
+    protected void convert(BaseViewHolder helper, ArticleBean bean) {
         setOnItemClickListener(this);
+
+        helper.setText(R.id.tvTitle, bean.getTitle());
+        if (!StringUtil.isBlank(bean.getContent())) {
+            helper.setVisible(R.id.tvContent, true);
+            helper.setText(R.id.tvContent, bean.getContent());
+        } else {
+            helper.setVisible(R.id.tvContent, false);
+        }
+        helper.setText(R.id.tvTag1, bean.getStyle_type());
+        helper.setText(R.id.tvTag2, bean.getCounts());
+        helper.setText(R.id.tvCount, "票数：" + bean.getVote_count());
+        if (!bean.getImgurl().isEmpty()) {
+            helper.setVisible(R.id.ivImage, true);
+            helper.loadRectImage(R.id.ivImage, bean.getImgurl().get(0).getUrl());
+        } else {
+            helper.setVisible(R.id.ivImage, false);
+        }
+
+        if (bean.getIs_vote().equals("1")) {
+            tvVote.setText("已投票");
+        } else {
+            tvVote.setText("投票");
+        }
+        helper.addOnClickListener(R.id.tvVote);
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(VoteDetailAct .class);
+        gotoActivity(VoteDetailAct.class);
     }
 }

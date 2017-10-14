@@ -1,10 +1,18 @@
 package com.znz.zuowen.ui.home.vote;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.VoteAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
+import com.znz.zuowen.bean.ArticleBean;
+import com.znz.zuowen.model.ArticleModel;
+
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 
 /**
@@ -13,7 +21,17 @@ import com.znz.zuowen.base.BaseAppListFragment;
  * Description：
  */
 
-public class VoteListFragment extends BaseAppListFragment {
+public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleBean> {
+
+    private String page;
+
+    public static VoteListFragment newInstance(String page) {
+        Bundle args = new Bundle();
+        args.putString("page", page);
+        VoteListFragment fragment = new VoteListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int[] getLayoutResource() {
@@ -22,6 +40,10 @@ public class VoteListFragment extends BaseAppListFragment {
 
     @Override
     protected void initializeVariate() {
+        mModel = new ArticleModel(activity, this);
+        if (getArguments() != null) {
+            page = getArguments().getString("page");
+        }
     }
 
     @Override
@@ -38,6 +60,13 @@ public class VoteListFragment extends BaseAppListFragment {
     protected void initializeView() {
         adapter = new VoteAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+        adapter.setOnItemChildClickListener((adapter1, view, position) -> {
+            switch (view.getId()) {
+                case R.id.tvVote:
+
+                    break;
+            }
+        });
     }
 
     @Override
@@ -46,8 +75,30 @@ public class VoteListFragment extends BaseAppListFragment {
     }
 
     @Override
-    protected void onRefreshSuccess(String response) {
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        if (!StringUtil.isBlank(page)) {
+            switch (page) {
+                case "小学组":
+                    params.put("cate_type", "1");
+                    return mModel.requestVoteList(params);
+                case "初中组":
+                    params.put("cate_type", "2");
+                    return mModel.requestVoteList(params);
+                case "高中组":
+                    params.put("cate_type", "3");
+                    return mModel.requestVoteList(params);
+                default:
+                    return mModel.requestHomeList(params);
+            }
+        } else {
+            return mModel.requestHomeList(params);
+        }
+    }
 
+    @Override
+    protected void onRefreshSuccess(String response) {
+        dataList.addAll(JSONArray.parseArray(response, ArticleBean.class));
+        adapter.notifyDataSetChanged();
     }
 
     @Override

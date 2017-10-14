@@ -79,7 +79,7 @@ public class MineFragment extends BaseAppFragment {
         rowDescriptionList = new ArrayList<>();
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("用户名")
-                .withValue("张三")
+                .withValue(mDataManager.readTempData(Constants.User.NAME))
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
                     gotoActivity(EditValueAct.class);

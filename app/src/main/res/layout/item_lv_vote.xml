@@ -32,6 +32,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvTitle"
                         style="@style/TitleTextStyle"
                         android:text="我的理想"
                         android:textStyle="bold" />
@@ -43,10 +44,12 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvTag1"
                             style="@style/TextGrayStyle"
                             android:text="议论文" />
 
                         <TextView
+                            android:id="@+id/tvTag2"
                             style="@style/TextGrayStyle"
                             android:layout_marginLeft="@dimen/distance_view"
                             android:text="674字" />
@@ -74,7 +77,7 @@
                 android:text="我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。在一个安静的环境下工作，不是挺好的..."
                 android:visibility="visible" />
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
                 android:id="@+id/ivImage"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
@@ -82,7 +85,7 @@
                 android:layout_marginRight="@dimen/distance_view"
                 android:layout_marginTop="@dimen/distance_divider"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/img2"
+                android:src="@mipmap/default_image_rect"
                 android:visibility="visible" />
 
             <View
@@ -96,12 +99,14 @@
                 android:padding="@dimen/distance_view">
 
                 <TextView
+                    android:id="@+id/tvCount"
                     style="@style/TextStyle"
                     android:text="票数：29248493" />
 
                 <View style="@style/WeightView" />
 
                 <TextView
+                    android:id="@+id/tvVote"
                     style="@style/TextStyle"
                     android:background="@drawable/bg_vote"
                     android:drawableLeft="@mipmap/icon_toupiao"

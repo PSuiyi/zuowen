@@ -93,7 +93,7 @@ public abstract class BaseAppListFragment<M extends IModel, T extends BaseZnzBea
                                 if (!isNormalList) {
                                     totalCount = StringUtil.stringToInt(JSON.parseObject(jsonObject.getString("page")).getString("total"));
                                 }
-//                                responseJson = JSON.parseObject(jsonObject.getString("data"));
+                                responseJson = JSON.parseObject(jsonObject.getString("data"));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } finally {
