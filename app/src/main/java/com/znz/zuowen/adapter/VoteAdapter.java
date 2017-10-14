@@ -1,5 +1,6 @@
 package com.znz.zuowen.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -70,6 +71,8 @@ public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(VoteDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(VoteDetailAct.class, bundle);
     }
 }

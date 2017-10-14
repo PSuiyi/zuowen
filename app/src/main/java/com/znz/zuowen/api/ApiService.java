@@ -62,6 +62,10 @@ public interface ApiService {
     Observable<ResponseBody> requestVoteList(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=votecomposition&a=detail")
+    Observable<ResponseBody> requestVoteDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=goodcomposition&a=index")
     Observable<ResponseBody> requestGoodList(@FieldMap Map<String, String> params);
 
@@ -72,6 +76,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("?m=rest&c=classguidance&a=index")
     Observable<ResponseBody> requestVideoList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=classguidance&a=detail")
+    Observable<ResponseBody> requestVideoDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("touyanshe_api/pay/getPreReqParamsModel")

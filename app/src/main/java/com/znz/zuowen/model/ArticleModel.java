@@ -31,7 +31,6 @@ public class ArticleModel extends BaseModel {
 
     //获取版本号
     public void requestVersion(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-
         request(apiService.getVersion(params), znzHttpListener);
     }
 
@@ -64,6 +63,13 @@ public class ArticleModel extends BaseModel {
         return apiService.requestVoteList(params);
     }
 
+    public void requestVoteDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestVoteDetail(params), znzHttpListener, LODING_LODING);
+    }
+
     public Observable<ResponseBody> requestGoodList(Map<String, String> params) {
         params.put("code", "1");
         params.put("type", "1");
@@ -77,5 +83,12 @@ public class ArticleModel extends BaseModel {
         params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
         return apiService.requestVideoList(params);
+    }
+
+    public void requestVideoDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestVideoDetail(params), znzHttpListener, LODING_LODING);
     }
 }

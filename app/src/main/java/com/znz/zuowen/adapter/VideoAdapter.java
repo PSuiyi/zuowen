@@ -1,5 +1,6 @@
 package com.znz.zuowen.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ public class VideoAdapter extends BaseQuickAdapter<VideoBean, BaseViewHolder> im
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(VideoDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(VideoDetailAct.class, bundle);
     }
 }

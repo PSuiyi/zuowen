@@ -35,7 +35,16 @@ public class ArticleBean extends BaseZnzBean {
     private String is_vote;
     private String collect_count;
     private String like_count;
+    private String teacher_reviews;
     private List<UrlBean> imgurl;
+
+    public String getTeacher_reviews() {
+        return teacher_reviews;
+    }
+
+    public void setTeacher_reviews(String teacher_reviews) {
+        this.teacher_reviews = teacher_reviews;
+    }
 
     public String getCollect_count() {
         return collect_count;
