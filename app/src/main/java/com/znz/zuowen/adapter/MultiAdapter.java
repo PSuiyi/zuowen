@@ -64,7 +64,8 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 gotoActivity(ArticleListAct.class, bundle);
                 break;
             case Constants.MultiType.Article:
-                gotoActivity(ArticleDetailAct.class);
+                bundle.putString("id", bean.getArticleBean().getId());
+                gotoActivity(ArticleDetailAct.class, bundle);
                 break;
 
         }

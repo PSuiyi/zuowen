@@ -31,7 +31,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class ArticleSubjectAct extends BaseAppActivity<ArticleModel> {
+public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)

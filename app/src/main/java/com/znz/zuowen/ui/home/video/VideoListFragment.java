@@ -4,12 +4,19 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.VideoAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.VideoBean;
 import com.znz.zuowen.model.ArticleModel;
+import com.znz.zuowen.ui.home.vote.VoteDetailAct;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -60,6 +67,43 @@ public class VideoListFragment extends BaseAppListFragment<ArticleModel, VideoBe
     protected void initializeView() {
         adapter = new VideoAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+        adapter.setOnItemChildClickListener((adapter1, view, position) -> {
+            VideoBean bean = dataList.get(position);
+            switch (view.getId()) {
+                case R.id.llContainer:
+                    if (bean.getIs_buy().equals("1")) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", bean.getId());
+                        gotoActivity(VoteDetailAct.class, bundle);
+                    } else {
+                        new UIAlertDialog(activity)
+                                .builder()
+                                .setMsg("确定花费1个课时购买该微课？")
+                                .setNegativeButton("取消", null)
+                                .setPositiveButton("确定", v2 -> {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("id", bean.getId());
+                                    mModel.requestVideoBuy(params, new ZnzHttpListener() {
+                                        @Override
+                                        public void onSuccess(JSONObject responseOriginal) {
+                                            super.onSuccess(responseOriginal);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("id", bean.getId());
+                                            gotoActivity(VoteDetailAct.class, bundle);
+                                        }
+
+                                        @Override
+                                        public void onFail(String error) {
+                                            super.onFail(error);
+                                        }
+                                    });
+                                })
+                                .show();
+                    }
+
+                    break;
+            }
+        });
     }
 
     @Override

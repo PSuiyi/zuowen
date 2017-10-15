@@ -11,7 +11,7 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
 import com.znz.zuowen.bean.ArticleBean;
-import com.znz.zuowen.ui.home.week.ArticleSubjectAct;
+import com.znz.zuowen.ui.home.week.WeekDetailAct;
 
 import java.util.List;
 
@@ -63,6 +63,6 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
         bundle.putString("id", bean.getId());
-        gotoActivity(ArticleSubjectAct.class, bundle);
+        gotoActivity(WeekDetailAct.class, bundle);
     }
 }

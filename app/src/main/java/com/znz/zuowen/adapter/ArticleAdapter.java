@@ -1,5 +1,6 @@
 package com.znz.zuowen.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +13,6 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.ui.home.article.ArticleDetailAct;
-import com.znz.zuowen.ui.home.week.ArticleSubjectAct;
 
 import java.util.List;
 
@@ -92,22 +92,8 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        if (!StringUtil.isBlank(page)) {
-            switch (page) {
-                case "优秀作文":
-                    gotoActivity(ArticleDetailAct.class);
-                    break;
-                case "小学组":
-                case "初中组":
-                case "高中组":
-                    gotoActivity(ArticleSubjectAct.class);
-                    break;
-                default:
-                    gotoActivity(ArticleDetailAct.class);
-                    break;
-            }
-        } else {
-            gotoActivity(ArticleDetailAct.class);
-        }
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(ArticleDetailAct.class, bundle);
     }
 }

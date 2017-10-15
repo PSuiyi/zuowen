@@ -37,7 +37,7 @@
         <activity android:name=".ui.login.ResetPsdAct" />
         <activity android:name=".ui.home.article.ArticleListAct" />
         <activity android:name=".ui.home.week.WeekArticleAct" />
-        <activity android:name=".ui.home.week.ArticleSubjectAct" />
+        <activity android:name=".ui.home.week.WeekDetailAct" />
         <activity android:name=".ui.login.CompleteInfoAct" />
         <activity android:name=".ui.login.VerifyPhoneAct" />
         <activity android:name=".ui.mine.UpdatePhoneAct" />
