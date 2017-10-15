@@ -72,6 +72,28 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
     protected void initializeNavigation() {
         setTitleName("作文投票");
         znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+        znzToolBar.setOnNavRightClickListener(v -> {
+            Map<String, String> params = new HashMap<>();
+            params.put("id", id);
+            mModel.requestVoteFav(params, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    if (!bean.getIs_collect().equals("1")) {
+                        znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
+                        bean.setIs_collect("1");
+                    } else {
+                        znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+                        bean.setIs_collect("0");
+                    }
+                }
+
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        });
     }
 
     @Override
@@ -108,6 +130,12 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                     tvSubmit.setText("已投票(" + bean.getVote_count() + ")");
                 } else {
                     tvSubmit.setText("投票(" + bean.getVote_count() + ")");
+                }
+
+                if (bean.getIs_collect().equals("1")) {
+                    znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
+                } else {
+                    znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
                 }
             }
 

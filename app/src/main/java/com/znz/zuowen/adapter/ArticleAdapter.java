@@ -12,7 +12,7 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.ui.home.article.ArticleDetailAct;
-import com.znz.zuowen.ui.home.article.ArticleSubjectAct;
+import com.znz.zuowen.ui.home.week.ArticleSubjectAct;
 
 import java.util.List;
 

@@ -33,10 +33,28 @@ public class ArticleBean extends BaseZnzBean {
     private String content;
     private String vote_count;
     private String is_vote;
+    private String is_collect;
+    private String addtime;
     private String collect_count;
     private String like_count;
     private String teacher_reviews;
     private List<UrlBean> imgurl;
+
+    public String getIs_collect() {
+        return is_collect;
+    }
+
+    public void setIs_collect(String is_collect) {
+        this.is_collect = is_collect;
+    }
+
+    public String getAddtime() {
+        return addtime;
+    }
+
+    public void setAddtime(String addtime) {
+        this.addtime = addtime;
+    }
 
     public String getTeacher_reviews() {
         return teacher_reviews;

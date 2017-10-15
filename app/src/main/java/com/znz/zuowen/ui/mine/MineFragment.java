@@ -103,7 +103,9 @@ public class MineFragment extends BaseAppFragment {
                 .withTitle("已购买的微课")
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
-                    gotoActivity(VideoListAct.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("page", "已购买");
+                    gotoActivity(VideoListAct.class, bundle);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()

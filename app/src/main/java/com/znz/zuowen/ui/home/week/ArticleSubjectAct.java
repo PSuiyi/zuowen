@@ -1,4 +1,4 @@
-package com.znz.zuowen.ui.home.article;
+package com.znz.zuowen.ui.home.week;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +16,7 @@ import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
+import com.znz.zuowen.ui.home.article.ArticleUploadAct;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,6 +88,7 @@ public class ArticleSubjectAct extends BaseAppActivity<ArticleModel> {
                 mDataManager.setValueToView(tvName, bean.getTitle());
                 mDataManager.setValueToView(tvTeacher, "命题老师：" + bean.getTeacher_name());
                 mDataManager.setValueToView(tvContent, bean.getContent());
+                mDataManager.setValueToView(tvTime, bean.getAddtime());
                 if (!bean.getImgurl().isEmpty()) {
                     rvArticle.setVisibility(View.VISIBLE);
                     rvArticle.setLayoutManager(new LinearLayoutManager(activity));

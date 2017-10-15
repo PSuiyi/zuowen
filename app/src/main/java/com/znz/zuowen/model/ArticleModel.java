@@ -77,6 +77,13 @@ public class ArticleModel extends BaseModel {
         request(apiService.requestVoteDetail(params), znzHttpListener, LODING_LODING);
     }
 
+    public void requestVoteFav(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestVoteFav(params), znzHttpListener);
+    }
+
     public Observable<ResponseBody> requestGoodList(Map<String, String> params) {
         params.put("code", "1");
         params.put("type", "1");
@@ -90,6 +97,13 @@ public class ArticleModel extends BaseModel {
         params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
         return apiService.requestVideoList(params);
+    }
+
+    public Observable<ResponseBody> requestVideoMineList(Map<String, String> params) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        return apiService.requestVideoMineList(params);
     }
 
     public void requestVideoDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {

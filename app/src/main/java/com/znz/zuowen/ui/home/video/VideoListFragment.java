@@ -74,6 +74,8 @@ public class VideoListFragment extends BaseAppListFragment<ArticleModel, VideoBe
                 case "我的收藏":
                     params.put("cate_type", "2");
                     return mModel.requestFavList(params);
+                case "已购买":
+                    return mModel.requestVideoMineList(params);
                 default:
                     return mModel.requestVideoList(params);
             }
