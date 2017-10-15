@@ -95,6 +95,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
@@ -105,21 +106,35 @@
 
                 <View style="@style/WeightView" />
 
-                <TextView
-                    android:id="@+id/tvVote"
-                    style="@style/TextStyle"
+
+                <LinearLayout
+                    android:id="@+id/llVote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_vote"
-                    android:drawableLeft="@mipmap/icon_toupiao"
-                    android:drawablePadding="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     android:paddingBottom="4dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:paddingTop="4dp"
-                    android:text="投票"
-                    android:textColor="@color/green" />
+                    android:paddingTop="4dp">
+
+                    <ImageView
+                        android:id="@+id/ivIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/distance_divider"
+                        android:src="@mipmap/icon_toupiao" />
+
+                    <TextView
+                        android:id="@+id/tvVote"
+                        style="@style/TextStyle"
+                        android:text="投票"
+                        android:textColor="@color/green" />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
     <View style="@style/LineDividerNoTop" />

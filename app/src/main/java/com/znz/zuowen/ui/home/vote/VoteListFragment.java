@@ -4,12 +4,17 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.VoteAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -61,9 +66,28 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
         adapter = new VoteAdapter(dataList);
         rvRefresh.setAdapter(adapter);
         adapter.setOnItemChildClickListener((adapter1, view, position) -> {
+            ArticleBean bean = dataList.get(position);
             switch (view.getId()) {
                 case R.id.tvVote:
+                    Map<String, String> params = new HashMap<>();
+                    params.put("id", bean.getId());
+                    mModel.requestVoteVote(params, new ZnzHttpListener() {
+                        @Override
+                        public void onSuccess(JSONObject responseOriginal) {
+                            super.onSuccess(responseOriginal);
+                            if (!bean.getIs_vote().equals("1")) {
+                                bean.setIs_vote("1");
+                            } else {
+                                bean.setIs_vote("0");
+                            }
+                            adapter.notifyItemChanged(position);
+                        }
 
+                        @Override
+                        public void onFail(String error) {
+                            super.onFail(error);
+                        }
+                    });
                     break;
             }
         });

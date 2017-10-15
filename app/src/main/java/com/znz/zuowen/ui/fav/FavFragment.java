@@ -14,7 +14,6 @@ import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ViewPageAdapter;
 import com.znz.zuowen.base.BaseAppFragment;
-import com.znz.zuowen.ui.home.article.ArticleListFragment;
 import com.znz.zuowen.ui.home.video.VideoListFragment;
 
 import java.util.ArrayList;
@@ -65,7 +64,7 @@ public class FavFragment extends BaseAppFragment {
         tabNames.add("作文");
         tabNames.add("微课");
 
-        fragmentList.add(new ArticleListFragment().newInstance("我的收藏"));
+        fragmentList.add(new FavArticleFragment());
         fragmentList.add(new VideoListFragment().newInstance("我的收藏"));
 
         commonViewPager.setAdapter(new ViewPageAdapter(getChildFragmentManager(), tabNames, fragmentList));

@@ -128,6 +128,7 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                 mDataManager.setValueToView(tvComment, bean.getTeacher_reviews());
                 if (bean.getIs_vote().equals("1")) {
                     tvSubmit.setText("已投票(" + bean.getVote_count() + ")");
+                    tvSubmit.setBackgroundResource(R.drawable.bg_btn_round_no);
                 } else {
                     tvSubmit.setText("投票(" + bean.getVote_count() + ")");
                 }

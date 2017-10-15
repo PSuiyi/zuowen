@@ -45,6 +45,10 @@ public interface ApiService {
     Observable<ResponseBody> requestLogin(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=my&a=view_class_hour")
+    Observable<ResponseBody> requestClass(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=my&a=mycollect")
     Observable<ResponseBody> requestFavList(@FieldMap Map<String, String> params);
 
@@ -67,6 +71,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("?m=rest&c=votecomposition&a=do_collect")
     Observable<ResponseBody> requestVoteFav(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=votecomposition&a=do_vote")
+    Observable<ResponseBody> requestVoteVote(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("?m=rest&c=goodcomposition&a=index")

@@ -39,7 +39,16 @@ public class ArticleBean extends BaseZnzBean {
     private String collect_count;
     private String like_count;
     private String teacher_reviews;
+    private String mytype;
     private List<UrlBean> imgurl;
+
+    public String getMytype() {
+        return mytype;
+    }
+
+    public void setMytype(String mytype) {
+        this.mytype = mytype;
+    }
 
     public String getIs_like() {
         return is_like;

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -35,6 +36,10 @@ public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
     TextView tvCount;
     @Bind(R.id.tvVote)
     TextView tvVote;
+    @Bind(R.id.ivIcon)
+    ImageView ivIcon;
+    @Bind(R.id.llVote)
+    LinearLayout llVote;
 
     public VoteAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_vote, dataList);
@@ -63,8 +68,12 @@ public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
 
         if (bean.getIs_vote().equals("1")) {
             tvVote.setText("已投票");
+            mDataManager.setViewVisibility(ivIcon, false);
+            llVote.setBackgroundResource(R.drawable.bg_vote_gray);
         } else {
             tvVote.setText("投票");
+            mDataManager.setViewVisibility(ivIcon, true);
+            llVote.setBackgroundResource(R.drawable.bg_vote);
         }
         helper.addOnClickListener(R.id.tvVote);
     }

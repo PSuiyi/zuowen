@@ -84,6 +84,13 @@ public class ArticleModel extends BaseModel {
         request(apiService.requestVoteFav(params), znzHttpListener);
     }
 
+    public void requestVoteVote(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestVoteVote(params), znzHttpListener);
+    }
+
     public Observable<ResponseBody> requestGoodList(Map<String, String> params) {
         params.put("code", "1");
         params.put("type", "1");

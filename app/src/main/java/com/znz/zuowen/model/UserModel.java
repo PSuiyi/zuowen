@@ -59,4 +59,11 @@ public class UserModel extends BaseModel {
         params.put("type", "1");
         request(apiService.requestLogin(params), znzHttpListener, LODING_PD);
     }
+
+    public void requestClass(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestClass(params), znzHttpListener, LODING_PD);
+    }
 }

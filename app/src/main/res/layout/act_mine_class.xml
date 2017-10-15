@@ -91,54 +91,6 @@
                     android:id="@+id/rvClass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RadioButton
-                        style="@style/RadioStyle"
-                        android:checked="true"
-                        android:text="2课时 10元" />
-
-                    <View style="@style/Line" />
-
-                    <RadioButton
-                        style="@style/RadioStyle"
-                        android:text="2课时 10元" />
-
-                    <View style="@style/Line" />
-
-                    <RadioButton
-                        style="@style/RadioStyle"
-                        android:text="2课时 10元" />
-
-                    <View style="@style/Line" />
-
-                    <RadioButton
-                        style="@style/RadioStyle"
-                        android:text="2课时 10元" />
-
-                    <View style="@style/Line" />
-
-                    <RadioButton
-                        style="@style/RadioStyle"
-                        android:text="2课时 10元" />
-
-                    <View style="@style/Line" />
-
-                    <RadioButton
-                        style="@style/RadioStyle"
-                        android:text="2课时 10元" />
-
-                    <View style="@style/Line" />
-
-                    <RadioButton
-                        style="@style/RadioStyle"
-                        android:text="2课时 10元" />
-
-                    <View style="@style/Line" />
-                </RadioGroup>
             </LinearLayout>
 
             <TextView

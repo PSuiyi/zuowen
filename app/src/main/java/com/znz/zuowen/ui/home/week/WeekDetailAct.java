@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
@@ -117,6 +118,15 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        gotoActivity(ArticleUploadAct.class);
+        new UIAlertDialog(activity)
+                .builder()
+                .setMsg("确定花费5个课时挑战该作文？")
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确定", v2 -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", id);
+                    gotoActivity(ArticleUploadAct.class, bundle);
+                })
+                .show();
     }
 }
