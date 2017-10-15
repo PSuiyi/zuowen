@@ -74,7 +74,7 @@ public class VideoListFragment extends BaseAppListFragment<ArticleModel, VideoBe
                     if (bean.getIs_buy().equals("1")) {
                         Bundle bundle = new Bundle();
                         bundle.putString("id", bean.getId());
-                        gotoActivity(VoteDetailAct.class, bundle);
+                        gotoActivity(VideoDetailAct.class, bundle);
                     } else {
                         new UIAlertDialog(activity)
                                 .builder()
@@ -89,7 +89,7 @@ public class VideoListFragment extends BaseAppListFragment<ArticleModel, VideoBe
                                             super.onSuccess(responseOriginal);
                                             Bundle bundle = new Bundle();
                                             bundle.putString("id", bean.getId());
-                                            gotoActivity(VoteDetailAct.class, bundle);
+                                            gotoActivity(VideoDetailAct.class, bundle);
                                         }
 
                                         @Override

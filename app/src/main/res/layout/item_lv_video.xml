@@ -19,12 +19,25 @@
             android:orientation="horizontal"
             android:padding="@dimen/distance_view">
 
-            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
-                android:id="@+id/ivImage"
-                android:layout_width="120dp"
-                android:layout_height="90dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/default_image_rect" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="120dp"
+                    android:layout_height="90dp"
+                    android:foreground="@color/gray20"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/default_image_rect" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_liebiaobofang" />
+            </FrameLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

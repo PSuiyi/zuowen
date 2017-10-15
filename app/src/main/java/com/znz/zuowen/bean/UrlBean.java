@@ -1,6 +1,7 @@
 package com.znz.zuowen.bean;
 
 import com.znz.compass.znzlibray.base.BaseZnzBean;
+import com.znz.zuowen.common.Constants;
 
 /**
  * Date： 2017/10/13 2017
@@ -17,6 +18,6 @@ public class UrlBean extends BaseZnzBean {
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.url = Constants.IMG_URL + url;
     }
 }

@@ -1,6 +1,7 @@
 package com.znz.zuowen.bean;
 
 import com.znz.compass.znzlibray.base.BaseZnzBean;
+import com.znz.zuowen.common.Constants;
 
 /**
  * Date： 2017/10/14 2017
@@ -27,8 +28,26 @@ public class VideoBean extends BaseZnzBean {
     private String image;
     private String video_url;
     private String intro;
+    private String content;
     private String addtime;
     private String is_buy;
+    private String is_collect;
+
+    public String getIs_collect() {
+        return is_collect;
+    }
+
+    public void setIs_collect(String is_collect) {
+        this.is_collect = is_collect;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public String getId() {
         return id;
@@ -59,7 +78,7 @@ public class VideoBean extends BaseZnzBean {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = Constants.IMG_URL + image;
     }
 
     public String getVideo_url() {

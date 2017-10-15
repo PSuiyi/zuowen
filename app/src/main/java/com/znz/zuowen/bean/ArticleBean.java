@@ -34,11 +34,20 @@ public class ArticleBean extends BaseZnzBean {
     private String vote_count;
     private String is_vote;
     private String is_collect;
+    private String is_like;
     private String addtime;
     private String collect_count;
     private String like_count;
     private String teacher_reviews;
     private List<UrlBean> imgurl;
+
+    public String getIs_like() {
+        return is_like;
+    }
+
+    public void setIs_like(String is_like) {
+        this.is_like = is_like;
+    }
 
     public String getIs_collect() {
         return is_collect;

@@ -77,6 +77,14 @@ public interface ApiService {
     Observable<ResponseBody> requestGoodDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=goodcomposition&a=do_collect")
+    Observable<ResponseBody> requestGoodFav(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=goodcomposition&a=do_like")
+    Observable<ResponseBody> requestGoodLike(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=index&a=index")
     Observable<ResponseBody> requestHomeList(@FieldMap Map<String, String> params);
 

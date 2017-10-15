@@ -1,14 +1,18 @@
 package com.znz.zuowen.ui.mine;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.common.AgreementAct;
 
 import butterknife.Bind;
@@ -32,6 +36,18 @@ public class MineClassAct extends BaseAppActivity {
     TextView tvAgreement;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
+    @Bind(R.id.ivUserHeader)
+    HttpImageView ivUserHeader;
+    @Bind(R.id.tvNickName)
+    TextView tvNickName;
+    @Bind(R.id.tvVip)
+    TextView tvVip;
+    @Bind(R.id.tvClassOwn)
+    TextView tvClassOwn;
+    @Bind(R.id.tvIntro)
+    TextView tvIntro;
+    @Bind(R.id.rvClass)
+    RecyclerView rvClass;
 
     @Override
     protected int[] getLayoutResource() {
@@ -50,7 +66,9 @@ public class MineClassAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.NAME))) {
+            mDataManager.setValueToView(tvNickName, mDataManager.readTempData(Constants.User.NAME));
+        }
     }
 
     @Override

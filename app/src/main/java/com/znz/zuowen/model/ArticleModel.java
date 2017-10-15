@@ -98,6 +98,20 @@ public class ArticleModel extends BaseModel {
         request(apiService.requestGoodDetail(params), znzHttpListener, LODING_LODING);
     }
 
+    public void requestGoodFav(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestGoodFav(params), znzHttpListener);
+    }
+
+    public void requestGoodLike(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestGoodLike(params), znzHttpListener);
+    }
+
     //获取微课列表
     public Observable<ResponseBody> requestVideoList(Map<String, String> params) {
         params.put("code", "1");

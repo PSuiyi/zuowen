@@ -37,7 +37,7 @@ public class PreviewFragment extends Fragment {
         if (args != null && args.containsKey("img")) {
             String imgUrl = args.getString("img");
             startBounds = args.getParcelable("startBounds");
-            Glide.with(getContext()).load("http://hao.ahxrq.com/Public/" + imgUrl).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivPhoto);
+            Glide.with(getContext()).load(imgUrl).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivPhoto);
         }
         return rootView;
     }

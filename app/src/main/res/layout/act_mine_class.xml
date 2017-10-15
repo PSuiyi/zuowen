@@ -51,6 +51,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvNickName"
                             style="@style/TitleTextStyle"
                             android:text="张三" />
 
@@ -70,6 +71,7 @@
                 <View style="@style/Line" />
 
                 <TextView
+                    android:id="@+id/tvClassOwn"
                     style="@style/TitleTextStyle"
                     android:layout_width="match_parent"
                     android:padding="@dimen/distance_view"
@@ -78,11 +80,17 @@
                 <View style="@style/LineDivider" />
 
                 <TextView
+                    android:id="@+id/tvIntro"
                     style="@style/TitleTextStyle"
                     android:padding="@dimen/distance_view"
                     android:text="会员套餐" />
 
                 <View style="@style/Line" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvClass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <RadioGroup
                     android:layout_width="match_parent"

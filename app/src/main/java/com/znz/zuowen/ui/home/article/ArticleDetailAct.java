@@ -71,6 +71,52 @@ public class ArticleDetailAct extends BaseAppActivity<ArticleModel> {
         setTitleName("作文详情");
         znzToolBar.setNavRightImg(R.mipmap.icon_dianzanhui);
         znzToolBar.setNavRightImg2(R.mipmap.icon_shoucanghui);
+
+        znzToolBar.setOnIconRightClickListener(v -> {
+            Map<String, String> params = new HashMap<>();
+            params.put("id", id);
+            mModel.requestGoodLike(params, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    if (!bean.getIs_like().equals("1")) {
+                        znzToolBar.setNavRightImg(R.mipmap.icon_dianzan);
+                        bean.setIs_like("1");
+                    } else {
+                        znzToolBar.setNavRightImg(R.mipmap.icon_dianzanhui);
+                        bean.setIs_like("0");
+                    }
+                }
+
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        });
+
+        znzToolBar.setOnIconRightClickListener2(v -> {
+            Map<String, String> params = new HashMap<>();
+            params.put("id", id);
+            mModel.requestGoodFav(params, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    if (!bean.getIs_collect().equals("1")) {
+                        znzToolBar.setNavRightImg2(R.mipmap.icon_shoucang);
+                        bean.setIs_collect("1");
+                    } else {
+                        znzToolBar.setNavRightImg2(R.mipmap.icon_shoucanghui);
+                        bean.setIs_collect("0");
+                    }
+                }
+
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        });
     }
 
     @Override
@@ -105,9 +151,15 @@ public class ArticleDetailAct extends BaseAppActivity<ArticleModel> {
                 mDataManager.setValueToView(tvComment, bean.getTeacher_reviews());
 
                 if (bean.getIs_collect().equals("1")) {
-                    znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
+                    znzToolBar.setNavRightImg2(R.mipmap.icon_shoucang);
                 } else {
-                    znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+                    znzToolBar.setNavRightImg2(R.mipmap.icon_shoucanghui);
+                }
+
+                if (bean.getIs_like().equals("1")) {
+                    znzToolBar.setNavRightImg(R.mipmap.icon_dianzan);
+                } else {
+                    znzToolBar.setNavRightImg(R.mipmap.icon_dianzanhui);
                 }
             }
 

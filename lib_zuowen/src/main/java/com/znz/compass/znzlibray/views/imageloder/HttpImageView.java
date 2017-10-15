@@ -107,30 +107,6 @@ public class HttpImageView extends AppCompatImageView {
     }
 
     /**
-     * 加载作文图片
-     *
-     * @param url_image
-     */
-    public void loadHaoImage(final String url_image) {
-        default_image = R.mipmap.default_image_rect;
-        error_image = R.mipmap.default_image_rect;
-
-        if (StringUtil.isBlank(url_image)) {
-            this.setImageResource(default_image);
-            this.setScaleType(ScaleType.CENTER_CROP);
-        } else {
-            Glide.with(context)
-                    .load("http://hao.ahxrq.com/Public/" + url_image)
-                    .thumbnail(0.1f)
-                    .centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .error(error_image)
-                    .placeholder(default_image)
-                    .into(this);
-        }
-    }
-
-    /**
      * 加载正方形图
      *
      * @param url_image
@@ -228,8 +204,8 @@ public class HttpImageView extends AppCompatImageView {
      * @param url_image
      */
     public void loadRoundImage(final String url_image) {
-        default_image = R.mipmap.default_image_square;
-        error_image = R.mipmap.default_image_square;
+        default_image = R.mipmap.default_image_rect;
+        error_image = R.mipmap.default_image_rect;
 
         try {
             if (StringUtil.isBlank(url_image)) {

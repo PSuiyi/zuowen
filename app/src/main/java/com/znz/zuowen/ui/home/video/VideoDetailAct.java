@@ -64,6 +64,28 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
     protected void initializeNavigation() {
         setTitleName("微课详情");
         znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+        znzToolBar.setOnNavRightClickListener(v -> {
+            Map<String, String> params = new HashMap<>();
+            params.put("id", id);
+            mModel.requestVoteFav(params, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    if (!bean.getIs_collect().equals("1")) {
+                        znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
+                        bean.setIs_collect("1");
+                    } else {
+                        znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+                        bean.setIs_collect("0");
+                    }
+                }
+
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        });
     }
 
     @Override
@@ -80,7 +102,17 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), VideoBean.class);
+                ivImage.loadRectImage(bean.getImage());
                 mDataManager.setValueToView(tvName, bean.getTitle());
+                mDataManager.setValueToView(tvContent, bean.getContent());
+                mDataManager.setValueToView(tvTeacher, bean.getTeacher_name());
+                mDataManager.setValueToView(tvTime, bean.getAddtime());
+
+                if (bean.getIs_collect().equals("1")) {
+                    znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
+                } else {
+                    znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+                }
             }
 
             @Override

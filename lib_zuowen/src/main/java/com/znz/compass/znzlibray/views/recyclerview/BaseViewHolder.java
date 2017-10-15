@@ -229,7 +229,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     public BaseViewHolder loadRectImage(@IdRes int viewId, String url) {
         HttpImageView view = getView(viewId);
         if (!StringUtil.isBlank(url)) {
-            view.loadRectImage("http://hao.ahxrq.com/Public/" + url);
+            view.loadRectImage(url);
         } else {
             view.setImageResource(R.mipmap.default_image_rect);
         }

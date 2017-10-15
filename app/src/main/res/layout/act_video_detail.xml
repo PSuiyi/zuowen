@@ -11,12 +11,18 @@
 
     <include layout="@layout/include_common_network_status" />
 
-    <com.znz.compass.znzlibray.views.imageloder.HttpImageView
-        android:id="@+id/ivImage"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/default_image_rect" />
+        android:layout_height="wrap_content">
+
+        <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/default_image_rect" />
+    </FrameLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
