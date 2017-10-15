@@ -64,6 +64,20 @@ public class UserModel extends BaseModel {
         params.put("code", "1");
         params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
-        request(apiService.requestClass(params), znzHttpListener, LODING_PD);
+        request(apiService.requestClass(params), znzHttpListener, LODING_LODING);
+    }
+
+    public void requestUpdateName(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestUpdateName(params), znzHttpListener, LODING_PD);
+    }
+
+    public void requestLogout(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestLogout(params), znzHttpListener);
     }
 }

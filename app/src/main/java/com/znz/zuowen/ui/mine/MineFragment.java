@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.network_status.NetUtils;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -18,14 +22,22 @@ import com.znz.compass.znzlibray.views.row_view.ZnzRowGroupView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
 import com.znz.zuowen.common.Constants;
+import com.znz.zuowen.event.EventRefresh;
+import com.znz.zuowen.event.EventTags;
+import com.znz.zuowen.model.UserModel;
 import com.znz.zuowen.ui.common.AgreementAct;
 import com.znz.zuowen.ui.common.EditValueAct;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.login.LoginAct;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,7 +49,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class MineFragment extends BaseAppFragment {
+public class MineFragment extends BaseAppFragment<UserModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -62,7 +74,7 @@ public class MineFragment extends BaseAppFragment {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new UserModel(activity, this);
     }
 
     @Override
@@ -134,7 +146,23 @@ public class MineFragment extends BaseAppFragment {
                             .setMsg("是否确定退出登录账号")
                             .setNegativeButton("取消", null)
                             .setPositiveButton("确定", v2 -> {
-                                mDataManager.logout(activity, LoginAct.class);
+                                if (NetUtils.isNetworkAvailable(activity)) {
+                                    Map<String, String> params = new HashMap<>();
+                                    mModel.requestLogout(params, new ZnzHttpListener() {
+                                        @Override
+                                        public void onSuccess(JSONObject responseOriginal) {
+                                            super.onSuccess(responseOriginal);
+                                            mDataManager.logout(activity, LoginAct.class);
+                                        }
+
+                                        @Override
+                                        public void onFail(String error) {
+                                            super.onFail(error);
+                                        }
+                                    });
+                                } else {
+                                    mDataManager.logout(activity, LoginAct.class);
+                                }
                             })
                             .show();
                 })
@@ -197,6 +225,27 @@ public class MineFragment extends BaseAppFragment {
             case R.id.tvVip:
                 gotoActivity(AgreementAct.class);
                 break;
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        if (event.getFlag() == EventTags.REFRESH_MINE_INFO) {
+            if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.NAME))) {
+                mDataManager.setValueToView(tvNickName, mDataManager.readTempData(Constants.User.NAME));
+            }
         }
     }
 }

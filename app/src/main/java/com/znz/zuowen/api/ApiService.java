@@ -49,6 +49,14 @@ public interface ApiService {
     Observable<ResponseBody> requestClass(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=login&a=modify_username")
+    Observable<ResponseBody> requestUpdateName(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=login&a=logout")
+    Observable<ResponseBody> requestLogout(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=my&a=mycollect")
     Observable<ResponseBody> requestFavList(@FieldMap Map<String, String> params);
 
