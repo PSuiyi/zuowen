@@ -100,6 +100,7 @@ public class MineFragment extends BaseAppFragment<UserModel> {
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("手机号绑定")
                 .withEnableArraw(true)
+                .withValue(StringUtil.getSignPhone(mDataManager.readTempData(Constants.User.MOBILE)))
                 .withOnClickListener(v -> {
                     gotoActivity(UpdatePhoneAct.class);
                 })

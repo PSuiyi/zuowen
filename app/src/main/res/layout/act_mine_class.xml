@@ -70,12 +70,41 @@
 
                 <View style="@style/Line" />
 
-                <TextView
-                    android:id="@+id/tvClassOwn"
-                    style="@style/TitleTextStyle"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:padding="@dimen/distance_view"
-                    android:text="现有课时：2课时" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="现有课时：" />
+
+                    <TextView
+                        android:id="@+id/tvClassOwn"
+                        style="@style/TitleTextStyle"
+                        android:layout_width="match_parent"
+                        android:text="2课时" />
+                </LinearLayout>
+
+                <View style="@style/Line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="累计充值：" />
+
+                    <TextView
+                        android:id="@+id/tvClassTotal"
+                        style="@style/TitleTextStyle"
+                        android:layout_width="match_parent"
+                        android:text="600元（已赠送3课时）" />
+                </LinearLayout>
 
                 <View style="@style/LineDivider" />
 
@@ -90,7 +119,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvClass"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <TextView

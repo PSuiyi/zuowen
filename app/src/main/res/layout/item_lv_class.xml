@@ -12,17 +12,38 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/llContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <TextView
+                android:id="@+id/tvCount"
+                style="@style/TitleTextStyle"
+                android:text="5课时" />
+
+            <TextView
+                android:id="@+id/tvMoney"
+                style="@style/TitleTextStyle"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:text="50"
+                android:textColor="@color/orange" />
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:text="元" />
+
+            <View style="@style/WeightView" />
 
             <CheckBox
                 android:id="@+id/cbClass"
-                style="@style/RadioStyle"
-                android:text="2课时 10元" />
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cb_select"
+                android:button="@null"
+                android:enabled="false" />
         </LinearLayout>
 
     </LinearLayout>

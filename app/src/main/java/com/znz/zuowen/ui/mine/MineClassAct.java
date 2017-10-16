@@ -93,7 +93,7 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                mDataManager.setValueToView(tvClassOwn, "现有课时：" + responseObject.getString("my_class_hour") + "课时");
+                mDataManager.setValueToView(tvClassOwn, responseObject.getString("my_class_hour") + "课时");
 
                 rvClass.setLayoutManager(new LinearLayoutManager(activity));
                 rvClass.setHasFixedSize(true);
