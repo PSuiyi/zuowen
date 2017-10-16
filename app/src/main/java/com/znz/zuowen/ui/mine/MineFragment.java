@@ -30,6 +30,7 @@ import com.znz.zuowen.ui.common.EditValueAct;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.login.LoginAct;
+import com.znz.zuowen.ui.login.ResetPsdOneAct;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

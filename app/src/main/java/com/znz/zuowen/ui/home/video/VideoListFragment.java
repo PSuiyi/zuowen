@@ -13,7 +13,6 @@ import com.znz.zuowen.adapter.VideoAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.VideoBean;
 import com.znz.zuowen.model.ArticleModel;
-import com.znz.zuowen.ui.home.vote.VoteDetailAct;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -90,6 +89,8 @@ public class VideoListFragment extends BaseAppListFragment<ArticleModel, VideoBe
                                             Bundle bundle = new Bundle();
                                             bundle.putString("id", bean.getId());
                                             gotoActivity(VideoDetailAct.class, bundle);
+                                            bean.setIs_buy("1");
+                                            adapter.notifyDataSetChanged();
                                         }
 
                                         @Override

@@ -23,17 +23,20 @@
         android:paddingTop="@dimen/distance_view">
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etPsdOld"
             style="@style/EditRoundStyle"
             android:hint="输入旧密码"
             android:inputType="textPassword" />
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etPsdNew"
             style="@style/EditRoundStyle"
             android:layout_marginTop="20dp"
             android:hint="输入新密码"
             android:inputType="textPassword" />
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etPsdConfirm"
             style="@style/EditRoundStyle"
             android:layout_marginTop="20dp"
             android:hint="确认新密码"
@@ -45,6 +48,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_round_gray"
             android:text="确定"
             android:textColor="@color/white" />
     </LinearLayout>
