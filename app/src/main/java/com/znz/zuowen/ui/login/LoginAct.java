@@ -2,6 +2,8 @@ package com.znz.zuowen.ui.login;
 
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -70,6 +72,53 @@ public class LoginAct extends BaseAppActivity<UserModel> {
         if (!StringUtil.isBlank(mDataManager.readTempData(ZnzConstants.ACCOUNT))) {
             etUserName.setText(mDataManager.readTempData(ZnzConstants.ACCOUNT));
         }
+
+        etUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                handleBtnState();
+            }
+        });
+
+        etPsd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                handleBtnState();
+            }
+        });
+    }
+
+    /**
+     * 处理按钮状态
+     */
+    private void handleBtnState() {
+        if (StringUtil.isBlank(mDataManager.getValueFromView(etUserName))) {
+            return;
+        }
+        if (StringUtil.isBlank(mDataManager.getValueFromView(etPsd))) {
+            return;
+        }
+        tvLogin.setBackgroundResource(R.drawable.bg_btn_round);
     }
 
     @Override
@@ -92,7 +141,7 @@ public class LoginAct extends BaseAppActivity<UserModel> {
                     return;
                 }
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etPsd))) {
-                    mDataManager.showToast("请输入用户名");
+                    mDataManager.showToast("请输入密码");
                     return;
                 }
 

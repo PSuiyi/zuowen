@@ -1,5 +1,6 @@
 package com.znz.zuowen;
 
+import com.bugtags.library.Bugtags;
 import com.znz.compass.znzlibray.ZnzApplication;
 
 /**
@@ -9,4 +10,12 @@ import com.znz.compass.znzlibray.ZnzApplication;
  */
 
 public class AppApplication extends ZnzApplication {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        //初始化bugtags
+        Bugtags.start("fb69161bb918e949874d67569ded4f67", this, Bugtags.BTGInvocationEventShake);
+    }
 }

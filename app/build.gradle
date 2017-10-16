@@ -43,6 +43,20 @@ def releaseTime() {
     return new Date().format("(yyyyMMdd)", TimeZone.getTimeZone("UTC"))
 }
 
+//应用 Bugtags 插件
+apply plugin: 'com.bugtags.library.plugin'
+
+//Bugtags 插件配置
+bugtags {
+    //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考帮助中心->符号表->Android 符号表->配置自动上传符号表
+    appKey "fb69161bb918e949874d67569ded4f67"  //这里是你的 appKey
+    appSecret "f2db9824583d8a3f00f5c8196bd212ed"    //这里是你的 appSecret，管理员在设置页可以查看
+    mappingUploadEnabled true
+
+    //网络跟踪功能配置(企业版)
+    trackingNetworkEnabled true
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

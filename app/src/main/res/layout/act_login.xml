@@ -20,7 +20,6 @@
 
         <View style="@style/WeightView" />
 
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,6 +103,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_round_gray"
             android:text="登录"
             android:textColor="@color/white" />
 

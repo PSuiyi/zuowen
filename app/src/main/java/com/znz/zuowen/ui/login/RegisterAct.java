@@ -2,6 +2,8 @@ package com.znz.zuowen.ui.login;
 
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -68,7 +70,74 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeView() {
-        etUserName.setText("18020130334");
+        etUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                handleBtnState();
+            }
+        });
+        etCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                handleBtnState();
+            }
+        });
+        etPsd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                handleBtnState();
+            }
+        });
+
+    }
+
+    /**
+     * 处理按钮状态
+     */
+    private void handleBtnState() {
+        if (StringUtil.isBlank(mDataManager.getValueFromView(etUserName))) {
+            return;
+        }
+        if (!StringUtil.isMobile(mDataManager.getValueFromView(etUserName))) {
+            return;
+        }
+        if (StringUtil.isBlank(mDataManager.getValueFromView(etCode))) {
+            return;
+        }
+        if (StringUtil.isBlank(mDataManager.getValueFromView(etPsd))) {
+            return;
+        }
+        tvSubmit.setBackgroundResource(R.drawable.bg_btn_round);
     }
 
     @Override
@@ -91,7 +160,10 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     mDataManager.showToast("请输入手机号");
                     return;
                 }
-
+                if (!StringUtil.isMobile(mDataManager.getValueFromView(etUserName))) {
+                    mDataManager.showToast("请输入正确的手机号");
+                    return;
+                }
                 PopupWindowManager.getInstance(activity).showVerifyCode(view, (type, values) -> {
                     Map<String, String> params = new HashMap<>();
                     params.put("phone", mDataManager.getValueFromView(etUserName));
@@ -113,6 +185,14 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                 });
                 break;
             case R.id.tvSubmit:
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etUserName))) {
+                    mDataManager.showToast("请输入手机号");
+                    return;
+                }
+                if (!StringUtil.isMobile(mDataManager.getValueFromView(etUserName))) {
+                    mDataManager.showToast("请输入正确的手机号");
+                    return;
+                }
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etCode))) {
                     mDataManager.showToast("请输入验证码");
                     return;

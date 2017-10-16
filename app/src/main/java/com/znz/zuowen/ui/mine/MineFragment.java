@@ -245,6 +245,8 @@ public class MineFragment extends BaseAppFragment<UserModel> {
         if (event.getFlag() == EventTags.REFRESH_MINE_INFO) {
             if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.NAME))) {
                 mDataManager.setValueToView(tvNickName, mDataManager.readTempData(Constants.User.NAME));
+                rowDescriptionList.get(0).setValue(mDataManager.readTempData(Constants.User.NAME));
+                commonRowGroup.notifyDataChanged(rowDescriptionList);
             }
         }
     }
