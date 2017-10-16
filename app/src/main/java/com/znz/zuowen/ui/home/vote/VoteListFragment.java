@@ -80,7 +80,7 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
                             } else {
                                 bean.setIs_vote("0");
                             }
-                            adapter.notifyItemChanged(position);
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override

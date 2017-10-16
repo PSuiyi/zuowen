@@ -28,6 +28,7 @@
             android:orientation="horizontal">
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
+                android:id="@+id/etCode"
                 style="@style/EditRoundStyle"
                 android:layout_weight="1"
                 android:hint="验证码"
@@ -51,6 +52,7 @@
         </LinearLayout>
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etPsd"
             style="@style/EditRoundStyle"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
@@ -63,6 +65,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_round_gray"
             android:text="确认"
             android:textColor="@color/white" />
     </LinearLayout>

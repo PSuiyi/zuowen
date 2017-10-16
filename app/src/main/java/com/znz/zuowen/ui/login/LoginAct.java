@@ -64,7 +64,7 @@ public class LoginAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeNavigation() {
-
+        setSwipeBackEnable(false);
     }
 
     @Override

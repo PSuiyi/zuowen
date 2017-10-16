@@ -51,8 +51,8 @@
                     android:src="@mipmap/icon_benzhouzuowen" />
 
                 <TextView
-                    style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/home_distance"
                     android:text="本周作文" />
             </LinearLayout>
 
@@ -77,8 +77,8 @@
                     android:src="@mipmap/icon_youxiuzuowen" />
 
                 <TextView
-                    style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/home_distance"
                     android:text="优秀作文" />
             </LinearLayout>
 
@@ -104,8 +104,8 @@
                     android:src="@mipmap/icon_wodezuowen" />
 
                 <TextView
-                    style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/home_distance"
                     android:text="我的作文" />
             </LinearLayout>
 
@@ -138,8 +138,8 @@
                     android:src="@mipmap/icon_weikezhidao" />
 
                 <TextView
-                    style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/home_distance"
                     android:text="微课指导" />
             </LinearLayout>
 
@@ -164,8 +164,8 @@
                     android:src="@mipmap/icon_zuowentoupiao" />
 
                 <TextView
-                    style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/home_distance"
                     android:text="作文投票" />
             </LinearLayout>
 
