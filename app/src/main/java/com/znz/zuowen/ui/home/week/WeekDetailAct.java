@@ -1,15 +1,10 @@
 package com.znz.zuowen.ui.home.week;
 
-import android.net.http.SslError;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -57,11 +52,8 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
     TextView tvContent;
     @Bind(R.id.rvArticle)
     RecyclerView rvArticle;
-    @Bind(R.id.wvHtml)
-    WebView wvHtml;
     private String id;
     private ArticleBean bean;
-    private WebSettings settings;
 
     @Override
     protected int[] getLayoutResource() {
@@ -83,40 +75,6 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     protected void initializeView() {
-        settings = wvHtml.getSettings();
-        settings.setSupportZoom(true);//是否支持缩放,默认为true
-        settings.setBuiltInZoomControls(false);
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        //版本号控制，使图片能够适配
-        int currentapiVersion = Build.VERSION.SDK_INT;
-        //版本号控制，使图片能够适配
-        if (Build.VERSION.SDK_INT > 19) {
-            settings.setUseWideViewPort(true);
-        }
-
-        settings.setLoadWithOverviewMode(true);
-        settings.setJavaScriptEnabled(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setAppCacheEnabled(true);
-        settings.setDomStorageEnabled(true);
-        wvHtml.setWebViewClient(new WebViewClient() {
-            // 点击网页里面的链接还是在当前的webView内部跳转，不跳转外部浏览器
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-
-            // 可以让webView处理https请求
-            @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-            }
-        });
     }
 
     @Override
@@ -130,11 +88,7 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), ArticleBean.class);
                 mDataManager.setValueToView(tvName, bean.getTitle());
                 mDataManager.setValueToView(tvTeacher, "命题老师：" + bean.getTeacher_name());
-                wvHtml.setVisibility(View.VISIBLE);
-                if (Build.VERSION.SDK_INT > 19) {
-                    settings.setTextZoom(260);
-                }
-                wvHtml.loadDataWithBaseURL(null, bean.getContent(), "text/html", "utf-8", null);
+                tvContent.setText(Html.fromHtml(bean.getContent()));
                 mDataManager.setValueToView(tvTime, bean.getAddtime());
                 if (!bean.getImgurl().isEmpty()) {
                     rvArticle.setVisibility(View.VISIBLE);

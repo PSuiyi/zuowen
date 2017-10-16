@@ -49,18 +49,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <WebView
-                    android:id="@+id/wvHtml"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/distance_view"></WebView>
-
                 <TextView
                     android:id="@+id/tvContent"
                     style="@style/TextStyle"
                     android:layout_marginTop="@dimen/distance_view"
                     android:text="我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。在一个安静的环境下工作，不是挺好的。我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
             </LinearLayout>
 
 

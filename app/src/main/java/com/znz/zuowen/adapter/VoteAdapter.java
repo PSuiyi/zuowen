@@ -58,7 +58,7 @@ public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
         }
         helper.setText(R.id.tvTag1, bean.getStyle_type());
         helper.setText(R.id.tvTag2, bean.getCounts());
-        helper.setText(R.id.tvCount, "票数：" + bean.getVote_count());
+        helper.setText(R.id.tvCount, "票数：" + bean.getVote_count() + "字");
         if (!bean.getImgurl().isEmpty()) {
             helper.setVisible(R.id.ivImage, true);
             helper.loadRectImage(R.id.ivImage, bean.getImgurl().get(0).getUrl());
