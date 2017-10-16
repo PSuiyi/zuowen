@@ -141,6 +141,13 @@ public class ArticleModel extends BaseModel {
         request(apiService.requestVideoDetail(params), znzHttpListener, LODING_LODING);
     }
 
+    public void requestVideoFav(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestVideoFav(params), znzHttpListener);
+    }
+
     public void requestVideoBuy(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
         params.put("type", "1");

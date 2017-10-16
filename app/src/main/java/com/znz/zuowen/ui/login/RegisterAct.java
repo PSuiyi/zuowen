@@ -20,7 +20,6 @@ import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.model.UserModel;
-import com.znz.zuowen.utils.PopupWindowManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -164,24 +163,22 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     mDataManager.showToast("请输入正确的手机号");
                     return;
                 }
-                PopupWindowManager.getInstance(activity).showVerifyCode(view, (type, values) -> {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("phone", mDataManager.getValueFromView(etUserName));
-                    String timeLong = TimeUtils.getNowTimeMills() + "";
-                    params.put("times", timeLong);
-                    params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign(timeLong + mDataManager.getValueFromView(etUserName))));
-                    mModel.requestCode(params, new ZnzHttpListener() {
-                        @Override
-                        public void onSuccess(JSONObject responseOriginal) {
-                            super.onSuccess(responseOriginal);
-                            etCode.setText("123456");
-                        }
+                Map<String, String> params = new HashMap<>();
+                params.put("phone", mDataManager.getValueFromView(etUserName));
+                String timeLong = TimeUtils.getNowTimeMills() + "";
+                params.put("times", timeLong);
+                params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign(timeLong + mDataManager.getValueFromView(etUserName))));
+                mModel.requestCode(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        etCode.setText("123456");
+                    }
 
-                        @Override
-                        public void onFail(String error) {
-                            super.onFail(error);
-                        }
-                    });
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
                 });
                 break;
             case R.id.tvSubmit:
@@ -201,11 +198,11 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     mDataManager.showToast("请输入密码");
                     return;
                 }
-                Map<String, String> params = new HashMap<>();
-                params.put("phone", mDataManager.getValueFromView(etUserName));
-                params.put("code", mDataManager.getValueFromView(etCode));
-                params.put("passwd", mDataManager.getValueFromView(etPsd));
-                mModel.reuqestRegister(params, new ZnzHttpListener() {
+                Map<String, String> params2 = new HashMap<>();
+                params2.put("phone", mDataManager.getValueFromView(etUserName));
+                params2.put("code", mDataManager.getValueFromView(etCode));
+                params2.put("passwd", mDataManager.getValueFromView(etPsd));
+                mModel.reuqestRegister(params2, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);

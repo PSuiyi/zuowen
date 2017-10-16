@@ -172,7 +172,7 @@ public class LoginAct extends BaseAppActivity<UserModel> {
                 gotoActivity(RegisterAct.class);
                 break;
             case R.id.tvForgetPsd:
-                gotoActivity(ResetPsdAct.class);
+                gotoActivity(ResetPsdOneAct.class);
                 break;
         }
     }

@@ -64,7 +64,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                     helper.setVisible(R.id.tvContent, false);
                 }
                 helper.setText(R.id.tvTag1, bean.getArticleBean().getStyle_type());
-                helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts());
+                helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts() + "字");
                 helper.setText(R.id.tvCount, "票数：" + bean.getArticleBean().getVote_count());
                 if (!bean.getArticleBean().getImgurl().isEmpty()) {
                     helper.setVisible(R.id.ivImage, true);

@@ -102,6 +102,10 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
         if (!isLoaded) {
             leftList.clear();
             rightList.clear();
+            OptionBean optionBean = new OptionBean();
+            optionBean.setChecked(true);
+            optionBean.setStyle_type("全部");
+            leftList.add(optionBean);
             leftList.addAll(JSONArray.parseArray(responseJson.getString("style_type"), OptionBean.class));
             if (!leftList.isEmpty()) {
                 leftList.get(0).setChecked(true);

@@ -80,4 +80,16 @@ public class UserModel extends BaseModel {
         params.put("token", mDataManager.getAccessToken());
         request(apiService.requestLogout(params), znzHttpListener);
     }
+
+    public void reuqestPsdOne(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.reuqestPsdOne(params), znzHttpListener);
+    }
+
+    public void reuqestPsdTwo(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.reuqestPsdTwo(params), znzHttpListener);
+    }
 }

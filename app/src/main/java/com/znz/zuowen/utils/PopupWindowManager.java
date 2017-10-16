@@ -9,11 +9,13 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.znz.compass.znzlibray.base.BaseZnzBean;
 import com.znz.compass.znzlibray.common.DataManager;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.OptionAdapter;
@@ -162,7 +164,7 @@ public class PopupWindowManager {
             dataList.get(position).setChecked(true);
 
             if (onPopupWindowClickListener != null) {
-                onPopupWindowClickListener.onPopupWindowClick("字数", new String[]{dataList.get(position).getCounts_id()});
+                onPopupWindowClickListener.onPopupWindowClick("字数", new String[]{position + ""});
             }
 
             adapter.notifyDataSetChanged();
@@ -178,19 +180,25 @@ public class PopupWindowManager {
      *
      * @param parent
      */
-    public void showVerifyCode(View parent, OnPopupWindowClickListener onPopupWindowClickListener) {
+    public void showVerifyCode(View parent, String url, OnPopupWindowClickListener onPopupWindowClickListener) {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.popup_verify_code);
 
         HttpImageView ivImage = init(view, R.id.ivImage);
-        ivImage.loadRectImage("http://hao.ahxrq.com/index.php?m=rest&c=login&a=getimgcode&type=1");
+        ivImage.loadRectImage(url);
 
         init(view, R.id.tvCancel).setOnClickListener(v -> {
             hidePopupWindow();
         });
+
+        EditText etCode = init(view, R.id.etCode);
         init(view, R.id.tvSubmit).setOnClickListener(v -> {
             if (onPopupWindowClickListener != null) {
-                onPopupWindowClickListener.onPopupWindowClick("", null);
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etCode))) {
+                    mDataManager.showToast("请输入图中的验证码");
+                    return;
+                }
+                onPopupWindowClickListener.onPopupWindowClick("", new String[]{mDataManager.getValueFromView(etCode)});
             }
             hidePopupWindow();
         });

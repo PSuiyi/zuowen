@@ -60,6 +60,8 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
     TextView tvIntro;
     @Bind(R.id.rvClass)
     RecyclerView rvClass;
+    @Bind(R.id.tvClassTotal)
+    TextView tvClassTotal;
 
     private List<ClassBean> dataList = new ArrayList<>();
 
@@ -94,6 +96,8 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.setValueToView(tvClassOwn, responseObject.getString("my_class_hour") + "课时");
+                mDataManager.setValueToView(tvClassTotal, responseObject.getString("total_money")
+                        + "元（已赠送" + responseObject.getString("give_class_hour") + "课时）");
 
                 rvClass.setLayoutManager(new LinearLayoutManager(activity));
                 rvClass.setHasFixedSize(true);

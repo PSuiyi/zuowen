@@ -67,7 +67,7 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
         znzToolBar.setOnNavRightClickListener(v -> {
             Map<String, String> params = new HashMap<>();
             params.put("id", id);
-            mModel.requestVoteFav(params, new ZnzHttpListener() {
+            mModel.requestVideoFav(params, new ZnzHttpListener() {
                 @Override
                 public void onSuccess(JSONObject responseOriginal) {
                     super.onSuccess(responseOriginal);

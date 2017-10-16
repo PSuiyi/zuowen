@@ -37,6 +37,14 @@ public interface ApiService {
     Observable<ResponseBody> reuqestRegister(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=login&a=forgetpw_one")
+    Observable<ResponseBody> reuqestPsdOne(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=login&a=forgetpw_two")
+    Observable<ResponseBody> reuqestPsdTwo(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=login&a=perfect_information")
     Observable<ResponseBody> reuqestCompleteInfo(@FieldMap Map<String, String> params);
 
@@ -111,6 +119,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("?m=rest&c=classguidance&a=detail")
     Observable<ResponseBody> requestVideoDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=classguidance&a=do_collect")
+    Observable<ResponseBody> requestVideoFav(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("?m=rest&c=classguidance&a=do_buy")
