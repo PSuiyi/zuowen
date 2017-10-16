@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.ZnzLog;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -118,11 +119,12 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
                 }
 
                 PopupWindowManager.getInstance(activity).showVerifyCode(view,
-                        "http://hao.ahxrq.com/index.php?m=rest&c=login&a=getimgcode&type=2",
+                        "http://hao.ahxrq.com/index.php?m=rest&c=login&a=getimgcode&type=2&type=1&code=1",
                         (type, values) -> {
                             Map<String, String> params = new HashMap<>();
                             params.put("phone", mDataManager.getValueFromView(etPhone));
                             params.put("imgcode", values[0]);
+                            ZnzLog.e("values[0]---->" + values[0]);
                             mModel.reuqestPsdOne(params, new ZnzHttpListener() {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {

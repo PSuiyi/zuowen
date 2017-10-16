@@ -10,13 +10,15 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 import com.znz.compass.znzlibray.base.BaseZnzBean;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.OptionAdapter;
 import com.znz.zuowen.bean.OptionBean;
@@ -184,8 +186,13 @@ public class PopupWindowManager {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.popup_verify_code);
 
-        HttpImageView ivImage = init(view, R.id.ivImage);
-        ivImage.loadRectImage(url);
+        ImageView ivImage = init(view, R.id.ivImage);
+        Glide.with(mContext)
+                .load(url)
+                .skipMemoryCache(true)
+                .centerCrop()
+                .signature(new StringSignature((Math.random() * (100000000 - 1 + 1)) + ""))
+                .into(ivImage);
 
         init(view, R.id.tvCancel).setOnClickListener(v -> {
             hidePopupWindow();

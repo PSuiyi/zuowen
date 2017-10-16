@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.signature.StringSignature;
 import com.znz.compass.znzlibray.R;
 import com.znz.compass.znzlibray.utils.GlideCircleTransform;
 import com.znz.compass.znzlibray.utils.GlideRoundTransform;
@@ -100,6 +101,31 @@ public class HttpImageView extends AppCompatImageView {
                     .thumbnail(0.1f)
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(error_image)
+                    .placeholder(default_image)
+                    .into(this);
+        }
+    }
+
+    /**
+     * 加载长方形图
+     *
+     * @param url_image
+     */
+    public void loadCodeImage(final String url_image) {
+        default_image = R.mipmap.default_image_rect;
+        error_image = R.mipmap.default_image_rect;
+
+        if (StringUtil.isBlank(url_image)) {
+            this.setImageResource(default_image);
+            this.setScaleType(ScaleType.CENTER_CROP);
+        } else {
+            Glide.with(context)
+                    .load(url_image)
+                    .thumbnail(0.1f)
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .signature(new StringSignature((Math.random() * (100000000 - 1 + 1)) + ""))
                     .error(error_image)
                     .placeholder(default_image)
                     .into(this);
