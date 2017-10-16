@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/llContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
@@ -20,12 +21,14 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvName"
                 style="@style/TitleTextStyle"
                 android:text="李老师" />
 
             <View style="@style/WeightView" />
 
             <ImageView
+                android:id="@+id/ivCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_duigou" />

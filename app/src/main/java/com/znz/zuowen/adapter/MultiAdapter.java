@@ -11,7 +11,7 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.home.article.ArticleDetailAct;
-import com.znz.zuowen.ui.home.article.ArticleListAct;
+import com.znz.zuowen.ui.home.good.GoodListAct;
 import com.znz.zuowen.ui.home.vote.VoteDetailAct;
 
 import java.util.List;
@@ -91,8 +91,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         Bundle bundle = new Bundle();
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
-                bundle.putString("page", "优秀作文");
-                gotoActivity(ArticleListAct.class, bundle);
+                gotoActivity(GoodListAct.class);
                 break;
             case Constants.MultiType.Article:
                 bundle.putString("id", bean.getArticleBean().getId());

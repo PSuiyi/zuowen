@@ -17,6 +17,7 @@ import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.OptionAdapter;
+import com.znz.zuowen.bean.OptionBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,45 +115,59 @@ public class PopupWindowManager {
         dataList.add(new BaseZnzBean());
         dataList.add(new BaseZnzBean());
         dataList.add(new BaseZnzBean());
-        OptionAdapter adapter = new OptionAdapter(dataList);
+        OptionAdapter adapter = new OptionAdapter(dataList, "老师");
         rvTeacher.setLayoutManager(new LinearLayoutManager(mContext));
         rvTeacher.setAdapter(adapter);
         popupWindow.showAsDropDown(parent);
     }
 
-    public void showOptionLeft(View parent) {
+    public void showOptionLeft(View parent, List<OptionBean> dataList, OnPopupWindowClickListener onPopupWindowClickListener) {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.popup_option1);
         init(view, R.id.darkView).setOnClickListener(v -> hidePopupWindow());
         init(view, R.id.darkView2).setOnClickListener(v -> hidePopupWindow());
         popupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView rvOption = init(view, R.id.rvOption);
-        List dataList = new ArrayList();
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        OptionAdapter adapter = new OptionAdapter(dataList);
+        OptionAdapter adapter = new OptionAdapter(dataList, "体裁");
+        adapter.setOnItemChildClickListener((adapter1, view1, position) -> {
+            for (OptionBean optionBean : dataList) {
+                optionBean.setChecked(false);
+            }
+            dataList.get(position).setChecked(true);
+
+            if (onPopupWindowClickListener != null) {
+                onPopupWindowClickListener.onPopupWindowClick("体裁", new String[]{dataList.get(position).getStyle_type()});
+            }
+
+            adapter.notifyDataSetChanged();
+            hidePopupWindow();
+        });
         rvOption.setLayoutManager(new LinearLayoutManager(mContext));
         rvOption.setAdapter(adapter);
         popupWindow.showAsDropDown(parent);
     }
 
-    public void showOptionRight(View parent) {
+    public void showOptionRight(View parent, List<OptionBean> dataList, OnPopupWindowClickListener onPopupWindowClickListener) {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.popup_option2);
         init(view, R.id.darkView).setOnClickListener(v -> hidePopupWindow());
         init(view, R.id.darkView2).setOnClickListener(v -> hidePopupWindow());
         popupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView rvOption = init(view, R.id.rvOption);
-        List dataList = new ArrayList();
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        OptionAdapter adapter = new OptionAdapter(dataList);
+        OptionAdapter adapter = new OptionAdapter(dataList, "字数");
+        adapter.setOnItemChildClickListener((adapter1, view1, position) -> {
+            for (OptionBean optionBean : dataList) {
+                optionBean.setChecked(false);
+            }
+            dataList.get(position).setChecked(true);
+
+            if (onPopupWindowClickListener != null) {
+                onPopupWindowClickListener.onPopupWindowClick("字数", new String[]{dataList.get(position).getCounts_id()});
+            }
+
+            adapter.notifyDataSetChanged();
+            hidePopupWindow();
+        });
         rvOption.setLayoutManager(new LinearLayoutManager(mContext));
         rvOption.setAdapter(adapter);
         popupWindow.showAsDropDown(parent);
