@@ -51,6 +51,7 @@
         <activity android:name=".ui.home.article.ArticleDetailMineAct" />
         <activity android:name=".ui.mine.UpdatePsdAct" />
         <activity android:name=".ui.common.EditValueAct" />
+        <activity android:name=".ui.home.good.GoodListAct" />
 
     </application>
 

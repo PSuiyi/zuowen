@@ -167,10 +167,6 @@ public abstract class BaseZnzActivity extends SwipeBackActivity implements IView
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     znzToolBar.getToolbar().setNavigationOnClickListener(v -> onBackPressed());
                     break;
-                case 5://睿玺
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    znzToolBar.getToolbar().setNavigationOnClickListener(v -> onBackPressed());
-                    break;
             }
 
             getSupportActionBar().setDisplayShowTitleEnabled(false);

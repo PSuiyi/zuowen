@@ -59,15 +59,15 @@ public abstract class BaseAppListActivity<M extends IModel, T> extends BaseListA
             setTempDataList();
         } else {
             if (action == ACTION_PULL_TO_REFRESH) {
-                currentPageIndex = 0;
+                currentPageIndex = 1;
             }
 
             if (isNormalList) {
-                params.put("limit", "100");
+                params.put("pagesize", "100");
             } else {
-                params.put("limit", "10");
+                params.put("pagesize", "10");
             }
-            params.put("offset", currentPageIndex + "");
+            params.put("p", currentPageIndex + "");
 
             subscriberList = new Subscriber<ResponseBody>() {
                 @Override
@@ -97,14 +97,9 @@ public abstract class BaseAppListActivity<M extends IModel, T> extends BaseListA
                         }
 
                         String responseStr = responseBody.string();
-                        if (responseStr.contains("statusCode=90000")) {
-                            mDataManager.tokenTimeOut(context);
-                            return;
-                        }
-
                         JSONObject jsonObject = JSON.parseObject(responseStr);
                         int totalCount = 0;
-                        if (jsonObject.getString("status").equals("1")) {
+                        if (jsonObject.getString("result").equals("0")) {
                             try {
                                 if (!isNormalList) {
                                     totalCount = StringUtil.stringToInt(JSON.parseObject(jsonObject.getString("data")).getString("total"));
@@ -138,7 +133,7 @@ public abstract class BaseAppListActivity<M extends IModel, T> extends BaseListA
                                     }
                                     adapter.setEnableLoadMore(false);
                                 } else {
-                                    if (totalCount > (currentPageIndex + 1) * 10) {
+                                    if (totalCount > currentPageIndex * 10) {
                                         adapter.setEnableLoadMore(true);
                                     } else {
                                         adapter.setEnableLoadMore(false);
@@ -157,10 +152,10 @@ public abstract class BaseAppListActivity<M extends IModel, T> extends BaseListA
                                 //页码自增
                                 currentPageIndex++;
                             }
-                        } else if (jsonObject.getString("statusCode").equals("90000")) {
+                        } else if (jsonObject.getString("result").equals("90000")) {
                             mDataManager.tokenTimeOut(context);
                         } else {
-                            mDataManager.showToast(jsonObject.getString("msg"));
+                            mDataManager.showToast(jsonObject.getString("message"));
                             Observable.timer(ZnzConstants.LODING_TIME, TimeUnit.MILLISECONDS)
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .doOnCompleted(() -> mSwipeRefreshLayout.setRefreshing(false))

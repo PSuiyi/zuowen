@@ -29,7 +29,7 @@ import rx.Subscriber;
 public abstract class BaseListActivity<M extends IModel, T> extends BaseZnzActivity implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     protected ArrayList<T> dataList = new ArrayList<>();
     protected M mModel;
-    protected int currentPageIndex = 0; // 当前页码
+    protected int currentPageIndex = 1; // 当前页码
     protected RecyclerView rvRefresh;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected BaseQuickAdapter adapter;
@@ -197,7 +197,7 @@ public abstract class BaseListActivity<M extends IModel, T> extends BaseZnzActiv
      * 手动刷新
      */
     protected void resetRefresh() {
-        currentPageIndex = 0;
+        currentPageIndex = 1;
         customeRefreshRequest(ACTION_PULL_TO_REFRESH);
     }
 

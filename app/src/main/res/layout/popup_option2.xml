@@ -8,11 +8,26 @@
 
     <View style="@style/Line" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvTeacher"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"/>
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/darkView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/dark"></View>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white" />
+    </LinearLayout>
+
 
     <View
         android:id="@+id/darkView"

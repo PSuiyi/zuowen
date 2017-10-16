@@ -18,6 +18,7 @@ import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
+import com.znz.zuowen.ui.home.good.GoodListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.home.vote.ArticleVoteAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
@@ -100,9 +101,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
             gotoActivity(WeekArticleAct.class);
         });
         llMenu2.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("page", "优秀作文");
-            gotoActivity(ArticleListAct.class, bundle);
+            gotoActivity(GoodListAct.class);
         });
         llMenu3.setOnClickListener(v -> {
             Bundle bundle = new Bundle();

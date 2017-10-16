@@ -67,7 +67,7 @@ public class ArticleListFragment extends BaseAppListFragment<ArticleModel, Artic
                 default:
                     adapter = new ArticleAdapter(dataList);
                     ((ArticleAdapter) adapter).setPage(page);
-                    break;
+                break;
             }
         } else {
             adapter = new ArticleAdapter(dataList);

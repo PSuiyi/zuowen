@@ -10,9 +10,9 @@ import com.znz.zuowen.R;
 
 import java.util.List;
 
-public class PopTeactherAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class OptionAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public PopTeactherAdapter(@Nullable List dataList) {
+    public OptionAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_teacther, dataList);
     }
 

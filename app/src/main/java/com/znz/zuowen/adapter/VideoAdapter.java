@@ -39,6 +39,12 @@ public class VideoAdapter extends BaseQuickAdapter<VideoBean, BaseViewHolder> im
         mDataManager.setValueToView(tvTime, bean.getAddtime());
         ivImage.loadRectImage(bean.getImage());
 
+        if (bean.getIs_buy().equals("1")) {
+            helper.setVisible(R.id.tvStatus, true);
+        } else {
+            helper.setVisible(R.id.tvStatus, false);
+        }
+
         helper.addOnClickListener(R.id.llContainer);
     }
 

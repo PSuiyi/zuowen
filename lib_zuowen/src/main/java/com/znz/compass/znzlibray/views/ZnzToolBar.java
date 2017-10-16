@@ -83,7 +83,7 @@ public class ZnzToolBar extends LinearLayout {
     /**
      * 设置导航栏样式
      *
-     * @param mode 1、普通 2、搜索 3、返回搜索 4、普通透明 5、睿玺特殊
+     * @param mode 1、普通 2、搜索 3、返回搜索 4、普通透明
      */
     public void setToolMode(int mode) {
         switch (mode) {
