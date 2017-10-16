@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
-import com.znz.zuowen.utils.PopupWindowManager;
 
 import java.util.List;
 
@@ -96,7 +95,7 @@ public class ArticleUploadAct extends BaseAppActivity {
                 finish();
                 break;
             case R.id.llSelect:
-                PopupWindowManager.getInstance(activity).showSelectTeacher(view);
+//                PopupWindowManager.getInstance(activity).showSelectTeacher(view);
                 break;
         }
     }
