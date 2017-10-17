@@ -2,6 +2,8 @@ package com.znz.zuowen.ui.home.good;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
 
     private String style_type;
     private String counts_id;
+    private String search_name;
     private boolean isLoaded;
 
     @Override
@@ -63,6 +66,23 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
     @Override
     protected void initializeNavigation() {
         znzToolBar.setSearchHint("请输入作文题目");
+        znzToolBar.getSerachEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                search_name = s.toString();
+                resetRefresh();
+            }
+        });
     }
 
     @Override
@@ -89,6 +109,9 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
         }
         if (!StringUtil.isBlank(counts_id)) {
             params.put("counts_id", counts_id);
+        }
+        if (!StringUtil.isBlank(search_name)) {
+            params.put("search_name", search_name);
         }
         return mModel.requestGoodList(params);
     }

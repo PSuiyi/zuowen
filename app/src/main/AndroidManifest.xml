@@ -32,7 +32,8 @@
         <activity android:name=".ui.login.BindPhoneAct" />
         <activity
             android:name=".ui.login.LoginAct"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.login.RegisterAct" />
         <activity android:name=".ui.login.ResetPsdAct" />
         <activity android:name=".ui.home.article.ArticleListAct" />

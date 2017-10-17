@@ -84,8 +84,7 @@
                 android:textColor="@color/text_gray"
                 android:textColorHint="@color/text_gray"
                 android:textSize="@dimen/text_size"
-                android:visibility="visible"
-                app:edit_delete_icon="@drawable/textclose" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout
