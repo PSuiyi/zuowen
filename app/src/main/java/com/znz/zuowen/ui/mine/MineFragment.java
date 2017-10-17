@@ -21,16 +21,18 @@ import com.znz.compass.znzlibray.views.row_view.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.row_view.ZnzRowGroupView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
+import com.znz.zuowen.bean.UserBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.event.EventRefresh;
 import com.znz.zuowen.event.EventTags;
+import com.znz.zuowen.model.CommonModel;
 import com.znz.zuowen.model.UserModel;
 import com.znz.zuowen.ui.common.AgreementAct;
 import com.znz.zuowen.ui.common.EditValueAct;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.login.LoginAct;
-import com.znz.zuowen.ui.login.ResetPsdOneAct;
+import com.znz.zuowen.utils.AppUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -67,6 +69,7 @@ public class MineFragment extends BaseAppFragment<UserModel> {
     TextView tvNickName;
 
     private ArrayList<ZnzRowDescription> rowDescriptionList;
+    private CommonModel commonModel;
 
     @Override
     protected int[] getLayoutResource() {
@@ -76,6 +79,7 @@ public class MineFragment extends BaseAppFragment<UserModel> {
     @Override
     protected void initializeVariate() {
         mModel = new UserModel(activity, this);
+        commonModel = new CommonModel(activity, this);
     }
 
     @Override
@@ -88,6 +92,7 @@ public class MineFragment extends BaseAppFragment<UserModel> {
         if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.NAME))) {
             mDataManager.setValueToView(tvNickName, mDataManager.readTempData(Constants.User.NAME));
         }
+        ivUserHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.HEADIMG));
 
         rowDescriptionList = new ArrayList<>();
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -174,7 +179,23 @@ public class MineFragment extends BaseAppFragment<UserModel> {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        mModel.requestMineInfo(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                UserBean bean = JSONObject.parseObject(responseOriginal.getString("data"), UserBean.class);
+                AppUtils.getInstance(activity).saveUserData(bean);
+                mDataManager.setValueToView(tvNickName, bean.getUsername());
+                ivUserHeader.loadHeaderImage(Constants.IMG_URL + bean.getPhoto());
+                mDataManager.setValueToView(tvVip, "VIP" + bean.getVip());
+            }
 
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     @Override
@@ -205,6 +226,32 @@ public class MineFragment extends BaseAppFragment<UserModel> {
                     public void onSuccess(List<String> photoList) {
                         if (!photoList.isEmpty()) {
                             ivUserHeader.loadHeaderImage(photoList.get(0));
+                            commonModel.requestUploadImage(photoList.get(0), new ZnzHttpListener() {
+                                @Override
+                                public void onSuccess(JSONObject responseOriginal) {
+                                    super.onSuccess(responseOriginal);
+                                    String url = responseObject.getString("url");
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("url", url);
+                                    mModel.requestUpdateHeader(params, new ZnzHttpListener() {
+                                        @Override
+                                        public void onSuccess(JSONObject responseOriginal) {
+                                            super.onSuccess(responseOriginal);
+                                            mDataManager.saveTempData(Constants.User.HEADIMG, Constants.IMG_URL + url);
+                                        }
+
+                                        @Override
+                                        public void onFail(String error) {
+                                            super.onFail(error);
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onFail(String error) {
+                                    super.onFail(error);
+                                }
+                            });
                         }
                     }
 

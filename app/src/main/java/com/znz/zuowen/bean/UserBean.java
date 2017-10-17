@@ -12,6 +12,25 @@ public class UserBean extends BaseZnzBean {
     private String id;
     private String username;
     private String phone;
+    private String photo;
+    private String vip;
+
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getVip() {
+        return vip;
+    }
+
+    public void setVip(String vip) {
+        this.vip = vip;
+    }
 
     public String getId() {
         return id;

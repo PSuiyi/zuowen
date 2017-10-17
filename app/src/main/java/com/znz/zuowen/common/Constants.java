@@ -16,6 +16,7 @@ public class Constants {
         String EMAIL = "EMAIL";
         String USERNAME = "username";
         String IS_VIP = "IS_VIP";
+        String VIP_LEVEL = "VIP_LEVEL";
         String PAY_TYPE = "pay_type";//支付的类型
         String ROLE_TYPE = "role_type";
         String NOTE = "note";

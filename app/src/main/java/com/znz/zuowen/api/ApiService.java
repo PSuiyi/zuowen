@@ -3,10 +3,14 @@ package com.znz.zuowen.api;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -23,6 +27,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("?m=rest&c=checkversion&a=check_version")
     Observable<ResponseBody> getVersion(@FieldMap Map<String, String> params);
+
+    @Multipart
+    @POST("?m=rest&c=common&a=upload")
+    Observable<ResponseBody> requestUploadImage(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);
 
     @FormUrlEncoded
     @POST("?m=rest&c=login&a=send_sms")
@@ -59,6 +67,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("?m=rest&c=login&a=modify_pass")
     Observable<ResponseBody> requestUpdatePsd(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=my&a=index")
+    Observable<ResponseBody> requestMineInfo(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=my&a=modify_photo")
+    Observable<ResponseBody> requestUpdateHeader(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("?m=rest&c=login&a=modify_username")

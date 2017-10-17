@@ -64,6 +64,7 @@ dependencies {
     })
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+    compile 'top.zibin:Luban:1.0.5'
     testCompile 'junit:junit:4.12'
     compile project(':lib_zuowen')
 }

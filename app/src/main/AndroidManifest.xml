@@ -19,6 +19,7 @@
             android:launchMode="singleTask"></activity>
         <activity
             android:name=".ui.login.SplashAct"
+            android:screenOrientation="portrait"
             android:theme="@style/AppSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,34 +27,84 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.video.VideoDetailAct" />
-        <activity android:name=".ui.home.video.VideoListAct" />
-        <activity android:name=".ui.home.article.ArticleDetailAct" />
-        <activity android:name=".ui.login.BindPhoneAct" />
+        <activity
+            android:name=".ui.home.video.VideoDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.video.VideoListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.article.ArticleDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.BindPhoneAct"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.LoginAct"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.login.RegisterAct" />
-        <activity android:name=".ui.login.ResetPsdAct" />
-        <activity android:name=".ui.home.article.ArticleListAct" />
-        <activity android:name=".ui.home.week.WeekArticleAct" />
-        <activity android:name=".ui.home.week.WeekDetailAct" />
-        <activity android:name=".ui.login.CompleteInfoAct" />
-        <activity android:name=".ui.login.VerifyPhoneAct" />
-        <activity android:name=".ui.mine.UpdatePhoneAct" />
-        <activity android:name=".ui.mine.PayWayAct" />
-        <activity android:name=".ui.mine.MineClassAct" />
-        <activity android:name=".ui.mine.PaySuccessAct" />
-        <activity android:name=".ui.common.AgreementAct" />
-        <activity android:name=".ui.home.article.ArticleUploadAct" />
-        <activity android:name=".ui.home.vote.ArticleVoteAct" />
-        <activity android:name=".ui.home.vote.VoteDetailAct" />
-        <activity android:name=".ui.home.article.ArticleDetailMineAct" />
-        <activity android:name=".ui.mine.UpdatePsdAct" />
-        <activity android:name=".ui.common.EditValueAct" />
-        <activity android:name=".ui.home.good.GoodListAct" />
-        <activity android:name=".ui.login.ResetPsdOneAct" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.login.RegisterAct"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.login.ResetPsdAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.article.ArticleListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.week.WeekArticleAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.week.WeekDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.CompleteInfoAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.VerifyPhoneAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.UpdatePhoneAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.PayWayAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.MineClassAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.PaySuccessAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.AgreementAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.article.ArticleUploadAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.vote.ArticleVoteAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.vote.VoteDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.article.ArticleDetailMineAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.UpdatePsdAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.EditValueAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.good.GoodListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.ResetPsdOneAct"
+            android:screenOrientation="portrait" />
 
     </application>
 

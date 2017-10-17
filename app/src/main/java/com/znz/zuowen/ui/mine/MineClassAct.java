@@ -85,6 +85,8 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
         if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.NAME))) {
             mDataManager.setValueToView(tvNickName, mDataManager.readTempData(Constants.User.NAME));
         }
+        ivUserHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.HEADIMG));
+        mDataManager.setValueToView(tvVip, "VIP" + mDataManager.readTempData(Constants.User.VIP_LEVEL));
     }
 
     @Override

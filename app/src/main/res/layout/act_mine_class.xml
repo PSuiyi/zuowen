@@ -39,8 +39,8 @@
 
                     <com.znz.compass.znzlibray.views.imageloder.HttpImageView
                         android:id="@+id/ivUserHeader"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/head_height"
+                        android:layout_height="@dimen/head_wight"
                         android:src="@mipmap/dfthead2" />
 
 
