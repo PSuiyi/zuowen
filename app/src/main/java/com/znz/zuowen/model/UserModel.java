@@ -22,7 +22,7 @@ public class UserModel extends BaseModel {
 
     public UserModel(Context context, IView mView) {
         super(context, mView);
-        apiService = ZnzRetrofitUtil.getInstance().createService(ApiService.class);
+        apiService = ZnzRetrofitUtil.getInstance(false).createService(ApiService.class);
         this.context = context;
     }
 
@@ -36,7 +36,6 @@ public class UserModel extends BaseModel {
     //验证码
     public void requestCodeImg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
-        params.put("type", "1");
         request(apiService.requestCodeImg(params), znzHttpListener);
     }
 

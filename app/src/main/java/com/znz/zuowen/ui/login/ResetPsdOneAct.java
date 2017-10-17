@@ -62,6 +62,7 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeView() {
+        etPhone.setText("18020130334");
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -55,7 +55,7 @@ public class BitmapUtil {
      * @param b
      * @return
      */
-    public Bitmap Bytes2Bimap(byte[] b) {
+    public static Bitmap Bytes2Bimap(byte[] b) {
         if (b.length != 0) {
             return BitmapFactory.decodeByteArray(b, 0, b.length);
         } else {

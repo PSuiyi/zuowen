@@ -183,7 +183,6 @@ public class PopupWindowManager {
      * @param parent
      */
     public void showVerifyCode(View parent, String url, OnPopupWindowClickListener onPopupWindowClickListener) {
-        hidePopupWindow();
         View view = initPopupWindow(R.layout.popup_verify_code);
 
         ImageView ivImage = init(view, R.id.ivImage);
@@ -193,6 +192,34 @@ public class PopupWindowManager {
                 .centerCrop()
                 .signature(new StringSignature((Math.random() * (100000000 - 1 + 1)) + ""))
                 .into(ivImage);
+
+//        Map<String, String> params = new HashMap<>();
+//        params.put("code", "1");
+//        params.put("type", "2");
+//        ZnzRetrofitUtil.getInstance().createService(ApiService.class)
+//                .requestCodeImg(params)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .map(new Func1<ResponseBody, Bitmap>() {
+//                    @Override
+//                    public Bitmap call(ResponseBody responseBody) {
+//                        try {
+//                            String str = responseBody.string();
+//                            ZnzLog.e("str---->" + str);
+//                            str = str.replaceAll("PNG", "");
+//                            return BitmapUtil.Bytes2Bimap(str.getBytes());
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        return null;
+//                    }
+//                })
+//                .subscribe(new Action1<Bitmap>() {
+//                    @Override
+//                    public void call(Bitmap bitmap) {
+//                        ivImage.setImageBitmap(bitmap);
+//                    }
+//                });
 
         init(view, R.id.tvCancel).setOnClickListener(v -> {
             hidePopupWindow();

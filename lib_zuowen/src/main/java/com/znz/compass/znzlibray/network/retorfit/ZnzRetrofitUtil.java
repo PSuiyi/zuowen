@@ -98,7 +98,7 @@ public class ZnzRetrofitUtil {
                 request = originalRequest.newBuilder().url(modifiedUrl).build();
                 return chain.proceed(request);
             };
-            builder.addInterceptor(addQueryParameterInterceptor);
+//            builder.addInterceptor(addQueryParameterInterceptor);
 
             //设置头
             Interceptor headerInterceptor = chain -> {
@@ -110,7 +110,7 @@ public class ZnzRetrofitUtil {
                 Request request = requestBuilder.build();
                 return chain.proceed(request);
             };
-            builder.addInterceptor(headerInterceptor);
+//            builder.addInterceptor(headerInterceptor);
 
             //设置超时
             builder.connectTimeout(15, TimeUnit.SECONDS);
