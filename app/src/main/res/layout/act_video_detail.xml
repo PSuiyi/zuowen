@@ -15,12 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.znz.compass.znzlibray.views.imageloder.HttpImageView
-            android:id="@+id/ivImage"
+        <com.znz.libvideo.videoplayer.video.StandardGSYVideoPlayer
+            android:id="@+id/detailPlayer"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/default_image_rect" />
+            android:layout_height="220dp" />
     </FrameLayout>
 
 
