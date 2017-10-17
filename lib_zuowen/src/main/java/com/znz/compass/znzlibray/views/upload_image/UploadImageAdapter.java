@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.socks.library.KLog;
 import com.znz.compass.znzlibray.R;
@@ -44,6 +45,7 @@ public class UploadImageAdapter extends BaseRecyclerAdapter<String> {
             super(context, itemView);
             ivImage = ViewHolder.init(itemView, R.id.ivImage);
             ivDelete = ViewHolder.init(itemView, R.id.ivDelete);
+            itemView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
 
         @Override
@@ -53,7 +55,7 @@ public class UploadImageAdapter extends BaseRecyclerAdapter<String> {
                 ivImage.loadSquareImage(bean);
                 ivDelete.setVisibility(View.VISIBLE);
             } else {
-                ivImage.setImageResource(R.mipmap.add_image);
+                ivImage.setImageResource(R.mipmap.tianjiazhaopian);
                 ivDelete.setVisibility(View.GONE);
             }
 

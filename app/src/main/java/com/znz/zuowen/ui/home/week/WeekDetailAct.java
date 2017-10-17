@@ -18,7 +18,6 @@ import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
-import com.znz.zuowen.ui.home.article.ArticleUploadAct;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -107,6 +106,7 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
                 super.onFail(error);
             }
         });
+
     }
 
     @Override
@@ -118,15 +118,34 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        new UIAlertDialog(activity)
-                .builder()
-                .setMsg("确定花费5个课时挑战该作文？")
-                .setNegativeButton("取消", null)
-                .setPositiveButton("确定", v2 -> {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id", id);
-                    gotoActivity(ArticleUploadAct.class, bundle);
-                })
-                .show();
+        if (bean.getIs_my_week().equals("1")) {
+            Bundle bundle = new Bundle();
+            bundle.putString("id", id);
+            gotoActivity(ArticleUploadAct.class, bundle);
+        } else {
+            new UIAlertDialog(activity)
+                    .builder()
+                    .setMsg("确定花费5个课时挑战该作文？")
+                    .setNegativeButton("取消", null)
+                    .setPositiveButton("确定", v2 -> {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("id", id);
+                        mModel.requestWeekBuy(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("id", id);
+                                gotoActivity(ArticleUploadAct.class, bundle);
+                            }
+
+                            @Override
+                            public void onFail(String error) {
+                                super.onFail(error);
+                            }
+                        });
+                    })
+                    .show();
+        }
     }
 }

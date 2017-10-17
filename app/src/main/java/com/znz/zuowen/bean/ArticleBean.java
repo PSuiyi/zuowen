@@ -40,7 +40,16 @@ public class ArticleBean extends BaseZnzBean {
     private String like_count;
     private String teacher_reviews;
     private String mytype;
+    private String is_my_week;
     private List<UrlBean> imgurl;
+
+    public String getIs_my_week() {
+        return is_my_week;
+    }
+
+    public void setIs_my_week(String is_my_week) {
+        this.is_my_week = is_my_week;
+    }
 
     public String getMytype() {
         return mytype;

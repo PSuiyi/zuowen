@@ -19,16 +19,19 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvName"
                 style="@style/TitleTextStyle"
                 android:text="我的理想"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvTeacher"
                 style="@style/TextStyle"
                 android:layout_marginTop="@dimen/distance_divider"
                 android:text="评阅老师：叶雨" />
 
             <TextView
+                android:id="@+id/tvTime"
                 style="@style/TimeTextStyle"
                 android:layout_marginTop="@dimen/distance_divider" />
         </LinearLayout>

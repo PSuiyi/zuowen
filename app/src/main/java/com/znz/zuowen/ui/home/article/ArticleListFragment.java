@@ -67,7 +67,7 @@ public class ArticleListFragment extends BaseAppListFragment<ArticleModel, Artic
                 default:
                     adapter = new ArticleAdapter(dataList);
                     ((ArticleAdapter) adapter).setPage(page);
-                break;
+                    break;
             }
         } else {
             adapter = new ArticleAdapter(dataList);
@@ -87,6 +87,8 @@ public class ArticleListFragment extends BaseAppListFragment<ArticleModel, Artic
                 case "我的收藏":
                     params.put("cate_type", "1");
                     return mModel.requestFavList(params);
+                case "我的作文":
+                    return mModel.requestWeekMineList(params);
                 case "优秀作文":
                     return mModel.requestGoodList(params);
                 case "小学组":

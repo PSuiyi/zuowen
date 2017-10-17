@@ -40,15 +40,17 @@
                     <View style="@style/WeightView" />
 
                     <TextView
+                        android:id="@+id/tvTeacher"
                         style="@style/TitleTextStyle"
                         android:drawablePadding="3dp"
                         android:drawableRight="@mipmap/icon_xiala"
-                        android:text="李老师" />
+                        android:text="请选择老师" />
                 </LinearLayout>
 
                 <View style="@style/LineDivider" />
 
                 <com.znz.compass.znzlibray.views.EditTextWithDel
+                    android:id="@+id/etTitle"
                     style="@style/EditSingleStyle"
                     android:layout_width="match_parent"
                     android:hint="请输入作文题目"
@@ -61,6 +63,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
+                <com.znz.compass.znzlibray.views.upload_image.UploadImageLayout
+                    android:id="@+id/uploadImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <LinearLayout
                     android:id="@+id/llAdd"
                     android:layout_width="match_parent"
@@ -68,7 +75,8 @@
                     android:layout_margin="@dimen/distance_view"
                     android:background="#B2B2B2"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="wrap_content"

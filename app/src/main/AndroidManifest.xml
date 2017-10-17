@@ -82,7 +82,7 @@
             android:name=".ui.common.AgreementAct"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.article.ArticleUploadAct"
+            android:name=".ui.home.week.ArticleUploadAct"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.vote.ArticleVoteAct"

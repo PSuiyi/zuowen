@@ -16,14 +16,12 @@ import android.widget.PopupWindow;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
-import com.znz.compass.znzlibray.base.BaseZnzBean;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.OptionAdapter;
 import com.znz.zuowen.bean.OptionBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.znz.compass.znzlibray.utils.ViewHolder.init;
@@ -107,19 +105,27 @@ public class PopupWindowManager {
      *
      * @param parent
      */
-    public void showSelectTeacher(View parent) {
+    public void showSelectTeacher(View parent, List<OptionBean> dataList, OnPopupWindowClickListener onPopupWindowClickListener) {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.popup_select_teacher);
         init(view, R.id.darkView).setOnClickListener(v -> hidePopupWindow());
         popupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView rvTeacher = init(view, R.id.rvTeacher);
-        List dataList = new ArrayList();
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
         OptionAdapter adapter = new OptionAdapter(dataList, "老师");
+        adapter.setOnItemChildClickListener((adapter1, view1, position) -> {
+            for (OptionBean optionBean : dataList) {
+                optionBean.setChecked(false);
+            }
+            dataList.get(position).setChecked(true);
+
+            if (onPopupWindowClickListener != null) {
+                onPopupWindowClickListener.onPopupWindowClick("老师", new String[]{dataList.get(position).getId(),
+                        dataList.get(position).getTeacher_name()});
+            }
+
+            adapter.notifyDataSetChanged();
+            hidePopupWindow();
+        });
         rvTeacher.setLayoutManager(new LinearLayoutManager(mContext));
         rvTeacher.setAdapter(adapter);
         popupWindow.showAsDropDown(parent);

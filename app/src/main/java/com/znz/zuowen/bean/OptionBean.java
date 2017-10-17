@@ -11,7 +11,25 @@ import com.znz.compass.znzlibray.base.BaseZnzBean;
 public class OptionBean extends BaseZnzBean {
     private String style_type;
     private String counts_id;
+    private String id;
+    private String teacher_name;
     private boolean isChecked;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTeacher_name() {
+        return teacher_name;
+    }
+
+    public void setTeacher_name(String teacher_name) {
+        this.teacher_name = teacher_name;
+    }
 
     public String getStyle_type() {
         return style_type;

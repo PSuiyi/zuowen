@@ -93,8 +93,32 @@ public interface ApiService {
     Observable<ResponseBody> requestWeekList(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=myweeklist")
+    Observable<ResponseBody> requestWeekMineList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=weekcomposition&a=detail")
     Observable<ResponseBody> requestWeekDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=myweekdetail")
+    Observable<ResponseBody> requestWeekMineDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=do_buy")
+    Observable<ResponseBody> requestWeekBuy(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=first_upload")
+    Observable<ResponseBody> requestArticleSubmitOne(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=second_upload")
+    Observable<ResponseBody> requestArticleSubmitTwo(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=weekcomposition&a=select_teacher")
+    Observable<ResponseBody> requestTeacherList(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("?m=rest&c=votecomposition&a=index")

@@ -56,11 +56,53 @@ public class ArticleModel extends BaseModel {
         return apiService.requestWeekList(params);
     }
 
+    public Observable<ResponseBody> requestWeekMineList(Map<String, String> params) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        return apiService.requestWeekMineList(params);
+    }
+
     public void requestWeekDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
         params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
         request(apiService.requestWeekDetail(params), znzHttpListener, LODING_LODING);
+    }
+
+    public void requestWeekMineDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestWeekMineDetail(params), znzHttpListener, LODING_LODING);
+    }
+
+    public void requestWeekBuy(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestWeekBuy(params), znzHttpListener, LODING_PD);
+    }
+
+    public void requestArticleSubmitOne(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestArticleSubmitOne(params), znzHttpListener, LODING_PD);
+    }
+
+    public void requestArticleSubmitTwo(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestArticleSubmitTwo(params), znzHttpListener, LODING_PD);
+    }
+
+    public void requestTeacherList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestTeacherList(params), znzHttpListener, LODING_LODING);
     }
 
     public Observable<ResponseBody> requestVoteList(Map<String, String> params) {

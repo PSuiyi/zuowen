@@ -36,6 +36,7 @@ public class OptionAdapter extends BaseQuickAdapter<OptionBean, BaseViewHolder> 
         setOnItemClickListener(this);
         switch (type) {
             case "老师":
+                mDataManager.setValueToView(tvName, bean.getTeacher_name());
                 break;
             case "体裁":
                 mDataManager.setValueToView(tvName, bean.getStyle_type());
