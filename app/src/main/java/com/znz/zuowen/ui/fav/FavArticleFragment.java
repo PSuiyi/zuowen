@@ -128,15 +128,7 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventList event) {
         if (event.getFlag() == EventTags.LIST_ARTICLE_FAV) {
-            for (MultiBean multiBean : dataList) {
-                if (multiBean.getItemType() == Constants.MultiType.Article) {
-                    if (multiBean.getArticleBean().equals(event.getBean())) {
-                        multiBean.getArticleBean().setCollect_count(((ArticleBean) event.getBean()).getCollect_count());
-                        adapter.notifyDataSetChanged();
-                        break;
-                    }
-                }
-            }
+            resetRefresh();
         }
 
         if (event.getFlag() == EventTags.LIST_ARTICLE_LIKE) {

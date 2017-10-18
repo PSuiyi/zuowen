@@ -17,7 +17,11 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.bean.ArticleBean;
+import com.znz.zuowen.event.EventList;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,10 +88,13 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                     if (!bean.getIs_collect().equals("1")) {
                         znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
                         bean.setIs_collect("1");
+                        bean.setCollect_count(StringUtil.getNumUP(bean.getCollect_count()));
                     } else {
                         znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
                         bean.setIs_collect("0");
+                        bean.setCollect_count(StringUtil.getNumDown(bean.getCollect_count()));
                     }
+                    EventBus.getDefault().postSticky(new EventList(EventTags.LIST_ARTICLE_FAV, bean));
                 }
 
                 @Override

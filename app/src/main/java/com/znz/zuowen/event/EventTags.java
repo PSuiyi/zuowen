@@ -11,7 +11,6 @@ public interface EventTags {
 
     int LIST_ARTICLE_FAV = 0x301;
     int LIST_ARTICLE_LIKE = 0x302;
-    int LIST_ARTICLE_FAV_DELETE = 0x303;
 
     int PAY_WX_SUCCESS = 0x400;
     int PAY_WX_FAIL = 0x401;
