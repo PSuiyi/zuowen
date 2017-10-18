@@ -69,4 +69,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':lib_zuowen')
     compile project(':lib_video')
+    compile project(':lib_znzpay')
 }

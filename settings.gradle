@@ -1,1 +1,1 @@
-include ':app', ':lib_zuowen', ':lib_video'
+include ':app', ':lib_zuowen', ':lib_video', ':lib_znzpay'
