@@ -29,8 +29,6 @@ public class ZnzRetrofitUtil {
     private static ZnzRetrofitUtil INSTANCE;
     private static boolean WITH_COMMON_PARAMS;
 
-    //    public static final String BASE_URL = "http://114.215.134.205/";
-//    public static final String BASE_URL = "http://tyapi.znzkj.net/";//外网测试环境接口地址
     public static String BASE_URL;
 
     //获取单例

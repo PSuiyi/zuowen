@@ -10,16 +10,21 @@ import android.widget.RadioGroup;
 
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.znz.compass.znzlibray.common.DataManager;
+import com.znz.compass.znzlibray.eventbus.BaseEvent;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.model.CommonModel;
 import com.znz.zuowen.ui.fav.FavFragment;
 import com.znz.zuowen.ui.home.HomeFragment;
+import com.znz.zuowen.ui.login.LoginAct;
 import com.znz.zuowen.ui.mine.MineFragment;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -126,9 +131,21 @@ public class TabHomeAct extends BaseAppActivity<CommonModel> {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(BaseEvent event) {
+        if (event.getFlag() == 0x90000) {
+            mDataManager.logout(activity, LoginAct.class);
+        }
     }
 }

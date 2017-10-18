@@ -152,7 +152,7 @@ public abstract class BaseAppListActivity<M extends IModel, T> extends BaseListA
                                 //页码自增
                                 currentPageIndex++;
                             }
-                        } else if (jsonObject.getString("result").equals("90000")) {
+                        } else if (jsonObject.getString("result").equals("-111")) {
                             mDataManager.tokenTimeOut(context);
                         } else {
                             mDataManager.showToast(jsonObject.getString("message"));

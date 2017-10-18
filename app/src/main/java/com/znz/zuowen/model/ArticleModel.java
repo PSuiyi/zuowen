@@ -88,14 +88,14 @@ public class ArticleModel extends BaseModel {
         params.put("code", "1");
         params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
-        request(apiService.requestArticleSubmitOne(params), znzHttpListener, LODING_PD);
+        request(apiService.requestArticleSubmitOne(params), znzHttpListener);
     }
 
     public void requestArticleSubmitTwo(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
         params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
-        request(apiService.requestArticleSubmitTwo(params), znzHttpListener, LODING_PD);
+        request(apiService.requestArticleSubmitTwo(params), znzHttpListener);
     }
 
     public void requestTeacherList(Map<String, String> params, ZnzHttpListener znzHttpListener) {

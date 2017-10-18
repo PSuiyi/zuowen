@@ -141,7 +141,7 @@ public abstract class BaseAppListFragment<M extends IModel, T extends BaseZnzBea
                                 //页码自增
                                 currentPageIndex++;
                             }
-                        } else if (jsonObject.getString("result").equals("90000")) {
+                        } else if (jsonObject.getString("result").equals("-111")) {
                             mDataManager.tokenTimeOut(context);
                         } else {
                             mDataManager.showToast(jsonObject.getString("message"));
