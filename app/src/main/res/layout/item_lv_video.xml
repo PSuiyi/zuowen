@@ -26,7 +26,7 @@
                 <com.znz.compass.znzlibray.views.imageloder.HttpImageView
                     android:id="@+id/ivImage"
                     android:layout_width="125dp"
-                    android:layout_height="100dp"
+                    android:layout_height="95dp"
                     android:foreground="@color/gray20"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/default_image_rect" />

@@ -103,7 +103,6 @@ public class HttpImageView extends AppCompatImageView {
         } else {
             Glide.with(context)
                     .load(url_image)
-                    .thumbnail(0.1f)
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .error(error_image)
@@ -167,6 +166,7 @@ public class HttpImageView extends AppCompatImageView {
                     }
                 })
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .override(3000, 3000)
                 .error(error_image)
                 .placeholder(default_image)
                 .into(this);
@@ -302,20 +302,17 @@ public class HttpImageView extends AppCompatImageView {
             if (StringUtil.isBlank(url_image)) {
                 Glide.with(context)
                         .load(default_image)
-                        .centerCrop()
                         .error(error_image)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(default_image)
-                        .transform(new GlideRoundTransform(context, 6))
+                        .transform(new GlideRoundTransform(context, 10))
                         .into(this);
             } else {
                 Glide.with(context)
                         .load(url_image)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .fitCenter()
                         .error(error_image)
                         .placeholder(default_image)
-                        .transform(new GlideRoundTransform(context, 6))
+                        .transform(new GlideRoundTransform(context, 20))
                         .into(this);
             }
         } catch (Exception e) {

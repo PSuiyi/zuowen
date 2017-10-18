@@ -157,29 +157,31 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        Map<String, String> params = new HashMap<>();
-        params.put("id", bean.getId());
-        mModel.requestVoteVote(params, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-                if (!bean.getIs_vote().equals("1")) {
-                    bean.setIs_vote("1");
-                } else {
-                    bean.setIs_vote("0");
+        if (bean.getIs_vote().equals("0")) {
+            Map<String, String> params = new HashMap<>();
+            params.put("id", bean.getId());
+            mModel.requestVoteVote(params, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    if (!bean.getIs_vote().equals("1")) {
+                        bean.setIs_vote("1");
+                    } else {
+                        bean.setIs_vote("0");
+                    }
+                    if (bean.getIs_vote().equals("1")) {
+                        tvSubmit.setText("已投票(" + bean.getVote_count() + ")");
+                        tvSubmit.setBackgroundResource(R.drawable.bg_btn_round_no);
+                    } else {
+                        tvSubmit.setText("投票(" + bean.getVote_count() + ")");
+                    }
                 }
-                if (bean.getIs_vote().equals("1")) {
-                    tvSubmit.setText("已投票(" + bean.getVote_count() + ")");
-                    tvSubmit.setBackgroundResource(R.drawable.bg_btn_round_no);
-                } else {
-                    tvSubmit.setText("投票(" + bean.getVote_count() + ")");
-                }
-            }
 
-            @Override
-            public void onFail(String error) {
-                super.onFail(error);
-            }
-        });
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        }
     }
 }
