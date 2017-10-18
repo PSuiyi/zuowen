@@ -146,7 +146,12 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
 
                 } else {
                     llArticleTwo.setVisibility(View.GONE);
-                    tvSubmit.setVisibility(View.VISIBLE);
+
+                    if (mineBean.getFirst_status().equals("2")) {
+                        tvSubmit.setVisibility(View.VISIBLE);
+                    } else {
+                        tvSubmit.setVisibility(View.GONE);
+                    }
                 }
             }
 

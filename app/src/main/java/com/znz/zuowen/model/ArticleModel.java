@@ -196,4 +196,25 @@ public class ArticleModel extends BaseModel {
         params.put("token", mDataManager.getAccessToken());
         request(apiService.requestVideoBuy(params), znzHttpListener, LODING_PD);
     }
+
+    public void requestBuyAli(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestBuyAli(params), znzHttpListener, LODING_PD);
+    }
+
+    public void requestBuyWechat(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestBuyWechat(params), znzHttpListener, LODING_PD);
+    }
+
+    public void requestBuyStatus(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestBuyStatus(params), znzHttpListener, LODING_PD);
+    }
 }

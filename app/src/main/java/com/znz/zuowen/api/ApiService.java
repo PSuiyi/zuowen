@@ -176,5 +176,15 @@ public interface ApiService {
     @POST("?m=rest&c=my&a=myclassguidance")
     Observable<ResponseBody> requestVideoMineList(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("?m=rest&c=pay&a=alipay")
+    Observable<ResponseBody> requestBuyAli(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("?m=rest&c=pay&a=wxpay")
+    Observable<ResponseBody> requestBuyWechat(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=pay&a=getorderstatus")
+    Observable<ResponseBody> requestBuyStatus(@FieldMap Map<String, String> params);
 }
