@@ -8,4 +8,8 @@ public interface EventTags {
     int GOTO_HOME = 0x203;
     int GOTO_ADDRESS_SELECT = 0x204;//选择收货地址
     int GOTO_NUM_EDIT = 0x205;//购物车输入物品数量
+
+    int PAY_WX_SUCCESS = 0x400;
+    int PAY_WX_FAIL = 0x401;
+    int PAY_WX_CANCEL = 0x402;
 }

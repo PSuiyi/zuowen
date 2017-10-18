@@ -59,11 +59,6 @@ public class WXPayUtil {
     }
 
     public void startWXPay(Map<String, String> params) {
-//        this.orderID = orderID;
-//        float temp = stringToFloat(limit);
-//        this.wxLimit = (int) (temp * 100) + "";
-//        GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
-//        getPrepayId.execute();
         req.appId = params.get("appid");
         req.partnerId = params.get("partnerid");
         req.prepayId = params.get("prepayid");

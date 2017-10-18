@@ -1,5 +1,9 @@
 package com.znz.zuowen.ui.mine;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.widget.LinearLayout;
@@ -8,18 +12,26 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.ZnzLog;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
+import com.znz.compass.znzpay.alipay.AliPayUtil;
+import com.znz.compass.znzpay.wxpay.WXPayUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.event.EventPay;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -48,6 +60,7 @@ public class PayWayAct extends BaseAppActivity<ArticleModel> {
     private String id;
 
     private int payWay = 1;
+    private String currentOrder;
 
     @Override
     protected int[] getLayoutResource() {
@@ -90,13 +103,6 @@ public class PayWayAct extends BaseAppActivity<ArticleModel> {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
         Map<String, String> params = new HashMap<>();
@@ -106,6 +112,10 @@ public class PayWayAct extends BaseAppActivity<ArticleModel> {
                 @Override
                 public void onSuccess(JSONObject responseOriginal) {
                     super.onSuccess(responseOriginal);
+                    AliPayUtil.getInstance(activity).startAliPay(responseObject.getString("str"));
+
+                    currentOrder = responseObject.getString("ordersn");
+                    ZnzLog.e("currentOrder---->" + currentOrder);
                 }
 
                 @Override
@@ -118,6 +128,18 @@ public class PayWayAct extends BaseAppActivity<ArticleModel> {
                 @Override
                 public void onSuccess(JSONObject responseOriginal) {
                     super.onSuccess(responseOriginal);
+                    Map<String, String> params = new HashMap<>();
+                    params.put("appid", responseObject.getString("appid"));
+                    params.put("partnerid", responseObject.getString("partnerid"));
+                    params.put("prepayid", responseObject.getString("prepayid"));
+                    params.put("packageStr", responseObject.getString("package"));
+                    params.put("nonceStr", responseObject.getString("noncestr"));
+                    params.put("timeStamp", responseObject.getString("timestamp"));
+                    params.put("paySign", responseObject.getString("sign"));
+                    WXPayUtil.getInstance(activity).startWXPay(params);
+
+                    currentOrder = responseObject.getString("ordersn");
+                    ZnzLog.e("currentOrder---->" + currentOrder);
                 }
 
                 @Override
@@ -127,4 +149,48 @@ public class PayWayAct extends BaseAppActivity<ArticleModel> {
             });
         }
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+        IntentFilter aliFilter = new IntentFilter();
+        aliFilter.addAction(AliPayUtil.ALIPAY_ACTION);
+        context.registerReceiver(receiver, aliFilter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventPay event) {
+        if (event.getFlag() == EventTags.PAY_WX_SUCCESS) {
+            gotoActivity(PaySuccessAct.class);
+        }
+    }
+
+    /**
+     * 支付宝状态监听
+     */
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String status = intent.getStringExtra(AliPayUtil.ALIPAY_STATUS);
+            switch (status) {
+                case "成功":
+                    gotoActivity(PaySuccessAct.class);
+                    break;
+                case "取消":
+                    break;
+                case "失败":
+                    break;
+            }
+        }
+    };
 }
