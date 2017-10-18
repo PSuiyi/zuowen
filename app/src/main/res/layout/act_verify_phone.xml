@@ -22,9 +22,16 @@
         android:paddingRight="30dp"
         android:paddingTop="@dimen/distance_view">
 
+        <TextView
+            android:id="@+id/tvPhone"
+            style="@style/TitleTextStyle"
+            android:layout_marginBottom="@dimen/distance_view"
+            android:text="当前手机号：1840489348" />
+
         <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etPhoneNew"
             style="@style/EditRoundStyle"
-            android:hint="手机号"
+            android:hint="输入新手机号"
             android:inputType="number"
             android:maxLength="11" />
 
