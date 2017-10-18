@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
@@ -99,6 +100,12 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
                 } else {
                     rvArticle.setVisibility(View.GONE);
                 }
+
+                if (!StringUtil.isBlank(bean.getIs_my_week())) {
+                    if (bean.getIs_my_week().equals("1")) {
+                        tvSubmit.setText("再次挑战");
+                    }
+                }
             }
 
             @Override
@@ -118,34 +125,42 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        if (bean.getIs_my_week().equals("1")) {
-            Bundle bundle = new Bundle();
-            bundle.putString("id", id);
-            gotoActivity(ArticleUploadAct.class, bundle);
+        if (!StringUtil.isBlank(bean.getIs_my_week())) {
+            if (bean.getIs_my_week().equals("1")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", id);
+                gotoActivity(ArticleUploadAct.class, bundle);
+            } else {
+                buyArticle();
+            }
         } else {
-            new UIAlertDialog(activity)
-                    .builder()
-                    .setMsg("确定花费5个课时挑战该作文？")
-                    .setNegativeButton("取消", null)
-                    .setPositiveButton("确定", v2 -> {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("id", id);
-                        mModel.requestWeekBuy(params, new ZnzHttpListener() {
-                            @Override
-                            public void onSuccess(JSONObject responseOriginal) {
-                                super.onSuccess(responseOriginal);
-                                Bundle bundle = new Bundle();
-                                bundle.putString("id", id);
-                                gotoActivity(ArticleUploadAct.class, bundle);
-                            }
-
-                            @Override
-                            public void onFail(String error) {
-                                super.onFail(error);
-                            }
-                        });
-                    })
-                    .show();
+            buyArticle();
         }
+    }
+
+    private void buyArticle() {
+        new UIAlertDialog(activity)
+                .builder()
+                .setMsg("确定花费5个课时挑战该作文？")
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确定", v2 -> {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("id", id);
+                    mModel.requestWeekBuy(params, new ZnzHttpListener() {
+                        @Override
+                        public void onSuccess(JSONObject responseOriginal) {
+                            super.onSuccess(responseOriginal);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("id", id);
+                            gotoActivity(ArticleUploadAct.class, bundle);
+                        }
+
+                        @Override
+                        public void onFail(String error) {
+                            super.onFail(error);
+                        }
+                    });
+                })
+                .show();
     }
 }

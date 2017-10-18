@@ -19,11 +19,11 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <View style="@style/WeightView" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:src="@mipmap/logo_login" />
 
         <TextView
@@ -110,6 +110,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvSendCode"
                         style="@style/TextStyle"
                         android:text="验证"
                         android:textColor="@color/green" />

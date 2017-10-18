@@ -31,7 +31,7 @@
             android:id="@+id/etRecommendUser"
             style="@style/EditRoundStyle"
             android:layout_marginTop="20dp"
-            android:hint="推荐人" />
+            android:hint="推荐人(选填）" />
 
         <com.znz.compass.znzlibray.views.EditTextWithDel
             style="@style/EditRoundStyle"

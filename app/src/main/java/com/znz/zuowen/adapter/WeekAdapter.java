@@ -27,16 +27,11 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
     TextView tvTitle;
     @Bind(R.id.tvTeacher)
     TextView tvTeacher;
-
-    private String page;
+    @Bind(R.id.tvTime)
+    TextView tvTime;
 
     public WeekAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_week, dataList);
-    }
-
-    public void setPage(String page) {
-        this.page = page;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -57,6 +52,8 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
         } else {
             helper.setVisible(R.id.ivImage, false);
         }
+
+        helper.setText(R.id.tvTime, bean.getAddtime());
     }
 
     @Override

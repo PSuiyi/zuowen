@@ -2,6 +2,7 @@ package com.znz.zuowen.ui.login;
 
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -51,6 +52,9 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
     TextView tvSubmit;
     @Bind(R.id.etCode)
     EditTextWithDel etCode;
+    @Bind(R.id.tvSendCode)
+    TextView tvSendCode;
+    private CountDownTimer timer;
 
     @Override
     protected int[] getLayoutResource() {
@@ -163,6 +167,21 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     mDataManager.showToast("请输入正确的手机号");
                     return;
                 }
+
+                timer = new CountDownTimer(60 * 1000, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        tvSendCode.setClickable(false);
+                        tvSendCode.setText(l / 1000 + "s");
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        tvSendCode.setText("重新发送");
+                        tvSendCode.setClickable(true);
+                    }
+                }.start();
+
                 Map<String, String> params = new HashMap<>();
                 params.put("phone", mDataManager.getValueFromView(etUserName));
                 String timeLong = TimeUtils.getNowTimeMills() + "";
@@ -218,6 +237,14 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     }
                 });
                 break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
         }
     }
 }

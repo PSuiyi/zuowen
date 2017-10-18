@@ -37,11 +37,23 @@
                     android:paddingRight="@dimen/distance_view"
                     android:paddingTop="30dp">
 
-                    <com.znz.compass.znzlibray.views.imageloder.HttpImageView
-                        android:id="@+id/ivUserHeader"
-                        android:layout_width="@dimen/head_height"
-                        android:layout_height="@dimen/head_wight"
-                        android:src="@mipmap/dfthead2" />
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_gravity="center"
+                            android:src="#28A76E" />
+
+                        <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                            android:id="@+id/ivUserHeader"
+                            android:layout_width="@dimen/head_height"
+                            android:layout_height="@dimen/head_wight"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/dfthead2" />
+                    </FrameLayout>
 
 
                     <LinearLayout

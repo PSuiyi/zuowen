@@ -59,7 +59,7 @@ public class UpdatePsdAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("找回密码");
+        setTitleName("更改登录密码");
     }
 
     @Override

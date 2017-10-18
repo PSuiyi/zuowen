@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
@@ -170,7 +171,7 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                         bean.setIs_vote("0");
                     }
                     if (bean.getIs_vote().equals("1")) {
-                        tvSubmit.setText("已投票(" + bean.getVote_count() + ")");
+                        tvSubmit.setText("已投票(" + StringUtil.getNumUP(bean.getVote_count()) + ")");
                         tvSubmit.setBackgroundResource(R.drawable.bg_btn_round_no);
                     } else {
                         tvSubmit.setText("投票(" + bean.getVote_count() + ")");

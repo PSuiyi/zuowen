@@ -2,6 +2,7 @@ package com.znz.zuowen.ui.login;
 
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -48,9 +49,11 @@ public class ResetPsdAct extends BaseAppActivity<UserModel> {
     EditTextWithDel etCode;
     @Bind(R.id.etPsd)
     EditTextWithDel etPsd;
+
     private String id;
     private String str;
     private String username;
+    private CountDownTimer timer;
 
     @Override
     protected int[] getLayoutResource() {
@@ -170,6 +173,29 @@ public class ResetPsdAct extends BaseAppActivity<UserModel> {
                     }
                 });
                 break;
+            case R.id.llSendCode:
+                timer = new CountDownTimer(60 * 1000, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        tvSendCode.setClickable(false);
+                        tvSendCode.setText(l / 1000 + "s");
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        tvSendCode.setText("重新发送");
+                        tvSendCode.setClickable(true);
+                    }
+                }.start();
+                break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
         }
     }
 }
