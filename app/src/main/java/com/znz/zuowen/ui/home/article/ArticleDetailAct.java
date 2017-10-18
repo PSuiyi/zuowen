@@ -94,7 +94,7 @@ public class ArticleDetailAct extends BaseAppActivity<ArticleModel> {
                         bean.setIs_like("0");
                         bean.setLike_count(StringUtil.getNumDown(bean.getLike_count()));
                     }
-                    EventBus.getDefault().postSticky(new EventList(EventTags.LIST_ARTICLE_LIKE, bean));
+                    EventBus.getDefault().post(new EventList(EventTags.LIST_ARTICLE_LIKE, bean));
                 }
 
                 @Override
@@ -120,7 +120,7 @@ public class ArticleDetailAct extends BaseAppActivity<ArticleModel> {
                         bean.setIs_collect("0");
                         bean.setCollect_count(StringUtil.getNumDown(bean.getCollect_count()));
                     }
-                    EventBus.getDefault().postSticky(new EventList(EventTags.LIST_ARTICLE_FAV, bean));
+                    EventBus.getDefault().post(new EventList(EventTags.LIST_ARTICLE_FAV, bean));
                 }
 
                 @Override

@@ -94,7 +94,7 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                         bean.setIs_collect("0");
                         bean.setCollect_count(StringUtil.getNumDown(bean.getCollect_count()));
                     }
-                    EventBus.getDefault().postSticky(new EventList(EventTags.LIST_ARTICLE_FAV, bean));
+                    EventBus.getDefault().post(new EventList(EventTags.LIST_ARTICLE_FAV, bean));
                 }
 
                 @Override
