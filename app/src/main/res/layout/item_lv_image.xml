@@ -23,8 +23,7 @@
             <com.znz.compass.znzlibray.views.imageloder.HttpImageView
                 android:id="@+id/ivImage"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/default_image_rect" />
         </LinearLayout>
 

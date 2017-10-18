@@ -26,7 +26,7 @@ public class ImageAdapter extends BaseQuickAdapter<UrlBean, BaseViewHolder> impl
     @Override
     protected void convert(BaseViewHolder helper, UrlBean bean) {
         setOnItemClickListener(this);
-        ivImage.loadRectImage(bean.getUrl());
+        ivImage.loadFullImage(bean.getUrl());
     }
 
     @Override

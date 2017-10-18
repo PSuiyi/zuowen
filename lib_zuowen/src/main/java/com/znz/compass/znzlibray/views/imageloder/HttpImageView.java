@@ -3,9 +3,14 @@ package com.znz.compass.znzlibray.views.imageloder;
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.signature.StringSignature;
 import com.znz.compass.znzlibray.R;
 import com.znz.compass.znzlibray.utils.GlideCircleTransform;
@@ -105,6 +110,65 @@ public class HttpImageView extends AppCompatImageView {
                     .placeholder(default_image)
                     .into(this);
         }
+    }
+
+    /**
+     * 加载长方形图
+     *
+     * @param url_image
+     */
+    public void loadRectImageWithFitCenter(final String url_image) {
+        default_image = R.mipmap.default_image_rect;
+        error_image = R.mipmap.default_image_rect;
+
+        if (StringUtil.isBlank(url_image)) {
+            this.setImageResource(default_image);
+            this.setScaleType(ScaleType.FIT_CENTER);
+        } else {
+            Glide.with(context)
+                    .load(url_image)
+                    .fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(error_image)
+                    .placeholder(default_image)
+                    .into(this);
+        }
+    }
+
+    /**
+     * 自适应宽度加载图片。保持图片的长宽比例不变，通过修改imageView的高度来完全显示图片。
+     */
+    public void loadFullImage(final String imageUrl) {
+        default_image = R.mipmap.default_image_rect;
+        error_image = R.mipmap.default_image_rect;
+        Glide.with(context)
+                .load(imageUrl)
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        if (this == null) {
+                            return false;
+                        }
+                        if (getScaleType() != ImageView.ScaleType.FIT_XY) {
+                            setScaleType(ImageView.ScaleType.FIT_XY);
+                        }
+                        ViewGroup.LayoutParams params = getLayoutParams();
+                        int vw = getWidth() - getPaddingLeft() - getPaddingRight();
+                        float scale = (float) vw / (float) resource.getIntrinsicWidth();
+                        int vh = Math.round(resource.getIntrinsicHeight() * scale);
+                        params.height = vh + getPaddingTop() + getPaddingBottom();
+                        setLayoutParams(params);
+                        return false;
+                    }
+                })
+                .error(error_image)
+                .placeholder(default_image)
+                .into(this);
     }
 
     /**

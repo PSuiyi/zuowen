@@ -59,14 +59,11 @@
 
                 <View style="@style/Line" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
                 <com.znz.compass.znzlibray.views.upload_image.UploadImageLayout
                     android:id="@+id/uploadImage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distance_view" />
 
                 <LinearLayout
                     android:id="@+id/llAdd"
