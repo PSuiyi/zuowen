@@ -52,7 +52,7 @@ public class UploadImageAdapter extends BaseRecyclerAdapter<String> {
         public void onBindViewHolder(int position) {
             bean = getItemObject(position);
             if (!bean.equals("add")) {
-                ivImage.loadSquareImage(bean);
+                ivImage.loadFullImage(bean);
                 ivDelete.setVisibility(View.VISIBLE);
             } else {
                 ivImage.setImageResource(R.mipmap.tianjiazhaopian);
@@ -111,7 +111,7 @@ public class UploadImageAdapter extends BaseRecyclerAdapter<String> {
             } else {
 //                List<String> previewList = dataList;
 //                previewList.remove("add");
-//                mDataManager.showImagePreviewMulti((Activity) context, previewList, position, view);
+//                mDataManager.showImagePreviewMulti(context, previewList, position, view);
             }
         }
     }

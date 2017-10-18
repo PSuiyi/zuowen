@@ -59,7 +59,7 @@ public class CommonModel extends BaseModel {
                 .subscribe(file1 -> {
                     RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file1);
                     MultipartBody.Part body = MultipartBody.Part.createFormData("photo", file.getName(), requestBody);
-                    request(apiService.requestUploadImage(params, body), znzHttpListener, LODING_PD);
+                    request(apiService.requestUploadImage(params, body), znzHttpListener);
                 });
     }
 }

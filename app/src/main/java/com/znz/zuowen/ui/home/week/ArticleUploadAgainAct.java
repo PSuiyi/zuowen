@@ -5,20 +5,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
-import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.upload_image.UploadImageLayout;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
-import com.znz.zuowen.bean.OptionBean;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.model.CommonModel;
-import com.znz.zuowen.utils.PopupWindowManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,35 +30,25 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
-    @Bind(R.id.llAdd)
-    LinearLayout llAdd;
-    @Bind(R.id.tvSubmit)
-    TextView tvSubmit;
+public class ArticleUploadAgainAct extends BaseAppActivity<ArticleModel> {
+
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
     ZnzRemind znzRemind;
     @Bind(R.id.llNetworkStatus)
     LinearLayout llNetworkStatus;
-    @Bind(R.id.tvTeacher)
-    TextView tvTeacher;
-    @Bind(R.id.llSelect)
-    LinearLayout llSelect;
-    @Bind(R.id.etTitle)
-    EditTextWithDel etTitle;
     @Bind(R.id.uploadImage)
     UploadImageLayout uploadImage;
-
-    private List<OptionBean> teacherList = new ArrayList<>();
+    @Bind(R.id.tvSubmit)
+    TextView tvSubmit;
     private String id;
-    private String teacher_id;
     private CommonModel commonModel;
     private List<String> uploadUrls = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_article_upload, 1};
+        return new int[]{R.layout.act_article_upload_again, 1};
     }
 
     @Override
@@ -87,23 +72,6 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     protected void loadDataFromServer() {
-        Map<String, String> params2 = new HashMap<>();
-        mModel.requestTeacherList(params2, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-                teacherList.clear();
-                teacherList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), OptionBean.class));
-                if (!teacherList.isEmpty()) {
-                    teacherList.get(0).setChecked(true);
-                }
-            }
-
-            @Override
-            public void onFail(String error) {
-                super.onFail(error);
-            }
-        });
     }
 
     @Override
@@ -113,24 +81,14 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llAdd, R.id.tvSubmit, R.id.llSelect})
+    @OnClick({R.id.tvSubmit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvSubmit:
-                if (StringUtil.isBlank(teacher_id)) {
-                    mDataManager.showToast("请选择老师");
-                    return;
-                }
-                if (StringUtil.isBlank(mDataManager.getValueFromView(etTitle))) {
-                    mDataManager.showToast("请输入作文题目");
-                    return;
-                }
-
                 if (uploadImage.getImageList().isEmpty()) {
                     mDataManager.showToast("请上传作文图片");
                     return;
                 }
-
                 showPd();
 
                 uploadUrls.clear();
@@ -144,10 +102,8 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
                             if (uploadUrls.size() == uploadImage.getImageList().size()) {
                                 Map<String, String> params = new HashMap<>();
                                 params.put("id", id);
-                                params.put("teacher_id", teacher_id);
                                 params.put("images", mDataManager.getValueBySeparator(uploadUrls, "|||"));
-                                params.put("title", mDataManager.getValueFromView(etTitle));
-                                mModel.requestArticleSubmitOne(params, new ZnzHttpListener() {
+                                mModel.requestArticleSubmitTwo(params, new ZnzHttpListener() {
                                     @Override
                                     public void onSuccess(JSONObject responseOriginal) {
                                         super.onSuccess(responseOriginal);
@@ -170,12 +126,6 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
                         }
                     });
                 }
-                break;
-            case R.id.llSelect:
-                PopupWindowManager.getInstance(activity).showSelectTeacher(view, teacherList, (type, values) -> {
-                    tvTeacher.setText(values[1]);
-                    teacher_id = values[0];
-                });
                 break;
         }
     }
