@@ -85,7 +85,7 @@
                     android:padding="@dimen/distance_divider"
                     android:src="@mipmap/icon_suo" />
 
-                <com.znz.compass.znzlibray.views.EditTextWithDel
+                <EditText
                     android:id="@+id/etPsd"
                     style="@style/EditPasswordStyle"
                     android:layout_width="wrap_content"
@@ -93,6 +93,16 @@
                     android:layout_weight="1"
                     android:hint="密码"
                     android:paddingRight="@dimen/distance_view" />
+
+                <CheckBox
+                    android:id="@+id/cbLook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/psd_check"
+                    android:button="@null"
+                    android:checked="false"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </LinearLayout>

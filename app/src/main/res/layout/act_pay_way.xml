@@ -48,7 +48,7 @@
         <RadioButton
             android:id="@+id/rbAli"
             style="@style/RadioStyle"
-            android:drawableLeft="@mipmap/rder_icon_alipay"
+            android:drawableLeft="@mipmap/zhifubao"
             android:text="支付宝支付" />
 
         <View
@@ -58,7 +58,7 @@
         <RadioButton
             android:id="@+id/rbWechat"
             style="@style/RadioStyle"
-            android:drawableLeft="@mipmap/rder_icon_wechat"
+            android:drawableLeft="@mipmap/weixin"
             android:text="微信支付" />
 
         <View

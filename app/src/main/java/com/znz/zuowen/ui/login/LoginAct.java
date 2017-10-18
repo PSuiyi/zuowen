@@ -4,7 +4,10 @@ package com.znz.zuowen.ui.login;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -51,6 +54,8 @@ public class LoginAct extends BaseAppActivity<UserModel> {
     TextView tvRegister;
     @Bind(R.id.tvForgetPsd)
     TextView tvForgetPsd;
+    @Bind(R.id.cbLook)
+    CheckBox cbLook;
 
     @Override
     protected int[] getLayoutResource() {
@@ -106,6 +111,16 @@ public class LoginAct extends BaseAppActivity<UserModel> {
                 handleBtnState();
             }
         });
+
+        cbLook.setOnCheckedChangeListener((compoundButton, b) -> {//设置密码明文密文
+            if (b) {
+                etPsd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                etPsd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+        });
+
+        etPsd.setOnFocusChangeListener((v, hasFocus) -> mDataManager.setViewVisibility(cbLook, hasFocus));
     }
 
     /**

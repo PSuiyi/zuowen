@@ -17,6 +17,9 @@ import com.znz.zuowen.ui.home.vote.VoteDetailAct;
 
 import java.util.List;
 
+import static com.znz.zuowen.R.id.ivGood;
+import static com.znz.zuowen.R.id.llCount;
+
 /**
  * Date： 2017/9/4 2017
  * User： PSuiyi
@@ -56,7 +59,10 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 } else {
                     helper.setVisible(R.id.ivImage, false);
                 }
-                helper.setVisible(R.id.ivGood, true);
+                helper.setVisible(ivGood, true);
+                helper.setVisible(llCount, true);
+                helper.setText(R.id.tvFavCount, bean.getArticleBean().getCollect_count());
+                helper.setText(R.id.tvLikeCount, bean.getArticleBean().getLike_count());
                 break;
             case Constants.MultiType.ArticleVote:
                 helper.setText(R.id.tvTitle, bean.getArticleBean().getTitle());
