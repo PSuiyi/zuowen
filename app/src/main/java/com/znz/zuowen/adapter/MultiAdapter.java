@@ -8,6 +8,7 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
+import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.home.article.ArticleDetailAct;
@@ -23,6 +24,8 @@ import java.util.List;
  */
 
 public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+
+    private OnVoteClickLinstener onVoteClickLinstener;
 
     public MultiAdapter(List dataList) {
         super(dataList);
@@ -82,6 +85,14 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                     helper.setVisible(R.id.ivIcon, true);
                     helper.setBackgroundRes(R.id.llVote, R.drawable.bg_vote);
                 }
+
+                helper.setOnClickListener(R.id.tvVote, v -> {
+                    if (bean.getArticleBean().getIs_vote().equals("0")) {
+                        if (onVoteClickLinstener != null) {
+                            onVoteClickLinstener.onVoteClick(bean.getArticleBean());
+                        }
+                    }
+                });
                 break;
         }
     }
@@ -105,4 +116,11 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         }
     }
 
+    public void setOnVoteClickLinstener(OnVoteClickLinstener onVoteClickLinstener) {
+        this.onVoteClickLinstener = onVoteClickLinstener;
+    }
+
+    public interface OnVoteClickLinstener {
+        void onVoteClick(ArticleBean bean);
+    }
 }

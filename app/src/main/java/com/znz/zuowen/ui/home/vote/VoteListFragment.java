@@ -69,25 +69,27 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
             ArticleBean bean = dataList.get(position);
             switch (view.getId()) {
                 case R.id.tvVote:
-                    Map<String, String> params = new HashMap<>();
-                    params.put("id", bean.getId());
-                    mModel.requestVoteVote(params, new ZnzHttpListener() {
-                        @Override
-                        public void onSuccess(JSONObject responseOriginal) {
-                            super.onSuccess(responseOriginal);
-                            if (!bean.getIs_vote().equals("1")) {
-                                bean.setIs_vote("1");
-                            } else {
-                                bean.setIs_vote("0");
+                    if (bean.getIs_vote().equals("0")) {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("id", bean.getId());
+                        mModel.requestVoteVote(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                if (!bean.getIs_vote().equals("1")) {
+                                    bean.setIs_vote("1");
+                                } else {
+                                    bean.setIs_vote("0");
+                                }
+                                adapter.notifyDataSetChanged();
                             }
-                            adapter.notifyDataSetChanged();
-                        }
 
-                        @Override
-                        public void onFail(String error) {
-                            super.onFail(error);
-                        }
-                    });
+                            @Override
+                            public void onFail(String error) {
+                                super.onFail(error);
+                            }
+                        });
+                    }
                     break;
             }
         });
