@@ -1,9 +1,11 @@
 package com.znz.zuowen.ui.fav;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.MultiAdapter;
@@ -11,7 +13,12 @@ import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
+import com.znz.zuowen.event.EventList;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -104,5 +111,44 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
     @Override
     protected void onRefreshFail(String error) {
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventList event) {
+        if (event.getFlag() == EventTags.LIST_ARTICLE_FAV) {
+            for (MultiBean multiBean : dataList) {
+                if (multiBean.getItemType() == Constants.MultiType.Article) {
+                    if (multiBean.getArticleBean().equals(event.getBean())) {
+                        multiBean.getArticleBean().setCollect_count(((ArticleBean) event.getBean()).getCollect_count());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (event.getFlag() == EventTags.LIST_ARTICLE_LIKE) {
+            for (MultiBean multiBean : dataList) {
+                if (multiBean.getItemType() == Constants.MultiType.Article) {
+                    if (multiBean.getArticleBean().equals(event.getBean())) {
+                        multiBean.getArticleBean().setLike_count(((ArticleBean) event.getBean()).getLike_count());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

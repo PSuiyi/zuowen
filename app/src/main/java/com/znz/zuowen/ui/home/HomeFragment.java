@@ -9,6 +9,7 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONArray;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.views.advs.bean.AdvInfoBean;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.MultiAdapter;
@@ -16,12 +17,17 @@ import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
+import com.znz.zuowen.event.EventList;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.good.GoodListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.home.vote.ArticleVoteAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -181,5 +187,44 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventList event) {
+        if (event.getFlag() == EventTags.LIST_ARTICLE_FAV) {
+            for (MultiBean multiBean : dataList) {
+                if (multiBean.getItemType() == Constants.MultiType.Article) {
+                    if (multiBean.getArticleBean().equals(event.getBean())) {
+                        multiBean.getArticleBean().setCollect_count(((ArticleBean) event.getBean()).getCollect_count());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (event.getFlag() == EventTags.LIST_ARTICLE_LIKE) {
+            for (MultiBean multiBean : dataList) {
+                if (multiBean.getItemType() == Constants.MultiType.Article) {
+                    if (multiBean.getArticleBean().equals(event.getBean())) {
+                        multiBean.getArticleBean().setLike_count(((ArticleBean) event.getBean()).getLike_count());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
