@@ -10,13 +10,18 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.bean.ArticleBean;
+import com.znz.zuowen.event.EventList;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -83,10 +88,13 @@ public class ArticleDetailAct extends BaseAppActivity<ArticleModel> {
                     if (!bean.getIs_like().equals("1")) {
                         znzToolBar.setNavRightImg(R.mipmap.icon_dianzan);
                         bean.setIs_like("1");
+                        bean.setLike_count(StringUtil.getNumUP(bean.getLike_count()));
                     } else {
                         znzToolBar.setNavRightImg(R.mipmap.icon_dianzanhui);
                         bean.setIs_like("0");
+                        bean.setLike_count(StringUtil.getNumDown(bean.getLike_count()));
                     }
+                    EventBus.getDefault().postSticky(new EventList(EventTags.LIST_ARTICLE_LIKE, bean));
                 }
 
                 @Override
@@ -106,10 +114,13 @@ public class ArticleDetailAct extends BaseAppActivity<ArticleModel> {
                     if (!bean.getIs_collect().equals("1")) {
                         znzToolBar.setNavRightImg2(R.mipmap.icon_shoucang);
                         bean.setIs_collect("1");
+                        bean.setCollect_count(StringUtil.getNumUP(bean.getCollect_count()));
                     } else {
                         znzToolBar.setNavRightImg2(R.mipmap.icon_shoucanghui);
                         bean.setIs_collect("0");
+                        bean.setCollect_count(StringUtil.getNumDown(bean.getCollect_count()));
                     }
+                    EventBus.getDefault().postSticky(new EventList(EventTags.LIST_ARTICLE_FAV, bean));
                 }
 
                 @Override

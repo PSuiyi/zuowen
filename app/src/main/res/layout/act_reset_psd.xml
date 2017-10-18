@@ -31,7 +31,7 @@
                 android:id="@+id/etCode"
                 style="@style/EditRoundStyle"
                 android:layout_weight="1"
-                android:hint="验证码"
+                android:hint="请输入收到的短信验证码"
                 android:inputType="number" />
 
             <LinearLayout

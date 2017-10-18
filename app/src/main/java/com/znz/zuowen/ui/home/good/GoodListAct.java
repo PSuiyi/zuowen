@@ -13,20 +13,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ArticleAdapter;
 import com.znz.zuowen.base.BaseAppListActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.OptionBean;
+import com.znz.zuowen.event.EventList;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.utils.PopupWindowManager;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -170,13 +175,6 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick({R.id.llLeft, R.id.llRight})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -200,6 +198,32 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
                     resetRefresh();
                 });
                 break;
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventList event) {
+        if (event.getFlag() == EventTags.LIST_ARTICLE_FAV) {
+            int position = dataList.indexOf(event.getBean());
+            dataList.get(position).setCollect_count(((ArticleBean) event.getBean()).getCollect_count());
+            adapter.notifyDataSetChanged();
+        }
+        if (event.getFlag() == EventTags.LIST_ARTICLE_LIKE) {
+            int position = dataList.indexOf(event.getBean());
+            dataList.get(position).setLike_count(((ArticleBean) event.getBean()).getLike_count());
+            adapter.notifyDataSetChanged();
         }
     }
 }
