@@ -40,13 +40,14 @@
     <View style="@style/Line" />
 
     <RadioGroup
+        android:id="@+id/rbGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
 
         <RadioButton
+            android:id="@+id/rbAli"
             style="@style/RadioStyle"
-            android:checked="true"
             android:drawableLeft="@mipmap/rder_icon_alipay"
             android:text="支付宝支付" />
 
@@ -55,6 +56,7 @@
             android:layout_marginLeft="@dimen/distance_view" />
 
         <RadioButton
+            android:id="@+id/rbWechat"
             style="@style/RadioStyle"
             android:drawableLeft="@mipmap/rder_icon_wechat"
             android:text="微信支付" />

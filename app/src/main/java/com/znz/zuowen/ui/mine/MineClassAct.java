@@ -136,7 +136,19 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
                 gotoActivity(AgreementAct.class);
                 break;
             case R.id.tvSubmit:
-                gotoActivity(PayWayAct.class);
+                String id = null;
+                for (ClassBean classBean : dataList) {
+                    if (classBean.isChecked()) {
+                        id = classBean.getId();
+                    }
+                }
+                if (StringUtil.isBlank(id)) {
+                    mDataManager.showToast("请选择充值课时数");
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putString("id", id);
+                gotoActivity(PayWayAct.class, bundle);
                 break;
         }
     }

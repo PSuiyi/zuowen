@@ -166,6 +166,7 @@ public class HttpImageView extends AppCompatImageView {
                         return false;
                     }
                 })
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(error_image)
                 .placeholder(default_image)
                 .into(this);
