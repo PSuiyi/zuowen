@@ -16,6 +16,6 @@ public class AppApplication extends ZnzApplication {
         super.onCreate();
 
         //初始化bugtags
-        Bugtags.start("fb69161bb918e949874d67569ded4f67", this, Bugtags.BTGInvocationEventShake);
+        Bugtags.start("fb69161bb918e949874d67569ded4f67", this, Bugtags.BTGInvocationEventBubble);
     }
 }

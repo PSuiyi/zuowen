@@ -15,7 +15,7 @@ public class PayKeys {
 
     //-------------------微信相关----------------------
 
-    public static final String WX_APPID = "";
+    public static final String WX_APPID = "wx164f3fa561ff62f6";
     public static final String WX_APPSECRET = "";
     //商户号
     public static final String WX_MCH_ID = "";

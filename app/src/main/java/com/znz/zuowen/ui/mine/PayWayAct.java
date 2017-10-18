@@ -171,8 +171,28 @@ public class PayWayAct extends BaseAppActivity<ArticleModel> {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventPay event) {
         if (event.getFlag() == EventTags.PAY_WX_SUCCESS) {
-            gotoActivity(PaySuccessAct.class);
+            handlePayStatus();
         }
+    }
+
+    /**
+     * 处理支付状态
+     */
+    private void handlePayStatus() {
+//        Map<String, String> params = new HashMap<>();
+//        params.put("ordersn", currentOrder);
+//        mModel.requestBuyStatus(params, new ZnzHttpListener() {
+//            @Override
+//            public void onSuccess(JSONObject responseOriginal) {
+//                super.onSuccess(responseOriginal);
+//            }
+//
+//            @Override
+//            public void onFail(String error) {
+//                super.onFail(error);
+//            }
+//        });
+        gotoActivity(PaySuccessAct.class);
     }
 
     /**
@@ -184,7 +204,7 @@ public class PayWayAct extends BaseAppActivity<ArticleModel> {
             String status = intent.getStringExtra(AliPayUtil.ALIPAY_STATUS);
             switch (status) {
                 case "成功":
-                    gotoActivity(PaySuccessAct.class);
+                    handlePayStatus();
                     break;
                 case "取消":
                     break;

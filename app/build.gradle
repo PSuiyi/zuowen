@@ -2,6 +2,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'haozuowen'
+            keyPassword '123456'
+            storeFile file('../zuowen.jks')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'haozuowen'
+            keyPassword '123456'
+            storeFile file('../zuowen.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
     useLibrary 'org.apache.http.legacy'
@@ -34,7 +48,6 @@ android {
         sourceCompatibility rootProject.ext.android.javaVersion
         targetCompatibility rootProject.ext.android.javaVersion
     }
-
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
