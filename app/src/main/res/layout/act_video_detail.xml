@@ -11,16 +11,11 @@
 
     <include layout="@layout/include_common_network_status" />
 
-    <FrameLayout
+
+    <com.znz.libvideo.videoplayer.video.StandardGSYVideoPlayer
+        android:id="@+id/detailPlayer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.znz.libvideo.videoplayer.video.StandardGSYVideoPlayer
-            android:id="@+id/detailPlayer"
-            android:layout_width="match_parent"
-            android:layout_height="220dp" />
-    </FrameLayout>
-
+        android:layout_height="220dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

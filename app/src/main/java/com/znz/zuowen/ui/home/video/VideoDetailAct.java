@@ -154,6 +154,7 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
                         .setShowFullAnimation(false)
                         .setNeedLockFull(true)
                         .setEnlargeImageRes(R.mipmap.icon_qunpin)
+                        .setShrinkImageRes(R.mipmap.icon_qunpin)
                         .setSeekRatio(1)
                         .setUrl(Constants.IMG_URL + bean.getVideo_url())
                         .setCacheWithPlay(false)
