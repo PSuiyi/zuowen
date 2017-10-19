@@ -186,6 +186,7 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                 params.put("phone", mDataManager.getValueFromView(etUserName));
                 String timeLong = TimeUtils.getNowTimeMills() + "";
                 params.put("times", timeLong);
+                params.put("type", "1");
                 params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign(timeLong + mDataManager.getValueFromView(etUserName))));
                 mModel.requestCode(params, new ZnzHttpListener() {
                     @Override

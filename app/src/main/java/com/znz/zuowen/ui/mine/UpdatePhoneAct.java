@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
@@ -14,7 +16,12 @@ import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.common.Constants;
-import com.znz.zuowen.ui.login.ResetPsdAct;
+import com.znz.zuowen.model.UserModel;
+import com.znz.zuowen.ui.login.ResetPsdTwoAct;
+import com.znz.zuowen.utils.PopupWindowManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,7 +33,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class UpdatePhoneAct extends BaseAppActivity {
+public class UpdatePhoneAct extends BaseAppActivity<UserModel> {
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
     @Bind(R.id.znzToolBar)
@@ -47,7 +54,7 @@ public class UpdatePhoneAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new UserModel(activity, this);
     }
 
     @Override
@@ -116,6 +123,31 @@ public class UpdatePhoneAct extends BaseAppActivity {
             mDataManager.showToast("请输入正确的手机号");
             return;
         }
-        gotoActivity(ResetPsdAct.class);
+
+        PopupWindowManager.getInstance(activity).showVerifyCode(tvSubmit,
+                "http://hao.magick.ltd/index.php?m=rest&c=login&a=getimgcode&type=3",
+                (type, values) -> {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("phone", mDataManager.getValueFromView(etPhoneNew));
+                    params.put("imgcode", values[0]);
+                    mModel.reuqestPsdOne(params, new ZnzHttpListener() {
+                        @Override
+                        public void onSuccess(JSONObject responseOriginal) {
+                            super.onSuccess(responseOriginal);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("id", responseObject.getString("id"));
+                            bundle.putString("username", responseObject.getString("username"));
+                            bundle.putString("str", responseObject.getString("str"));
+                            gotoActivity(ResetPsdTwoAct.class, bundle);
+                        }
+
+                        @Override
+                        public void onFail(String error) {
+                            super.onFail(error);
+                        }
+                    });
+                });
+
+        gotoActivity(ResetPsdTwoAct.class);
     }
 }

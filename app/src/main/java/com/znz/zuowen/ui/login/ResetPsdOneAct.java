@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.MD5Util;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.utils.ZnzLog;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -125,16 +126,33 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
                             Map<String, String> params = new HashMap<>();
                             params.put("phone", mDataManager.getValueFromView(etPhone));
                             params.put("imgcode", values[0]);
-                            ZnzLog.e("values[0]---->" + values[0]);
                             mModel.reuqestPsdOne(params, new ZnzHttpListener() {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("id", responseObject.getString("id"));
-                                    bundle.putString("username", responseObject.getString("username"));
-                                    bundle.putString("str", responseObject.getString("str"));
-                                    gotoActivity(ResetPsdAct.class, bundle);
+
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("phone", mDataManager.getValueFromView(etPhone));
+                                    String timeLong = TimeUtils.getNowTimeMills() + "";
+                                    params.put("times", timeLong);
+                                    params.put("type", "2");
+                                    params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign(timeLong + mDataManager.getValueFromView(etPhone))));
+                                    mModel.requestCode(params, new ZnzHttpListener() {
+                                        @Override
+                                        public void onSuccess(JSONObject responseOriginal) {
+                                            super.onSuccess(responseOriginal);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("id", responseObject.getString("id"));
+                                            bundle.putString("username", responseObject.getString("username"));
+                                            bundle.putString("str", responseObject.getString("str"));
+                                            gotoActivity(ResetPsdTwoAct.class, bundle);
+                                        }
+
+                                        @Override
+                                        public void onFail(String error) {
+                                            super.onFail(error);
+                                        }
+                                    });
                                 }
 
                                 @Override

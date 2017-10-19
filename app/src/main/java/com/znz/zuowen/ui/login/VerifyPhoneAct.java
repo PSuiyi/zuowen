@@ -54,6 +54,6 @@ public class VerifyPhoneAct extends BaseAppActivity {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        gotoActivity(ResetPsdAct.class);
+        gotoActivity(ResetPsdTwoAct.class);
     }
 }

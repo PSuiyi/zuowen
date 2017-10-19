@@ -29,7 +29,6 @@ public class UserModel extends BaseModel {
     //验证码
     public void requestCode(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
-        params.put("type", "1");
         request(apiService.requestCode(params), znzHttpListener, LODING_PD);
     }
 

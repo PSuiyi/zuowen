@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class ResetPsdAct extends BaseAppActivity<UserModel> {
+public class ResetPsdTwoAct extends BaseAppActivity<UserModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -81,7 +81,6 @@ public class ResetPsdAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeView() {
-        etCode.setText("123456");
         etCode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

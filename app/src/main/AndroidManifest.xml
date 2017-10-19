@@ -49,7 +49,7 @@
             android:name=".ui.login.RegisterAct"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.login.ResetPsdAct"
+            android:name=".ui.login.ResetPsdTwoAct"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.article.ArticleListAct"
