@@ -84,8 +84,10 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
                                 super.onSuccess(responseOriginal);
                                 if (!bean.getIs_vote().equals("1")) {
                                     bean.setIs_vote("1");
+                                    bean.setVote_count(StringUtil.getNumUP(bean.getVote_count()));
                                 } else {
                                     bean.setIs_vote("0");
+                                    bean.setVote_count(StringUtil.getNumDown(bean.getVote_count()));
                                 }
                                 adapter.notifyDataSetChanged();
                             }

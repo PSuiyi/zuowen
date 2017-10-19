@@ -81,5 +81,5 @@ public class Constants {
     public static final String GENSEE_ACCOUNT = "hifi";//展示互动管理员账号
     public static final String LIVE_TIME_FORMAT = "yy/MM/dd HH:mm";//直播列表时间格式
 
-    public static final String IMG_URL = "http://hao.ahxrq.com/Public/";
+    public static final String IMG_URL = "http://hao.magick.ltd//Public/";
 }

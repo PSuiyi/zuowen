@@ -185,6 +185,7 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
                     } else {
                         style_type = values[0];
                     }
+                    tvLeft.setText(values[0]);
                     resetRefresh();
                 });
                 break;
@@ -195,6 +196,7 @@ public class GoodListAct extends BaseAppListActivity<ArticleModel, ArticleBean> 
                     } else {
                         counts_id = values[0];
                     }
+                    tvRight.setText(values[1]);
                     resetRefresh();
                 });
                 break;

@@ -172,7 +172,7 @@ public class PopupWindowManager {
             dataList.get(position).setChecked(true);
 
             if (onPopupWindowClickListener != null) {
-                onPopupWindowClickListener.onPopupWindowClick("字数", new String[]{position + ""});
+                onPopupWindowClickListener.onPopupWindowClick("字数", new String[]{position + "", dataList.get(position).getCounts_id()});
             }
 
             adapter.notifyDataSetChanged();

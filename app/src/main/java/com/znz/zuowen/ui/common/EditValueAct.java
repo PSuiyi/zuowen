@@ -1,6 +1,8 @@
 package com.znz.zuowen.ui.common;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -64,6 +66,35 @@ public class EditValueAct extends BaseAppActivity<UserModel> {
         if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.NAME))) {
             mDataManager.setValueToView(etValue, mDataManager.readTempData(Constants.User.NAME));
         }
+
+        handleBtnState();
+
+        etValue.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                handleBtnState();
+            }
+        });
+    }
+
+    /**
+     * 处理按钮状态
+     */
+    private void handleBtnState() {
+        if (StringUtil.isBlank(mDataManager.getValueFromView(etValue))) {
+            return;
+        }
+        tvSubmit.setBackgroundResource(R.drawable.bg_btn_round);
     }
 
     @Override

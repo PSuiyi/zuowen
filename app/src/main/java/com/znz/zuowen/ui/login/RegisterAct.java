@@ -168,17 +168,17 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     return;
                 }
 
+                llSendCode.setClickable(false);
                 timer = new CountDownTimer(60 * 1000, 1000) {
                     @Override
                     public void onTick(long l) {
-                        tvSendCode.setClickable(false);
                         tvSendCode.setText(l / 1000 + "s");
                     }
 
                     @Override
                     public void onFinish() {
                         tvSendCode.setText("重新发送");
-                        tvSendCode.setClickable(true);
+                        llSendCode.setClickable(true);
                     }
                 }.start();
 
