@@ -32,7 +32,7 @@ public class CommonModel extends BaseModel {
 
     public CommonModel(Context context, IView mView) {
         super(context, mView);
-        apiService = ZnzRetrofitUtil.getInstance(false).createService(ApiService.class);
+        apiService = ZnzRetrofitUtil.getInstance().createService(ApiService.class);
     }
 
 

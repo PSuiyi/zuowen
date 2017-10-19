@@ -120,7 +120,7 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
                 }
 
                 PopupWindowManager.getInstance(activity).showVerifyCode(view,
-                        "http://hao.magick.ltd/index.php?m=rest&c=login&a=getimgcode&type=2&type=1&code=1",
+                        "http://hao.magick.ltd/index.php?m=rest&c=login&a=getimgcode&type=2",
                         (type, values) -> {
                             Map<String, String> params = new HashMap<>();
                             params.put("phone", mDataManager.getValueFromView(etPhone));

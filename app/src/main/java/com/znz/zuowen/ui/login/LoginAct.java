@@ -22,6 +22,7 @@ import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.bean.UserBean;
+import com.znz.zuowen.model.CommonModel;
 import com.znz.zuowen.model.UserModel;
 import com.znz.zuowen.ui.TabHomeAct;
 import com.znz.zuowen.utils.AppUtils;
@@ -57,6 +58,8 @@ public class LoginAct extends BaseAppActivity<UserModel> {
     @Bind(R.id.cbLook)
     CheckBox cbLook;
 
+    private CommonModel commonModel;
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.act_login};
@@ -65,6 +68,7 @@ public class LoginAct extends BaseAppActivity<UserModel> {
     @Override
     protected void initializeVariate() {
         mModel = new UserModel(activity, this);
+        commonModel = new CommonModel(activity, this);
     }
 
     @Override
@@ -138,6 +142,18 @@ public class LoginAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        commonModel.requestVersion(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     @Override

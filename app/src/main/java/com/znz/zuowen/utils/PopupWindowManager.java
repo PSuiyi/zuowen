@@ -3,7 +3,6 @@ package com.znz.zuowen.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -11,26 +10,22 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.signature.StringSignature;
 import com.znz.compass.znzlibray.common.DataManager;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.OptionAdapter;
 import com.znz.zuowen.bean.OptionBean;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
-
-import okhttp3.ResponseBody;
 
 import static com.znz.compass.znzlibray.utils.ViewHolder.init;
 
@@ -199,32 +194,14 @@ public class PopupWindowManager {
     public void showVerifyCode(View parent, String url, OnPopupWindowClickListener onPopupWindowClickListener) {
         View view = initPopupWindow(R.layout.popup_verify_code);
 
-        ImageView ivImage = init(view, R.id.ivImage);
+        HttpImageView ivImage = init(view, R.id.ivImage);
+        GlideUrl cookie = new GlideUrl(url,
+                new LazyHeaders.Builder().addHeader("Cookie", mDataManager.readTempData(ZnzConstants.COOKIE)).build());
         Glide.with(mContext)
-                .load(url)
+                .load(cookie)
                 .skipMemoryCache(true)
-                .centerCrop()
                 .signature(new StringSignature((Math.random() * (100000000 - 1 + 1)) + ""))
                 .into(ivImage);
-
-//        Map<String, String> params = new HashMap<>();
-//        params.put("code", "1");
-//        params.put("type", "2");
-//        ZnzRetrofitUtil.getInstance().createService(ApiService.class)
-//                .requestCodeImg(params)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Action1<ResponseBody>() {
-//                    @Override
-//                    public void call(ResponseBody responseBody) {
-//                        writeResponseBodyToDisk(responseBody);
-//                    }
-//                });
-
-
-//                 .map(responseBody -> responseBody.byteStream())
-//                .map(inputStream -> BitmapFactory.decodeStream(inputStream))
-//                .subscribe(bitmap -> ivImage.setImageBitmap(bitmap));
 
         init(view, R.id.tvCancel).setOnClickListener(v -> {
             hidePopupWindow();
@@ -243,45 +220,6 @@ public class PopupWindowManager {
         });
 
         popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
-    }
-
-
-    private boolean writeResponseBodyToDisk(ResponseBody body) {
-        try {
-            // 改成自己需要的存储位置
-            File futureStudioIconFile = new File(Environment.getExternalStorageDirectory() + "/test.jpg");
-            InputStream inputStream = null;
-            OutputStream outputStream = null;
-            try {
-                byte[] fileReader = new byte[4096];
-                long fileSize = body.contentLength();
-                long fileSizeDownloaded = 0;
-                inputStream = body.byteStream();
-                outputStream = new FileOutputStream(futureStudioIconFile);
-                while (true) {
-                    int read = inputStream.read(fileReader);
-                    if (read == -1) {
-                        break;
-                    }
-                    outputStream.write(fileReader, 0, read);
-                    fileSizeDownloaded += read;
-                }
-                outputStream.flush();
-                return true;
-            } catch (IOException e) {
-                return false;
-            } finally {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-            }
-        } catch (IOException e) {
-            return false;
-        }
     }
 
     public interface OnPopupWindowClickListener {

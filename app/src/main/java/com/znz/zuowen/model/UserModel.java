@@ -22,7 +22,7 @@ public class UserModel extends BaseModel {
 
     public UserModel(Context context, IView mView) {
         super(context, mView);
-        apiService = ZnzRetrofitUtil.getInstance(false).createService(ApiService.class);
+        apiService = ZnzRetrofitUtil.getInstance().createService(ApiService.class);
         this.context = context;
     }
 
