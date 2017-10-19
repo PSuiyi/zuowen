@@ -81,6 +81,10 @@ public interface ApiService {
     Observable<ResponseBody> requestUpdateName(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=login&a=modify_phone")
+    Observable<ResponseBody> requestUpdatePhone(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=login&a=logout")
     Observable<ResponseBody> requestLogout(@FieldMap Map<String, String> params);
 

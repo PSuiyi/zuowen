@@ -86,6 +86,13 @@ public class UserModel extends BaseModel {
         request(apiService.requestUpdateName(params), znzHttpListener, LODING_PD);
     }
 
+    public void requestUpdatePhone(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestUpdatePhone(params), znzHttpListener, LODING_PD);
+    }
+
     public void requestMineInfo(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
         params.put("type", "1");

@@ -63,7 +63,7 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeView() {
-        etPhone.setText("18020130334");
+//        etPhone.setText("18020130334");
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -130,6 +130,10 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("id", responseObject.getString("id"));
+                                    bundle.putString("username", responseObject.getString("username"));
+                                    bundle.putString("str", responseObject.getString("str"));
 
                                     Map<String, String> params = new HashMap<>();
                                     params.put("phone", mDataManager.getValueFromView(etPhone));
@@ -141,10 +145,6 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
                                         @Override
                                         public void onSuccess(JSONObject responseOriginal) {
                                             super.onSuccess(responseOriginal);
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("id", responseObject.getString("id"));
-                                            bundle.putString("username", responseObject.getString("username"));
-                                            bundle.putString("str", responseObject.getString("str"));
                                             gotoActivity(ResetPsdTwoAct.class, bundle);
                                         }
 

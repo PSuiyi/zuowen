@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.MD5Util;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -17,7 +19,6 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.model.UserModel;
-import com.znz.zuowen.ui.login.ResetPsdTwoAct;
 import com.znz.zuowen.utils.PopupWindowManager;
 
 import java.util.HashMap;
@@ -129,16 +130,18 @@ public class UpdatePhoneAct extends BaseAppActivity<UserModel> {
                 (type, values) -> {
                     Map<String, String> params = new HashMap<>();
                     params.put("phone", mDataManager.getValueFromView(etPhoneNew));
-                    params.put("imgcode", values[0]);
-                    mModel.reuqestPsdOne(params, new ZnzHttpListener() {
+                    String timeLong = TimeUtils.getNowTimeMills() + "";
+                    params.put("times", timeLong);
+                    params.put("type", "4");
+                    params.put("str", MD5Util.createSign("Haozuowenapp" + MD5Util.createSign(timeLong + mDataManager.getValueFromView(etPhoneNew))));
+                    mModel.requestCode(params, new ZnzHttpListener() {
                         @Override
                         public void onSuccess(JSONObject responseOriginal) {
                             super.onSuccess(responseOriginal);
                             Bundle bundle = new Bundle();
-                            bundle.putString("id", responseObject.getString("id"));
-                            bundle.putString("username", responseObject.getString("username"));
-                            bundle.putString("str", responseObject.getString("str"));
-                            gotoActivity(ResetPsdTwoAct.class, bundle);
+                            bundle.putString("phone", mDataManager.getValueFromView(etPhoneNew));
+                            bundle.putString("imgCode", values[0]);
+                            gotoActivity(UpdatePhoneTwoAct.class, bundle);
                         }
 
                         @Override
@@ -147,7 +150,5 @@ public class UpdatePhoneAct extends BaseAppActivity<UserModel> {
                         }
                     });
                 });
-
-        gotoActivity(ResetPsdTwoAct.class);
     }
 }
