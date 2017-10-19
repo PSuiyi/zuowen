@@ -1,5 +1,8 @@
 package com.znz.compass.znzlibray.network.retorfit;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
+import com.bumptech.glide.load.model.GlideUrl;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -8,6 +11,7 @@ import com.znz.compass.znzlibray.ZnzApplication;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.common.ZnzConstants;
 
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.HttpUrl;
@@ -122,6 +126,11 @@ public class ZnzRetrofitUtil {
             OkHttpClient okHttpClient = builder
                     .cookieJar(cookieJar)
                     .build();
+
+            Glide.get(ZnzApplication.getContext())
+                    .register(GlideUrl.class
+                            , InputStream.class
+                            , new OkHttpUrlLoader.Factory(okHttpClient));
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

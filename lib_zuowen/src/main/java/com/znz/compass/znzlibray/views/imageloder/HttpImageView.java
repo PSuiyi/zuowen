@@ -187,9 +187,8 @@ public class HttpImageView extends AppCompatImageView {
         } else {
             Glide.with(context)
                     .load(url_image)
-                    .thumbnail(0.1f)
                     .centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .signature(new StringSignature((Math.random() * (100000000 - 1 + 1)) + ""))
                     .error(error_image)
                     .placeholder(default_image)

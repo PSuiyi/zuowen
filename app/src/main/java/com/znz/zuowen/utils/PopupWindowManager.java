@@ -3,6 +3,7 @@ package com.znz.zuowen.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -22,7 +23,14 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.OptionAdapter;
 import com.znz.zuowen.bean.OptionBean;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
+
+import okhttp3.ResponseBody;
 
 import static com.znz.compass.znzlibray.utils.ViewHolder.init;
 
@@ -206,26 +214,17 @@ public class PopupWindowManager {
 //                .requestCodeImg(params)
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
-//                .map(new Func1<ResponseBody, Bitmap>() {
+//                .subscribe(new Action1<ResponseBody>() {
 //                    @Override
-//                    public Bitmap call(ResponseBody responseBody) {
-//                        try {
-//                            String str = responseBody.string();
-//                            ZnzLog.e("str---->" + str);
-//                            str = str.replaceAll("PNG", "");
-//                            return BitmapUtil.Bytes2Bimap(str.getBytes());
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        return null;
-//                    }
-//                })
-//                .subscribe(new Action1<Bitmap>() {
-//                    @Override
-//                    public void call(Bitmap bitmap) {
-//                        ivImage.setImageBitmap(bitmap);
+//                    public void call(ResponseBody responseBody) {
+//                        writeResponseBodyToDisk(responseBody);
 //                    }
 //                });
+
+
+//                 .map(responseBody -> responseBody.byteStream())
+//                .map(inputStream -> BitmapFactory.decodeStream(inputStream))
+//                .subscribe(bitmap -> ivImage.setImageBitmap(bitmap));
 
         init(view, R.id.tvCancel).setOnClickListener(v -> {
             hidePopupWindow();
@@ -244,6 +243,45 @@ public class PopupWindowManager {
         });
 
         popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+    }
+
+
+    private boolean writeResponseBodyToDisk(ResponseBody body) {
+        try {
+            // 改成自己需要的存储位置
+            File futureStudioIconFile = new File(Environment.getExternalStorageDirectory() + "/test.jpg");
+            InputStream inputStream = null;
+            OutputStream outputStream = null;
+            try {
+                byte[] fileReader = new byte[4096];
+                long fileSize = body.contentLength();
+                long fileSizeDownloaded = 0;
+                inputStream = body.byteStream();
+                outputStream = new FileOutputStream(futureStudioIconFile);
+                while (true) {
+                    int read = inputStream.read(fileReader);
+                    if (read == -1) {
+                        break;
+                    }
+                    outputStream.write(fileReader, 0, read);
+                    fileSizeDownloaded += read;
+                }
+                outputStream.flush();
+                return true;
+            } catch (IOException e) {
+                return false;
+            } finally {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            }
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     public interface OnPopupWindowClickListener {

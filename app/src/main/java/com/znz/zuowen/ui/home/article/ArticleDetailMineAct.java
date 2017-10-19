@@ -125,7 +125,7 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
                 mDataManager.setValueToView(tvTeacher, "审批老师：" + mineBean.getTeacher_name());
                 mDataManager.setValueToView(tvTime, mineBean.getAddtime());
                 if (!StringUtil.isBlank(mineBean.getFirst_teacher_reviews())) {
-                    mDataManager.setValueToView(tvComment1, mineBean.getFirst_teacher_reviews());
+                    tvComment1.setText(Html.fromHtml(mineBean.getFirst_teacher_reviews()));
                     mDataManager.setViewVisibility(llComment1, true);
                 } else {
                     mDataManager.setViewVisibility(llComment1, false);
@@ -140,7 +140,7 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
                 if (mineBean.getSecond_status().equals("1")) {
                     llArticleTwo.setVisibility(View.VISIBLE);
                     if (!StringUtil.isBlank(mineBean.getSecond_teacher_reviews())) {
-                        mDataManager.setValueToView(tvComment2, mineBean.getSecond_teacher_reviews());
+                        tvComment2.setText(Html.fromHtml(mineBean.getSecond_teacher_reviews()));
                         mDataManager.setViewVisibility(llComment2, true);
                     } else {
                         mDataManager.setViewVisibility(llComment2, false);

@@ -191,7 +191,6 @@ public class RegisterAct extends BaseAppActivity<UserModel> {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        etCode.setText("123456");
                     }
 
                     @Override

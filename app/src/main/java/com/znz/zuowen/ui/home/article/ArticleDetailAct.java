@@ -159,7 +159,7 @@ public class ArticleDetailAct extends BaseAppActivity<ArticleModel> {
                     ImageAdapter imageAdapter = new ImageAdapter(bean.getImgurl());
                     rvArticle.setAdapter(imageAdapter);
                 }
-                mDataManager.setValueToView(tvComment, bean.getTeacher_reviews());
+                tvComment.setText(Html.fromHtml(bean.getTeacher_reviews()));
 
                 if (bean.getIs_collect().equals("1")) {
                     znzToolBar.setNavRightImg2(R.mipmap.icon_shoucang);

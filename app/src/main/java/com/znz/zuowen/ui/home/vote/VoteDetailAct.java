@@ -94,7 +94,7 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                         bean.setIs_collect("0");
                         bean.setCollect_count(StringUtil.getNumDown(bean.getCollect_count()));
                     }
-                    EventBus.getDefault().post(new EventList(EventTags.LIST_ARTICLE_FAV, bean));
+                    EventBus.getDefault().post(new EventList(EventTags.LIST_ARTICLE_FAV));
                 }
 
                 @Override
@@ -134,7 +134,7 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                     ImageAdapter imageAdapter = new ImageAdapter(bean.getImgurl());
                     rvArticle.setAdapter(imageAdapter);
                 }
-                mDataManager.setValueToView(tvComment, bean.getTeacher_reviews());
+                tvComment.setText(Html.fromHtml(bean.getTeacher_reviews()));
                 if (bean.getIs_vote().equals("1")) {
                     tvSubmit.setText("已投票(" + bean.getVote_count() + ")");
                     tvSubmit.setBackgroundResource(R.drawable.bg_btn_round_no);

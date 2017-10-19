@@ -62,7 +62,7 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeView() {
-//        etPhone.setText("18020130334");
+        etPhone.setText("18020130334");
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -120,7 +120,7 @@ public class ResetPsdOneAct extends BaseAppActivity<UserModel> {
                 }
 
                 PopupWindowManager.getInstance(activity).showVerifyCode(view,
-                        "http://hao.ahxrq.com/index.php?m=rest&c=login&a=getimgcode&type=2&type=1&code=1",
+                        "http://hao.magick.ltd/index.php?m=rest&c=login&a=getimgcode&type=2&type=1&code=1",
                         (type, values) -> {
                             Map<String, String> params = new HashMap<>();
                             params.put("phone", mDataManager.getValueFromView(etPhone));
