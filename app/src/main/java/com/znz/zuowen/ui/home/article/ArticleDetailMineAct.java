@@ -71,6 +71,7 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
     private String id;
     private ArticleBean bean;
     private ArticleMineBean mineBean;
+    private String title;
 
     @Override
     protected int[] getLayoutResource() {
@@ -83,11 +84,18 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
         if (getIntent().hasExtra("id")) {
             id = getIntent().getStringExtra("id");
         }
+        if (getIntent().hasExtra("title")) {
+            title = getIntent().getStringExtra("title");
+        }
     }
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("我的作文");
+        if (!StringUtil.isBlank(title)) {
+            setTitleName(title);
+        } else {
+            setTitleName("我的作文");
+        }
     }
 
     @Override

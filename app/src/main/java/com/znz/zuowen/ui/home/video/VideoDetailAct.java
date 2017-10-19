@@ -153,6 +153,7 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
                         .setLockLand(false)
                         .setShowFullAnimation(false)
                         .setNeedLockFull(true)
+                        .setEnlargeImageRes(R.mipmap.icon_qunpin)
                         .setSeekRatio(1)
                         .setUrl(Constants.IMG_URL + bean.getVideo_url())
                         .setCacheWithPlay(false)
@@ -235,7 +236,6 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     public void onBackPressed() {
-
         if (orientationUtils != null) {
             orientationUtils.backToProtVideo();
         }
@@ -251,6 +251,9 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
         super.onDestroy();
         if (isPlay) {
 //            getCurPlay().release();
+            if (detailPlayer != null) {
+                detailPlayer.release();
+            }
         }
         //GSYPreViewManager.instance().releaseMediaPlayer();
         if (orientationUtils != null)

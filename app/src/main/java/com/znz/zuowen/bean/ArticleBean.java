@@ -41,7 +41,16 @@ public class ArticleBean extends BaseZnzBean {
     private String teacher_reviews;
     private String mytype;
     private String is_my_week;
+    private String first_status;
     private List<UrlBean> imgurl;
+
+    public String getFirst_status() {
+        return first_status;
+    }
+
+    public void setFirst_status(String first_status) {
+        this.first_status = first_status;
+    }
 
     public String getIs_my_week() {
         return is_my_week;

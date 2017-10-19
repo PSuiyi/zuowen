@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -11,6 +12,7 @@ import com.socks.library.KLog;
 import com.znz.compass.znzlibray.R;
 import com.znz.compass.znzlibray.base.BaseRecyclerAdapter;
 import com.znz.compass.znzlibray.base.BaseRecyclerHolder;
+import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.utils.ViewHolder;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
@@ -52,11 +54,17 @@ public class UploadImageAdapter extends BaseRecyclerAdapter<String> {
         public void onBindViewHolder(int position) {
             bean = getItemObject(position);
             if (!bean.equals("add")) {
+                ivImage.setScaleType(ImageView.ScaleType.FIT_XY);
                 ivImage.loadFullImage(bean);
                 ivDelete.setVisibility(View.VISIBLE);
             } else {
                 ivImage.setImageResource(R.mipmap.tianjiazhaopian);
                 ivDelete.setVisibility(View.GONE);
+
+                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DipUtil.dip2px(mContext, 160));
+                layoutParams.topMargin = 20;
+                ivImage.setLayoutParams(layoutParams);
+                ivImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
             }
 
             ivDelete.setOnClickListener(v -> {
