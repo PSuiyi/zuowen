@@ -42,7 +42,16 @@ public class ArticleBean extends BaseZnzBean {
     private String mytype;
     private String is_my_week;
     private String first_status;
+    private TeacherBean assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public TeacherBean getAssign_teacher_id_info() {
+        return assign_teacher_id_info;
+    }
+
+    public void setAssign_teacher_id_info(TeacherBean assign_teacher_id_info) {
+        this.assign_teacher_id_info = assign_teacher_id_info;
+    }
 
     public String getFirst_status() {
         return first_status;

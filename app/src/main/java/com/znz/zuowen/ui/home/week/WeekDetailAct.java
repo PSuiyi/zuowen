@@ -129,6 +129,9 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
             if (bean.getIs_my_week().equals("1")) {
                 Bundle bundle = new Bundle();
                 bundle.putString("id", id);
+                if (bean.getTeacher_name() != null) {
+                    bundle.putSerializable("bean", bean.getAssign_teacher_id_info());
+                }
                 gotoActivity(ArticleUploadAct.class, bundle);
             } else {
                 buyArticle();
@@ -152,6 +155,9 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
                             super.onSuccess(responseOriginal);
                             Bundle bundle = new Bundle();
                             bundle.putString("id", id);
+                            if (bean.getTeacher_name() != null) {
+                                bundle.putSerializable("bean", bean.getAssign_teacher_id_info());
+                            }
                             gotoActivity(ArticleUploadAct.class, bundle);
                         }
 

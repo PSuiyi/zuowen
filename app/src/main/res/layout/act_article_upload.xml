@@ -34,6 +34,7 @@
                     android:padding="@dimen/distance_view">
 
                     <TextView
+                        android:id="@+id/tvTitle"
                         style="@style/TitleGrayTextStyle"
                         android:text="选择老师" />
 
@@ -45,6 +46,12 @@
                         android:drawablePadding="3dp"
                         android:drawableRight="@mipmap/icon_xiala"
                         android:text="请选择老师" />
+
+                    <TextView
+                        android:id="@+id/tvTeacherZhiding"
+                        style="@style/TitleTextStyle"
+                        android:text="请选择老师"
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <View style="@style/LineDivider" />

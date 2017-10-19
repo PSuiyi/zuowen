@@ -16,6 +16,7 @@ import com.znz.compass.znzlibray.views.upload_image.UploadImageLayout;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.bean.OptionBean;
+import com.znz.zuowen.bean.TeacherBean;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.model.CommonModel;
 import com.znz.zuowen.utils.PopupWindowManager;
@@ -54,12 +55,17 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
     EditTextWithDel etTitle;
     @Bind(R.id.uploadImage)
     UploadImageLayout uploadImage;
+    @Bind(R.id.tvTitle)
+    TextView tvTitle;
+    @Bind(R.id.tvTeacherZhiding)
+    TextView tvTeacherZhiding;
 
     private List<OptionBean> teacherList = new ArrayList<>();
     private String id;
     private String teacher_id;
     private CommonModel commonModel;
     private List<String> uploadUrls = new ArrayList<>();
+    private TeacherBean bean;
 
     @Override
     protected int[] getLayoutResource() {
@@ -73,6 +79,9 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
         if (getIntent().hasExtra("id")) {
             id = getIntent().getStringExtra("id");
         }
+        if (getIntent().hasExtra("bean")) {
+            bean = (TeacherBean) getIntent().getSerializableExtra("bean");
+        }
     }
 
     @Override
@@ -82,7 +91,13 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     protected void initializeView() {
-
+        if (bean != null) {
+            tvTitle.setText("指定老师");
+            tvTeacher.setVisibility(View.GONE);
+            tvTeacherZhiding.setVisibility(View.VISIBLE);
+            tvTeacherZhiding.setText(bean.getReal_name());
+            teacher_id = bean.getId();
+        }
     }
 
     @Override
