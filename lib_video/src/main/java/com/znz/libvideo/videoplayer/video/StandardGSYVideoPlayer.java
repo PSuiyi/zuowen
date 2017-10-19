@@ -399,7 +399,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
     protected void changeUiToNormal() {
         Debuger.printfLog("changeUiToNormal");
 
-        setViewShowState(mTopContainer, VISIBLE);
+        setViewShowState(mTopContainer, INVISIBLE);
         setViewShowState(mBottomContainer, INVISIBLE);
         setViewShowState(mStartButton, VISIBLE);
         setViewShowState(mLoadingProgressBar, INVISIBLE);
@@ -417,7 +417,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
     protected void changeUiToPreparingShow() {
         Debuger.printfLog("changeUiToPreparingShow");
 
-        setViewShowState(mTopContainer, VISIBLE);
+        setViewShowState(mTopContainer, INVISIBLE);
         setViewShowState(mBottomContainer, VISIBLE);
         setViewShowState(mStartButton, INVISIBLE);
         setViewShowState(mLoadingProgressBar, VISIBLE);
@@ -437,7 +437,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
     protected void changeUiToPlayingShow() {
         Debuger.printfLog("changeUiToPlayingShow");
 
-        setViewShowState(mTopContainer, VISIBLE);
+        setViewShowState(mTopContainer, INVISIBLE);
         setViewShowState(mBottomContainer, VISIBLE);
         setViewShowState(mStartButton, VISIBLE);
         setViewShowState(mLoadingProgressBar, INVISIBLE);
@@ -455,7 +455,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
     protected void changeUiToPauseShow() {
         Debuger.printfLog("changeUiToPauseShow");
 
-        setViewShowState(mTopContainer, VISIBLE);
+        setViewShowState(mTopContainer, INVISIBLE);
         setViewShowState(mBottomContainer, VISIBLE);
         setViewShowState(mStartButton, VISIBLE);
         setViewShowState(mLoadingProgressBar, INVISIBLE);
@@ -474,7 +474,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
     protected void changeUiToPlayingBufferingShow() {
         Debuger.printfLog("changeUiToPlayingBufferingShow");
 
-        setViewShowState(mTopContainer, VISIBLE);
+        setViewShowState(mTopContainer, INVISIBLE);
         setViewShowState(mBottomContainer, VISIBLE);
         setViewShowState(mStartButton, INVISIBLE);
         setViewShowState(mLoadingProgressBar, VISIBLE);
@@ -494,7 +494,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
     protected void changeUiToCompleteShow() {
         Debuger.printfLog("changeUiToCompleteShow");
 
-        setViewShowState(mTopContainer, VISIBLE);
+        setViewShowState(mTopContainer, INVISIBLE);
         setViewShowState(mBottomContainer, VISIBLE);
         setViewShowState(mStartButton, VISIBLE);
         setViewShowState(mLoadingProgressBar, INVISIBLE);
