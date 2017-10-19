@@ -91,12 +91,13 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     protected void initializeView() {
-        if (bean != null) {
+        if (!StringUtil.isBlank(bean.getReal_name())) {
             tvTitle.setText("指定老师");
             tvTeacher.setVisibility(View.GONE);
             tvTeacherZhiding.setVisibility(View.VISIBLE);
             tvTeacherZhiding.setText(bean.getReal_name());
             teacher_id = bean.getId();
+            llSelect.setEnabled(false);
         }
     }
 

@@ -251,11 +251,8 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
         super.onDestroy();
         if (isPlay) {
 //            getCurPlay().release();
-            if (detailPlayer != null) {
-                detailPlayer.release();
-            }
+            GSYVideoPlayer.releaseAllVideos();
         }
-        //GSYPreViewManager.instance().releaseMediaPlayer();
         if (orientationUtils != null)
             orientationUtils.releaseListener();
     }
