@@ -23,13 +23,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:src="@mipmap/logo_login" />
 
         <TextView
             style="@style/TitleTextStyle"
             android:layout_marginTop="@dimen/distance_divider"
-            android:text="好作文"
+            android:text="特级教师改作文"
             android:textColor="@color/green"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -67,7 +67,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("好作文");
+        setTitleName("特级教师改作文");
         setNavLeftGone();
     }
 
