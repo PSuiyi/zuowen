@@ -73,13 +73,6 @@ public class Constants {
         String SEARCHTYPE = "SearchType";
     }
 
-    public static final int BLUR_RADIUS = 25;
-    public static final int SCORE_TIME_LIMINT = 5 * 60 * 1000;//评分倒计时间
-    public static final int RECENT_LIVE_TIME_LIMINT = 10 * 60 * 1000;//最近直播时间
-    public static final int ALIAS_SEQUENCE = 0x333;
-
-    public static final String GENSEE_ACCOUNT = "hifi";//展示互动管理员账号
-    public static final String LIVE_TIME_FORMAT = "yy/MM/dd HH:mm";//直播列表时间格式
-
     public static final String IMG_URL = "http://hao.magick.ltd//Public/";
+    public static final String ZHIFU_AGREEMENT = "ZHIFU_AGREEMENT";
 }

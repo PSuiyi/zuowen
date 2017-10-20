@@ -8,16 +8,19 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.eventbus.BaseEvent;
 import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.event.EventRefresh;
 import com.znz.zuowen.event.EventTags;
-import com.znz.zuowen.model.CommonModel;
+import com.znz.zuowen.model.UserModel;
 import com.znz.zuowen.ui.fav.FavFragment;
 import com.znz.zuowen.ui.home.HomeFragment;
 import com.znz.zuowen.ui.login.LoginAct;
@@ -27,11 +30,14 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
 
-public class TabHomeAct extends BaseAppActivity<CommonModel> {
+public class TabHomeAct extends BaseAppActivity<UserModel> {
     @Bind(R.id.main_container)
     LinearLayout mainContainer;
     @Bind(R.id.radioButton1)
@@ -60,7 +66,7 @@ public class TabHomeAct extends BaseAppActivity<CommonModel> {
 
     @Override
     protected void initializeVariate() {
-        mModel = new CommonModel(activity, this);
+        mModel = new UserModel(activity, this);
         new RxPermissions(activity)
                 .request(Manifest.permission.CAMERA,
                         Manifest.permission.READ_PHONE_STATE,
@@ -95,6 +101,20 @@ public class TabHomeAct extends BaseAppActivity<CommonModel> {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        mModel.requestAgreement(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.saveTempData(Constants.ZHIFU_AGREEMENT, responseObject.getString("infos"));
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
+
     }
 
     @OnClick({R.id.radioButton1, R.id.radioButton2, R.id.radioButton3})

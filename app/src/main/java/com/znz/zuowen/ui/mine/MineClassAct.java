@@ -118,8 +118,6 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
                 super.onFail(error);
             }
         });
-
-
     }
 
     @Override
@@ -129,10 +127,13 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvAgreement, R.id.tvSubmit})
+    @OnClick({R.id.tvAgreement, R.id.tvSubmit, R.id.tvVip})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvAgreement:
+                gotoActivity(AgreementAct.class);
+                break;
+            case R.id.tvVip:
                 gotoActivity(AgreementAct.class);
                 break;
             case R.id.tvSubmit:
