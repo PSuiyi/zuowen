@@ -12,8 +12,12 @@ import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.upload_image.UploadImageLayout;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.event.EventRefresh;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.model.CommonModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,6 +114,7 @@ public class ArticleUploadAgainAct extends BaseAppActivity<ArticleModel> {
                                         mDataManager.showToast("上传成功");
                                         hidePd();
                                         finish();
+                                        EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_MINE_ARTICLE_DETAIL));
                                     }
 
                                     @Override

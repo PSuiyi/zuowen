@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
@@ -18,14 +19,18 @@ import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.ArticleMineBean;
+import com.znz.zuowen.event.EventRefresh;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.week.ArticleUploadAgainAct;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -140,7 +145,7 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
                 ImageAdapter imageAdapter1 = new ImageAdapter(mineBean.getFirst_upload());
                 rvArticle1.setAdapter(imageAdapter1);
 
-                if (mineBean.getSecond_status().equals("1")) {
+                if (mineBean.getSecond_status().equals("1") || mineBean.getSecond_status().equals("2")) {
                     llArticleTwo.setVisibility(View.VISIBLE);
                     if (!StringUtil.isBlank(mineBean.getSecond_teacher_reviews())) {
                         tvComment2.setText(Html.fromHtml(mineBean.getSecond_teacher_reviews()));
@@ -157,7 +162,6 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
 
                 } else {
                     llArticleTwo.setVisibility(View.GONE);
-
                     if (mineBean.getFirst_status().equals("2")) {
                         tvSubmit.setVisibility(View.VISIBLE);
                     } else {
@@ -173,17 +177,29 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
         });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
         Bundle bundle = new Bundle();
         bundle.putString("id", bean.getId());
         gotoActivity(ArticleUploadAgainAct.class, bundle);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        if (event.getFlag() == EventTags.REFRESH_MINE_ARTICLE_DETAIL) {
+            loadDataFromServer();
+        }
     }
 }

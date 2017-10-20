@@ -3,6 +3,7 @@ package com.znz.zuowen.event;
 public interface EventTags {
     int REFRESH_MINE_INFO = 0x100;//刷新个人信息
     int REFRESH_MINE_FAV = 0x101;
+    int REFRESH_MINE_ARTICLE_DETAIL = 0x103;
 
     int GOTO_CART = 0x200;
     int GOTO_INFO = 0x201;//修改个人资料通知个人资料修改
