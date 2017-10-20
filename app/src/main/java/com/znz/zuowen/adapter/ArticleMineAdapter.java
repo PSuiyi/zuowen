@@ -32,7 +32,7 @@ public class ArticleMineAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHo
     protected void convert(BaseViewHolder helper, ArticleBean bean) {
         setOnItemClickListener(this);
         mDataManager.setValueToView(tvName, bean.getTitle());
-        mDataManager.setValueToView(tvTeacher, "评阅老师：" + bean.getTeacher_name());
+        mDataManager.setValueToView(tvTeacher, "审批老师：" + bean.getTeacher_name());
         mDataManager.setValueToView(tvTime, bean.getAddtime());
     }
 

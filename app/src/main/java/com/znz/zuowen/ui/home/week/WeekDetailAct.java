@@ -100,12 +100,6 @@ public class WeekDetailAct extends BaseAppActivity<ArticleModel> {
                 } else {
                     rvArticle.setVisibility(View.GONE);
                 }
-
-                if (!StringUtil.isBlank(bean.getIs_my_week())) {
-                    if (bean.getIs_my_week().equals("1")) {
-                        tvSubmit.setText("再次挑战");
-                    }
-                }
             }
 
             @Override

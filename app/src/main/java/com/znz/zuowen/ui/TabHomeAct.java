@@ -15,12 +15,15 @@ import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.event.EventRefresh;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.CommonModel;
 import com.znz.zuowen.ui.fav.FavFragment;
 import com.znz.zuowen.ui.home.HomeFragment;
 import com.znz.zuowen.ui.login.LoginAct;
 import com.znz.zuowen.ui.mine.MineFragment;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -108,6 +111,7 @@ public class TabHomeAct extends BaseAppActivity<CommonModel> {
                     favFragment = new FavFragment();
                 }
                 fragmentUtil.switchContent(favFragment, R.id.main_container, fragmentManager);
+                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_MINE_FAV));
                 break;
             case R.id.radioButton3:
                 if (mineFragment == null) {

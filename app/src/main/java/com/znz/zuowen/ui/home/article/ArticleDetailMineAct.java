@@ -119,10 +119,13 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
                 ImageAdapter imageAdapter = new ImageAdapter(bean.getImgurl());
                 rvSubject.setAdapter(imageAdapter);
 
-
                 mineBean = JSONObject.parseObject(responseObject.getString("my_info"), ArticleMineBean.class);
                 mDataManager.setValueToView(tvName, "作文题目：" + mineBean.getTitle());
-                mDataManager.setValueToView(tvTeacher, "审批老师：" + mineBean.getTeacher_name());
+                if (!StringUtil.isBlank(title)) {
+                    mDataManager.setValueToView(tvTeacher, "命题老师：" + mineBean.getTeacher_name());
+                } else {
+                    mDataManager.setValueToView(tvTeacher, "审批老师：" + mineBean.getTeacher_name());
+                }
                 mDataManager.setValueToView(tvTime, mineBean.getAddtime());
                 if (!StringUtil.isBlank(mineBean.getFirst_teacher_reviews())) {
                     tvComment1.setText(Html.fromHtml(mineBean.getFirst_teacher_reviews()));

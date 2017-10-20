@@ -129,6 +129,10 @@
                 android:id="@+id/tvRegister"
                 style="@style/TextGrayStyle"
                 android:layout_width="wrap_content"
+                android:paddingBottom="3dp"
+                android:paddingLeft="@dimen/distance_divider"
+                android:paddingRight="@dimen/distance_divider"
+                android:paddingTop="3dp"
                 android:text="立即注册" />
 
             <View style="@style/WeightView" />
@@ -137,6 +141,10 @@
                 android:id="@+id/tvForgetPsd"
                 style="@style/TextGrayStyle"
                 android:layout_width="wrap_content"
+                android:paddingBottom="3dp"
+                android:paddingLeft="@dimen/distance_divider"
+                android:paddingRight="@dimen/distance_divider"
+                android:paddingTop="3dp"
                 android:text="忘记密码?" />
 
         </LinearLayout>

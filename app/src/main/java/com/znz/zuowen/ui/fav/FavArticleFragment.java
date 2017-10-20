@@ -14,6 +14,7 @@ import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.event.EventList;
+import com.znz.zuowen.event.EventRefresh;
 import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 
@@ -130,7 +131,18 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
         if (event.getFlag() == EventTags.LIST_ARTICLE_FAV) {
             resetRefresh();
         }
-
+        if (event.getFlag() == EventTags.LIST_ARTICLE_VOTE) {
+            for (MultiBean multiBean : dataList) {
+                if (multiBean.getItemType() == Constants.MultiType.ArticleVote) {
+                    if (multiBean.getArticleBean().equals(event.getBean())) {
+                        multiBean.getArticleBean().setIs_vote(((ArticleBean) event.getBean()).getIs_vote());
+                        multiBean.getArticleBean().setVote_count(((ArticleBean) event.getBean()).getVote_count());
+                        adapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+        }
         if (event.getFlag() == EventTags.LIST_ARTICLE_LIKE) {
             for (MultiBean multiBean : dataList) {
                 if (multiBean.getItemType() == Constants.MultiType.Article) {
@@ -141,6 +153,13 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
                     }
                 }
             }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        if (event.getFlag() == EventTags.REFRESH_MINE_FAV) {
+            resetRefresh();
         }
     }
 }

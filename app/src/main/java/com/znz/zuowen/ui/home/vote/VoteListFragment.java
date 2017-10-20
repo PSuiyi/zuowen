@@ -164,5 +164,11 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
             dataList.get(position).setLike_count(((ArticleBean) event.getBean()).getLike_count());
             adapter.notifyDataSetChanged();
         }
+        if (event.getFlag() == EventTags.LIST_ARTICLE_VOTE) {
+            int position = dataList.indexOf(event.getBean());
+            dataList.get(position).setIs_vote(((ArticleBean) event.getBean()).getIs_vote());
+            dataList.get(position).setVote_count(((ArticleBean) event.getBean()).getVote_count());
+            adapter.notifyDataSetChanged();
+        }
     }
 }
