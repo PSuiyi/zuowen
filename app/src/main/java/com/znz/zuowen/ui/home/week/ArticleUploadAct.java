@@ -103,23 +103,25 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     protected void loadDataFromServer() {
-        Map<String, String> params2 = new HashMap<>();
-        mModel.requestTeacherList(params2, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-                teacherList.clear();
-                teacherList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), OptionBean.class));
-                if (!teacherList.isEmpty()) {
-                    teacherList.get(0).setChecked(true);
+        if (StringUtil.isBlank(bean.getReal_name())) {
+            Map<String, String> params2 = new HashMap<>();
+            mModel.requestTeacherList(params2, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    teacherList.clear();
+                    teacherList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), OptionBean.class));
+                    if (!teacherList.isEmpty()) {
+                        teacherList.get(0).setChecked(true);
+                    }
                 }
-            }
 
-            @Override
-            public void onFail(String error) {
-                super.onFail(error);
-            }
-        });
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        }
     }
 
     @Override
