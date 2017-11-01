@@ -22,6 +22,7 @@ import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.good.GoodListAct;
+import com.znz.zuowen.ui.home.teacher.TeacherListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
 import com.znz.zuowen.ui.home.vote.ArticleVoteAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
@@ -54,6 +55,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
     private LinearLayout llMenu3;
     private LinearLayout llMenu4;
     private LinearLayout llMenu5;
+    private LinearLayout llMenu6;
 
     @Override
     protected int[] getLayoutResource() {
@@ -89,6 +91,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
         llMenu3 = bindViewById(header, R.id.llMenu3);
         llMenu4 = bindViewById(header, R.id.llMenu4);
         llMenu5 = bindViewById(header, R.id.llMenu5);
+        llMenu6 = bindViewById(header, R.id.llMenu6);
 
         ViewTreeObserver vto = llMenu1.getViewTreeObserver();
         vto.addOnPreDrawListener(() -> {
@@ -100,6 +103,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
             llMenu3.setLayoutParams(layoutParams);
             llMenu4.setLayoutParams(layoutParams);
             llMenu5.setLayoutParams(layoutParams);
+            llMenu6.setLayoutParams(layoutParams);
             return true;
         });
 
@@ -107,17 +111,20 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
             gotoActivity(WeekArticleAct.class);
         });
         llMenu2.setOnClickListener(v -> {
-            gotoActivity(GoodListAct.class);
-        });
-        llMenu3.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("page", "我的作文");
             gotoActivity(ArticleListAct.class, bundle);
         });
+        llMenu3.setOnClickListener(v -> {
+            gotoActivity(GoodListAct.class);
+        });
         llMenu4.setOnClickListener(v -> {
-            gotoActivity(VideoListAct.class);
+            gotoActivity(TeacherListAct.class);
         });
         llMenu5.setOnClickListener(v -> {
+            gotoActivity(VideoListAct.class);
+        });
+        llMenu6.setOnClickListener(v -> {
             gotoActivity(ArticleVoteAct.class);
         });
 

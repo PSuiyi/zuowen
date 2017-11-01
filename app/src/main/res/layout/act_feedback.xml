@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etContent"
+            style="@style/EditMultiStyle"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/white"
+            android:hint="请输入您的宝贵意见和建议"
+            android:padding="@dimen/distance_view" />
+
+
+        <TextView
+            style="@style/TextGrayStyle"
+            android:layout_margin="@dimen/distance_view"
+            android:text="你是否愿意留下联系方式，以便我们及时帮您解决。" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            style="@style/EditMultiStyle"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:hint="手机号/微信/QQ/邮箱"
+            android:padding="@dimen/distance_view" />
+
+        <TextView
+            android:id="@+id/tvSubmit"
+            style="@style/BtnRoundStyle"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:layout_marginRight="@dimen/distance_view"
+            android:layout_marginTop="30dp"
+            android:text="提交"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -112,7 +112,16 @@ public class MineFragment extends BaseAppFragment<UserModel> {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("查询课时")
+                .withTitle("更改登录密码")
+                .withEnableArraw(true)
+                .withEnableLongLine(true)
+                .withOnClickListener(v -> {
+                    gotoActivity(UpdatePsdAct.class);
+                })
+                .build());
+
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withTitle("查询积分")
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
                     gotoActivity(MineClassAct.class);
@@ -130,20 +139,38 @@ public class MineFragment extends BaseAppFragment<UserModel> {
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("我的作文")
                 .withEnableArraw(true)
+                .withEnableLongLine(true)
                 .withOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("page", "我的作文");
                     gotoActivity(ArticleListAct.class, bundle);
                 })
                 .build());
+
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("更改登录密码")
+                .withTitle("意见反馈")
                 .withEnableArraw(true)
-                .withEnableLongLine(true)
                 .withOnClickListener(v -> {
-                    gotoActivity(UpdatePsdAct.class);
+                    gotoActivity(FeedbackAct.class);
                 })
                 .build());
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withTitle("关于我们")
+                .withEnableArraw(true)
+                .withOnClickListener(v -> {
+                    gotoActivity(AboutUsAct.class);
+                })
+                .build());
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withTitle("检查更新")
+                .withValue("已是最新版")
+                .withEnableLongLine(true)
+                .withEnableArraw(true)
+                .withOnClickListener(v -> {
+                    mDataManager.showToast("已经是最新版");
+                })
+                .build());
+
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("退出登录账号")
                 .withEnableArraw(true)

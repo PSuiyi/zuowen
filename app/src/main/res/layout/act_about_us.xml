@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/logo" />
+
+        <TextView
+            android:id="@+id/tvVersion"
+            style="@style/TitleGrayTextStyle"
+            android:layout_marginBottom="@dimen/distance_view"
+            android:layout_marginTop="@dimen/distance_view"
+            android:text="树遇V1.0" />
+
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_marginBottom="@dimen/distance_view"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/distance_view"
+            android:lineSpacingExtra="@dimen/distance_text"
+            android:text="@string/aboutus" />
+
+        <View style="@style/WeightView"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextStyle"
+                android:text="xx" />
+
+            <TextView
+                style="@style/TextStyle"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:text="版权所有" />
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/TextSamllGrayStyle"
+            android:layout_margin="@dimen/distance_view"
+            android:text="Copyright ©2015-2018 AllRights Reserved" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivImage"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="@dimen/distance_view"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_image_rect" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/TitleTextStyle"
+                    android:text="大戟科分类概述及检索" />
+
+                <TextView
+                    android:id="@+id/tvContent"
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_view"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="如上所述，大戟科多肉植物只占全科植物种类数的一小部分，只出现在8个属中。目前世界上公认的肉质" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>

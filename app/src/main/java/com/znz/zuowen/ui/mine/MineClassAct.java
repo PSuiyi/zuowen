@@ -77,7 +77,7 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("课时查询");
+        setTitleName("积分查询");
     }
 
     @Override

@@ -118,6 +118,10 @@
         <activity
             android:name=".ui.mine.UpdatePhoneTwoAct"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.home.teacher.TeacherListAct" />
+        <activity android:name=".ui.home.teacher.TeacherDetailAct" />
+        <activity android:name=".ui.mine.FeedbackAct" />
+        <activity android:name=".ui.mine.AboutUsAct" />
     </application>
 
 </manifest>

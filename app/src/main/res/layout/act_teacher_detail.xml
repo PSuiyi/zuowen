@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_image_rect" />
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:padding="@dimen/distance_view"
+                android:text="张XX" />
+
+            <TextView
+                style="@style/TextStyle"
+                android:paddingLeft="@dimen/distance_view"
+                android:paddingRight="@dimen/distance_view"
+                android:text="张珊薇，女，本科学历，中学高级教师，现任文学部部长。曾荣获杭州市优秀园丁、杭州市优秀教师称号，多次策划组织大型青少年文学教育活动，2008年被授予华东地区校外创新活动家称号；杭州市首批小学语文学科带头人；担任少年宫专用教材《文学写作》主编，参与省编小学语文教材教师辅导用书编写工作；多篇教学论文和活动案例获全国及省市一、二等奖。" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>
