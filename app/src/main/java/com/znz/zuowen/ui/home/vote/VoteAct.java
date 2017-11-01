@@ -22,7 +22,7 @@ import butterknife.Bind;
  * Description：
  */
 
-public class ArticleVoteAct extends BaseAppActivity {
+public class VoteAct extends BaseAppActivity {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -49,7 +49,7 @@ public class ArticleVoteAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("作文投票");
+        setTitleName("佳作PK");
     }
 
     @Override

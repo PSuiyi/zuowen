@@ -34,9 +34,9 @@ public class VideoListAct extends BaseAppActivity {
     protected void initializeNavigation() {
         if (!StringUtil.isBlank(page)) {
             if (page.equals("已购买")) {
-                setTitleName("已购买微课指导");
+                setTitleName("已购买微课堂");
             } else {
-                setTitleName("微课指导");
+                setTitleName("微课堂");
             }
         } else {
             setTitleName("微课指导");

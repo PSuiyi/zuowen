@@ -20,11 +20,12 @@ import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.event.EventList;
 import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
+import com.znz.zuowen.ui.common.HelpAct;
 import com.znz.zuowen.ui.home.article.ArticleListAct;
-import com.znz.zuowen.ui.home.good.GoodListAct;
+import com.znz.zuowen.ui.home.message.MessageListAct;
 import com.znz.zuowen.ui.home.teacher.TeacherListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
-import com.znz.zuowen.ui.home.vote.ArticleVoteAct;
+import com.znz.zuowen.ui.home.vote.VoteAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -71,6 +72,10 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
     protected void initializeNavigation() {
         setTitleName("特级教师改作文");
         setNavLeftGone();
+        znzToolBar.setNavRightImg(R.mipmap.bangzhu);
+        znzToolBar.setOnNavRightClickListener(v -> {
+            gotoActivity(HelpAct.class);
+        });
     }
 
     @Override
@@ -116,7 +121,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
             gotoActivity(ArticleListAct.class, bundle);
         });
         llMenu3.setOnClickListener(v -> {
-            gotoActivity(GoodListAct.class);
+            gotoActivity(VoteAct.class);
         });
         llMenu4.setOnClickListener(v -> {
             gotoActivity(TeacherListAct.class);
@@ -125,7 +130,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
             gotoActivity(VideoListAct.class);
         });
         llMenu6.setOnClickListener(v -> {
-            gotoActivity(ArticleVoteAct.class);
+            gotoActivity(MessageListAct.class);
         });
 
 //        mBanner = (BGABanner) header.findViewById(R.id.banner);

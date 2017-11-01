@@ -7,14 +7,14 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
 import com.znz.zuowen.bean.UrlBean;
-import com.znz.zuowen.ui.home.teacher.TeacherDetailAct;
+import com.znz.zuowen.ui.home.message.MesageDetailAct;
 
 import java.util.List;
 
 public class MessageAdapter extends BaseQuickAdapter<UrlBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     public MessageAdapter(@Nullable List dataList) {
-        super(R.layout.item_lv_teacher, dataList);
+        super(R.layout.item_lv_message, dataList);
     }
 
     @Override
@@ -24,6 +24,6 @@ public class MessageAdapter extends BaseQuickAdapter<UrlBean, BaseViewHolder> im
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(TeacherDetailAct.class);
+        gotoActivity(MesageDetailAct.class);
     }
 }

@@ -85,7 +85,7 @@
             android:name=".ui.home.week.ArticleUploadAct"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.vote.ArticleVoteAct"
+            android:name=".ui.home.vote.VoteAct"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.vote.VoteDetailAct"
@@ -122,6 +122,9 @@
         <activity android:name=".ui.home.teacher.TeacherDetailAct" />
         <activity android:name=".ui.mine.FeedbackAct" />
         <activity android:name=".ui.mine.AboutUsAct" />
+        <activity android:name=".ui.common.HelpAct" />
+        <activity android:name=".ui.home.message.MessageListAct" />
+        <activity android:name=".ui.home.message.MesageDetailAct" />
     </application>
 
 </manifest>

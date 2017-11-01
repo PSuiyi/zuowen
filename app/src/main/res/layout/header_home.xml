@@ -48,7 +48,7 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/icon_benzhouzuowen" />
+                    android:src="@mipmap/gushuqiandao" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -74,7 +74,7 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/icon_youxiuzuowen" />
+                    android:src="@mipmap/icon_wodezuowen" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -101,7 +101,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/icon_wodezuowen" />
+                    android:src="@mipmap/gushushenhe" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -135,7 +135,7 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/icon_zuowentoupiao" />
+                    android:src="@mipmap/mingshibang" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -166,7 +166,7 @@
                 <TextView
                     style="@style/TextStyle"
                     android:layout_marginTop="@dimen/home_distance"
-                    android:text="微课指导" />
+                    android:text="微课堂" />
             </LinearLayout>
 
             <View
@@ -187,12 +187,12 @@
                 <ImageView
                     android:layout_width="@dimen/home_menu_size"
                     android:layout_height="@dimen/home_menu_size"
-                    android:src="@mipmap/icon_zuowentoupiao" />
+                    android:src="@mipmap/jifenshangcheng" />
 
                 <TextView
                     style="@style/TextStyle"
                     android:layout_marginTop="@dimen/home_distance"
-                    android:text="信息发布" />
+                    android:text="信息汇" />
             </LinearLayout>
 
         </LinearLayout>
