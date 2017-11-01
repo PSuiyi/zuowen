@@ -1,7 +1,6 @@
 package com.znz.zuowen.ui.login;
 
 import android.content.Intent;
-import android.view.WindowManager;
 
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
@@ -18,8 +17,6 @@ import com.znz.zuowen.ui.TabHomeAct;
 public class SplashAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        //全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         return new int[]{R.layout.act_splash};
     }
 

@@ -15,7 +15,7 @@ import com.znz.zuowen.base.BaseAppListActivity;
 public class MessageListAct extends BaseAppListActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_activity_with_fragment, 1};
+        return new int[]{R.layout.common_list_layout_withnav, 1};
     }
 
     @Override

@@ -132,35 +132,6 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
         llMenu6.setOnClickListener(v -> {
             gotoActivity(MessageListAct.class);
         });
-
-//        mBanner = (BGABanner) header.findViewById(R.id.banner);
-//        mBanner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
-//            @Override
-//            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-//                Glide.with(activity)
-//                        .load(model)
-//                        .placeholder(R.mipmap.default_image_rect)
-//                        .error(R.mipmap.default_image_rect)
-//                        .centerCrop()
-//                        .dontAnimate()
-//                        .into(itemView);
-//            }
-//        });
-//
-//
-//        mBanner.setDelegate((banner, itemView, model, position) -> {
-//        });
-//
-//
-//        List<String> advUrls = new ArrayList<>();
-//        List<String> advTitles = new ArrayList<>();
-//
-//        for (AdvInfoBean advInfoBean : advList) {
-//            advUrls.add(advInfoBean.getImg());
-//            advTitles.add(advInfoBean.getName());
-//        }
-//
-//        mBanner.setData(advUrls, advTitles);
     }
 
     @Override
@@ -177,7 +148,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
     protected void onRefreshSuccess(String response) {
         dataList.add(new MultiBean(Constants.MultiType.Section, "国内面料"));
         for (ArticleBean articleBean : JSONArray.parseArray(response, ArticleBean.class)) {
-            dataList.add(new MultiBean(Constants.MultiType.Article, articleBean));
+            dataList.add(new MultiBean(Constants.MultiType.WeekStar, articleBean));
         }
         adapter.notifyDataSetChanged();
     }
@@ -217,7 +188,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
     public void onMessageEvent(EventList event) {
         if (event.getFlag() == EventTags.LIST_ARTICLE_FAV) {
             for (MultiBean multiBean : dataList) {
-                if (multiBean.getItemType() == Constants.MultiType.Article) {
+                if (multiBean.getItemType() == Constants.MultiType.WeekStar) {
                     if (multiBean.getArticleBean().equals(event.getBean())) {
                         multiBean.getArticleBean().setCollect_count(((ArticleBean) event.getBean()).getCollect_count());
                         adapter.notifyDataSetChanged();
@@ -229,7 +200,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
 
         if (event.getFlag() == EventTags.LIST_ARTICLE_LIKE) {
             for (MultiBean multiBean : dataList) {
-                if (multiBean.getItemType() == Constants.MultiType.Article) {
+                if (multiBean.getItemType() == Constants.MultiType.WeekStar) {
                     if (multiBean.getArticleBean().equals(event.getBean())) {
                         multiBean.getArticleBean().setLike_count(((ArticleBean) event.getBean()).getLike_count());
                         adapter.notifyDataSetChanged();

@@ -12,13 +12,9 @@ import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.ui.home.article.ArticleDetailAct;
-import com.znz.zuowen.ui.home.good.GoodListAct;
 import com.znz.zuowen.ui.home.vote.VoteDetailAct;
 
 import java.util.List;
-
-import static com.znz.zuowen.R.id.ivGood;
-import static com.znz.zuowen.R.id.llCount;
 
 /**
  * Date： 2017/9/4 2017
@@ -33,7 +29,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
     public MultiAdapter(List dataList) {
         super(dataList);
         addItemType(Constants.MultiType.Section, R.layout.item_lv_section);
-        addItemType(Constants.MultiType.Article, R.layout.item_lv_article);
+        addItemType(Constants.MultiType.WeekStar, R.layout.item_lv_home);
         addItemType(Constants.MultiType.ArticleVote, R.layout.item_lv_vote);
     }
 
@@ -43,7 +39,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
                 break;
-            case Constants.MultiType.Article:
+            case Constants.MultiType.WeekStar:
                 helper.setText(R.id.tvTitle, bean.getArticleBean().getTitle());
                 if (!StringUtil.isBlank(bean.getArticleBean().getContent())) {
                     helper.setVisible(R.id.tvContent, true);
@@ -59,10 +55,6 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 } else {
                     helper.setVisible(R.id.ivImage, false);
                 }
-                helper.setVisible(ivGood, true);
-                helper.setVisible(llCount, true);
-                helper.setText(R.id.tvFavCount, bean.getArticleBean().getCollect_count());
-                helper.setText(R.id.tvLikeCount, bean.getArticleBean().getLike_count());
                 break;
             case Constants.MultiType.ArticleVote:
                 helper.setText(R.id.tvTitle, bean.getArticleBean().getTitle());
@@ -108,9 +100,9 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         Bundle bundle = new Bundle();
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
-                gotoActivity(GoodListAct.class);
+//                gotoActivity(GoodListAct.class);
                 break;
-            case Constants.MultiType.Article:
+            case Constants.MultiType.WeekStar:
                 bundle.putString("id", bean.getArticleBean().getId());
                 gotoActivity(ArticleDetailAct.class, bundle);
                 break;

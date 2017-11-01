@@ -97,13 +97,13 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
         for (ArticleBean articleBean : JSONArray.parseArray(response, ArticleBean.class)) {
             switch (articleBean.getMytype()) {
                 case "1":
-                    dataList.add(new MultiBean(Constants.MultiType.Article, articleBean));
+                    dataList.add(new MultiBean(Constants.MultiType.WeekStar, articleBean));
                     break;
                 case "3":
                     dataList.add(new MultiBean(Constants.MultiType.ArticleVote, articleBean));
                     break;
                 default:
-                    dataList.add(new MultiBean(Constants.MultiType.Article, articleBean));
+                    dataList.add(new MultiBean(Constants.MultiType.WeekStar, articleBean));
                     break;
             }
         }
@@ -145,7 +145,7 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
         }
         if (event.getFlag() == EventTags.LIST_ARTICLE_LIKE) {
             for (MultiBean multiBean : dataList) {
-                if (multiBean.getItemType() == Constants.MultiType.Article) {
+                if (multiBean.getItemType() == Constants.MultiType.WeekStar) {
                     if (multiBean.getArticleBean().equals(event.getBean())) {
                         multiBean.getArticleBean().setLike_count(((ArticleBean) event.getBean()).getLike_count());
                         adapter.notifyDataSetChanged();

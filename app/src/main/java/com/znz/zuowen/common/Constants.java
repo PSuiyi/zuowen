@@ -65,7 +65,7 @@ public class Constants {
 
     public interface MultiType {
         int Section = 0;
-        int Article = 1;
+        int WeekStar = 1;
         int ArticleVote = 2;
     }
 

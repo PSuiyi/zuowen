@@ -49,7 +49,7 @@ public class WeekArticleAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("本周作文");
+        setTitleName("作文库");
     }
 
     @Override

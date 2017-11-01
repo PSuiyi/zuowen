@@ -20,7 +20,7 @@
             android:id="@+id/tvSection"
             style="@style/TitleTextStyle"
             android:layout_marginLeft="@dimen/distance_divider"
-            android:text="优秀作文" />
+            android:text="本周之星" />
 
         <View style="@style/WeightView" />
 
@@ -29,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 style="@style/TextStyle"

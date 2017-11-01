@@ -36,15 +36,15 @@
                 <TextView
                     android:id="@+id/tvTitle"
                     style="@style/TitleTextStyle"
-                    android:text="大戟科分类概述及检索" />
+                    android:text="张珊薇"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvContent"
                     style="@style/TextGrayStyle"
                     android:layout_marginTop="@dimen/distance_view"
-                    android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="如上所述，大戟科多肉植物只占全科植物种类数的一小部分，只出现在8个属中。目前世界上公认的肉质" />
+                    android:text="张珊薇，女，本科学历，中学高级教师，现任文学部部长。曾荣获杭州市优秀..."></TextView>
 
             </LinearLayout>
 
