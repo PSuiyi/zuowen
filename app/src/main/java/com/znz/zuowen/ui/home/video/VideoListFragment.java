@@ -77,7 +77,7 @@ public class VideoListFragment extends BaseAppListFragment<ArticleModel, VideoBe
                     } else {
                         new UIAlertDialog(activity)
                                 .builder()
-                                .setMsg("确定花费1个课时购买该微课？")
+                                .setMsg("确定花费10个积分购买该微课视频？？")
                                 .setNegativeButton("取消", null)
                                 .setPositiveButton("确定", v2 -> {
                                     Map<String, String> params = new HashMap<>();

@@ -25,7 +25,7 @@ import com.znz.zuowen.ui.home.article.ArticleListAct;
 import com.znz.zuowen.ui.home.message.MessageListAct;
 import com.znz.zuowen.ui.home.teacher.TeacherListAct;
 import com.znz.zuowen.ui.home.video.VideoListAct;
-import com.znz.zuowen.ui.home.vote.VoteAct;
+import com.znz.zuowen.ui.home.vote.VoteStageAct;
 import com.znz.zuowen.ui.home.week.WeekArticleAct;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -121,7 +121,7 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
             gotoActivity(ArticleListAct.class, bundle);
         });
         llMenu3.setOnClickListener(v -> {
-            gotoActivity(VoteAct.class);
+            gotoActivity(VoteStageAct.class);
         });
         llMenu4.setOnClickListener(v -> {
             gotoActivity(TeacherListAct.class);

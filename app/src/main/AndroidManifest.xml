@@ -125,6 +125,7 @@
         <activity android:name=".ui.common.HelpAct" />
         <activity android:name=".ui.home.message.MessageListAct" />
         <activity android:name=".ui.home.message.MesageDetailAct" />
+        <activity android:name=".ui.home.vote.VoteStageAct" />
     </application>
 
 </manifest>
