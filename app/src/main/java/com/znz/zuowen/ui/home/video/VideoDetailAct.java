@@ -1,7 +1,6 @@
 package com.znz.zuowen.ui.home.video;
 
 import android.content.res.Configuration;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Date： 2017/9/29 2017
@@ -215,22 +213,13 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
-    @Override
     protected void onPause() {
-//        getCurPlay().onVideoPause();
         super.onPause();
         isPause = true;
     }
 
     @Override
     protected void onResume() {
-//        getCurPlay().onVideoResume();
         super.onResume();
         isPause = false;
     }
@@ -251,7 +240,6 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
     protected void onDestroy() {
         super.onDestroy();
         if (isPlay) {
-//            getCurPlay().release();
             GSYVideoPlayer.releaseAllVideos();
         }
         if (orientationUtils != null)
@@ -265,12 +253,5 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
         if (isPlay && !isPause) {
             detailPlayer.onConfigurationChanged(this, newConfig, orientationUtils);
         }
-    }
-
-    private GSYVideoPlayer getCurPlay() {
-        if (detailPlayer.getFullWindowPlayer() != null) {
-            return detailPlayer.getFullWindowPlayer();
-        }
-        return detailPlayer;
     }
 }

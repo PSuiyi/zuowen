@@ -22,7 +22,7 @@
             <TextView
                 android:id="@+id/tvCount"
                 style="@style/TitleTextStyle"
-                android:text="5课时" />
+                android:text="5积分" />
 
             <TextView
                 android:id="@+id/tvMoney"

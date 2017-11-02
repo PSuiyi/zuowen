@@ -42,7 +42,7 @@
                 <TextView
                     android:id="@+id/tvContent"
                     style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_view"
+                    android:layout_marginTop="@dimen/distance_divider"
                     android:maxLines="2"
                     android:text="张珊薇，女，本科学历，中学高级教师，现任文学部部长。曾荣获杭州市优秀..."></TextView>
 

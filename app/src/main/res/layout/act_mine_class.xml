@@ -90,13 +90,13 @@
 
                     <TextView
                         style="@style/TitleGrayTextStyle"
-                        android:text="现有课时：" />
+                        android:text="现有积分：" />
 
                     <TextView
                         android:id="@+id/tvClassOwn"
                         style="@style/TitleTextStyle"
                         android:layout_width="match_parent"
-                        android:text="2课时" />
+                        android:text="2积分" />
                 </LinearLayout>
 
                 <View style="@style/Line" />
@@ -115,7 +115,7 @@
                         android:id="@+id/tvClassTotal"
                         style="@style/TitleTextStyle"
                         android:layout_width="match_parent"
-                        android:text="600元（已赠送3课时）" />
+                        android:text="600元（已赠送3积分）" />
                 </LinearLayout>
 
                 <View style="@style/LineDivider" />
@@ -149,7 +149,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                android:text="购买课时" />
+                android:text="购买积分" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

@@ -1,11 +1,10 @@
 package com.znz.zuowen.ui.home.vote;
 
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.VoteStageAdapter;
-import com.znz.zuowen.base.BaseAppListFragment;
+import com.znz.zuowen.base.BaseAppListActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
 
@@ -16,34 +15,21 @@ import com.znz.zuowen.model.ArticleModel;
  * Description：
  */
 
-public class VoteStageListFragment extends BaseAppListFragment<ArticleModel, ArticleBean> {
-
-    private String page;
-
-    public static VoteStageListFragment newInstance(String page) {
-        Bundle args = new Bundle();
-        args.putString("page", page);
-        VoteStageListFragment fragment = new VoteStageListFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class VoteStageListAct extends BaseAppListActivity<ArticleModel, ArticleBean> {
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_list_layout};
+        return new int[]{R.layout.common_list_layout_withnav, 1};
     }
 
     @Override
     protected void initializeVariate() {
         mModel = new ArticleModel(activity, this);
-        if (getArguments() != null) {
-            page = getArguments().getString("page");
-        }
     }
 
     @Override
     protected void initializeNavigation() {
-
+        setTitleName("佳作PK");
     }
 
     @Override

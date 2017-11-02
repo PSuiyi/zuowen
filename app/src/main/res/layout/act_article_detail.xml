@@ -29,23 +29,45 @@
                 android:orientation="vertical"
                 android:padding="@dimen/distance_view">
 
-                <TextView
-                    android:id="@+id/tvName"
-                    style="@style/TitleTextStyle"
-                    android:text="作文题目：我的理想"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvTeacher"
-                    style="@style/TextStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
-                    android:text="命题老师：叶雨" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvTime"
-                    style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
-                    android:text="2017/08/12" />
+                        <TextView
+                            android:id="@+id/tvName"
+                            style="@style/TitleTextStyle"
+                            android:text="作文题目：我的理想"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvTeacher"
+                            style="@style/TextStyle"
+                            android:layout_marginTop="@dimen/distance_divider"
+                            android:text="命题老师：叶雨" />
+
+                        <TextView
+                            android:id="@+id/tvTime"
+                            style="@style/TextGrayStyle"
+                            android:layout_marginTop="@dimen/distance_divider"
+                            android:text="2017/08/12" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivGood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/benzhouzhixing"
+                        android:visibility="visible" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvContent"
