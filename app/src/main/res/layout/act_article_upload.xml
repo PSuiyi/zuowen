@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
@@ -11,99 +12,67 @@
 
     <include layout="@layout/include_common_network_status" />
 
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/llSelect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/llSelect"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/distance_view">
-
-                    <TextView
-                        android:id="@+id/tvTitle"
-                        style="@style/TitleGrayTextStyle"
-                        android:text="选择老师" />
-
-                    <View style="@style/WeightView" />
-
-                    <TextView
-                        android:id="@+id/tvTeacher"
-                        style="@style/TitleTextStyle"
-                        android:drawablePadding="3dp"
-                        android:drawableRight="@mipmap/icon_xiala"
-                        android:text="请选择老师" />
-
-                    <TextView
-                        android:id="@+id/tvTeacherZhiding"
-                        style="@style/TitleTextStyle"
-                        android:text="请选择老师"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <View style="@style/LineDivider" />
-
-                <com.znz.compass.znzlibray.views.EditTextWithDel
-                    android:id="@+id/etTitle"
-                    style="@style/EditSingleStyle"
-                    android:layout_width="match_parent"
-                    android:hint="请输入作文题目"
-                    android:padding="@dimen/distance_view"
-                    android:textSize="@dimen/title_size" />
-
-                <View style="@style/Line" />
-
-                <com.znz.compass.znzlibray.views.upload_image.UploadImageLayout
-                    android:id="@+id/uploadImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/distance_view" />
-
-                <LinearLayout
-                    android:id="@+id/llAdd"
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:layout_margin="@dimen/distance_view"
-                    android:background="#B2B2B2"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_tianjiazhaopian" />
-
-                    <TextView
-                        style="@style/TextWhiteStyle"
-                        android:layout_marginTop="@dimen/distance_divider"
-                        android:text="添加照片" />
-                </LinearLayout>
-
-            </LinearLayout>
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
 
             <TextView
-                android:id="@+id/tvSubmit"
-                style="@style/BtnRoundStyle"
-                android:layout_marginBottom="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:text="上传" />
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                android:id="@+id/tvTitle"
+                style="@style/TitleGrayTextStyle"
+                android:text="选择老师" />
 
+            <View style="@style/WeightView" />
+
+            <TextView
+                android:id="@+id/tvTeacher"
+                style="@style/TitleTextStyle"
+                android:drawablePadding="3dp"
+                android:drawableRight="@mipmap/icon_xiala"
+                android:text="请选择老师" />
+
+            <TextView
+                android:id="@+id/tvTeacherZhiding"
+                style="@style/TitleTextStyle"
+                android:text="请选择老师"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <View style="@style/LineDivider" />
+
+        <com.znz.compass.znzlibray.views.EditTextWithDel
+            android:id="@+id/etTitle"
+            style="@style/EditSingleStyle"
+            android:layout_width="match_parent"
+            android:hint="请输入作文题目"
+            android:padding="@dimen/distance_view"
+            android:textSize="@dimen/title_size" />
+
+        <View style="@style/LineDivider" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/commonTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_height"
+            android:background="@color/white"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#30BB9C"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#30BB9C"
+            app:tabTextColor="@color/text_gray" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/commonViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>

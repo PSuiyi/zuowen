@@ -46,7 +46,7 @@ public class AboutUsAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        tvVersion.setText("好作文V" + StringUtil.getVersionName(activity));
+        tvVersion.setText("特级教师改作文 v" + StringUtil.getVersionName(activity));
     }
 
     @Override

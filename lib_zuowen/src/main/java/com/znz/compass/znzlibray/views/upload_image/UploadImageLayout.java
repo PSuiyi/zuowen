@@ -3,7 +3,6 @@ package com.znz.compass.znzlibray.views.upload_image;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -18,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @see com.znz.compass.combination.view
- * Project_Name： combination
  * Date： 2017/3/15 2017
  * User： PSuiyi
  * Description：
@@ -31,7 +28,7 @@ public class UploadImageLayout extends LinearLayout {
     private RecyclerView rvUplodeImage;
     private List<String> dataList = new ArrayList<>();
     private UploadImageAdapter uploadImageAdapter;
-    private int uploadMaxSize = 8;
+    private int uploadMaxSize = 16;
 
     public UploadImageLayout(Context context) {
         super(context);
@@ -61,7 +58,8 @@ public class UploadImageLayout extends LinearLayout {
     }
 
     public List<String> getImageList() {
-        List<String> result = dataList;
+        List<String> result = new ArrayList<>();
+        result.addAll(dataList);
         result.remove("add");
         return result;
     }
