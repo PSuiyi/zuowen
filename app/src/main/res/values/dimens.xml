@@ -2,4 +2,5 @@
 <resources>
     <dimen name="home_menu_size">40dp</dimen>
     <dimen name="home_distance">10dp</dimen>
+    <dimen name="video_height">220dp</dimen>
 </resources>

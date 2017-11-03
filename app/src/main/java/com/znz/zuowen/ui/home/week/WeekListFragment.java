@@ -2,14 +2,18 @@ package com.znz.zuowen.ui.home.week;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.alibaba.fastjson.JSONArray;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.WeekAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
+import com.znz.zuowen.ui.home.article.ArticleDetailMineAct;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -60,6 +64,35 @@ public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleB
     protected void initializeView() {
         adapter = new WeekAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                new UIAlertDialog(activity)
+                        .builder()
+                        .setMsg("确定花费50积分练习该作文？")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", v2 -> {
+                            ArticleBean bean = dataList.get(position);
+                            if (!StringUtil.isBlank(bean.getFirst_status())) {
+                                if (bean.getFirst_status().equals("1")) {
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("id", bean.getId());
+                                    bundle.putString("title", "作文要求");
+                                    gotoActivity(ArticleDetailMineAct.class, bundle);
+                                } else {
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("id", bean.getId());
+                                    gotoActivity(WeekDetailAct.class, bundle);
+                                }
+                            } else {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("id", bean.getId());
+                                gotoActivity(WeekDetailAct.class, bundle);
+                            }
+                        })
+                        .show();
+            }
+        });
     }
 
     @Override

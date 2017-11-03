@@ -29,7 +29,8 @@
             <TextView
                 style="@style/TitleTextStyle"
                 android:padding="@dimen/distance_view"
-                android:text="张XX" />
+                android:text="张珊薇"
+                android:textStyle="bold" />
 
             <TextView
                 style="@style/TextStyle"

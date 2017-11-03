@@ -1,6 +1,5 @@
 package com.znz.zuowen.adapter;
 
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,8 +10,6 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 import com.znz.zuowen.R;
 import com.znz.zuowen.bean.ArticleBean;
-import com.znz.zuowen.ui.home.article.ArticleDetailMineAct;
-import com.znz.zuowen.ui.home.week.WeekDetailAct;
 
 import java.util.List;
 
@@ -37,7 +34,6 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
 
     @Override
     protected void convert(BaseViewHolder helper, ArticleBean bean) {
-        setOnItemClickListener(this);
 
         helper.setText(R.id.tvTitle, bean.getTitle());
         if (!StringUtil.isBlank(bean.getContent())) {
@@ -59,25 +55,5 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        if (!StringUtil.isBlank(bean.getFirst_status())) {
-            if (bean.getFirst_status().equals("1")) {
-                Bundle bundle = new Bundle();
-                bundle.putString("id", bean.getId());
-                bundle.putString("title", "作文要求");
-                gotoActivity(ArticleDetailMineAct.class, bundle);
-            } else {
-                Bundle bundle = new Bundle();
-                bundle.putString("id", bean.getId());
-                gotoActivity(WeekDetailAct.class, bundle);
-            }
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putString("id", bean.getId());
-            gotoActivity(WeekDetailAct.class, bundle);
-        }
-//
-//        Bundle bundle = new Bundle();
-//        bundle.putString("id", bean.getId());
-//        gotoActivity(WeekDetailAct.class, bundle);
     }
 }

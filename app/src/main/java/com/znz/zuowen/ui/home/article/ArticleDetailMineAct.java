@@ -14,9 +14,10 @@ import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
-import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.base.BaseVideoActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.ArticleMineBean;
 import com.znz.zuowen.event.EventRefresh;
@@ -39,7 +40,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
+public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
 
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
@@ -168,6 +169,14 @@ public class ArticleDetailMineAct extends BaseAppActivity<ArticleModel> {
                         tvSubmit.setVisibility(View.GONE);
                     }
                 }
+
+                HttpImageView ivImage = new HttpImageView(activity);
+                ivImage.loadRectImage("");
+
+                String url = "http://baobab.wdjcdn.com/14564977406580.mp4";
+                gsyVideoOption.setThumbImageView(ivImage)
+                        .setUrl(url)
+                        .build(detailPlayer);
             }
 
             @Override

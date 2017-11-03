@@ -49,7 +49,7 @@
             <com.znz.libvideo.videoplayer.video.StandardGSYVideoPlayer
                 android:id="@+id/detailPlayer"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="@@dimen/video_height"
                 android:layout_marginBottom="@dimen/distance_view" />
 
             <android.support.v7.widget.RecyclerView

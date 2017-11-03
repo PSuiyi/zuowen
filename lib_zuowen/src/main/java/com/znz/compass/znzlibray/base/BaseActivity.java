@@ -66,9 +66,12 @@ public abstract class BaseActivity<M extends IModel> extends BaseZnzActivity {
      */
     @Override
     protected void onNetworkConnected(NetUtils.NetType type) {
-        if (ActivityStackManager.getInstance().getTopActivity().equals(activity)) {
-            loadDataFromServer();
+        if (activity != null) {
+            if (ActivityStackManager.getInstance().getTopActivity().equals(activity)) {
+                loadDataFromServer();
+            }
         }
+
         if (znzRemind != null) {
             znzRemind.setVisibility(View.GONE);
             znzRemind.hideNoWifi();
