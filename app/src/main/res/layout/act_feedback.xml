@@ -31,9 +31,9 @@
             android:layout_margin="@dimen/distance_view"
             android:text="你是否愿意留下联系方式，以便我们及时帮您解决。" />
 
-        <EditText
+        <com.znz.compass.znzlibray.views.EditTextWithDel
             android:id="@+id/etPhone"
-            style="@style/EditMultiStyle"
+            style="@style/EditSingleStyle"
             android:layout_width="match_parent"
             android:background="@color/white"
             android:hint="手机号/微信/QQ/邮箱"

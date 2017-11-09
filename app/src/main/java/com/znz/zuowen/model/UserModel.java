@@ -10,6 +10,9 @@ import com.znz.zuowen.api.ApiService;
 
 import java.util.Map;
 
+import okhttp3.ResponseBody;
+import rx.Observable;
+
 /**
  * Date： 2017/5/15 2017
  * User： PSuiyi
@@ -128,5 +131,19 @@ public class UserModel extends BaseModel {
         params.put("code", "1");
         params.put("type", "1");
         request(apiService.reuqestFeedback(params), znzHttpListener);
+    }
+
+    public void requestMessageDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestMessageDetail(params), znzHttpListener, LODING_LODING);
+    }
+
+    public Observable<ResponseBody> requestMessageList(Map<String, String> params) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        return apiService.requestMessageList(params);
     }
 }

@@ -14,7 +14,6 @@ import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
-import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseVideoActivity;
@@ -138,39 +137,8 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
                 }
                 gotoActivity(ArticleUploadAct.class, bundle);
             } else {
-                buyArticle();
             }
         } else {
-            buyArticle();
         }
-    }
-
-    private void buyArticle() {
-        new UIAlertDialog(activity)
-                .builder()
-                .setMsg("确定花费5个积分挑战该作文？")
-                .setNegativeButton("取消", null)
-                .setPositiveButton("确定", v2 -> {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("id", id);
-                    mModel.requestWeekBuy(params, new ZnzHttpListener() {
-                        @Override
-                        public void onSuccess(JSONObject responseOriginal) {
-                            super.onSuccess(responseOriginal);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("id", id);
-                            if (bean.getAssign_teacher_id_info() != null) {
-                                bundle.putSerializable("bean", bean.getAssign_teacher_id_info());
-                            }
-                            gotoActivity(ArticleUploadAct.class, bundle);
-                        }
-
-                        @Override
-                        public void onFail(String error) {
-                            super.onFail(error);
-                        }
-                    });
-                })
-                .show();
     }
 }

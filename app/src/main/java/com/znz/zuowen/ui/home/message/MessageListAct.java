@@ -2,9 +2,15 @@ package com.znz.zuowen.ui.home.message;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.MessageAdapter;
 import com.znz.zuowen.base.BaseAppListActivity;
+import com.znz.zuowen.bean.MessageBean;
+import com.znz.zuowen.model.UserModel;
+
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 /**
  * Date： 2017/10/31 2017
@@ -12,7 +18,7 @@ import com.znz.zuowen.base.BaseAppListActivity;
  * Description：
  */
 
-public class MessageListAct extends BaseAppListActivity {
+public class MessageListAct extends BaseAppListActivity<UserModel, MessageBean> {
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout_withnav, 1};
@@ -20,7 +26,7 @@ public class MessageListAct extends BaseAppListActivity {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new UserModel(activity, this);
     }
 
     @Override
@@ -45,8 +51,14 @@ public class MessageListAct extends BaseAppListActivity {
     }
 
     @Override
-    protected void onRefreshSuccess(String response) {
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        return mModel.requestMessageList(params);
+    }
 
+    @Override
+    protected void onRefreshSuccess(String response) {
+        dataList.addAll(JSONArray.parseArray(response, MessageBean.class));
+        adapter.notifyDataSetChanged();
     }
 
     @Override

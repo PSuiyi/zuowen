@@ -5,11 +5,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.model.UserModel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +27,7 @@ import butterknife.OnClick;
  * Description：
  */
 
-public class FeedbackAct extends BaseAppActivity {
+public class FeedbackAct extends BaseAppActivity<UserModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -45,7 +48,7 @@ public class FeedbackAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new UserModel(activity, this);
     }
 
     @Override
@@ -76,23 +79,25 @@ public class FeedbackAct extends BaseAppActivity {
             mDataManager.showToast("请输入反馈内容");
             return;
         }
+        if (StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {
+            mDataManager.showToast("请输入联系方式");
+            return;
+        }
         Map<String, String> params = new HashMap<>();
         params.put("content", mDataManager.getValueFromView(etContent));
-        if (!StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {
-            params.put("content", mDataManager.getValueFromView(etPhone));
-        }
-//        mModel.feedBack(params, new ZnzHttpListener() {
-//            @Override
-//            public void onSuccess(JSONObject responseOriginal) {
-//                super.onSuccess(responseOriginal);
-//                mDataManager.showToast("提交成功");
-//                finish();
-//            }
-//
-//            @Override
-//            public void onFail(String error) {
-//                super.onFail(error);
-//            }
-//        });
+        params.put("contact", mDataManager.getValueFromView(etPhone));
+        mModel.reuqestFeedback(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("提交成功");
+                finish();
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 }

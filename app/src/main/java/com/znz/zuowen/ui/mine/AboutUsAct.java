@@ -4,11 +4,17 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.model.CommonModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,7 +25,7 @@ import butterknife.ButterKnife;
  * Description：
  */
 
-public class AboutUsAct extends BaseAppActivity {
+public class AboutUsAct extends BaseAppActivity<CommonModel> {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -28,6 +34,8 @@ public class AboutUsAct extends BaseAppActivity {
     LinearLayout llNetworkStatus;
     @Bind(R.id.tvVersion)
     TextView tvVersion;
+    @Bind(R.id.tvContent)
+    TextView tvContent;
 
     @Override
     protected int[] getLayoutResource() {
@@ -36,7 +44,7 @@ public class AboutUsAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        mModel = new CommonModel(activity, this);
     }
 
     @Override
@@ -51,7 +59,19 @@ public class AboutUsAct extends BaseAppActivity {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        mModel.requestAboutUs(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.setValueHtmlToTextView(tvContent, responseObject.getString("content"));
+            }
 
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     @Override

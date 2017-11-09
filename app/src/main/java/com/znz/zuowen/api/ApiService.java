@@ -29,6 +29,14 @@ public interface ApiService {
     @POST("?m=rest&c=checkversion&a=check_version")
     Observable<ResponseBody> getVersion(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("?m=rest&c=help&a=aboutus")
+    Observable<ResponseBody> requestAboutUs(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=help&a=index")
+    Observable<ResponseBody> requestHelp(@FieldMap Map<String, String> params);
+
     @Multipart
     @POST("?m=rest&c=common&a=upload")
     Observable<ResponseBody> requestUploadImage(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);
@@ -127,6 +135,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("?m=rest&c=weekcomposition&a=select_teacher")
     Observable<ResponseBody> requestTeacherList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=information&a=index")
+    Observable<ResponseBody> requestMessageList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=information&a=detail")
+    Observable<ResponseBody> requestMessageDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("?m=rest&c=votecomposition&a=index")

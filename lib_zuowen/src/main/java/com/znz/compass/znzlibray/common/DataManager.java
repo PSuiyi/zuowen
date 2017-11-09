@@ -628,7 +628,6 @@ public class DataManager implements ZnzConst {
      * @param textView
      * @param str
      */
-    @Deprecated
     public void setValueHtmlToTextView(@NonNull TextView textView, @NonNull String str) {
         if (str == null) {
             textView.setText(context.getResources().getString(R.string.common_no_data));

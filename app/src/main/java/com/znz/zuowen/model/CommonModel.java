@@ -43,6 +43,18 @@ public class CommonModel extends BaseModel {
         request(apiService.getVersion(params), znzHttpListener);
     }
 
+    public void requestAboutUs(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.requestAboutUs(params), znzHttpListener);
+    }
+
+    public void requestHelp(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.requestHelp(params), znzHttpListener, LODING_LODING);
+    }
+
     //上传图片
     public void requestUploadImage(String url, ZnzHttpListener znzHttpListener) {
         Map<String, String> params = new HashMap<>();

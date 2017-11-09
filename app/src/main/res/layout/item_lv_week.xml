@@ -48,7 +48,8 @@
                     android:id="@+id/ivTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/yangli" />
+                    android:src="@mipmap/yangli"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <TextView

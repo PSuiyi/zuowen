@@ -30,21 +30,23 @@
             android:layout_marginTop="@dimen/distance_view"
             android:text="树遇V1.0" />
 
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
-        <TextView
-            style="@style/TextStyle"
-            android:layout_marginBottom="@dimen/distance_view"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="@dimen/distance_view"
-            android:lineSpacingExtra="@dimen/distance_text"
-            android:text="@string/aboutus" />
-
-        <View style="@style/WeightView"></View>
+            <TextView
+                android:id="@+id/tvContent"
+                style="@style/TextStyle"
+                android:lineSpacingExtra="@dimen/distance_text"
+                android:padding="@dimen/distance_view"
+                android:text="@string/aboutus" />
+        </android.support.v4.widget.NestedScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/distance_view"
             android:gravity="center"
             android:orientation="horizontal">
 

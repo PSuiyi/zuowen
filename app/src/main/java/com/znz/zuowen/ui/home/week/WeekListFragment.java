@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -14,6 +16,9 @@ import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.article.ArticleDetailMineAct;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -67,32 +72,60 @@ public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleB
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                new UIAlertDialog(activity)
-                        .builder()
-                        .setMsg("确定花费50积分练习该作文？")
-                        .setNegativeButton("取消", null)
-                        .setPositiveButton("确定", v2 -> {
-                            ArticleBean bean = dataList.get(position);
-                            if (!StringUtil.isBlank(bean.getFirst_status())) {
-                                if (bean.getFirst_status().equals("1")) {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("id", bean.getId());
-                                    bundle.putString("title", "作文要求");
-                                    gotoActivity(ArticleDetailMineAct.class, bundle);
-                                } else {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("id", bean.getId());
-                                    gotoActivity(WeekDetailAct.class, bundle);
-                                }
-                            } else {
-                                Bundle bundle = new Bundle();
-                                bundle.putString("id", bean.getId());
-                                gotoActivity(WeekDetailAct.class, bundle);
-                            }
-                        })
-                        .show();
+                ArticleBean bean = dataList.get(position);
+                if (bean.getIs_my_week().equals("1")) {
+                    gotoWeekDetail(bean);
+                } else {
+                    new UIAlertDialog(activity)
+                            .builder()
+                            .setMsg("确定花费50积分练习该作文？")
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确定", v2 -> {
+                                Map<String, String> params = new HashMap<>();
+                                params.put("id", bean.getId());
+                                mModel.requestWeekBuy(params, new ZnzHttpListener() {
+                                    @Override
+                                    public void onSuccess(JSONObject responseOriginal) {
+                                        super.onSuccess(responseOriginal);
+                                        gotoWeekDetail(bean);
+                                        bean.setIs_my_week("1");
+                                        adapter.notifyDataSetChanged();
+                                    }
+
+                                    @Override
+                                    public void onFail(String error) {
+                                        super.onFail(error);
+                                    }
+                                });
+                            })
+                            .show();
+                }
             }
         });
+    }
+
+    /**
+     * 跳转至详情
+     *
+     * @param bean
+     */
+    private void gotoWeekDetail(ArticleBean bean) {
+        if (!StringUtil.isBlank(bean.getFirst_status())) {
+            if (bean.getFirst_status().equals("1")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", bean.getId());
+                bundle.putString("title", "作文要求");
+                gotoActivity(ArticleDetailMineAct.class, bundle);
+            } else {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", bean.getId());
+                gotoActivity(WeekDetailAct.class, bundle);
+            }
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putString("id", bean.getId());
+            gotoActivity(WeekDetailAct.class, bundle);
+        }
     }
 
     @Override

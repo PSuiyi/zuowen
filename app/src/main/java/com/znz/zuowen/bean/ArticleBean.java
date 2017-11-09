@@ -42,8 +42,35 @@ public class ArticleBean extends BaseZnzBean {
     private String mytype;
     private String is_my_week;
     private String first_status;
+    private String is_model;
+    private String example_show;
+    private String example_comments;
     private TeacherBean assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public String getExample_show() {
+        return example_show;
+    }
+
+    public void setExample_show(String example_show) {
+        this.example_show = example_show;
+    }
+
+    public String getExample_comments() {
+        return example_comments;
+    }
+
+    public void setExample_comments(String example_comments) {
+        this.example_comments = example_comments;
+    }
+
+    public String getIs_model() {
+        return is_model;
+    }
+
+    public void setIs_model(String is_model) {
+        this.is_model = is_model;
+    }
 
     public TeacherBean getAssign_teacher_id_info() {
         return assign_teacher_id_info;

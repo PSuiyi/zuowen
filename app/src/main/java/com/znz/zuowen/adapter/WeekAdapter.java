@@ -27,6 +27,8 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
     TextView tvTeacher;
     @Bind(R.id.tvTime)
     TextView tvTime;
+    @Bind(R.id.ivTag)
+    ImageView ivTag;
 
     public WeekAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_week, dataList);
@@ -51,6 +53,12 @@ public class WeekAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
         }
 
         helper.setText(R.id.tvTime, bean.getAddtime());
+
+        if (bean.getIs_model().equals("1")) {
+            mDataManager.setViewVisibility(ivTag, true);
+        } else {
+            mDataManager.setViewVisibility(ivTag, false);
+        }
     }
 
     @Override
