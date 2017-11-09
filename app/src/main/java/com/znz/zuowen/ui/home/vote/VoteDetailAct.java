@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -57,6 +58,8 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
     TextView tvComment;
     @Bind(R.id.rvArticle)
     RecyclerView rvArticle;
+    @Bind(R.id.ivTag)
+    ImageView ivTag;
     private String id;
 
     private ArticleBean bean;
@@ -146,6 +149,12 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                     znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
                 } else {
                     znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
+                }
+
+                if (bean.getIs_star().equals("1")) {
+                    mDataManager.setViewVisibility(ivTag, true);
+                } else {
+                    mDataManager.setViewVisibility(ivTag, false);
                 }
             }
 

@@ -44,11 +44,20 @@ public class ArticleBean extends BaseZnzBean {
     private String is_my_week;
     private String first_status;
     private String is_model;
+    private String is_star;
     private String example_show;
     private String example_comments;
     private String video_url;
     private TeacherBean assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public String getIs_star() {
+        return is_star;
+    }
+
+    public void setIs_star(String is_star) {
+        this.is_star = is_star;
+    }
 
     public String getVideo_url() {
         return video_url;
