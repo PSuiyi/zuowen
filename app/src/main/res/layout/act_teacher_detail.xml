@@ -20,19 +20,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivImage"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/default_image_rect" />
 
             <TextView
+                android:id="@+id/tvName"
                 style="@style/TitleTextStyle"
                 android:padding="@dimen/distance_view"
                 android:text="张珊薇"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvContent"
                 style="@style/TextStyle"
                 android:paddingLeft="@dimen/distance_view"
                 android:paddingRight="@dimen/distance_view"

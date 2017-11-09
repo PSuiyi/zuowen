@@ -35,10 +35,12 @@ import rx.Observable;
 public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleBean> {
 
     private String page;
+    private String id;
 
-    public static VoteListFragment newInstance(String page) {
+    public static VoteListFragment newInstance(String page,String id) {
         Bundle args = new Bundle();
         args.putString("page", page);
+        args.putString("id", id);
         VoteListFragment fragment = new VoteListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -54,6 +56,7 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
         mModel = new ArticleModel(activity, this);
         if (getArguments() != null) {
             page = getArguments().getString("page");
+            id = getArguments().getString("id");
         }
     }
 
@@ -111,6 +114,7 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
     @Override
     protected Observable<ResponseBody> requestCustomeRefreshObservable() {
         if (!StringUtil.isBlank(page)) {
+            params.put("vote_num_id", id);
             switch (page) {
                 case "小学组":
                     params.put("cate_type", "1");

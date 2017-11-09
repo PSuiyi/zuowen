@@ -2,11 +2,15 @@ package com.znz.zuowen.ui.home.vote;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.VoteStageAdapter;
 import com.znz.zuowen.base.BaseAppListActivity;
-import com.znz.zuowen.bean.ArticleBean;
+import com.znz.zuowen.bean.StageBean;
 import com.znz.zuowen.model.ArticleModel;
+
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 
 /**
@@ -15,7 +19,7 @@ import com.znz.zuowen.model.ArticleModel;
  * Description：
  */
 
-public class VoteStageListAct extends BaseAppListActivity<ArticleModel, ArticleBean> {
+public class VoteStageListAct extends BaseAppListActivity<ArticleModel, StageBean> {
 
     @Override
     protected int[] getLayoutResource() {
@@ -49,7 +53,14 @@ public class VoteStageListAct extends BaseAppListActivity<ArticleModel, ArticleB
     }
 
     @Override
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        return mModel.requestStageList(params);
+    }
+
+    @Override
     protected void onRefreshSuccess(String response) {
+        dataList.addAll(JSONArray.parseArray(response, StageBean.class));
+        adapter.notifyDataSetChanged();
     }
 
     @Override

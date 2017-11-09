@@ -53,6 +53,10 @@ public interface ApiService {
     Observable<ResponseBody> reuqestPsdTwo(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=my&a=feedback")
+    Observable<ResponseBody> reuqestFeedback(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=login&a=perfect_information")
     Observable<ResponseBody> reuqestCompleteInfo(@FieldMap Map<String, String> params);
 
@@ -127,6 +131,18 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("?m=rest&c=votecomposition&a=index")
     Observable<ResponseBody> requestVoteList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=votecomposition&a=getnums")
+    Observable<ResponseBody> requestStageList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=famousteacher&a=index")
+    Observable<ResponseBody> requestTeacherFamousList(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("?m=rest&c=famousteacher&a=detail")
+    Observable<ResponseBody> requestTeacherFamousDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("?m=rest&c=votecomposition&a=detail")

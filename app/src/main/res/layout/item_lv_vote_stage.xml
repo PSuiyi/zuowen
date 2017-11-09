@@ -18,6 +18,7 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvTitle"
                 style="@style/TitleTextStyle"
                 android:layout_weight="1"
                 android:text="第一期" />

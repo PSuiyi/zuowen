@@ -123,4 +123,10 @@ public class UserModel extends BaseModel {
         params.put("type", "1");
         request(apiService.reuqestPsdTwo(params), znzHttpListener);
     }
+
+    public void reuqestFeedback(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        request(apiService.reuqestFeedback(params), znzHttpListener);
+    }
 }

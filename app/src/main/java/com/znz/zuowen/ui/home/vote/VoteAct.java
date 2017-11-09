@@ -36,6 +36,7 @@ public class VoteAct extends BaseAppActivity {
 
     private List<String> tabNames = new ArrayList<>();
     private List<Fragment> fragmentList = new ArrayList<>();
+    private String id;
 
     @Override
     protected int[] getLayoutResource() {
@@ -44,7 +45,9 @@ public class VoteAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("id")) {
+            id = getIntent().getStringExtra("id");
+        }
     }
 
     @Override
@@ -58,9 +61,9 @@ public class VoteAct extends BaseAppActivity {
         tabNames.add("初中组");
         tabNames.add("高中组");
 
-        fragmentList.add(new VoteListFragment().newInstance("小学组"));
-        fragmentList.add(new VoteListFragment().newInstance("初中组"));
-        fragmentList.add(new VoteListFragment().newInstance("高中组"));
+        fragmentList.add(new VoteListFragment().newInstance("小学组", id));
+        fragmentList.add(new VoteListFragment().newInstance("初中组", id));
+        fragmentList.add(new VoteListFragment().newInstance("高中组", id));
 
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);

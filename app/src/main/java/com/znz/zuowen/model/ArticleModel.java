@@ -112,11 +112,32 @@ public class ArticleModel extends BaseModel {
         return apiService.requestVoteList(params);
     }
 
+    public Observable<ResponseBody> requestTeacherFamousList(Map<String, String> params) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        return apiService.requestTeacherFamousList(params);
+    }
+
+    public Observable<ResponseBody> requestStageList(Map<String, String> params) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        return apiService.requestStageList(params);
+    }
+
     public void requestVoteDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
         params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
         request(apiService.requestVoteDetail(params), znzHttpListener, LODING_LODING);
+    }
+
+    public void requestTeacherFamousDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("code", "1");
+        params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
+        request(apiService.requestTeacherFamousDetail(params), znzHttpListener, LODING_LODING);
     }
 
     public void requestVoteFav(Map<String, String> params, ZnzHttpListener znzHttpListener) {
