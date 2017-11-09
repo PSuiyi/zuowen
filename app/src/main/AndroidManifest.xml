@@ -59,6 +59,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.week.WeekDetailAct"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.CompleteInfoAct"
@@ -92,6 +93,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.article.ArticleDetailMineAct"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.UpdatePsdAct"

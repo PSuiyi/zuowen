@@ -33,8 +33,26 @@ public class ArticleMineBean extends BaseZnzBean {
     private String first_status;
     private String second_teacher_reviews;
     private String second_status;
+    private String first_upload_time;
+    private String second_upload_time;
     private List<UrlBean> first_upload;
     private List<UrlBean> second_upload;
+
+    public String getFirst_upload_time() {
+        return first_upload_time;
+    }
+
+    public void setFirst_upload_time(String first_upload_time) {
+        this.first_upload_time = first_upload_time;
+    }
+
+    public String getSecond_upload_time() {
+        return second_upload_time;
+    }
+
+    public void setSecond_upload_time(String second_upload_time) {
+        this.second_upload_time = second_upload_time;
+    }
 
     public String getItemid() {
         return itemid;

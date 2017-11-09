@@ -136,7 +136,13 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                 } else {
                     mDataManager.setValueToView(tvTeacher, "审批老师：" + mineBean.getTeacher_name());
                 }
-                mDataManager.setValueToView(tvTime, mineBean.getAddtime());
+
+                if (!StringUtil.isBlank(mineBean.getSecond_upload_time())) {
+                    mDataManager.setValueToView(tvTime, mineBean.getSecond_upload_time());
+                } else {
+                    mDataManager.setValueToView(tvTime, mineBean.getFirst_upload_time());
+                }
+
                 if (!StringUtil.isBlank(mineBean.getFirst_teacher_reviews())) {
                     tvComment1.setText(Html.fromHtml(mineBean.getFirst_teacher_reviews()));
                     mDataManager.setViewVisibility(llComment1, true);
@@ -178,7 +184,7 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                 mDataManager.setValueHtmlToTextView(tvFanwenComment, bean.getExample_comments());
 
                 HttpImageView ivImage = new HttpImageView(activity);
-                ivImage.loadRectImage("");
+                ivImage.loadRectImage(bean.getVideo_image());
 
                 gsyVideoOption.setThumbImageView(ivImage)
                         .setUrl(bean.getVideo_url())

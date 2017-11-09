@@ -49,8 +49,17 @@ public class ArticleBean extends BaseZnzBean {
     private String example_show;
     private String example_comments;
     private String video_url;
+    private String video_image;
     private TeacherBean assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public String getVideo_image() {
+        return video_image;
+    }
+
+    public void setVideo_image(String video_image) {
+        this.video_image = Constants.IMG_URL + video_image;
+    }
 
     public String getVote_num_id() {
         return vote_num_id;

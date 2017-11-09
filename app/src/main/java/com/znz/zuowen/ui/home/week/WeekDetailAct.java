@@ -109,7 +109,7 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
                 mDataManager.setValueHtmlToTextView(tvFanwenComment, bean.getExample_comments());
 
                 HttpImageView ivImage = new HttpImageView(activity);
-                ivImage.loadRectImage("");
+                ivImage.loadRectImage(bean.getVideo_image());
 
                 gsyVideoOption.setThumbImageView(ivImage)
                         .setUrl(bean.getVideo_url())
