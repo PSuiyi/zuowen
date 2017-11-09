@@ -1,6 +1,5 @@
 package com.znz.zuowen.ui.mine;
 
-import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -58,19 +56,12 @@ public class FeedbackAct extends BaseAppActivity<UserModel> {
 
     @Override
     protected void initializeView() {
-
+        mDataManager.toggleInputSoft();
     }
 
     @Override
     protected void loadDataFromServer() {
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     @OnClick(R.id.tvSubmit)

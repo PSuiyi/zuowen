@@ -105,9 +105,8 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
                 HttpImageView ivImage = new HttpImageView(activity);
                 ivImage.loadRectImage("");
 
-                String url = "http://baobab.wdjcdn.com/14564977406580.mp4";
                 gsyVideoOption.setThumbImageView(ivImage)
-                        .setUrl(url)
+                        .setUrl(bean.getVideo_url())
                         .build(detailPlayer);
             }
 

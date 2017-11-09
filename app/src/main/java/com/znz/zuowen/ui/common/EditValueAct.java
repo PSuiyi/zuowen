@@ -67,6 +67,8 @@ public class EditValueAct extends BaseAppActivity<UserModel> {
             mDataManager.setValueToView(etValue, mDataManager.readTempData(Constants.User.NAME));
         }
 
+        mDataManager.toggleInputSoft();
+
         handleBtnState();
 
         etValue.addTextChangedListener(new TextWatcher() {

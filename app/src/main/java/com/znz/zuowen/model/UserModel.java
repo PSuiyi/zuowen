@@ -130,6 +130,7 @@ public class UserModel extends BaseModel {
     public void reuqestFeedback(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
         params.put("type", "1");
+        params.put("token", mDataManager.getAccessToken());
         request(apiService.reuqestFeedback(params), znzHttpListener);
     }
 

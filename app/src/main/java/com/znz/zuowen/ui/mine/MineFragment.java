@@ -22,6 +22,7 @@ import com.znz.compass.znzlibray.views.row_view.ZnzRowGroupView;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
 import com.znz.zuowen.bean.UserBean;
+import com.znz.zuowen.bean.VersionBean;
 import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.event.EventRefresh;
 import com.znz.zuowen.event.EventTags;
@@ -70,6 +71,7 @@ public class MineFragment extends BaseAppFragment<UserModel> {
 
     private ArrayList<ZnzRowDescription> rowDescriptionList;
     private CommonModel commonModel;
+    private VersionBean versionBean;
 
     @Override
     protected int[] getLayoutResource() {
@@ -167,7 +169,18 @@ public class MineFragment extends BaseAppFragment<UserModel> {
                 .withEnableLongLine(true)
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
-                    mDataManager.showToast("已经是最新版");
+                    if (versionBean.getIs_update().equals("1")) {
+                        mDataManager.showToast("已经是最新版");
+                    } else {
+                        new UIAlertDialog(activity)
+                                .builder()
+                                .setMsg("检测到有最新版本，是否更新")
+                                .setNegativeButton("取消", null)
+                                .setPositiveButton("确定", v2 -> {
+                                    mDataManager.openUrl(versionBean.getUrl());
+                                })
+                                .show();
+                    }
                 })
                 .build());
 
@@ -216,6 +229,28 @@ public class MineFragment extends BaseAppFragment<UserModel> {
                 mDataManager.setValueToView(tvNickName, bean.getUsername());
                 ivUserHeader.loadHeaderImage(Constants.IMG_URL + bean.getPhoto());
                 mDataManager.setValueToView(tvVip, "VIP" + bean.getVip());
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
+
+        Map<String, String> params2 = new HashMap<>();
+        commonModel.requestVersion(params2, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                versionBean = JSONObject.parseObject(responseOriginal.getString("data"), VersionBean.class);
+                if (versionBean.getIs_update().equals("1")) {
+                    rowDescriptionList.get(8).setValue("已是最新版");
+                    commonRowGroup.notifyDataChanged(rowDescriptionList);
+                } else {
+                    rowDescriptionList.get(8).setValue("立即更新");
+                    rowDescriptionList.get(8).setValueColor(mDataManager.getColor(R.color.green));
+                    commonRowGroup.notifyDataChanged(rowDescriptionList);
+                }
             }
 
             @Override

@@ -73,33 +73,39 @@ public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleB
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ArticleBean bean = dataList.get(position);
+                if (bean.getIs_model().equals("1")) {
+                    gotoWeekDetail(bean);
+                    return;
+                }
+
                 if (bean.getIs_my_week().equals("1")) {
                     gotoWeekDetail(bean);
-                } else {
-                    new UIAlertDialog(activity)
-                            .builder()
-                            .setMsg("确定花费50积分练习该作文？")
-                            .setNegativeButton("取消", null)
-                            .setPositiveButton("确定", v2 -> {
-                                Map<String, String> params = new HashMap<>();
-                                params.put("id", bean.getId());
-                                mModel.requestWeekBuy(params, new ZnzHttpListener() {
-                                    @Override
-                                    public void onSuccess(JSONObject responseOriginal) {
-                                        super.onSuccess(responseOriginal);
-                                        gotoWeekDetail(bean);
-                                        bean.setIs_my_week("1");
-                                        adapter.notifyDataSetChanged();
-                                    }
-
-                                    @Override
-                                    public void onFail(String error) {
-                                        super.onFail(error);
-                                    }
-                                });
-                            })
-                            .show();
+                    return;
                 }
+
+                new UIAlertDialog(activity)
+                        .builder()
+                        .setMsg("确定花费50积分练习该作文？")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", v2 -> {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("id", bean.getId());
+                            mModel.requestWeekBuy(params, new ZnzHttpListener() {
+                                @Override
+                                public void onSuccess(JSONObject responseOriginal) {
+                                    super.onSuccess(responseOriginal);
+                                    gotoWeekDetail(bean);
+                                    bean.setIs_my_week("1");
+                                    adapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onFail(String error) {
+                                    super.onFail(error);
+                                }
+                            });
+                        })
+                        .show();
             }
         });
     }

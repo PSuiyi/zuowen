@@ -1,6 +1,7 @@
 package com.znz.zuowen.bean;
 
 import com.znz.compass.znzlibray.base.BaseZnzBean;
+import com.znz.zuowen.common.Constants;
 
 import java.util.List;
 
@@ -45,8 +46,17 @@ public class ArticleBean extends BaseZnzBean {
     private String is_model;
     private String example_show;
     private String example_comments;
+    private String video_url;
     private TeacherBean assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public String getVideo_url() {
+        return video_url;
+    }
+
+    public void setVideo_url(String video_url) {
+        this.video_url = Constants.IMG_URL + video_url;
+    }
 
     public String getExample_show() {
         return example_show;
