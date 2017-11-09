@@ -45,11 +45,20 @@ public class ArticleBean extends BaseZnzBean {
     private String first_status;
     private String is_model;
     private String is_star;
+    private String vote_num_id;
     private String example_show;
     private String example_comments;
     private String video_url;
     private TeacherBean assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public String getVote_num_id() {
+        return vote_num_id;
+    }
+
+    public void setVote_num_id(String vote_num_id) {
+        this.vote_num_id = vote_num_id;
+    }
 
     public String getIs_star() {
         return is_star;

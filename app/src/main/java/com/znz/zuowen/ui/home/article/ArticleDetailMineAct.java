@@ -74,6 +74,10 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
     RecyclerView rvSubject;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
+    @Bind(R.id.tvFanwenContent)
+    TextView tvFanwenContent;
+    @Bind(R.id.tvFanwenComment)
+    TextView tvFanwenComment;
     private String id;
     private ArticleBean bean;
     private ArticleMineBean mineBean;
@@ -170,12 +174,14 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                     }
                 }
 
+                mDataManager.setValueHtmlToTextView(tvFanwenContent, bean.getExample_show());
+                mDataManager.setValueHtmlToTextView(tvFanwenComment, bean.getExample_comments());
+
                 HttpImageView ivImage = new HttpImageView(activity);
                 ivImage.loadRectImage("");
 
-                String url = "http://baobab.wdjcdn.com/14564977406580.mp4";
                 gsyVideoOption.setThumbImageView(ivImage)
-                        .setUrl(url)
+                        .setUrl(bean.getVideo_url())
                         .build(detailPlayer);
             }
 

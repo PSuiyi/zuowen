@@ -61,6 +61,7 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
         ((MultiAdapter) adapter).setOnVoteClickLinstener(bean -> {
             Map<String, String> params = new HashMap<>();
             params.put("id", bean.getId());
+            params.put("vote_num_id", bean.getVote_num_id());
             if (bean.getIs_vote().equals("0")) {
                 mModel.requestVoteVote(params, new ZnzHttpListener() {
                     @Override

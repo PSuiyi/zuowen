@@ -80,6 +80,7 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
                 case R.id.tvVote:
                     Map<String, String> params = new HashMap<>();
                     params.put("id", bean.getId());
+                    params.put("vote_num_id", bean.getVote_num_id());
                     if (bean.getIs_vote().equals("0")) {
                         mModel.requestVoteVote(params, new ZnzHttpListener() {
                             @Override
