@@ -165,10 +165,35 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", bean.getId());
         if (bean.getIs_vote().equals("0")) {
-            Map<String, String> params = new HashMap<>();
-            params.put("id", bean.getId());
             mModel.requestVoteVote(params, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    if (!bean.getIs_vote().equals("1")) {
+                        bean.setIs_vote("1");
+                    } else {
+                        bean.setIs_vote("0");
+                    }
+                    if (bean.getIs_vote().equals("1")) {
+                        tvSubmit.setText("已投票(" + StringUtil.getNumUP(bean.getVote_count()) + ")");
+                        tvSubmit.setBackgroundResource(R.drawable.bg_btn_round_no);
+                        bean.setVote_count(StringUtil.getNumUP(bean.getVote_count()));
+                    } else {
+                        tvSubmit.setText("投票(" + bean.getVote_count() + ")");
+                    }
+                    EventBus.getDefault().post(new EventList(EventTags.LIST_ARTICLE_VOTE, bean));
+                }
+
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        } else {
+            mModel.requestVoteUnVote(params, new ZnzHttpListener() {
                 @Override
                 public void onSuccess(JSONObject responseOriginal) {
                     super.onSuccess(responseOriginal);

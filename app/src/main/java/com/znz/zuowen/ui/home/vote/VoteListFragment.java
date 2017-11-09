@@ -37,7 +37,7 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
     private String page;
     private String id;
 
-    public static VoteListFragment newInstance(String page,String id) {
+    public static VoteListFragment newInstance(String page, String id) {
         Bundle args = new Bundle();
         args.putString("page", page);
         args.putString("id", id);
@@ -78,10 +78,30 @@ public class VoteListFragment extends BaseAppListFragment<ArticleModel, ArticleB
             ArticleBean bean = dataList.get(position);
             switch (view.getId()) {
                 case R.id.tvVote:
+                    Map<String, String> params = new HashMap<>();
+                    params.put("id", bean.getId());
                     if (bean.getIs_vote().equals("0")) {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("id", bean.getId());
                         mModel.requestVoteVote(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                if (!bean.getIs_vote().equals("1")) {
+                                    bean.setIs_vote("1");
+                                    bean.setVote_count(StringUtil.getNumUP(bean.getVote_count()));
+                                } else {
+                                    bean.setIs_vote("0");
+                                    bean.setVote_count(StringUtil.getNumDown(bean.getVote_count()));
+                                }
+                                adapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onFail(String error) {
+                                super.onFail(error);
+                            }
+                        });
+                    } else {
+                        mModel.requestVoteUnVote(params, new ZnzHttpListener() {
                             @Override
                             public void onSuccess(JSONObject responseOriginal) {
                                 super.onSuccess(responseOriginal);

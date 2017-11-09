@@ -173,6 +173,10 @@ public interface ApiService {
     Observable<ResponseBody> requestVoteVote(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("?m=rest&c=votecomposition&a=undo_vote")
+    Observable<ResponseBody> requestVoteUnVote(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("?m=rest&c=goodcomposition&a=index")
     Observable<ResponseBody> requestGoodList(@FieldMap Map<String, String> params);
 

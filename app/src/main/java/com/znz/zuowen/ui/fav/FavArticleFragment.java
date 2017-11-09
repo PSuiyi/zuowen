@@ -61,23 +61,43 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
         ((MultiAdapter) adapter).setOnVoteClickLinstener(bean -> {
             Map<String, String> params = new HashMap<>();
             params.put("id", bean.getId());
-            mModel.requestVoteVote(params, new ZnzHttpListener() {
-                @Override
-                public void onSuccess(JSONObject responseOriginal) {
-                    super.onSuccess(responseOriginal);
-                    if (!bean.getIs_vote().equals("1")) {
-                        bean.setIs_vote("1");
-                    } else {
-                        bean.setIs_vote("0");
+            if (bean.getIs_vote().equals("0")) {
+                mModel.requestVoteVote(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        if (!bean.getIs_vote().equals("1")) {
+                            bean.setIs_vote("1");
+                        } else {
+                            bean.setIs_vote("0");
+                        }
+                        adapter.notifyDataSetChanged();
                     }
-                    adapter.notifyDataSetChanged();
-                }
 
-                @Override
-                public void onFail(String error) {
-                    super.onFail(error);
-                }
-            });
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
+            } else {
+                mModel.requestVoteUnVote(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        if (!bean.getIs_vote().equals("1")) {
+                            bean.setIs_vote("1");
+                        } else {
+                            bean.setIs_vote("0");
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
+            }
         });
     }
 
