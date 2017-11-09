@@ -52,6 +52,10 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
     TextView tvContent;
     @Bind(R.id.rvArticle)
     RecyclerView rvArticle;
+    @Bind(R.id.tvFanwenContent)
+    TextView tvFanwenContent;
+    @Bind(R.id.tvFanwenComment)
+    TextView tvFanwenComment;
     private String id;
     private ArticleBean bean;
 
@@ -101,6 +105,8 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
                     rvArticle.setVisibility(View.GONE);
                 }
 
+                mDataManager.setValueHtmlToTextView(tvFanwenContent, bean.getExample_show());
+                mDataManager.setValueHtmlToTextView(tvFanwenComment, bean.getExample_comments());
 
                 HttpImageView ivImage = new HttpImageView(activity);
                 ivImage.loadRectImage("");
