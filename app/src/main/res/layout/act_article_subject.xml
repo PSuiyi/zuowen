@@ -19,38 +19,55 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-                <TextView
-                    android:id="@+id/tvName"
-                    style="@style/TitleTextStyle"
-                    android:text="作文题目：我的理想"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvTeacher"
-                    style="@style/TextStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
-                    android:text="命题老师：叶雨" />
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/TitleTextStyle"
+                        android:text="作文题目：我的理想"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvTime"
-                    style="@style/TextGrayStyle"
-                    android:layout_marginTop="@dimen/distance_divider"
-                    android:text="2017/08/12" />
+                    <TextView
+                        android:id="@+id/tvTeacher"
+                        style="@style/TextStyle"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:text="命题老师：叶雨" />
 
+                    <TextView
+                        android:id="@+id/tvTime"
+                        style="@style/TextGrayStyle"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:text="2017/08/12" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/yangli"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <com.znz.libvideo.videoplayer.video.StandardGSYVideoPlayer
                 android:id="@+id/detailPlayer"
                 android:layout_width="match_parent"
                 android:layout_height="@@dimen/video_height"
-                android:layout_marginBottom="@dimen/distance_view" />
+                android:layout_marginBottom="@dimen/distance_view"
+                android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvArticle"
@@ -62,6 +79,7 @@
             <TextView
                 android:id="@+id/tvContent"
                 style="@style/TextStyle"
+                android:layout_width="match_parent"
                 android:background="@color/white"
                 android:padding="@dimen/distance_view"
                 android:text="我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。虽然你可能会问为什么，但我觉得，喜欢就是喜欢，没有什么太深的含义。在一个安静的环境下工作，不是挺好的。我的理想十分奇特，但我十分喜欢。我的理想是当图书馆里的图书管理员。"

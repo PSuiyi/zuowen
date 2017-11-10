@@ -5,6 +5,7 @@ import android.support.annotation.IntDef;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.socks.library.KLog;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.network_status.NetUtils;
@@ -107,8 +108,8 @@ public class BaseModel<V extends IView> implements IModel {
                     } else if (responseJson.getString("result").equals("-111")) {
                         mDataManager.tokenTimeOut(context);
                     } else {
+                        KLog.e(responseJson.getString("message"));
                         listener.onFail(responseJson.getString("message"));
-                        mDataManager.showToast(responseJson.getString("message"));
                         handleLoding(false, lodingType);
                     }
                 } catch (Exception e) {

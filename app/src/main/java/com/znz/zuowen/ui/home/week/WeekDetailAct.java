@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,12 +15,14 @@ import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseVideoActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +59,8 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
     TextView tvFanwenContent;
     @Bind(R.id.tvFanwenComment)
     TextView tvFanwenComment;
+    @Bind(R.id.ivTag)
+    ImageView ivTag;
     private String id;
     private ArticleBean bean;
 
@@ -108,12 +113,23 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
                 mDataManager.setValueHtmlToTextView(tvFanwenContent, bean.getExample_show());
                 mDataManager.setValueHtmlToTextView(tvFanwenComment, bean.getExample_comments());
 
-                HttpImageView ivImage = new HttpImageView(activity);
-                ivImage.loadRectImage(bean.getVideo_image());
+                if (bean.getIs_model().equals("1")) {
+                    mDataManager.setViewVisibility(ivTag, true);
+                } else {
+                    mDataManager.setViewVisibility(ivTag, false);
+                }
 
-                gsyVideoOption.setThumbImageView(ivImage)
-                        .setUrl(bean.getVideo_url())
-                        .build(detailPlayer);
+                if (!StringUtil.isBlank(bean.getVideo_url())) {
+                    detailPlayer.setVisibility(View.VISIBLE);
+                    HttpImageView ivImage = new HttpImageView(activity);
+                    ivImage.loadRectImage(bean.getVideo_image());
+
+                    gsyVideoOption.setThumbImageView(ivImage)
+                            .setUrl(bean.getVideo_url())
+                            .build(detailPlayer);
+                } else {
+                    detailPlayer.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -133,17 +149,26 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        if (!StringUtil.isBlank(bean.getIs_my_week())) {
-            if (bean.getIs_my_week().equals("1")) {
-                Bundle bundle = new Bundle();
-                bundle.putString("id", id);
-                if (bean.getAssign_teacher_id_info() != null) {
-                    bundle.putSerializable("bean", bean.getAssign_teacher_id_info());
-                }
-                gotoActivity(ArticleUploadAct.class, bundle);
-            } else {
-            }
+        if (bean.getIs_model().equals("1")) {
+            new UIAlertDialog(activity)
+                    .builder()
+                    .setMsg("这是样例文档，如需体验，请到作文库。")
+                    .setNegativeButton("取消", null)
+                    .setPositiveButton("确定", v2 -> {
+                        finish();
+                    })
+                    .show();
         } else {
+            if (!StringUtil.isBlank(bean.getIs_my_week())) {
+                if (bean.getIs_my_week().equals("1")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", id);
+                    if (bean.getAssign_teacher_id_info() != null) {
+                        bundle.putSerializable("bean", (Serializable) bean.getAssign_teacher_id_info());
+                    }
+                    gotoActivity(ArticleUploadAct.class, bundle);
+                }
+            }
         }
     }
 }

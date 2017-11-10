@@ -6,6 +6,11 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.ui.TabHomeAct;
 
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+
 
 /**
  * Project_Name： builder
@@ -28,12 +33,17 @@ public class SplashAct extends BaseAppActivity {
             return;
         }
 
-        if (mDataManager.isLogin()) {
-            gotoActivity(TabHomeAct.class);
-        } else {
-            gotoActivity(LoginAct.class);
-        }
-        finish();
+        Observable.timer(1, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnCompleted(() -> {
+                    if (mDataManager.isLogin()) {
+                        gotoActivity(TabHomeAct.class);
+                    } else {
+                        gotoActivity(LoginAct.class);
+                    }
+                    finish();
+                })
+                .subscribe();
     }
 
     @Override

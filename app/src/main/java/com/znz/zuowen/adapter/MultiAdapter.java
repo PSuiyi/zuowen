@@ -11,7 +11,6 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.MultiBean;
 import com.znz.zuowen.common.Constants;
-import com.znz.zuowen.ui.home.article.ArticleDetailAct;
 import com.znz.zuowen.ui.home.vote.VoteDetailAct;
 
 import java.util.List;
@@ -47,6 +46,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 } else {
                     helper.setVisible(R.id.tvContent, false);
                 }
+                helper.setText(R.id.tvType, bean.getArticleBean().getAuthor());
                 helper.setText(R.id.tvTag1, bean.getArticleBean().getStyle_type());
                 helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts() + "字");
                 if (!bean.getArticleBean().getImgurl().isEmpty()) {
@@ -84,6 +84,12 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                     helper.setBackgroundRes(R.id.llVote, R.drawable.bg_vote);
                 }
 
+                if (bean.getArticleBean().getIs_star().equals("1")) {
+                    helper.setVisible(R.id.ivTag, true);
+                } else {
+                    helper.setVisible(R.id.ivTag, false);
+                }
+
                 helper.setOnClickListener(R.id.tvVote, v -> {
                     if (bean.getArticleBean().getIs_vote().equals("0")) {
                         if (onVoteClickLinstener != null) {
@@ -104,7 +110,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 break;
             case Constants.MultiType.WeekStar:
                 bundle.putString("id", bean.getArticleBean().getId());
-                gotoActivity(ArticleDetailAct.class, bundle);
+                gotoActivity(VoteDetailAct.class, bundle);
                 break;
             case Constants.MultiType.ArticleVote:
                 bundle.putString("id", bean.getArticleBean().getId());

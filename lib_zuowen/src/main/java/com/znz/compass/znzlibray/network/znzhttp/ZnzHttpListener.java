@@ -2,7 +2,8 @@ package com.znz.compass.znzlibray.network.znzhttp;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.socks.library.KLog;
+import com.znz.compass.znzlibray.ZnzApplication;
+import com.znz.compass.znzlibray.common.DataManager;
 
 /**
  * 网络接口回调
@@ -34,6 +35,6 @@ public abstract class ZnzHttpListener implements IZnzHttpListener {
      */
     @Override
     public void onFail(String error) {
-        KLog.e(error);
+        DataManager.getInstance(ZnzApplication.getContext()).showToast(error);
     }
 }

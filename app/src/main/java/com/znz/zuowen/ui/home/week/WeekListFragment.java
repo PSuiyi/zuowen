@@ -16,6 +16,7 @@ import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.article.ArticleDetailMineAct;
+import com.znz.zuowen.ui.mine.MineClassAct;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -101,7 +102,14 @@ public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleB
 
                                 @Override
                                 public void onFail(String error) {
-                                    super.onFail(error);
+                                    new UIAlertDialog(activity)
+                                            .builder()
+                                            .setMsg("积分不够，是否现在购买？")
+                                            .setNegativeButton("取消", null)
+                                            .setPositiveButton("确定", v2 -> {
+                                                gotoActivity(MineClassAct.class);
+                                            })
+                                            .show();
                                 }
                             });
                         })

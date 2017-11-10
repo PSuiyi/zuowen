@@ -20,8 +20,6 @@ import butterknife.Bind;
 
 public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    @Bind(R.id.ivGood)
-    ImageView ivGood;
     @Bind(R.id.tvContent)
     TextView tvContent;
     @Bind(R.id.ivImage)
@@ -40,6 +38,8 @@ public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
     ImageView ivIcon;
     @Bind(R.id.llVote)
     LinearLayout llVote;
+    @Bind(R.id.ivTag)
+    ImageView ivTag;
 
     public VoteAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_vote, dataList);
@@ -75,6 +75,13 @@ public class VoteAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> i
             mDataManager.setViewVisibility(ivIcon, true);
             llVote.setBackgroundResource(R.drawable.bg_vote);
         }
+
+        if (bean.getIs_star().equals("1")) {
+            mDataManager.setViewVisibility(ivTag, true);
+        } else {
+            mDataManager.setViewVisibility(ivTag, false);
+        }
+
         helper.addOnClickListener(R.id.tvVote);
     }
 

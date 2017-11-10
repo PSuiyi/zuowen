@@ -50,7 +50,7 @@ public class ArticleBean extends BaseZnzBean {
     private String example_comments;
     private String video_url;
     private String video_image;
-    private TeacherBean assign_teacher_id_info;
+    private List<TeacherBean> assign_teacher_id_info;
     private List<UrlBean> imgurl;
 
     public String getVideo_image() {
@@ -109,11 +109,11 @@ public class ArticleBean extends BaseZnzBean {
         this.is_model = is_model;
     }
 
-    public TeacherBean getAssign_teacher_id_info() {
+    public List<TeacherBean> getAssign_teacher_id_info() {
         return assign_teacher_id_info;
     }
 
-    public void setAssign_teacher_id_info(TeacherBean assign_teacher_id_info) {
+    public void setAssign_teacher_id_info(List<TeacherBean> assign_teacher_id_info) {
         this.assign_teacher_id_info = assign_teacher_id_info;
     }
 
