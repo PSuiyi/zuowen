@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.MultiAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
@@ -67,11 +68,8 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        if (!bean.getIs_vote().equals("1")) {
-                            bean.setIs_vote("1");
-                        } else {
-                            bean.setIs_vote("0");
-                        }
+                        bean.setIs_vote("1");
+                        bean.setVote_count(StringUtil.getNumUP(bean.getVote_count()));
                         adapter.notifyDataSetChanged();
                     }
 
@@ -85,11 +83,8 @@ public class FavArticleFragment extends BaseAppListFragment<ArticleModel, MultiB
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        if (!bean.getIs_vote().equals("1")) {
-                            bean.setIs_vote("1");
-                        } else {
-                            bean.setIs_vote("0");
-                        }
+                        bean.setIs_vote("0");
+                        bean.setVote_count(StringUtil.getNumDown(bean.getVote_count()));
                         adapter.notifyDataSetChanged();
                     }
 

@@ -212,13 +212,9 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                     } else {
                         bean.setIs_vote("0");
                     }
-                    if (bean.getIs_vote().equals("1")) {
-                        tvSubmit.setText("已投票(" + StringUtil.getNumUP(bean.getVote_count()) + ")");
-                        tvSubmit.setBackgroundResource(R.drawable.bg_btn_round_no);
-                        bean.setVote_count(StringUtil.getNumUP(bean.getVote_count()));
-                    } else {
-                        tvSubmit.setText("投票(" + bean.getVote_count() + ")");
-                    }
+                    bean.setVote_count(StringUtil.getNumDown(bean.getVote_count()));
+                    tvSubmit.setText("投票(" + bean.getVote_count() + ")");
+                    tvSubmit.setBackgroundResource(R.drawable.bg_btn_round);
                     EventBus.getDefault().post(new EventList(EventTags.LIST_ARTICLE_VOTE, bean));
                 }
 

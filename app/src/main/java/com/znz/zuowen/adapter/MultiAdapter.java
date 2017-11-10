@@ -91,10 +91,8 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 }
 
                 helper.setOnClickListener(R.id.tvVote, v -> {
-                    if (bean.getArticleBean().getIs_vote().equals("0")) {
-                        if (onVoteClickLinstener != null) {
-                            onVoteClickLinstener.onVoteClick(bean.getArticleBean());
-                        }
+                    if (onVoteClickLinstener != null) {
+                        onVoteClickLinstener.onVoteClick(bean.getArticleBean());
                     }
                 });
                 break;
