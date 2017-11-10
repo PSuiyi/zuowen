@@ -1,6 +1,7 @@
 package com.znz.zuowen.bean;
 
 import com.znz.compass.znzlibray.base.BaseZnzBean;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.common.Constants;
 
 import java.util.List;
@@ -82,7 +83,11 @@ public class ArticleBean extends BaseZnzBean {
     }
 
     public void setVideo_url(String video_url) {
-        this.video_url = Constants.IMG_URL + video_url;
+        if (!StringUtil.isBlank(video_url)) {
+            this.video_url = Constants.IMG_URL + video_url;
+        } else {
+            this.video_url = video_url;
+        }
     }
 
     public String getExample_show() {

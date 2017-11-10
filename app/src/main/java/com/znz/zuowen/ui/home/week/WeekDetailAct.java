@@ -20,7 +20,6 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseVideoActivity;
 import com.znz.zuowen.bean.ArticleBean;
-import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.model.ArticleModel;
 
 import java.io.Serializable;
@@ -120,7 +119,7 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
                     mDataManager.setViewVisibility(ivTag, false);
                 }
 
-                if (!StringUtil.isBlank(Constants.IMG_URL + bean.getVideo_url())) {
+                if (!StringUtil.isBlank(bean.getVideo_url())) {
                     detailPlayer.setVisibility(View.VISIBLE);
                     HttpImageView ivImage = new HttpImageView(activity);
                     ivImage.loadRectImage(bean.getVideo_image());

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.upload_image.UploadImageLayout;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
@@ -35,6 +36,15 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
 
     private List<String> uploadUrls = new ArrayList<>();
     private CommonModel commonModel;
+    private String id;
+
+    public static ArticleUploadImageFragment newInstance(String id) {
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        ArticleUploadImageFragment fragment = new ArticleUploadImageFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int[] getLayoutResource() {
@@ -45,6 +55,10 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
     protected void initializeVariate() {
         mModel = new ArticleModel(activity, this);
         commonModel = new CommonModel(activity, this);
+
+        if (getArguments() != null) {
+            id = getArguments().getString("id");
+        }
     }
 
     @Override
@@ -78,6 +92,11 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
+        if (StringUtil.isBlank(ArticleUploadAct.teacher_id)) {
+            mDataManager.showToast("请选择批改老师");
+            return;
+        }
+
         if (uploadImage.getImageList().isEmpty()) {
             mDataManager.showToast("请上传作文图片");
             return;

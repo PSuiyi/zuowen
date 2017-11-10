@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
-import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -60,8 +59,8 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
     private List<OptionBean> teacherList = new ArrayList<>();
     private String id;
-    private String teacher_id;
-    private TeacherBean bean;
+    public static String teacher_id;
+    private List<TeacherBean> beanList;
 
     private List<String> tabNames = new ArrayList<>();
     private List<Fragment> fragmentList = new ArrayList<>();
@@ -78,7 +77,13 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
             id = getIntent().getStringExtra("id");
         }
         if (getIntent().hasExtra("bean")) {
-            bean = (TeacherBean) getIntent().getSerializableExtra("bean");
+            beanList = (List<TeacherBean>) getIntent().getSerializableExtra("bean");
+            for (TeacherBean teacherBean : beanList) {
+                OptionBean bean = new OptionBean();
+                bean.setTeacher_name(teacherBean.getReal_name());
+                bean.setId(teacherBean.getId());
+                teacherList.add(bean);
+            }
         }
     }
 
@@ -89,19 +94,14 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     protected void initializeView() {
-        if (!StringUtil.isBlank(bean.getReal_name())) {
+        if (!beanList.isEmpty()) {
             tvTitle.setText("指定老师");
-            tvTeacher.setVisibility(View.GONE);
-            tvTeacherZhiding.setVisibility(View.VISIBLE);
-            tvTeacherZhiding.setText(bean.getReal_name());
-            teacher_id = bean.getId();
-            llSelect.setEnabled(false);
         }
 
         tabNames.add("上传图片");
         tabNames.add("上传文档");
 
-        fragmentList.add(new ArticleUploadImageFragment());
+        fragmentList.add(ArticleUploadImageFragment.newInstance(id));
         fragmentList.add(new ArticleUploadFileFragment());
 
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
@@ -111,7 +111,7 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
     @Override
     protected void loadDataFromServer() {
-        if (StringUtil.isBlank(bean.getReal_name())) {
+        if (beanList.isEmpty()) {
             Map<String, String> params2 = new HashMap<>();
             mModel.requestTeacherList(params2, new ZnzHttpListener() {
                 @Override
