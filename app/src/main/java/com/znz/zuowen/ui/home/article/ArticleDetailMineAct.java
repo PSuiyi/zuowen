@@ -178,6 +178,7 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                     rvArticle1.setAdapter(imageAdapter1);
                 }
 
+                //处理第二次上传
                 if (mineBean.getSecond_status().equals("1") || mineBean.getSecond_status().equals("2")) {
                     llArticleTwo.setVisibility(View.VISIBLE);
                     if (!StringUtil.isBlank(mineBean.getSecond_teacher_reviews())) {
@@ -187,12 +188,17 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                         mDataManager.setViewVisibility(llComment2, false);
                     }
 
-                    rvArticle2.setLayoutManager(new LinearLayoutManager(activity));
-                    rvArticle2.setHasFixedSize(true);
-                    rvArticle2.setNestedScrollingEnabled(false);
-                    ImageAdapter imageAdapter2 = new ImageAdapter(mineBean.getSecond_upload());
-                    rvArticle2.setAdapter(imageAdapter2);
-
+                    if (mineBean.getSecond_type().equals("2")) {
+                        llFile2.setVisibility(View.VISIBLE);
+                        mDataManager.setValueToView(tvFileName2, mineBean.getSecond_upload().get(0).getFiles_name());
+                        mDataManager.setValueToView(tvFileTime2, mineBean.getSecond_upload_time());
+                    } else {
+                        rvArticle2.setLayoutManager(new LinearLayoutManager(activity));
+                        rvArticle2.setHasFixedSize(true);
+                        rvArticle2.setNestedScrollingEnabled(false);
+                        ImageAdapter imageAdapter2 = new ImageAdapter(mineBean.getSecond_upload());
+                        rvArticle2.setAdapter(imageAdapter2);
+                    }
                 } else {
                     llArticleTwo.setVisibility(View.GONE);
                     if (mineBean.getFirst_status().equals("2")) {
@@ -251,12 +257,12 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
         Bundle bundle = new Bundle();
         switch (view.getId()) {
             case R.id.llFile1:
-                bundle.putString("title", "文档详情");
+                bundle.putString("title", mineBean.getFirst_upload().get(0).getFiles_name());
                 bundle.putString("url", "https://view.officeapps.live.com/op/view.aspx?src=" + mineBean.getFirst_upload().get(0).getUrl());
                 gotoActivity(WebViewActivity.class, bundle);
                 break;
             case R.id.llFile2:
-                bundle.putString("title", "文档详情");
+                bundle.putString("title", mineBean.getSecond_upload().get(0).getFiles_name());
                 bundle.putString("url", "https://view.officeapps.live.com/op/view.aspx?src=" + mineBean.getSecond_upload().get(0).getUrl());
                 gotoActivity(WebViewActivity.class, bundle);
                 break;

@@ -177,6 +177,7 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
                         super.onSuccess(responseOriginal);
                         mDataManager.showToast("上传成功");
                         hidePd();
+                        EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_ARTICLE));
                         finish();
                     }
 

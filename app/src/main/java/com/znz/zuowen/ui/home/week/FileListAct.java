@@ -98,11 +98,6 @@ public class FileListAct extends BaseAppActivity {
     public void load(String path) {
         currentFile = new File(path);
         File[] files = currentFile.listFiles();
-        if (files.length > 0) {
-            tvNoData.setVisibility(View.GONE);
-        } else {
-            tvNoData.setVisibility(View.VISIBLE);
-        }
 
         if (files != null) {
             fileBeanList.clear();
@@ -124,6 +119,12 @@ public class FileListAct extends BaseAppActivity {
                 }
             }
             adapter.notifyDataSetChanged();
+        }
+
+        if (fileBeanList.size() > 0) {
+            tvNoData.setVisibility(View.GONE);
+        } else {
+            tvNoData.setVisibility(View.VISIBLE);
         }
     }
 

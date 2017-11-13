@@ -4,6 +4,7 @@ public interface EventTags {
     int REFRESH_MINE_INFO = 0x100;//刷新个人信息
     int REFRESH_MINE_FAV = 0x101;
     int REFRESH_MINE_ARTICLE_DETAIL = 0x103;
+    int REFRESH_ARTICLE = 0x104;
 
     int GOTO_FILE_UPLOAD = 0x200;
 

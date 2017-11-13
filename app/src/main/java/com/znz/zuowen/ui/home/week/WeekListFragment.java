@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
@@ -14,9 +15,14 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.WeekAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
 import com.znz.zuowen.bean.ArticleBean;
+import com.znz.zuowen.event.EventRefresh;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.ui.home.article.ArticleDetailMineAct;
 import com.znz.zuowen.ui.mine.MineClassAct;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -177,5 +183,24 @@ public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleB
     @Override
     protected void onRefreshFail(String error) {
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        if (event.getFlag() == EventTags.REFRESH_ARTICLE) {
+            resetRefresh();
+        }
     }
 }

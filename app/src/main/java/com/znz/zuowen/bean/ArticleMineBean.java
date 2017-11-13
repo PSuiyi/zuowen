@@ -34,10 +34,19 @@ public class ArticleMineBean extends BaseZnzBean {
     private String first_status;
     private String second_teacher_reviews;
     private String second_status;
+    private String second_type;
     private String first_upload_time;
     private String second_upload_time;
     private List<UrlBean> first_upload;
     private List<UrlBean> second_upload;
+
+    public String getSecond_type() {
+        return second_type;
+    }
+
+    public void setSecond_type(String second_type) {
+        this.second_type = second_type;
+    }
 
     public String getFirst_type() {
         return first_type;
