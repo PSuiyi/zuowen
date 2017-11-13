@@ -99,7 +99,49 @@
                     android:id="@+id/rvArticle1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llFile1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/distance_view"
+                    android:paddingLeft="@dimen/distance_view"
+                    android:paddingRight="@dimen/distance_view">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/distance_view"
+                        android:src="@mipmap/word" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvFileName1"
+                            style="@style/TitleTextStyle"
+                            android:text="我的理想" />
+
+                        <TextView
+                            android:id="@+id/tvFileTime1"
+                            style="@style/TimeTextStyle"
+                            android:layout_marginTop="@dimen/distance_text" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/Line" />
             </LinearLayout>
 
             <LinearLayout
@@ -182,6 +224,49 @@
                         android:id="@+id/rvArticle2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llFile2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/distance_view"
+                        android:paddingLeft="@dimen/distance_view"
+                        android:paddingRight="@dimen/distance_view">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/distance_view"
+                            android:src="@mipmap/word" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvFileName2"
+                                style="@style/TitleTextStyle"
+                                android:text="我的理想" />
+
+                            <TextView
+                                android:id="@+id/tvFileTime2"
+                                style="@style/TimeTextStyle"
+                                android:layout_marginTop="@dimen/distance_text" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View style="@style/Line" />
                 </LinearLayout>
 
                 <LinearLayout

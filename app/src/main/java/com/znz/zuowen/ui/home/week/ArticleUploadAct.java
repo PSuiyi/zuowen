@@ -104,8 +104,8 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
         tabNames.add("上传图片");
         tabNames.add("上传文档");
 
-        fragmentList.add(ArticleUploadImageFragment.newInstance(id));
-        fragmentList.add(ArticleUploadFileFragment.newInstance(id));
+        fragmentList.add(ArticleUploadImageFragment.newInstance("1", id));
+        fragmentList.add(ArticleUploadFileFragment.newInstance("1", id));
 
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);

@@ -17,10 +17,12 @@ import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
 import com.znz.zuowen.event.EventGoto;
+import com.znz.zuowen.event.EventRefresh;
 import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.model.CommonModel;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -51,15 +53,18 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
     ImageView ivDelete;
     @Bind(R.id.llFile)
     LinearLayout llFile;
+
     private String id;
+    private String type;
     private String currentFilePath;
     private String currentUploadUrl;
     private String currentUploadName;
     private CommonModel commonModel;
 
-    public static ArticleUploadFileFragment newInstance(String id) {
+    public static ArticleUploadFileFragment newInstance(String type, String id) {
         Bundle args = new Bundle();
         args.putString("id", id);
+        args.putString("type", type);
         ArticleUploadFileFragment fragment = new ArticleUploadFileFragment();
         fragment.setArguments(args);
         return fragment;
@@ -75,6 +80,7 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
         mModel = new ArticleModel(activity, this);
         commonModel = new CommonModel(activity, this);
         if (getArguments() != null) {
+            type = getArguments().getString("type");
             id = getArguments().getString("id");
         }
     }
@@ -125,49 +131,53 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
                         .show();
                 break;
             case R.id.tvSubmit:
-                if (StringUtil.isBlank(ArticleUploadAct.teacher_id)) {
-                    mDataManager.showToast("请选择批改老师");
-                    return;
+                if (type.equals("1")) {
+                    firstUpload();
+                } else {
+                    secondUpload();
                 }
+                break;
+        }
+    }
 
-                if (StringUtil.isBlank(ArticleUploadAct.title)) {
-                    mDataManager.showToast("请输入作文题目");
-                    return;
-                }
 
-                if (StringUtil.isBlank(currentFilePath)) {
-                    mDataManager.showToast("请选择要上传的文档");
-                    return;
-                }
+    private void firstUpload() {
+        if (StringUtil.isBlank(ArticleUploadAct.teacher_id)) {
+            mDataManager.showToast("请选择批改老师");
+            return;
+        }
 
-                commonModel.requestUploadFile(currentFilePath, new ZnzHttpListener() {
+        if (StringUtil.isBlank(ArticleUploadAct.title)) {
+            mDataManager.showToast("请输入作文题目");
+            return;
+        }
+
+        if (StringUtil.isBlank(currentFilePath)) {
+            mDataManager.showToast("请选择要上传的文档");
+            return;
+        }
+
+        commonModel.requestUploadFile(currentFilePath, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                currentUploadUrl = responseObject.getString("url");
+                currentUploadName = responseObject.getString("file_name");
+
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id);
+                params.put("teacher_id", ArticleUploadAct.teacher_id);
+                params.put("images", currentUploadUrl);
+                params.put("files_name", currentUploadName);
+                params.put("title", ArticleUploadAct.title);
+                params.put("type", "2");
+                mModel.requestArticleSubmitOne(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        currentUploadUrl = responseObject.getString("url");
-                        currentUploadName = responseObject.getString("file_name");
-
-                        Map<String, String> params = new HashMap<>();
-                        params.put("id", id);
-                        params.put("teacher_id", ArticleUploadAct.teacher_id);
-                        params.put("images", currentUploadUrl);
-                        params.put("files_name", currentUploadName);
-                        params.put("title", ArticleUploadAct.title);
-                        params.put("type", "2");
-                        mModel.requestArticleSubmitOne(params, new ZnzHttpListener() {
-                            @Override
-                            public void onSuccess(JSONObject responseOriginal) {
-                                super.onSuccess(responseOriginal);
-                                mDataManager.showToast("上传成功");
-                                hidePd();
-                                finish();
-                            }
-
-                            @Override
-                            public void onFail(String error) {
-                                super.onFail(error);
-                            }
-                        });
+                        mDataManager.showToast("上传成功");
+                        hidePd();
+                        finish();
                     }
 
                     @Override
@@ -175,9 +185,58 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
                         super.onFail(error);
                     }
                 });
-                break;
-        }
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
+
+    private void secondUpload() {
+        if (StringUtil.isBlank(currentFilePath)) {
+            mDataManager.showToast("请选择要上传的文档");
+            return;
+        }
+
+        showPd();
+        commonModel.requestUploadFile(currentFilePath, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                currentUploadUrl = responseObject.getString("url");
+                currentUploadName = responseObject.getString("file_name");
+
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id);
+                params.put("images", currentUploadUrl);
+                params.put("files_name", currentUploadName);
+                params.put("type", "2");
+                mModel.requestArticleSubmitTwo(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        mDataManager.showToast("上传成功");
+                        hidePd();
+                        finish();
+                        EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_MINE_ARTICLE_DETAIL));
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

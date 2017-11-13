@@ -129,6 +129,7 @@
         <activity android:name=".ui.home.message.MesageDetailAct" />
         <activity android:name=".ui.home.vote.VoteStageListAct" />
         <activity android:name=".ui.home.week.FileListAct" />
+        <activity android:name=".ui.common.WebViewActivity" />
     </application>
 
 </manifest>

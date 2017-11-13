@@ -12,8 +12,12 @@ import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.upload_image.UploadImageLayout;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
+import com.znz.zuowen.event.EventRefresh;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.model.CommonModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,10 +44,12 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
     private List<String> uploadNames = new ArrayList<>();
     private CommonModel commonModel;
     private String id;
+    private String type;
 
-    public static ArticleUploadImageFragment newInstance(String id) {
+    public static ArticleUploadImageFragment newInstance(String type, String id) {
         Bundle args = new Bundle();
         args.putString("id", id);
+        args.putString("type", type);
         ArticleUploadImageFragment fragment = new ArticleUploadImageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -61,6 +67,7 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
 
         if (getArguments() != null) {
             id = getArguments().getString("id");
+            type = getArguments().getString("type");
         }
     }
 
@@ -95,6 +102,14 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
+        if (type.equals("1")) {
+            firstUpload();
+        } else {
+            secondUpload();
+        }
+    }
+
+    private void firstUpload() {
         if (StringUtil.isBlank(ArticleUploadAct.teacher_id)) {
             mDataManager.showToast("请选择批改老师");
             return;
@@ -135,6 +150,54 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
                                 mDataManager.showToast("上传成功");
                                 hidePd();
                                 finish();
+                            }
+
+                            @Override
+                            public void onFail(String error) {
+                                super.onFail(error);
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        }
+    }
+
+
+    private void secondUpload() {
+        if (uploadImage.getImageList().isEmpty()) {
+            mDataManager.showToast("请上传作文图片");
+            return;
+        }
+        showPd();
+
+        uploadUrls.clear();
+        for (String url : uploadImage.getImageList()) {
+            commonModel.requestUploadImage(url, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    uploadUrls.add(responseObject.getString("url"));
+
+                    if (uploadUrls.size() == uploadImage.getImageList().size()) {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("id", id);
+                        params.put("images", mDataManager.getValueBySeparator(uploadUrls, "|||"));
+                        params.put("files_name", mDataManager.getValueBySeparator(uploadNames, "|||"));
+                        params.put("type", "1");
+                        mModel.requestArticleSubmitTwo(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                mDataManager.showToast("上传成功");
+                                hidePd();
+                                finish();
+                                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_MINE_ARTICLE_DETAIL));
                             }
 
                             @Override

@@ -23,6 +23,7 @@ import com.znz.zuowen.bean.ArticleMineBean;
 import com.znz.zuowen.event.EventRefresh;
 import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
+import com.znz.zuowen.ui.common.WebViewActivity;
 import com.znz.zuowen.ui.home.week.ArticleUploadAgainAct;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -78,6 +79,20 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
     TextView tvFanwenContent;
     @Bind(R.id.tvFanwenComment)
     TextView tvFanwenComment;
+    @Bind(R.id.rvArticle)
+    RecyclerView rvArticle;
+    @Bind(R.id.tvFileName1)
+    TextView tvFileName1;
+    @Bind(R.id.tvFileTime1)
+    TextView tvFileTime1;
+    @Bind(R.id.llFile1)
+    LinearLayout llFile1;
+    @Bind(R.id.tvFileName2)
+    TextView tvFileName2;
+    @Bind(R.id.tvFileTime2)
+    TextView tvFileTime2;
+    @Bind(R.id.llFile2)
+    LinearLayout llFile2;
     private String id;
     private ArticleBean bean;
     private ArticleMineBean mineBean;
@@ -150,11 +165,18 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                     mDataManager.setViewVisibility(llComment1, false);
                 }
 
-                rvArticle1.setLayoutManager(new LinearLayoutManager(activity));
-                rvArticle1.setHasFixedSize(true);
-                rvArticle1.setNestedScrollingEnabled(false);
-                ImageAdapter imageAdapter1 = new ImageAdapter(mineBean.getFirst_upload());
-                rvArticle1.setAdapter(imageAdapter1);
+                //处理第一次上传
+                if (mineBean.getFirst_type().equals("2")) {
+                    llFile1.setVisibility(View.VISIBLE);
+                    mDataManager.setValueToView(tvFileName1, mineBean.getFirst_upload().get(0).getFiles_name());
+                    mDataManager.setValueToView(tvFileTime1, mineBean.getFirst_upload_time());
+                } else {
+                    rvArticle1.setLayoutManager(new LinearLayoutManager(activity));
+                    rvArticle1.setHasFixedSize(true);
+                    rvArticle1.setNestedScrollingEnabled(false);
+                    ImageAdapter imageAdapter1 = new ImageAdapter(mineBean.getFirst_upload());
+                    rvArticle1.setAdapter(imageAdapter1);
+                }
 
                 if (mineBean.getSecond_status().equals("1") || mineBean.getSecond_status().equals("2")) {
                     llArticleTwo.setVisibility(View.VISIBLE);
@@ -180,9 +202,11 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                     }
                 }
 
+                //范文
                 mDataManager.setValueHtmlToTextView(tvFanwenContent, bean.getExample_show());
                 mDataManager.setValueHtmlToTextView(tvFanwenComment, bean.getExample_comments());
 
+                //视频
                 if (!StringUtil.isBlank(bean.getVideo_url())) {
                     detailPlayer.setVisibility(View.VISIBLE);
                     HttpImageView ivImage = new HttpImageView(activity);
@@ -203,13 +227,6 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
         });
     }
 
-    @OnClick(R.id.tvSubmit)
-    public void onViewClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putString("id", bean.getId());
-        gotoActivity(ArticleUploadAgainAct.class, bundle);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,6 +243,27 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
     public void onMessageEvent(EventRefresh event) {
         if (event.getFlag() == EventTags.REFRESH_MINE_ARTICLE_DETAIL) {
             loadDataFromServer();
+        }
+    }
+
+    @OnClick({R.id.llFile1, R.id.tvSubmit, R.id.llFile2})
+    public void onViewClicked(View view) {
+        Bundle bundle = new Bundle();
+        switch (view.getId()) {
+            case R.id.llFile1:
+                bundle.putString("title", "文档详情");
+                bundle.putString("url", "https://view.officeapps.live.com/op/view.aspx?src=" + mineBean.getFirst_upload().get(0).getUrl());
+                gotoActivity(WebViewActivity.class, bundle);
+                break;
+            case R.id.llFile2:
+                bundle.putString("title", "文档详情");
+                bundle.putString("url", "https://view.officeapps.live.com/op/view.aspx?src=" + mineBean.getSecond_upload().get(0).getUrl());
+                gotoActivity(WebViewActivity.class, bundle);
+                break;
+            case R.id.tvSubmit:
+                bundle.putString("id", bean.getId());
+                gotoActivity(ArticleUploadAgainAct.class, bundle);
+                break;
         }
     }
 }

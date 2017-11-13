@@ -125,7 +125,7 @@ public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleB
      */
     private void gotoWeekDetail(ArticleBean bean) {
         if (!StringUtil.isBlank(bean.getFirst_status())) {
-            if (bean.getFirst_status().equals("1")) {
+            if (bean.getFirst_status().equals("1") || bean.getFirst_status().equals("2")) {
                 Bundle bundle = new Bundle();
                 bundle.putString("id", bean.getId());
                 bundle.putString("title", "作文要求");

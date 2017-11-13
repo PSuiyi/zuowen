@@ -12,6 +12,7 @@ import com.znz.zuowen.common.Constants;
 public class UrlBean extends BaseZnzBean {
 
     private String url;
+    private String files_name;
 
     public String getUrl() {
         return url;
@@ -19,5 +20,13 @@ public class UrlBean extends BaseZnzBean {
 
     public void setUrl(String url) {
         this.url = Constants.IMG_URL + url;
+    }
+
+    public String getFiles_name() {
+        return files_name;
+    }
+
+    public void setFiles_name(String files_name) {
+        this.files_name = files_name;
     }
 }
