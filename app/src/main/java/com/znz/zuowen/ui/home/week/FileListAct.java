@@ -2,31 +2,30 @@ package com.znz.zuowen.ui.home.week;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
-import com.znz.zuowen.adapter.FileListAdapter;
+import com.znz.zuowen.adapter.FileAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.bean.FileBean;
 import com.znz.zuowen.event.EventGoto;
 import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.utils.StaticValues;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Date： 2017/11/13 2017
@@ -42,16 +41,15 @@ public class FileListAct extends BaseAppActivity {
     ZnzRemind znzRemind;
     @Bind(R.id.llNetworkStatus)
     LinearLayout llNetworkStatus;
-    @Bind(R.id.file_list)
-    ListView fileListView;
-    @Bind(R.id.msg)
-    TextView msgTextView;
+    @Bind(R.id.rvFile)
+    RecyclerView rvFile;
+    @Bind(R.id.tvNoData)
+    TextView tvNoData;
 
     private String homePath = Environment.getExternalStorageDirectory().getPath();
-    private List fileListData;
     private File currentFile;
-    public FileListAdapter fileListAdapter;
-    private int currentListMode = StaticValues.MODE_LIST;
+    private FileAdapter adapter;
+    private List<FileBean> fileBeanList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
@@ -71,6 +69,23 @@ public class FileListAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
+        adapter = new FileAdapter(fileBeanList);
+        rvFile.setLayoutManager(new LinearLayoutManager(activity));
+        rvFile.setAdapter(adapter);
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            FileBean bean = fileBeanList.get(position);
+            switch (bean.getType()) {
+                case StaticValues.FILE_ITEM_TYPE_DIRECTORY:
+                    load(bean.getPath());
+                    break;
+
+                case StaticValues.FILE_ITEM_TYPE_FILE:
+                    EventBus.getDefault().post(new EventGoto(EventTags.GOTO_FILE_UPLOAD, bean.getPath()));
+                    finish();
+                    break;
+            }
+        });
+
         load(homePath);
     }
 
@@ -83,39 +98,32 @@ public class FileListAct extends BaseAppActivity {
     public void load(String path) {
         currentFile = new File(path);
         File[] files = currentFile.listFiles();
-
         if (files.length > 0) {
-            fileListView.setVisibility(View.VISIBLE);
-            msgTextView.setVisibility(View.GONE);
+            tvNoData.setVisibility(View.GONE);
         } else {
-            fileListView.setVisibility(View.GONE);
-            msgTextView.setVisibility(View.VISIBLE);
-            msgTextView.setText("该目录下没有文件");
+            tvNoData.setVisibility(View.VISIBLE);
         }
 
         if (files != null) {
-            fileListData = new ArrayList<Map<String, Object>>();
+            fileBeanList.clear();
             for (int a = 0; a < files.length; a++) {
                 File file = files[a];
-                Map line = new HashMap();
-                line.put("id", a);
-                line.put("name", file.getName());
-                line.put("path", file.getPath());
+                FileBean bean = new FileBean();
+                bean.setId(a + "");
+                bean.setName(file.getName());
+                bean.setPath(file.getPath());
                 if (file.isDirectory()) {
-                    line.put("type", StaticValues.FILE_ITEM_TYPE_DIRECTORY);
-                    fileListData.add(line);
+                    bean.setType(StaticValues.FILE_ITEM_TYPE_DIRECTORY);
+                    fileBeanList.add(bean);
                 }
                 if (file.isFile()) {
                     if (getFileType(file.getName()).equals("doc") || getFileType(file.getName()).equals("docx")) {
-                        line.put("type", StaticValues.FILE_ITEM_TYPE_FILE);
-                        line.put("sub", getFileType(file.getName()));
-                        fileListData.add(line);
+                        bean.setType(StaticValues.FILE_ITEM_TYPE_FILE);
+                        fileBeanList.add(bean);
                     }
                 }
             }
-
-            fileListAdapter = new FileListAdapter(fileListData, this, currentListMode);
-            fileListView.setAdapter(fileListAdapter);
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -143,21 +151,9 @@ public class FileListAct extends BaseAppActivity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventManager.register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventManager.unregister(this);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(EventGoto event) {
-        if (event.getFlag() == EventTags.GOTO_FILE_UPLOAD) {
-            finish();
-        }
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

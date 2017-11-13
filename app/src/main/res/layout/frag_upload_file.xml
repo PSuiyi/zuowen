@@ -37,6 +37,8 @@
 
             <View style="@style/Line" />
 
+            <include layout="@layout/include_file" />
+
             <TextView
                 android:id="@+id/tvSubmit"
                 style="@style/BtnRoundStyle"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,6 +12,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppFragment;
 import com.znz.zuowen.event.EventGoto;
@@ -40,6 +43,14 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
     LinearLayout llUploadWord;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
+    @Bind(R.id.tvFileName)
+    TextView tvFileName;
+    @Bind(R.id.tvFileTime)
+    TextView tvFileTime;
+    @Bind(R.id.ivDelete)
+    ImageView ivDelete;
+    @Bind(R.id.llFile)
+    LinearLayout llFile;
     private String id;
     private String currentFilePath;
     private String currentUploadUrl;
@@ -96,11 +107,22 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.llUploadWord, R.id.tvSubmit})
+    @OnClick({R.id.llUploadWord, R.id.tvSubmit, R.id.ivDelete})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llUploadWord:
                 gotoActivity(FileListAct.class);
+                break;
+            case R.id.ivDelete:
+                new UIAlertDialog(activity)
+                        .builder()
+                        .setMsg("是否删除该文档")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", v2 -> {
+                            llFile.setVisibility(View.GONE);
+                            currentFilePath = null;
+                        })
+                        .show();
                 break;
             case R.id.tvSubmit:
                 if (StringUtil.isBlank(ArticleUploadAct.teacher_id)) {
@@ -173,6 +195,10 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
     public void onMessageEvent(EventGoto event) {
         if (event.getFlag() == EventTags.GOTO_FILE_UPLOAD) {
             currentFilePath = event.getValue();
+
+            llFile.setVisibility(View.VISIBLE);
+            tvFileName.setText(event.getValue());
+            tvFileTime.setText(TimeUtils.getNowTimeString());
         }
     }
 }

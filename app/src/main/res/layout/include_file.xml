@@ -2,48 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/llFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="@dimen/distance_view">
 
             <ImageView
-                android:id="@+id/ivImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/distance_view"
-                android:src="@mipmap/file" />
+                android:src="@mipmap/word" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvName"
+                    android:id="@+id/tvFileName"
                     style="@style/TitleTextStyle"
-                    android:text="文件名" />
+                    android:text="我的理想" />
 
                 <TextView
-                    android:id="@+id/tvPath"
-                    style="@style/TextStyle"
-                    android:layout_marginTop="@dimen/distance_text"
-                    android:gravity="center_vertical"
-                    android:text="路径" />
+                    android:id="@+id/tvFileTime"
+                    style="@style/TimeTextStyle"
+                    android:layout_marginTop="@dimen/distance_text" />
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
 
-    <View style="@style/Line" />
+            <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/shanchu" />
+        </LinearLayout>
+
+        <View style="@style/Line" />
+    </LinearLayout>
 </LinearLayout>

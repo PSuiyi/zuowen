@@ -86,7 +86,6 @@ public class ArticleModel extends BaseModel {
 
     public void requestArticleSubmitOne(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         params.put("code", "1");
-        params.put("type", "1");
         params.put("token", mDataManager.getAccessToken());
         request(apiService.requestArticleSubmitOne(params), znzHttpListener);
     }
