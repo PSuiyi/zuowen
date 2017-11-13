@@ -16,7 +16,9 @@ import com.znz.zuowen.model.ArticleModel;
 import com.znz.zuowen.model.CommonModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,6 +37,7 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
     TextView tvSubmit;
 
     private List<String> uploadUrls = new ArrayList<>();
+    private List<String> uploadNames = new ArrayList<>();
     private CommonModel commonModel;
     private String id;
 
@@ -97,6 +100,11 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
             return;
         }
 
+        if (StringUtil.isBlank(ArticleUploadAct.title)) {
+            mDataManager.showToast("请输入作文题目");
+            return;
+        }
+
         if (uploadImage.getImageList().isEmpty()) {
             mDataManager.showToast("请上传作文图片");
             return;
@@ -110,27 +118,30 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
                 public void onSuccess(JSONObject responseOriginal) {
                     super.onSuccess(responseOriginal);
                     uploadUrls.add(responseObject.getString("url"));
+                    uploadNames.add(responseObject.getString("file_name"));
 
                     if (uploadUrls.size() == uploadImage.getImageList().size()) {
-//                        Map<String, String> params = new HashMap<>();
-//                        params.put("id", id);
-//                        params.put("teacher_id", teacher_id);
-//                        params.put("images", mDataManager.getValueBySeparator(uploadUrls, "|||"));
-//                        params.put("title", mDataManager.getValueFromView(etTitle));
-//                        mModel.requestArticleSubmitOne(params, new ZnzHttpListener() {
-//                            @Override
-//                            public void onSuccess(JSONObject responseOriginal) {
-//                                super.onSuccess(responseOriginal);
-//                                mDataManager.showToast("上传成功");
-//                                hidePd();
-//                                finish();
-//                            }
-//
-//                            @Override
-//                            public void onFail(String error) {
-//                                super.onFail(error);
-//                            }
-//                        });
+                        Map<String, String> params = new HashMap<>();
+                        params.put("id", id);
+                        params.put("teacher_id", ArticleUploadAct.teacher_id);
+                        params.put("images", mDataManager.getValueBySeparator(uploadUrls, "|||"));
+                        params.put("files_name", mDataManager.getValueBySeparator(uploadNames, "|||"));
+                        params.put("title", ArticleUploadAct.title);
+                        params.put("type", "1");
+                        mModel.requestArticleSubmitOne(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                mDataManager.showToast("上传成功");
+                                hidePd();
+                                finish();
+                            }
+
+                            @Override
+                            public void onFail(String error) {
+                                super.onFail(error);
+                            }
+                        });
                     }
                 }
 

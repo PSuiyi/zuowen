@@ -183,12 +183,17 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                 mDataManager.setValueHtmlToTextView(tvFanwenContent, bean.getExample_show());
                 mDataManager.setValueHtmlToTextView(tvFanwenComment, bean.getExample_comments());
 
-                HttpImageView ivImage = new HttpImageView(activity);
-                ivImage.loadRectImage(bean.getVideo_image());
+                if (!StringUtil.isBlank(bean.getVideo_url())) {
+                    detailPlayer.setVisibility(View.VISIBLE);
+                    HttpImageView ivImage = new HttpImageView(activity);
+                    ivImage.loadRectImage(bean.getVideo_image());
 
-                gsyVideoOption.setThumbImageView(ivImage)
-                        .setUrl(bean.getVideo_url())
-                        .build(detailPlayer);
+                    gsyVideoOption.setThumbImageView(ivImage)
+                            .setUrl(bean.getVideo_url())
+                            .build(detailPlayer);
+                } else {
+                    detailPlayer.setVisibility(View.GONE);
+                }
             }
 
             @Override

@@ -3,6 +3,8 @@ package com.znz.zuowen.ui.home.week;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -60,6 +62,7 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
     private List<OptionBean> teacherList = new ArrayList<>();
     private String id;
     public static String teacher_id;
+    public static String title;
     private List<TeacherBean> beanList;
 
     private List<String> tabNames = new ArrayList<>();
@@ -107,6 +110,24 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);
         commonViewPager.setOffscreenPageLimit(fragmentList.size());
+
+
+        etTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                title = s.toString();
+            }
+        });
     }
 
     @Override
