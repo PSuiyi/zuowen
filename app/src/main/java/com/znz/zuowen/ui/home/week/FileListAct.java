@@ -7,12 +7,18 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.FileListAdapter;
 import com.znz.zuowen.base.BaseAppActivity;
+import com.znz.zuowen.event.EventGoto;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.utils.StaticValues;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Date： 2017/11/13 2017
@@ -80,8 +85,10 @@ public class FileListAct extends BaseAppActivity {
         File[] files = currentFile.listFiles();
 
         if (files.length > 0) {
+            fileListView.setVisibility(View.VISIBLE);
             msgTextView.setVisibility(View.GONE);
         } else {
+            fileListView.setVisibility(View.GONE);
             msgTextView.setVisibility(View.VISIBLE);
             msgTextView.setText("该目录下没有文件");
         }
@@ -99,22 +106,17 @@ public class FileListAct extends BaseAppActivity {
                     fileListData.add(line);
                 }
                 if (file.isFile()) {
-                    if (getFileType(file.getName()).equals("doc")|| getFileType(file.getName()).equals("docx")) {
+                    if (getFileType(file.getName()).equals("doc") || getFileType(file.getName()).equals("docx")) {
                         line.put("type", StaticValues.FILE_ITEM_TYPE_FILE);
                         line.put("sub", getFileType(file.getName()));
                         fileListData.add(line);
                     }
                 }
             }
-            changeListMode();
+
+            fileListAdapter = new FileListAdapter(fileListData, this, currentListMode);
+            fileListView.setAdapter(fileListAdapter);
         }
-    }
-
-
-    public void changeListMode() {
-        fileListView.setVisibility(View.VISIBLE);
-        fileListAdapter = new FileListAdapter(fileListData, this, currentListMode);
-        fileListView.setAdapter(fileListAdapter);
     }
 
 
@@ -141,9 +143,21 @@ public class FileListAct extends BaseAppActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventGoto event) {
+        if (event.getFlag() == EventTags.GOTO_FILE_UPLOAD) {
+            finish();
+        }
     }
 }

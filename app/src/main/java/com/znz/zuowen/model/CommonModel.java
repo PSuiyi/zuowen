@@ -74,4 +74,15 @@ public class CommonModel extends BaseModel {
                     request(apiService.requestUploadImage(params, body), znzHttpListener);
                 });
     }
+
+    //上传文件
+    public void requestUploadFile(String url, ZnzHttpListener znzHttpListener) {
+        Map<String, String> params = new HashMap<>();
+        params.put("code", "1");
+        params.put("type", "1");
+        File file = new File(url);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("photo", file.getName(), requestBody);
+        request(apiService.requestUploadImage(params, body), znzHttpListener);
+    }
 }

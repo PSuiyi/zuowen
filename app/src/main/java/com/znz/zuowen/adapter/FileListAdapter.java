@@ -9,8 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.znz.zuowen.R;
+import com.znz.zuowen.event.EventGoto;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.ui.home.week.FileListAct;
 import com.znz.zuowen.utils.StaticValues;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,11 +83,7 @@ public class FileListAdapter extends BaseAdapter {
                 holder.icon.setImageResource(R.mipmap.file);
                 break;
             case StaticValues.FILE_ITEM_TYPE_FILE:
-                switch (list.get(position).get("sub").toString()) {
-                    default:
-                        holder.icon.setImageResource(R.mipmap.word);
-                        break;
-                }
+                holder.icon.setImageResource(R.mipmap.word);
                 break;
         }
 
@@ -97,7 +97,7 @@ public class FileListAdapter extends BaseAdapter {
                         break;
 
                     case StaticValues.FILE_ITEM_TYPE_FILE:
-                        String sub = list.get(position).get("sub").toString();
+                        EventBus.getDefault().post(new EventGoto(EventTags.GOTO_FILE_UPLOAD, list.get(position).get("path").toString()));
                         break;
                 }
 
