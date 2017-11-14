@@ -10,29 +10,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         android:background="@drawable/bg_code"
         android:orientation="vertical"
-        android:paddingBottom="40dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingTop="40dp">
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/etCode"
                 style="@style/EditSingleStyle"
-                android:layout_width="170dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginRight="@dimen/distance_view"
                 android:background="@drawable/bg_code_edit"
                 android:gravity="center"
-                android:hint="验证码" />
+                android:hint="验证码"
+                android:minWidth="140dp"
+                android:paddingLeft="@dimen/distance_view"
+                android:paddingRight="@dimen/distance_view" />
 
             <com.znz.compass.znzlibray.views.imageloder.HttpImageView
                 android:id="@+id/ivImage"
@@ -52,21 +53,25 @@
             <TextView
                 android:id="@+id/tvCancel"
                 style="@style/BtnRoundStyle"
-                android:layout_width="110dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:background="@drawable/bg_btn_boder"
                 android:text="取消"
-                android:textColor="@color/text_gray" />
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_size" />
 
             <TextView
                 android:id="@+id/tvSubmit"
                 style="@style/BtnRoundStyle"
-                android:layout_width="110dp"
-                android:layout_marginLeft="30dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="0dp"
                 android:text="确定"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
 
         </LinearLayout>
 
