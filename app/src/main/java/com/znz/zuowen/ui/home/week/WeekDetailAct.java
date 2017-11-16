@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
@@ -20,14 +21,18 @@ import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseVideoActivity;
 import com.znz.zuowen.bean.ArticleBean;
+import com.znz.zuowen.event.EventRefresh;
+import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -140,13 +145,6 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
         if (bean.getIs_model().equals("1")) {
@@ -169,6 +167,25 @@ public class WeekDetailAct extends BaseVideoActivity<ArticleModel> {
                     gotoActivity(ArticleUploadAct.class, bundle);
                 }
             }
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        if (event.getFlag() == EventTags.REFRESH_ARTICLE) {
+            finish();
         }
     }
 }

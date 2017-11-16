@@ -248,7 +248,11 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventRefresh event) {
         if (event.getFlag() == EventTags.REFRESH_MINE_ARTICLE_DETAIL) {
-            loadDataFromServer();
+            finish();
+        }
+
+        if (event.getFlag() == EventTags.REFRESH_ARTICLE) {
+            finish();
         }
     }
 

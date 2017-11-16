@@ -30,6 +30,7 @@ public class ArticleBean extends BaseZnzBean {
     private String title;
     private String teacher_name;
     private String type;
+    private String cate_type;
     private String style_type;
     private String counts;
     private String content;
@@ -53,6 +54,14 @@ public class ArticleBean extends BaseZnzBean {
     private String video_image;
     private List<TeacherBean> assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public String getCate_type() {
+        return cate_type;
+    }
+
+    public void setCate_type(String cate_type) {
+        this.cate_type = cate_type;
+    }
 
     public String getVideo_image() {
         return video_image;

@@ -198,7 +198,7 @@ public class ArticleUploadImageFragment extends BaseAppFragment<ArticleModel> {
                                 mDataManager.showToast("上传成功");
                                 hidePd();
                                 finish();
-                                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_MINE_ARTICLE_DETAIL));
+                                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_ARTICLE));
                             }
 
                             @Override
