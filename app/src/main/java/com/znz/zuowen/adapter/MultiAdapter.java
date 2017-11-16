@@ -46,16 +46,19 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 } else {
                     helper.setVisible(R.id.tvContent, false);
                 }
-                switch (bean.getArticleBean().getCate_type()) {
-                    case "1":
-                        helper.setText(R.id.tvType, "小学组");
-                        break;
-                    case "2":
-                        helper.setText(R.id.tvType, "初中组");
-                        break;
-                    case "3":
-                        helper.setText(R.id.tvType, "高中组");
-                        break;
+
+                if (!StringUtil.isBlank(bean.getArticleBean().getCate_type())) {
+                    switch (bean.getArticleBean().getCate_type()) {
+                        case "1":
+                            helper.setText(R.id.tvType, "小学组");
+                            break;
+                        case "2":
+                            helper.setText(R.id.tvType, "初中组");
+                            break;
+                        case "3":
+                            helper.setText(R.id.tvType, "高中组");
+                            break;
+                    }
                 }
 
                 helper.setText(R.id.tvVoteCount, "票数：" + bean.getArticleBean().getVote_count());
