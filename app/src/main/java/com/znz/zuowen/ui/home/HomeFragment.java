@@ -2,15 +2,12 @@ package com.znz.zuowen.ui.home;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONArray;
 import com.znz.compass.znzlibray.eventbus.EventManager;
-import com.znz.compass.znzlibray.views.advs.bean.AdvInfoBean;
 import com.znz.zuowen.R;
 import com.znz.zuowen.adapter.MultiAdapter;
 import com.znz.zuowen.base.BaseAppListFragment;
@@ -31,11 +28,6 @@ import com.znz.zuowen.ui.home.week.WeekArticleAct;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.ButterKnife;
-import cn.bingoogolapple.bgabanner.BGABanner;
 import okhttp3.ResponseBody;
 import rx.Observable;
 
@@ -48,8 +40,6 @@ import rx.Observable;
 public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
 
     private View header;
-    private BGABanner mBanner;
-    private List<AdvInfoBean> advList = new ArrayList<>();
 
     private LinearLayout llMenu1;
     private LinearLayout llMenu2;
@@ -146,9 +136,14 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.add(new MultiBean(Constants.MultiType.Section, "国内面料"));
-        for (ArticleBean articleBean : JSONArray.parseArray(response, ArticleBean.class)) {
-            dataList.add(new MultiBean(Constants.MultiType.WeekStar, articleBean));
+        if (!JSONArray.parseArray(response, ArticleBean.class).isEmpty()) {
+            dataList.add(new MultiBean(Constants.MultiType.Section, "国内面料"));
+            for (ArticleBean articleBean : JSONArray.parseArray(response, ArticleBean.class)) {
+                dataList.add(new MultiBean(Constants.MultiType.WeekStar, articleBean));
+            }
+        } else {
+            dataList.add(new MultiBean(Constants.MultiType.Section, "国内面料"));
+            dataList.add(new MultiBean(Constants.MultiType.WeekStar, new ArticleBean()));
         }
         adapter.notifyDataSetChanged();
     }
@@ -156,20 +151,6 @@ public class HomeFragment extends BaseAppListFragment<ArticleModel, MultiBean> {
     @Override
     protected void onRefreshFail(String error) {
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     @Override

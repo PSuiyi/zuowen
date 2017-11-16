@@ -123,6 +123,8 @@ public abstract class BaseAppListActivity<M extends IModel, T> extends BaseListA
 
                                 if (!jsonObject.getString("data").equals("{}")) {
                                     onRefreshSuccess(jsonObject.getString("data"));
+                                } else {
+                                    onRefreshSuccess("[]");
                                 }
 
                                 if (dataList.isEmpty()) {

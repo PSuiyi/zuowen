@@ -3,4 +3,5 @@
     <dimen name="home_menu_size">40dp</dimen>
     <dimen name="home_distance">10dp</dimen>
     <dimen name="video_height">220dp</dimen>
+    <dimen name="empty_icon_size">90dp</dimen>
 </resources>

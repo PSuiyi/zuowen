@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/llContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -115,7 +116,32 @@
 
             </LinearLayout>
         </LinearLayout>
+
+        <View style="@style/LineDividerNoTop" />
     </LinearLayout>
 
-    <View style="@style/LineDividerNoTop" />
+    <LinearLayout
+        android:id="@+id/llNoData"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="155dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/empicon_box" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="没有本周之星数据"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
+
 </LinearLayout>

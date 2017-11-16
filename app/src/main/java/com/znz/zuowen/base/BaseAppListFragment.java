@@ -112,6 +112,8 @@ public abstract class BaseAppListFragment<M extends IModel, T extends BaseZnzBea
 
                                 if (!jsonObject.getString("data").equals("{}")) {
                                     onRefreshSuccess(jsonObject.getString("data"));
+                                } else {
+                                    onRefreshSuccess("[]");
                                 }
 
                                 if (dataList.isEmpty()) {

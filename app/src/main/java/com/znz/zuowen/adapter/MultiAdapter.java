@@ -39,36 +39,44 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
             case Constants.MultiType.Section:
                 break;
             case Constants.MultiType.WeekStar:
-                helper.setText(R.id.tvTitle, bean.getArticleBean().getTitle());
-                if (!StringUtil.isBlank(bean.getArticleBean().getContent())) {
-                    helper.setVisible(R.id.tvContent, true);
-                    helper.setText(R.id.tvContent, bean.getArticleBean().getContent());
+                if (StringUtil.isBlank(bean.getArticleBean().getId())) {
+                    helper.setVisible(R.id.llNoData, true);
+                    helper.setVisible(R.id.llContainer, false);
                 } else {
-                    helper.setVisible(R.id.tvContent, false);
-                }
+                    helper.setVisible(R.id.llNoData, false);
+                    helper.setVisible(R.id.llContainer, true);
 
-                if (!StringUtil.isBlank(bean.getArticleBean().getCate_type())) {
-                    switch (bean.getArticleBean().getCate_type()) {
-                        case "1":
-                            helper.setText(R.id.tvType, "小学组");
-                            break;
-                        case "2":
-                            helper.setText(R.id.tvType, "初中组");
-                            break;
-                        case "3":
-                            helper.setText(R.id.tvType, "高中组");
-                            break;
+                    helper.setText(R.id.tvTitle, bean.getArticleBean().getTitle());
+                    if (!StringUtil.isBlank(bean.getArticleBean().getContent())) {
+                        helper.setVisible(R.id.tvContent, true);
+                        helper.setText(R.id.tvContent, bean.getArticleBean().getContent());
+                    } else {
+                        helper.setVisible(R.id.tvContent, false);
                     }
-                }
 
-                helper.setText(R.id.tvVoteCount, "票数：" + bean.getArticleBean().getVote_count());
-                helper.setText(R.id.tvTag1, bean.getArticleBean().getStyle_type());
-                helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts() + "字");
-                if (!bean.getArticleBean().getImgurl().isEmpty()) {
-                    helper.setVisible(R.id.ivImage, true);
-                    helper.loadRectImage(R.id.ivImage, bean.getArticleBean().getImgurl().get(0).getUrl());
-                } else {
-                    helper.setVisible(R.id.ivImage, false);
+                    if (!StringUtil.isBlank(bean.getArticleBean().getCate_type())) {
+                        switch (bean.getArticleBean().getCate_type()) {
+                            case "1":
+                                helper.setText(R.id.tvType, "小学组");
+                                break;
+                            case "2":
+                                helper.setText(R.id.tvType, "初中组");
+                                break;
+                            case "3":
+                                helper.setText(R.id.tvType, "高中组");
+                                break;
+                        }
+                    }
+
+                    helper.setText(R.id.tvVoteCount, "票数：" + bean.getArticleBean().getVote_count());
+                    helper.setText(R.id.tvTag1, bean.getArticleBean().getStyle_type());
+                    helper.setText(R.id.tvTag2, bean.getArticleBean().getCounts() + "字");
+                    if (!bean.getArticleBean().getImgurl().isEmpty()) {
+                        helper.setVisible(R.id.ivImage, true);
+                        helper.loadRectImage(R.id.ivImage, bean.getArticleBean().getImgurl().get(0).getUrl());
+                    } else {
+                        helper.setVisible(R.id.ivImage, false);
+                    }
                 }
                 break;
             case Constants.MultiType.ArticleVote:
@@ -122,6 +130,9 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
 //                gotoActivity(GoodListAct.class);
                 break;
             case Constants.MultiType.WeekStar:
+                if (StringUtil.isBlank(bean.getArticleBean().getId())) {
+                    return;
+                }
                 bundle.putString("id", bean.getArticleBean().getId());
                 gotoActivity(VoteDetailAct.class, bundle);
                 break;
