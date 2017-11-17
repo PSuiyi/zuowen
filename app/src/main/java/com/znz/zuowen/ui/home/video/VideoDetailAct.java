@@ -131,7 +131,7 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), VideoBean.class);
                 mDataManager.setValueToView(tvName, bean.getTitle());
-                mDataManager.setValueToView(tvContent, bean.getContent());
+                mDataManager.setValueHtmlToTextView(tvContent, bean.getContent());
                 mDataManager.setValueToView(tvTeacher, bean.getTeacher_name());
                 mDataManager.setValueToView(tvTime, bean.getAddtime());
 

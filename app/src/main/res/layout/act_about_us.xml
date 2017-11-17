@@ -28,7 +28,7 @@
             style="@style/TitleGrayTextStyle"
             android:layout_marginBottom="@dimen/distance_view"
             android:layout_marginTop="@dimen/distance_view"
-            android:text="树遇V1.0" />
+            android:text="特级教师改作文V1.0" />
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
 
             <TextView
                 style="@style/TextStyle"
-                android:text="xx" />
+                android:text="特级教师改作文" />
 
             <TextView
                 style="@style/TextStyle"
@@ -64,7 +64,7 @@
         <TextView
             style="@style/TextSamllGrayStyle"
             android:layout_margin="@dimen/distance_view"
-            android:text="Copyright ©2015-2018 AllRights Reserved" />
+            android:text="Copyright ©2017-2018 AllRights Reserved" />
 
 
     </LinearLayout>

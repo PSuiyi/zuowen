@@ -139,6 +139,9 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
                 public void onSuccess(JSONObject responseOriginal) {
                     super.onSuccess(responseOriginal);
                     teacherList.clear();
+                    if (responseOriginal.getString("data").equals("{}")) {
+                        return;
+                    }
                     teacherList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), OptionBean.class));
                     if (!teacherList.isEmpty()) {
                         teacherList.get(0).setChecked(true);
@@ -157,6 +160,10 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llSelect:
+                if (teacherList.isEmpty()) {
+                    mDataManager.showToast("暂时没有老师");
+                    return;
+                }
                 PopupWindowManager.getInstance(activity).showSelectTeacher(view, teacherList, (type, values) -> {
                     tvTeacher.setText(values[1]);
                     teacher_id = values[0];

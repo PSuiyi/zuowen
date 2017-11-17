@@ -77,7 +77,7 @@ public class TeacherDetailAct extends BaseAppActivity<ArticleModel> {
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), TeacherBean.class);
                 ivImage.loadRectImage(bean.getImage());
                 mDataManager.setValueToView(tvName, bean.getName());
-                mDataManager.setValueToView(tvContent, bean.getIntro());
+                mDataManager.setValueHtmlToTextView(tvContent, bean.getContent());
             }
 
             @Override
