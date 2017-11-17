@@ -124,6 +124,7 @@ public class VoteDetailAct extends BaseAppActivity<ArticleModel> {
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), ArticleBean.class);
                 mDataManager.setValueToView(tvName, bean.getTitle());
                 mDataManager.setValueToView(tvTeacher, bean.getAuthor());
+                mDataManager.setValueToView(tvTime, bean.getAddtime());
                 if (bean.getImgurl().isEmpty()) {
                     rvArticle.setVisibility(View.GONE);
                     tvContent.setVisibility(View.VISIBLE);
