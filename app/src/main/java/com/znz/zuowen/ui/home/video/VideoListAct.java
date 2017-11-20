@@ -39,7 +39,7 @@ public class VideoListAct extends BaseAppActivity {
                 setTitleName("微课堂");
             }
         } else {
-            setTitleName("微课指导");
+            setTitleName("微课堂");
         }
     }
 
