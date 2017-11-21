@@ -5,7 +5,6 @@ import android.view.View;
 import com.znz.compass.znzlibray.base_znz.BaseZnzActivity;
 import com.znz.compass.znzlibray.base_znz.IModel;
 import com.znz.compass.znzlibray.network_status.NetUtils;
-import com.znz.compass.znzlibray.utils.ActivityStackManager;
 
 /**
  * activity基类
@@ -66,11 +65,7 @@ public abstract class BaseActivity<M extends IModel> extends BaseZnzActivity {
      */
     @Override
     protected void onNetworkConnected(NetUtils.NetType type) {
-        if (activity != null) {
-            if (ActivityStackManager.getInstance().getTopActivity().equals(activity)) {
-                loadDataFromServer();
-            }
-        }
+        loadDataFromServer();
 
         if (znzRemind != null) {
             znzRemind.setVisibility(View.GONE);
