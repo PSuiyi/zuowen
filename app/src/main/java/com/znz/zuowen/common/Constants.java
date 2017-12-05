@@ -73,6 +73,6 @@ public class Constants {
         String SEARCHTYPE = "SearchType";
     }
 
-    public static final String IMG_URL = "http://hao.magick.ltd//Public/";
+    public static final String IMG_URL = "http://hao.xredu.xin/Public/";
     public static final String ZHIFU_AGREEMENT = "ZHIFU_AGREEMENT";
 }
