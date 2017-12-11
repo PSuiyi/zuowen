@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.MD5Util;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -126,7 +127,7 @@ public class UpdatePhoneAct extends BaseAppActivity<UserModel> {
         }
 
         PopupWindowManager.getInstance(activity).showVerifyCode(tvSubmit,
-                "http://hao.magick.ltd/index.php?m=rest&c=login&a=getimgcode&type=3",
+                ZnzConstants.HTTP_URL + "index.php?m=rest&c=login&a=getimgcode&type=3",
                 (type, values) -> {
                     Map<String, String> params = new HashMap<>();
                     params.put("phone", mDataManager.getValueFromView(etPhoneNew));

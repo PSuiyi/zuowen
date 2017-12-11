@@ -31,9 +31,9 @@ public class ZnzApplication extends MultiDexApplication {
         //设置网络访问请求链接
         if (StringUtil.isBlank(dataManager.readTempData(ZnzConstants.SERVICE_IP))) {
             if (ZnzConstants.APP_DEBUG) {
-                dataManager.saveTempData(ZnzConstants.SERVICE_IP, "http://hao.xredu.xin/index.php/");//测试环境
+                dataManager.saveTempData(ZnzConstants.SERVICE_IP, ZnzConstants.HTTP_URL+"index.php/");//测试环境
             } else {
-                dataManager.saveTempData(ZnzConstants.SERVICE_IP, "http://hao.xredu.xin/index.php/");//正式环境
+                dataManager.saveTempData(ZnzConstants.SERVICE_IP,  ZnzConstants.HTTP_URL+"index.php/");//正式环境
             }
         }
 

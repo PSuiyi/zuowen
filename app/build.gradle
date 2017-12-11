@@ -39,7 +39,7 @@ android {
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 //这里修改apk文件名
-                def fileName = "好作文_v${defaultConfig.versionName}${releaseTime()}.apk"
+                def fileName = "作文.apk"
                 output.outputFile = new File(outputFile.parent, fileName)
             }
         }

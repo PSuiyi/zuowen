@@ -34,6 +34,7 @@ public class ZnzConstants {
     public static final String ACCOUNT = "account"; // 用户名/手机号
     public static final String ACCOUNT_TYPE = "ACCOUNT_TYPE";
     public static final String COOKIE = "cookie";
+    public static final String HTTP_URL = "http://hao.xredu.xin/";
 
     /**
      * 公共参数
