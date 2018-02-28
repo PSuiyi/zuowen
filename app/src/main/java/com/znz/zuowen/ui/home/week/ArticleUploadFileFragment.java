@@ -142,11 +142,6 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
 
 
     private void firstUpload() {
-        if (StringUtil.isBlank(ArticleUploadAct.teacher_id)) {
-            mDataManager.showToast("请选择批改老师");
-            return;
-        }
-
         if (StringUtil.isBlank(ArticleUploadAct.title)) {
             mDataManager.showToast("请输入作文题目");
             return;
@@ -166,7 +161,9 @@ public class ArticleUploadFileFragment extends BaseAppFragment<ArticleModel> {
 
                 Map<String, String> params = new HashMap<>();
                 params.put("id", id);
-                params.put("teacher_id", ArticleUploadAct.teacher_id);
+                if (!StringUtil.isBlank(ArticleUploadAct.teacher_id)) {
+                    params.put("teacher_id", ArticleUploadAct.teacher_id);
+                }
                 params.put("images", currentUploadUrl);
                 params.put("files_name", currentUploadName);
                 params.put("title", ArticleUploadAct.title);

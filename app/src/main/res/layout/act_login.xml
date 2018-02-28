@@ -67,8 +67,6 @@
                     android:textSize="@dimen/text_size" />
             </LinearLayout>
 
-            <View style="@style/Line" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"

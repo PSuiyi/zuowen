@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -125,7 +126,9 @@ public class ArticleUploadAct extends BaseAppActivity<ArticleModel> {
 
             @Override
             public void afterTextChanged(Editable s) {
-                title = s.toString();
+                if (!StringUtil.isBlank(s.toString())) {
+                    title = s.toString();
+                }
             }
         });
     }

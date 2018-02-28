@@ -2,11 +2,13 @@ package com.znz.zuowen.ui.home.video;
 
 import android.content.res.Configuration;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
@@ -135,13 +137,14 @@ public class VideoDetailAct extends BaseAppActivity<ArticleModel> {
                 mDataManager.setValueToView(tvTeacher, bean.getTeacher_name());
                 mDataManager.setValueToView(tvTime, bean.getAddtime());
 
-                if (bean.getIs_collect().equals("1")) {
+                if (!StringUtil.isBlank(bean.getIs_collect()) && bean.getIs_collect().equals("1")) {
                     znzToolBar.setNavRightImg(R.mipmap.icon_shoucang);
                 } else {
                     znzToolBar.setNavRightImg(R.mipmap.icon_shoucanghui);
                 }
 
                 HttpImageView ivImage = new HttpImageView(activity);
+                ivImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 ivImage.loadRectImage(bean.getImage());
 
                 GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
