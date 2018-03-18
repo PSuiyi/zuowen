@@ -179,6 +179,58 @@
                     android:paddingRight="@dimen/distance_view"
                     android:text="能过合理的想象,反映出意味深长的哲理,…行文流畅,简洁,充分发挥了自己的想像力,是一篇不错的…文章清逸婉丽,流畅连贯,尤其人物语言幽默风趣,再加上一些精妙词语的使用,无形中为文章增添了不少情趣.。" />
 
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvReply1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/distance_view"
+                    android:paddingRight="@dimen/distance_view"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/llReplyFile1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/distance_view"
+                        android:paddingLeft="@dimen/distance_view"
+                        android:paddingRight="@dimen/distance_view">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/distance_view"
+                            android:src="@mipmap/word" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvReplyFileName1"
+                                style="@style/TitleTextStyle"
+                                android:text="第二次批改回复" />
+
+                            <TextView
+                                android:id="@+id/tvReplyFileTime1"
+                                style="@style/TimeTextStyle"
+                                android:layout_marginTop="@dimen/distance_text"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View style="@style/Line" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -303,6 +355,59 @@
                         android:paddingLeft="@dimen/distance_view"
                         android:paddingRight="@dimen/distance_view"
                         android:text="能过合理的想象,反映出意味深长的哲理,…行文流畅,简洁,充分发挥了自己的想像力,是一篇不错的…文章清逸婉丽,流畅连贯,尤其人物语言幽默风趣,再加上一些精妙词语的使用,无形中为文章增添了不少情趣.。" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvReply2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/distance_view"
+                        android:paddingRight="@dimen/distance_view"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/llReplyFile2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/distance_view"
+                            android:paddingLeft="@dimen/distance_view"
+                            android:paddingRight="@dimen/distance_view">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/distance_view"
+                                android:src="@mipmap/word" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvReplyFileName2"
+                                    style="@style/TitleTextStyle"
+                                    android:text="第二次批改回复" />
+
+                                <TextView
+                                    android:id="@+id/tvReplyFileTime2"
+                                    style="@style/TimeTextStyle"
+                                    android:layout_marginTop="@dimen/distance_text"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View style="@style/Line" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

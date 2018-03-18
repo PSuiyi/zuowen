@@ -37,8 +37,44 @@ public class ArticleMineBean extends BaseZnzBean {
     private String second_type;
     private String first_upload_time;
     private String second_upload_time;
+    private String first_teacher_doc;
+    private String second_teacher_doc;
     private List<UrlBean> first_upload;
     private List<UrlBean> second_upload;
+    private List<UrlBean> first_teacher_upload;
+    private List<UrlBean> second_teacher_upload;
+
+    public String getFirst_teacher_doc() {
+        return first_teacher_doc;
+    }
+
+    public void setFirst_teacher_doc(String first_teacher_doc) {
+        this.first_teacher_doc = first_teacher_doc;
+    }
+
+    public String getSecond_teacher_doc() {
+        return second_teacher_doc;
+    }
+
+    public void setSecond_teacher_doc(String second_teacher_doc) {
+        this.second_teacher_doc = second_teacher_doc;
+    }
+
+    public List<UrlBean> getFirst_teacher_upload() {
+        return first_teacher_upload;
+    }
+
+    public void setFirst_teacher_upload(List<UrlBean> first_teacher_upload) {
+        this.first_teacher_upload = first_teacher_upload;
+    }
+
+    public List<UrlBean> getSecond_teacher_upload() {
+        return second_teacher_upload;
+    }
+
+    public void setSecond_teacher_upload(List<UrlBean> second_teacher_upload) {
+        this.second_teacher_upload = second_teacher_upload;
+    }
 
     public String getSecond_type() {
         return second_type;

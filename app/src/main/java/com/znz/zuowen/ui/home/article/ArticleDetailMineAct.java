@@ -20,6 +20,7 @@ import com.znz.zuowen.adapter.ImageAdapter;
 import com.znz.zuowen.base.BaseVideoActivity;
 import com.znz.zuowen.bean.ArticleBean;
 import com.znz.zuowen.bean.ArticleMineBean;
+import com.znz.zuowen.common.Constants;
 import com.znz.zuowen.event.EventRefresh;
 import com.znz.zuowen.event.EventTags;
 import com.znz.zuowen.model.ArticleModel;
@@ -93,6 +94,22 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
     TextView tvFileTime2;
     @Bind(R.id.llFile2)
     LinearLayout llFile2;
+    @Bind(R.id.rvReply1)
+    RecyclerView rvReply1;
+    @Bind(R.id.tvReplyFileName1)
+    TextView tvReplyFileName1;
+    @Bind(R.id.tvReplyFileTime1)
+    TextView tvReplyFileTime1;
+    @Bind(R.id.llReplyFile1)
+    LinearLayout llReplyFile1;
+    @Bind(R.id.rvReply2)
+    RecyclerView rvReply2;
+    @Bind(R.id.tvReplyFileName2)
+    TextView tvReplyFileName2;
+    @Bind(R.id.tvReplyFileTime2)
+    TextView tvReplyFileTime2;
+    @Bind(R.id.llReplyFile2)
+    LinearLayout llReplyFile2;
     private String id;
     private ArticleBean bean;
     private ArticleMineBean mineBean;
@@ -161,6 +178,24 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                 if (!StringUtil.isBlank(mineBean.getFirst_teacher_reviews())) {
                     tvComment1.setText(Html.fromHtml(mineBean.getFirst_teacher_reviews()));
                     mDataManager.setViewVisibility(llComment1, true);
+                    if (!StringUtil.isBlank(mineBean.getFirst_teacher_doc())) {
+                        mDataManager.setViewVisibility(llReplyFile1, true);
+                        llReplyFile1.setOnClickListener(v -> {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("title", "第一次批改回复");
+                            bundle.putString("url", "https://view.officeapps.live.com/op/view.aspx?src=" + Constants.IMG_URL + mineBean.getFirst_teacher_doc());
+                            gotoActivity(WebViewActivity.class, bundle);
+                        });
+                    } else {
+                        if (!mineBean.getFirst_teacher_upload().isEmpty()) {
+                            mDataManager.setViewVisibility(rvReply1, true);
+                            rvReply1.setLayoutManager(new LinearLayoutManager(activity));
+                            rvReply1.setHasFixedSize(true);
+                            rvReply1.setNestedScrollingEnabled(false);
+                            ImageAdapter imageReply = new ImageAdapter(mineBean.getFirst_teacher_upload());
+                            rvReply1.setAdapter(imageReply);
+                        }
+                    }
                 } else {
                     mDataManager.setViewVisibility(llComment1, false);
                 }
@@ -178,12 +213,31 @@ public class ArticleDetailMineAct extends BaseVideoActivity<ArticleModel> {
                     rvArticle1.setAdapter(imageAdapter1);
                 }
 
+
                 //处理第二次上传
                 if (mineBean.getSecond_status().equals("1") || mineBean.getSecond_status().equals("2")) {
                     llArticleTwo.setVisibility(View.VISIBLE);
                     if (!StringUtil.isBlank(mineBean.getSecond_teacher_reviews())) {
                         tvComment2.setText(Html.fromHtml(mineBean.getSecond_teacher_reviews()));
                         mDataManager.setViewVisibility(llComment2, true);
+                        if (!StringUtil.isBlank(mineBean.getSecond_teacher_doc())) {
+                            mDataManager.setViewVisibility(llReplyFile2, true);
+                            llReplyFile2.setOnClickListener(v -> {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("title", "第一次批改回复");
+                                bundle.putString("url", "https://view.officeapps.live.com/op/view.aspx?src=" + Constants.IMG_URL + mineBean.getSecond_teacher_doc());
+                                gotoActivity(WebViewActivity.class, bundle);
+                            });
+                        } else {
+                            if (!mineBean.getSecond_teacher_upload().isEmpty()) {
+                                mDataManager.setViewVisibility(rvReply2, true);
+                                rvReply2.setLayoutManager(new LinearLayoutManager(activity));
+                                rvReply2.setHasFixedSize(true);
+                                rvReply2.setNestedScrollingEnabled(false);
+                                ImageAdapter imageReply = new ImageAdapter(mineBean.getSecond_teacher_upload());
+                                rvReply2.setAdapter(imageReply);
+                            }
+                        }
                     } else {
                         mDataManager.setViewVisibility(llComment2, false);
                     }
