@@ -51,9 +51,18 @@ public class ArticleBean extends BaseZnzBean {
     private String example_show;
     private String example_comments;
     private String video_url;
+    private String class_hour;
     private String video_image;
     private List<TeacherBean> assign_teacher_id_info;
     private List<UrlBean> imgurl;
+
+    public String getClass_hour() {
+        return class_hour;
+    }
+
+    public void setClass_hour(String class_hour) {
+        this.class_hour = class_hour;
+    }
 
     public String getCate_type() {
         return cate_type;

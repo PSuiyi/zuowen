@@ -92,7 +92,7 @@ public class WeekListFragment extends BaseAppListFragment<ArticleModel, ArticleB
 
                 new UIAlertDialog(activity)
                         .builder()
-                        .setMsg("确定花费50积分练习该作文？")
+                        .setMsg("确定花费" + bean.getClass_hour() + "积分练习该作文？")
                         .setNegativeButton("取消", null)
                         .setPositiveButton("确定", v2 -> {
                             Map<String, String> params = new HashMap<>();
