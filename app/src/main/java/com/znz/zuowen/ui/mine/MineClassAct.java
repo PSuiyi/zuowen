@@ -105,7 +105,10 @@ public class MineClassAct extends BaseAppActivity<UserModel> {
                 rvClass.setHasFixedSize(true);
                 rvClass.setNestedScrollingEnabled(false);
                 dataList.clear();
-                dataList.addAll(JSONArray.parseArray(responseObject.getString("class_hour_list"), ClassBean.class));
+
+                if (!StringUtil.isBlank(responseObject.getString("class_hour_list"))) {
+                    dataList.addAll(JSONArray.parseArray(responseObject.getString("class_hour_list"), ClassBean.class));
+                }
                 if (!dataList.isEmpty()) {
                     dataList.get(0).setChecked(true);
                 }

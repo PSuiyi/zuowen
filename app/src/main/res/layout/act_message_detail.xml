@@ -30,11 +30,18 @@
 
         <View style="@style/Line" />
 
-        <TextView
-            android:id="@+id/tvContent"
-            style="@style/TextStyle"
-            android:layout_marginTop="@dimen/distance_view"
-            android:text="信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/tvContent"
+                style="@style/TextStyle"
+                android:layout_marginTop="@dimen/distance_view"
+                android:text="信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文" />
+
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>

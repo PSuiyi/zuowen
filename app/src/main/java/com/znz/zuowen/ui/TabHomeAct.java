@@ -15,6 +15,7 @@ import com.znz.compass.znzlibray.eventbus.BaseEvent;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.zuowen.R;
 import com.znz.zuowen.base.BaseAppActivity;
 import com.znz.zuowen.common.Constants;
@@ -106,6 +107,9 @@ public class TabHomeAct extends BaseAppActivity<UserModel> {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
+                if (StringUtil.isBlank(responseObject.getString("infos"))) {
+                    return;
+                }
                 mDataManager.saveTempData(Constants.ZHIFU_AGREEMENT, responseObject.getString("infos"));
             }
 

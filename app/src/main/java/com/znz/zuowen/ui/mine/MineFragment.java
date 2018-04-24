@@ -242,7 +242,13 @@ public class MineFragment extends BaseAppFragment<UserModel> {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
+                if (StringUtil.isBlank(responseOriginal.getString("data"))) {
+                    return;
+                }
                 versionBean = JSONObject.parseObject(responseOriginal.getString("data"), VersionBean.class);
+                if (StringUtil.isBlank(versionBean.getIs_update())) {
+                    return;
+                }
                 if (versionBean.getIs_update().equals("1")) {
                     rowDescriptionList.get(8).setValue("已是最新版");
                     commonRowGroup.notifyDataChanged(rowDescriptionList);
