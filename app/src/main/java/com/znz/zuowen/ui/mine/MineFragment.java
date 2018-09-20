@@ -169,6 +169,12 @@ public class MineFragment extends BaseAppFragment<UserModel> {
                 .withEnableLongLine(true)
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
+                    if (versionBean == null) {
+                        return;
+                    }
+                    if (StringUtil.isBlank(versionBean.getIs_update())) {
+                        return;
+                    }
                     if (versionBean.getIs_update().equals("1")) {
                         mDataManager.showToast("已经是最新版");
                     } else {

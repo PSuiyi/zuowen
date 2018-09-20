@@ -30,8 +30,17 @@ public class VideoBean extends BaseZnzBean {
     private String intro;
     private String content;
     private String addtime;
+    private String class_hour;
     private String is_buy;
     private String is_collect;
+
+    public String getClass_hour() {
+        return class_hour;
+    }
+
+    public void setClass_hour(String class_hour) {
+        this.class_hour = class_hour;
+    }
 
     public String getIs_collect() {
         return is_collect;
